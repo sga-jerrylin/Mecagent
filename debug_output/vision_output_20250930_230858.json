@@ -1,0 +1,189 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20250930_230858",
+  "image_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmprq6umd5h/page_1.png",
+  "reasoning": "",
+  "result": {
+    "pages": [
+      {
+        "page_id": 1,
+        "width": 3368,
+        "height": 2382,
+        "regions": {
+          "title_block": {
+            "region": [
+              25,
+              20,
+              400,
+              60
+            ],
+            "raw_text": "T-SPV1830-EURO"
+          },
+          "technical_requirements": {
+            "region": [
+              970,
+              60,
+              1200,
+              150
+            ],
+            "raw_text": "技术要求\n1.未注公尺寸按GB/T 1804-m;\n2.美观、无露白、焊伤等不良。"
+          },
+          "bom_table": {
+            "region": [
+              25,
+              600,
+              400,
+              700
+            ],
+            "raw_text": "工艺路线\n配料--装配--包装\n表面RAL7021喷漆\n设计参数 操作压力16Mpa,流量60L/min,范围50°\n设计 张曹玉 日期 2025/9/10\n修改文件号 16321639.75\n数量 1\n材料 1-18\n单重 414.28 kg/台\n系统 自制通用件 03.02.03.0052"
+          },
+          "main_views": [
+            {
+              "view_type": "front",
+              "region": [
+                25,
+                60,
+                600,
+                400
+              ]
+            },
+            {
+              "view_type": "side",
+              "region": [
+                650,
+                60,
+                900,
+                400
+              ]
+            },
+            {
+              "view_type": "isometric",
+              "region": [
+                750,
+                400,
+                1200,
+                600
+              ]
+            },
+            {
+              "view_type": "sectional",
+              "region": [
+                25,
+                400,
+                600,
+                800
+              ]
+            }
+          ],
+          "local_views": [
+            {
+              "view_type": "detail",
+              "region": [
+                25,
+                800,
+                600,
+                1000
+              ]
+            }
+          ]
+        },
+        "dimensions": [
+          {
+            "dimension_id": "D001",
+            "type": "linear",
+            "start": [
+              25,
+              60
+            ],
+            "end": [
+              600,
+              60
+            ],
+            "value": "996",
+            "evidence": [
+              25,
+              60,
+              600,
+              60
+            ]
+          },
+          {
+            "dimension_id": "D002",
+            "type": "linear",
+            "start": [
+              600,
+              400
+            ],
+            "end": [
+              600,
+              800
+            ],
+            "value": "885",
+            "evidence": [
+              600,
+              400,
+              600,
+              800
+            ]
+          },
+          {
+            "dimension_id": "D003",
+            "type": "angular",
+            "start": [
+              25,
+              800
+            ],
+            "end": [
+              600,
+              800
+            ],
+            "value": "50°",
+            "evidence": [
+              25,
+              800,
+              600,
+              800
+            ]
+          }
+        ],
+        "symbols": [
+          {
+            "symbol_id": "S001",
+            "type": "weld_symbol",
+            "location": [
+              600,
+              400
+            ],
+            "description": "焊接符号，表示对接焊缝",
+            "evidence": [
+              600,
+              400
+            ]
+          }
+        ],
+        "bom_items": [
+          {
+            "item_id": "BOM001",
+            "part_number": "1-18",
+            "description": "产品部件",
+            "quantity": 1,
+            "unit_weight": 414.28,
+            "unit": "kg/台"
+          }
+        ],
+        "number_bubbles": [
+          {
+            "bubble_id": "NB001",
+            "location": [
+              600,
+              400
+            ],
+            "associated_part": "BOM001"
+          }
+        ]
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"pages\": [\n    {\n      \"page_id\": 1,\n      \"width\": 3368,\n      \"height\": 2382,\n      \"regions\": {\n        \"title_block\": {\n          \"region\": [25, 20, 400, 60],\n          \"raw_text\": \"T-SPV1830-EURO\"\n        },\n        \"technical_requirements\": {\n          \"region\": [970, 60, 1200, 150],\n          \"raw_text\": \"技术要求\\n1.未注公尺寸按GB/T 1804-m;\\n2.美观、无露白、焊伤等不良。\"\n        },\n        \"bom_table\": {\n          \"region\": [25, 600, 400, 700],\n          \"raw_text\": \"工艺路线\\n配料--装配--包装\\n表面RAL7021喷漆\\n设计参数 操作压力16Mpa,流量60L/min,范围50°\\n设计 张曹玉 日期 2025/9/10\\n修改文件号 16321639.75\\n数量 1\\n材料 1-18\\n单重 414.28 kg/台\\n系统 自制通用件 03.02.03.0052\"\n        },\n        \"main_views\": [\n          {\n            \"view_type\": \"front\",\n            \"region\": [25, 60, 600, 400]\n          },\n          {\n            \"view_type\": \"side\",\n            \"region\": [650, 60, 900, 400]\n          },\n          {\n            \"view_type\": \"isometric\",\n            \"region\": [750, 400, 1200, 600]\n          },\n          {\n            \"view_type\": \"sectional\",\n            \"region\": [25, 400, 600, 800]\n          }\n        ],\n        \"local_views\": [\n          {\n            \"view_type\": \"detail\",\n            \"region\": [25, 800, 600, 1000]\n          }\n        ]\n      },\n      \"dimensions\": [\n        {\n          \"dimension_id\": \"D001\",\n          \"type\": \"linear\",\n          \"start\": [25, 60],\n          \"end\": [600, 60],\n          \"value\": \"996\",\n          \"evidence\": [25, 60, 600, 60]\n        },\n        {\n          \"dimension_id\": \"D002\",\n          \"type\": \"linear\",\n          \"start\": [600, 400],\n          \"end\": [600, 800],\n          \"value\": \"885\",\n          \"evidence\": [600, 400, 600, 800]\n        },\n        {\n          \"dimension_id\": \"D003\",\n          \"type\": \"angular\",\n          \"start\": [25, 800],\n          \"end\": [600, 800],\n          \"value\": \"50°\",\n          \"evidence\": [25, 800, 600, 800]\n        }\n      ],\n      \"symbols\": [\n        {\n          \"symbol_id\": \"S001\",\n          \"type\": \"weld_symbol\",\n          \"location\": [600, 400],\n          \"description\": \"焊接符号，表示对接焊缝\",\n          \"evidence\": [600, 400]\n        }\n      ],\n      \"bom_items\": [\n        {\n          \"item_id\": \"BOM001\",\n          \"part_number\": \"1-18\",\n          \"description\": \"产品部件\",\n          \"quantity\": 1,\n          \"unit_weight\": 414.28,\n          \"unit\": \"kg/台\"\n        }\n      ],\n      \"number_bubbles\": [\n        {\n          \"bubble_id\": \"NB001\",\n          \"location\": [600, 400],\n          \"associated_part\": \"BOM001\"\n        }\n      ]\n    }\n  ]\n}\n```"
+}

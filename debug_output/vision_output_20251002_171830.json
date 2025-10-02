@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_171830",
+  "image_path": "test_output_three_agents\\pdf_images_3\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "油缸固定板与油缸及左右铲雪板组件的配合焊接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊（111）",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝表面平整，无气孔、夹渣等缺陷",
+        "worker_instruction": "使用直径3.2mm的焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊穿。焊接完成后清理焊渣。",
+        "inspection_method": "目视检查+焊缝尺寸测量",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "后座连接组件的侧面加强筋与主体结构的焊接处",
+        "welding_type": "角焊",
+        "welding_method": "气保焊（135）",
+        "weld_size": "焊脚高度8mm",
+        "quality_requirement": "焊缝连续均匀，无裂纹、未熔合等缺陷",
+        "worker_instruction": "使用CO2气体保护，采用立焊位置施焊。焊接前清理焊接区域的油污和锈迹。焊接过程中保持焊枪角度稳定。",
+        "inspection_method": "目视检查+渗透检测",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "后座连接组件的底部加强筋与主体结构的焊接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊（111）",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝外观整齐，无咬边、焊瘤等现象",
+        "worker_instruction": "采用平焊位置施焊，注意控制焊接速度。焊接完成后敲掉焊渣并打磨平整。",
+        "inspection_method": "目视检查+焊缝尺寸测量",
+        "importance": "一般"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"油缸固定板与油缸及左右铲雪板组件的配合焊接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊（111）\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无气孔、夹渣等缺陷\",\n      \"worker_instruction\": \"使用直径3.2mm的焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊穿。焊接完成后清理焊渣。\",\n      \"inspection_method\": \"目视检查+焊缝尺寸测量\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"后座连接组件的侧面加强筋与主体结构的焊接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"气保焊（135）\",\n      \"weld_size\": \"焊脚高度8mm\",\n      \"quality_requirement\": \"焊缝连续均匀，无裂纹、未熔合等缺陷\",\n      \"worker_instruction\": \"使用CO2气体保护，采用立焊位置施焊。焊接前清理焊接区域的油污和锈迹。焊接过程中保持焊枪角度稳定。\",\n      \"inspection_method\": \"目视检查+渗透检测\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"后座连接组件的底部加强筋与主体结构的焊接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊（111）\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝外观整齐，无咬边、焊瘤等现象\",\n      \"worker_instruction\": \"采用平焊位置施焊，注意控制焊接速度。焊接完成后敲掉焊渣并打磨平整。\",\n      \"inspection_method\": \"目视检查+焊缝尺寸测量\",\n      \"importance\": \"一般\"\n    }\n  ]\n}\n```"
+}

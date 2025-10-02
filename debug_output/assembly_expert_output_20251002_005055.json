@@ -1,0 +1,585 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_005055",
+  "image_count": 2,
+  "attempt": 1,
+  "result": {
+    "product_overview": {
+      "product_name": "T-SPV1830-EURO",
+      "product_type": "推雪板",
+      "main_structure": "框架+铲板+液压系统+驱动轮",
+      "working_principle": "通过液压系统控制铲板角度，利用驱动轮移动，在积雪表面进行推雪作业",
+      "complexity": "中等"
+    },
+    "drawing_number_to_bom": [
+      {
+        "drawing_number": 53,
+        "bom_seq": 53,
+        "bom_code": "01.09.2556"
+      },
+      {
+        "drawing_number": 51,
+        "bom_seq": 51,
+        "bom_code": "01.09.1240"
+      },
+      {
+        "drawing_number": 49,
+        "bom_seq": 49,
+        "bom_code": "01.09.0308"
+      },
+      {
+        "drawing_number": 46,
+        "bom_seq": 46,
+        "bom_code": "01.09.0304"
+      },
+      {
+        "drawing_number": 28,
+        "bom_seq": 28,
+        "bom_code": "01.09.2566"
+      },
+      {
+        "drawing_number": 27,
+        "bom_seq": 27,
+        "bom_code": "01.09.2565"
+      },
+      {
+        "drawing_number": 24,
+        "bom_seq": 24,
+        "bom_code": "01.09.0999"
+      },
+      {
+        "drawing_number": 23,
+        "bom_seq": 23,
+        "bom_code": "01.09.0503"
+      },
+      {
+        "drawing_number": 21,
+        "bom_seq": 21,
+        "bom_code": "01.09.0995"
+      },
+      {
+        "drawing_number": 19,
+        "bom_seq": 19,
+        "bom_code": "01.09.2564"
+      },
+      {
+        "drawing_number": 16,
+        "bom_seq": 16,
+        "bom_code": "01.09.2563"
+      },
+      {
+        "drawing_number": 15,
+        "bom_seq": 15,
+        "bom_code": "01.09.2562"
+      },
+      {
+        "drawing_number": 14,
+        "bom_seq": 14,
+        "bom_code": "01.09.2561"
+      },
+      {
+        "drawing_number": 13,
+        "bom_seq": 13,
+        "bom_code": "01.09.2555"
+      },
+      {
+        "drawing_number": 12,
+        "bom_seq": 12,
+        "bom_code": "01.02.07.0071"
+      }
+    ],
+    "spatial_relationships": [
+      {
+        "drawing_number": 53,
+        "bom_code": "01.09.2556",
+        "location": "产品底部中央",
+        "orientation": "水平",
+        "adjacent_parts": [
+          51,
+          49,
+          46
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "主视图显示该零件位于整个结构的底部中央位置"
+      },
+      {
+        "drawing_number": 51,
+        "bom_code": "01.09.1240",
+        "location": "产品顶部中央",
+        "orientation": "水平",
+        "adjacent_parts": [
+          53,
+          49
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "俯视图显示该零件位于整个结构的顶部中央位置"
+      },
+      {
+        "drawing_number": 49,
+        "bom_code": "01.09.0308",
+        "location": "产品两侧（左、右）",
+        "orientation": "垂直",
+        "adjacent_parts": [
+          53,
+          51,
+          46
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "侧视图显示该零件位于两侧，与底部和顶部结构相连"
+      },
+      {
+        "drawing_number": 46,
+        "bom_code": "01.09.0304",
+        "location": "产品两侧（左、右）",
+        "orientation": "垂直",
+        "adjacent_parts": [
+          53,
+          49
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "侧视图显示该零件位于两侧，与底部和顶部结构相连"
+      },
+      {
+        "drawing_number": 28,
+        "bom_code": "01.09.2566",
+        "location": "产品底部两侧",
+        "orientation": "倾斜50°",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "剖视图A-A显示该零件以50°角安装在底部两侧"
+      },
+      {
+        "drawing_number": 27,
+        "bom_code": "01.09.2565",
+        "location": "产品底部两侧",
+        "orientation": "倾斜50°",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "左右对称",
+        "visual_evidence": "剖视图A-A显示该零件以50°角安装在底部两侧"
+      },
+      {
+        "drawing_number": 24,
+        "bom_code": "01.09.0999",
+        "location": "产品中部偏上",
+        "orientation": "水平",
+        "adjacent_parts": [
+          53,
+          21
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于中部偏上位置"
+      },
+      {
+        "drawing_number": 23,
+        "bom_code": "01.09.0503",
+        "location": "产品左侧中部",
+        "orientation": "水平",
+        "adjacent_parts": [
+          21
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于左侧中部"
+      },
+      {
+        "drawing_number": 21,
+        "bom_code": "01.09.0995",
+        "location": "产品中部",
+        "orientation": "水平",
+        "adjacent_parts": [
+          24,
+          19
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于中部"
+      },
+      {
+        "drawing_number": 19,
+        "bom_code": "01.09.2564",
+        "location": "产品右侧中部",
+        "orientation": "水平",
+        "adjacent_parts": [
+          21
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于右侧中部"
+      },
+      {
+        "drawing_number": 16,
+        "bom_code": "01.09.2563",
+        "location": "产品底部中央",
+        "orientation": "倾斜28°",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "无",
+        "visual_evidence": "剖视图A-A显示该零件以28°角安装在底部中央"
+      },
+      {
+        "drawing_number": 15,
+        "bom_code": "01.09.2562",
+        "location": "产品底部中央",
+        "orientation": "倾斜28°",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "无",
+        "visual_evidence": "剖视图A-A显示该零件以28°角安装在底部中央"
+      },
+      {
+        "drawing_number": 14,
+        "bom_code": "01.09.2561",
+        "location": "产品底部中央",
+        "orientation": "倾斜28°",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "无",
+        "visual_evidence": "剖视图A-A显示该零件以28°角安装在底部中央"
+      },
+      {
+        "drawing_number": 13,
+        "bom_code": "01.09.2555",
+        "location": "产品底部中央",
+        "orientation": "水平",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于底部中央"
+      },
+      {
+        "drawing_number": 12,
+        "bom_code": "01.02.07.0071",
+        "location": "产品右侧",
+        "orientation": "垂直",
+        "adjacent_parts": [
+          53
+        ],
+        "symmetry": "无",
+        "visual_evidence": "主视图显示该零件位于右侧"
+      }
+    ],
+    "assembly_connections": [
+      {
+        "part_a": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "part_b": {
+          "drawing_number": 51,
+          "bom_code": "01.09.1240"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "part_b": {
+          "drawing_number": 49,
+          "bom_code": "01.09.0308"
+        },
+        "connection_type": "螺栓连接",
+        "fastener_bom_code": "02.03.0458",
+        "fastener_spec": "M30*60",
+        "quantity": 6,
+        "visual_evidence": "主视图显示6个螺栓孔，对应BOM表中的螺栓"
+      },
+      {
+        "part_a": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "part_b": {
+          "drawing_number": 46,
+          "bom_code": "01.09.0304"
+        },
+        "connection_type": "螺栓连接",
+        "fastener_bom_code": "02.03.0458",
+        "fastener_spec": "M30*60",
+        "quantity": 6,
+        "visual_evidence": "主视图显示6个螺栓孔，对应BOM表中的螺栓"
+      },
+      {
+        "part_a": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "part_b": {
+          "drawing_number": 28,
+          "bom_code": "01.09.2566"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "part_b": {
+          "drawing_number": 27,
+          "bom_code": "01.09.2565"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 24,
+          "bom_code": "01.09.0999"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "主视图显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 21,
+          "bom_code": "01.09.0995"
+        },
+        "part_b": {
+          "drawing_number": 24,
+          "bom_code": "01.09.0999"
+        },
+        "connection_type": "销钉连接",
+        "fastener_bom_code": "01.09.0503",
+        "fastener_spec": "CX-φ12-150-45#",
+        "quantity": 1,
+        "visual_evidence": "主视图显示销钉穿过两零件"
+      },
+      {
+        "part_a": {
+          "drawing_number": 19,
+          "bom_code": "01.09.2564"
+        },
+        "part_b": {
+          "drawing_number": 21,
+          "bom_code": "01.09.0995"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "主视图显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 16,
+          "bom_code": "01.09.2563"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 15,
+          "bom_code": "01.09.2562"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 14,
+          "bom_code": "01.09.2561"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 13,
+          "bom_code": "01.09.2555"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "主视图显示两者通过角焊连接"
+      },
+      {
+        "part_a": {
+          "drawing_number": 12,
+          "bom_code": "01.02.07.0071"
+        },
+        "part_b": {
+          "drawing_number": 53,
+          "bom_code": "01.09.2556"
+        },
+        "connection_type": "焊接",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "visual_evidence": "主视图显示两者通过角焊连接"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension": "996mm",
+        "description": "整体宽度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "1045mm",
+        "description": "整体长度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "300mm",
+        "description": "驱动轮中心高度",
+        "tolerance": "",
+        "page": 1,
+        "view": "侧视图"
+      },
+      {
+        "dimension": "1080mm",
+        "description": "铲板展开长度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "790.5mm",
+        "description": "铲板展开宽度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "50°",
+        "description": "铲板展开角度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "28°",
+        "description": "底部支撑角度",
+        "tolerance": "",
+        "page": 1,
+        "view": "剖视图A-A"
+      },
+      {
+        "dimension": "147mm",
+        "description": "底部支撑高度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "1830mm",
+        "description": "铲板总长度",
+        "tolerance": "",
+        "page": 1,
+        "view": "主视图"
+      },
+      {
+        "dimension": "±0.1mm",
+        "description": "底部支撑水平度公差",
+        "tolerance": "",
+        "page": 1,
+        "view": "技术要求"
+      }
+    ],
+    "assembly_sequence_hints": [
+      {
+        "hint": "零件53（方形板-机加-镀锌）位于爆炸图最底层，应作为基准件首先安装",
+        "confidence": "高",
+        "visual_evidence": "主视图显示该零件位于整个结构的底部中央位置"
+      },
+      {
+        "hint": "零件51（电磁阀保护罩组件-漆后）位于顶部中央，应在底部结构完成后安装",
+        "confidence": "高",
+        "visual_evidence": "俯视图显示该零件位于整个结构的顶部中央位置"
+      },
+      {
+        "hint": "零件49和零件46（推雪板反光片固定板和推雪板大垫圈-镀锌）对称布置，需同步安装保证对称性",
+        "confidence": "高",
+        "visual_evidence": "侧视图显示两侧结构对称"
+      },
+      {
+        "hint": "零件28和零件27（圆钢-机加-镀锌）以50°角安装在底部两侧，应在底部框架安装完成后进行",
+        "confidence": "高",
+        "visual_evidence": "剖视图A-A显示该零件以50°角安装在底部两侧"
+      },
+      {
+        "hint": "零件16、15、14（自制螺栓-镀锌）以28°角安装在底部中央，应在底部框架安装完成后进行",
+        "confidence": "高",
+        "visual_evidence": "剖视图A-A显示该零件以28°角安装在底部中央"
+      }
+    ],
+    "technical_requirements": [
+      "未注公差尺寸按GB/T 1804-m",
+      "表面均匀，美观，无露白、划伤等不良",
+      "操作压力16Mpa，流量60L/min，油口M14*1.5，M18*1.5",
+      "工作范围50°",
+      "所有焊接件需去应力退火"
+    ],
+    "welding_info": [
+      {
+        "location": "底部框架与铲板连接处",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "page": 1,
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "location": "底部支撑与框架连接处",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "page": 1,
+        "visual_evidence": "剖视图A-A显示两者通过角焊连接"
+      },
+      {
+        "location": "驱动轮支架与框架连接处",
+        "weld_type": "角焊",
+        "weld_size": "6mm",
+        "page": 1,
+        "visual_evidence": "主视图显示两者通过角焊连接"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"product_overview\": {\n    \"product_name\": \"T-SPV1830-EURO\",\n    \"product_type\": \"推雪板\",\n    \"main_structure\": \"框架+铲板+液压系统+驱动轮\",\n    \"working_principle\": \"通过液压系统控制铲板角度，利用驱动轮移动，在积雪表面进行推雪作业\",\n    \"complexity\": \"中等\"\n  },\n\n  \"drawing_number_to_bom\": [\n    {\n      \"drawing_number\": 53,\n      \"bom_seq\": 53,\n      \"bom_code\": \"01.09.2556\"\n    },\n    {\n      \"drawing_number\": 51,\n      \"bom_seq\": 51,\n      \"bom_code\": \"01.09.1240\"\n    },\n    {\n      \"drawing_number\": 49,\n      \"bom_seq\": 49,\n      \"bom_code\": \"01.09.0308\"\n    },\n    {\n      \"drawing_number\": 46,\n      \"bom_seq\": 46,\n      \"bom_code\": \"01.09.0304\"\n    },\n    {\n      \"drawing_number\": 28,\n      \"bom_seq\": 28,\n      \"bom_code\": \"01.09.2566\"\n    },\n    {\n      \"drawing_number\": 27,\n      \"bom_seq\": 27,\n      \"bom_code\": \"01.09.2565\"\n    },\n    {\n      \"drawing_number\": 24,\n      \"bom_seq\": 24,\n      \"bom_code\": \"01.09.0999\"\n    },\n    {\n      \"drawing_number\": 23,\n      \"bom_seq\": 23,\n      \"bom_code\": \"01.09.0503\"\n    },\n    {\n      \"drawing_number\": 21,\n      \"bom_seq\": 21,\n      \"bom_code\": \"01.09.0995\"\n    },\n    {\n      \"drawing_number\": 19,\n      \"bom_seq\": 19,\n      \"bom_code\": \"01.09.2564\"\n    },\n    {\n      \"drawing_number\": 16,\n      \"bom_seq\": 16,\n      \"bom_code\": \"01.09.2563\"\n    },\n    {\n      \"drawing_number\": 15,\n      \"bom_seq\": 15,\n      \"bom_code\": \"01.09.2562\"\n    },\n    {\n      \"drawing_number\": 14,\n      \"bom_seq\": 14,\n      \"bom_code\": \"01.09.2561\"\n    },\n    {\n      \"drawing_number\": 13,\n      \"bom_seq\": 13,\n      \"bom_code\": \"01.09.2555\"\n    },\n    {\n      \"drawing_number\": 12,\n      \"bom_seq\": 12,\n      \"bom_code\": \"01.02.07.0071\"\n    }\n  ],\n\n  \"spatial_relationships\": [\n    {\n      \"drawing_number\": 53,\n      \"bom_code\": \"01.09.2556\",\n      \"location\": \"产品底部中央\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [51, 49, 46],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"主视图显示该零件位于整个结构的底部中央位置\"\n    },\n    {\n      \"drawing_number\": 51,\n      \"bom_code\": \"01.09.1240\",\n      \"location\": \"产品顶部中央\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [53, 49],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"俯视图显示该零件位于整个结构的顶部中央位置\"\n    },\n    {\n      \"drawing_number\": 49,\n      \"bom_code\": \"01.09.0308\",\n      \"location\": \"产品两侧（左、右）\",\n      \"orientation\": \"垂直\",\n      \"adjacent_parts\": [53, 51, 46],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"侧视图显示该零件位于两侧，与底部和顶部结构相连\"\n    },\n    {\n      \"drawing_number\": 46,\n      \"bom_code\": \"01.09.0304\",\n      \"location\": \"产品两侧（左、右）\",\n      \"orientation\": \"垂直\",\n      \"adjacent_parts\": [53, 49],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"侧视图显示该零件位于两侧，与底部和顶部结构相连\"\n    },\n    {\n      \"drawing_number\": 28,\n      \"bom_code\": \"01.09.2566\",\n      \"location\": \"产品底部两侧\",\n      \"orientation\": \"倾斜50°\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以50°角安装在底部两侧\"\n    },\n    {\n      \"drawing_number\": 27,\n      \"bom_code\": \"01.09.2565\",\n      \"location\": \"产品底部两侧\",\n      \"orientation\": \"倾斜50°\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"左右对称\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以50°角安装在底部两侧\"\n    },\n    {\n      \"drawing_number\": 24,\n      \"bom_code\": \"01.09.0999\",\n      \"location\": \"产品中部偏上\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [53, 21],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于中部偏上位置\"\n    },\n    {\n      \"drawing_number\": 23,\n      \"bom_code\": \"01.09.0503\",\n      \"location\": \"产品左侧中部\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [21],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于左侧中部\"\n    },\n    {\n      \"drawing_number\": 21,\n      \"bom_code\": \"01.09.0995\",\n      \"location\": \"产品中部\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [24, 19],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于中部\"\n    },\n    {\n      \"drawing_number\": 19,\n      \"bom_code\": \"01.09.2564\",\n      \"location\": \"产品右侧中部\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [21],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于右侧中部\"\n    },\n    {\n      \"drawing_number\": 16,\n      \"bom_code\": \"01.09.2563\",\n      \"location\": \"产品底部中央\",\n      \"orientation\": \"倾斜28°\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以28°角安装在底部中央\"\n    },\n    {\n      \"drawing_number\": 15,\n      \"bom_code\": \"01.09.2562\",\n      \"location\": \"产品底部中央\",\n      \"orientation\": \"倾斜28°\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以28°角安装在底部中央\"\n    },\n    {\n      \"drawing_number\": 14,\n      \"bom_code\": \"01.09.2561\",\n      \"location\": \"产品底部中央\",\n      \"orientation\": \"倾斜28°\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以28°角安装在底部中央\"\n    },\n    {\n      \"drawing_number\": 13,\n      \"bom_code\": \"01.09.2555\",\n      \"location\": \"产品底部中央\",\n      \"orientation\": \"水平\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于底部中央\"\n    },\n    {\n      \"drawing_number\": 12,\n      \"bom_code\": \"01.02.07.0071\",\n      \"location\": \"产品右侧\",\n      \"orientation\": \"垂直\",\n      \"adjacent_parts\": [53],\n      \"symmetry\": \"无\",\n      \"visual_evidence\": \"主视图显示该零件位于右侧\"\n    }\n  ],\n\n  \"assembly_connections\": [\n    {\n      \"part_a\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"part_b\": {\"drawing_number\": 51, \"bom_code\": \"01.09.1240\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"part_b\": {\"drawing_number\": 49, \"bom_code\": \"01.09.0308\"},\n      \"connection_type\": \"螺栓连接\",\n      \"fastener_bom_code\": \"02.03.0458\",\n      \"fastener_spec\": \"M30*60\",\n      \"quantity\": 6,\n      \"visual_evidence\": \"主视图显示6个螺栓孔，对应BOM表中的螺栓\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"part_b\": {\"drawing_number\": 46, \"bom_code\": \"01.09.0304\"},\n      \"connection_type\": \"螺栓连接\",\n      \"fastener_bom_code\": \"02.03.0458\",\n      \"fastener_spec\": \"M30*60\",\n      \"quantity\": 6,\n      \"visual_evidence\": \"主视图显示6个螺栓孔，对应BOM表中的螺栓\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"part_b\": {\"drawing_number\": 28, \"bom_code\": \"01.09.2566\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"part_b\": {\"drawing_number\": 27, \"bom_code\": \"01.09.2565\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 24, \"bom_code\": \"01.09.0999\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"主视图显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 21, \"bom_code\": \"01.09.0995\"},\n      \"part_b\": {\"drawing_number\": 24, \"bom_code\": \"01.09.0999\"},\n      \"connection_type\": \"销钉连接\",\n      \"fastener_bom_code\": \"01.09.0503\",\n      \"fastener_spec\": \"CX-φ12-150-45#\",\n      \"quantity\": 1,\n      \"visual_evidence\": \"主视图显示销钉穿过两零件\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 19, \"bom_code\": \"01.09.2564\"},\n      \"part_b\": {\"drawing_number\": 21, \"bom_code\": \"01.09.0995\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"主视图显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 16, \"bom_code\": \"01.09.2563\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 15, \"bom_code\": \"01.09.2562\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 14, \"bom_code\": \"01.09.2561\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 13, \"bom_code\": \"01.09.2555\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"主视图显示两者通过角焊连接\"\n    },\n    {\n      \"part_a\": {\"drawing_number\": 12, \"bom_code\": \"01.02.07.0071\"},\n      \"part_b\": {\"drawing_number\": 53, \"bom_code\": \"01.09.2556\"},\n      \"connection_type\": \"焊接\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"visual_evidence\": \"主视图显示两者通过角焊连接\"\n    }\n  ],\n\n  \"critical_dimensions\": [\n    {\n      \"dimension\": \"996mm\",\n      \"description\": \"整体宽度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"1045mm\",\n      \"description\": \"整体长度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"300mm\",\n      \"description\": \"驱动轮中心高度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"侧视图\"\n    },\n    {\n      \"dimension\": \"1080mm\",\n      \"description\": \"铲板展开长度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"790.5mm\",\n      \"description\": \"铲板展开宽度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"50°\",\n      \"description\": \"铲板展开角度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"28°\",\n      \"description\": \"底部支撑角度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"剖视图A-A\"\n    },\n    {\n      \"dimension\": \"147mm\",\n      \"description\": \"底部支撑高度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"1830mm\",\n      \"description\": \"铲板总长度\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"主视图\"\n    },\n    {\n      \"dimension\": \"±0.1mm\",\n      \"description\": \"底部支撑水平度公差\",\n      \"tolerance\": \"\",\n      \"page\": 1,\n      \"view\": \"技术要求\"\n    }\n  ],\n\n  \"assembly_sequence_hints\": [\n    {\n      \"hint\": \"零件53（方形板-机加-镀锌）位于爆炸图最底层，应作为基准件首先安装\",\n      \"confidence\": \"高\",\n      \"visual_evidence\": \"主视图显示该零件位于整个结构的底部中央位置\"\n    },\n    {\n      \"hint\": \"零件51（电磁阀保护罩组件-漆后）位于顶部中央，应在底部结构完成后安装\",\n      \"confidence\": \"高\",\n      \"visual_evidence\": \"俯视图显示该零件位于整个结构的顶部中央位置\"\n    },\n    {\n      \"hint\": \"零件49和零件46（推雪板反光片固定板和推雪板大垫圈-镀锌）对称布置，需同步安装保证对称性\",\n      \"confidence\": \"高\",\n      \"visual_evidence\": \"侧视图显示两侧结构对称\"\n    },\n    {\n      \"hint\": \"零件28和零件27（圆钢-机加-镀锌）以50°角安装在底部两侧，应在底部框架安装完成后进行\",\n      \"confidence\": \"高\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以50°角安装在底部两侧\"\n    },\n    {\n      \"hint\": \"零件16、15、14（自制螺栓-镀锌）以28°角安装在底部中央，应在底部框架安装完成后进行\",\n      \"confidence\": \"高\",\n      \"visual_evidence\": \"剖视图A-A显示该零件以28°角安装在底部中央\"\n    }\n  ],\n\n  \"technical_requirements\": [\n    \"未注公差尺寸按GB/T 1804-m\",\n    \"表面均匀，美观，无露白、划伤等不良\",\n    \"操作压力16Mpa，流量60L/min，油口M14*1.5，M18*1.5\",\n    \"工作范围50°\",\n    \"所有焊接件需去应力退火\"\n  ],\n\n  \"welding_info\": [\n    {\n      \"location\": \"底部框架与铲板连接处\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"page\": 1,\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"location\": \"底部支撑与框架连接处\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"page\": 1,\n      \"visual_evidence\": \"剖视图A-A显示两者通过角焊连接\"\n    },\n    {\n      \"location\": \"驱动轮支架与框架连接处\",\n      \"weld_type\": \"角焊\",\n      \"weld_size\": \"6mm\",\n      \"page\": 1,\n      \"visual_evidence\": \"主视图显示两者通过角焊连接\"\n    }\n  ]\n}\n```"
+}

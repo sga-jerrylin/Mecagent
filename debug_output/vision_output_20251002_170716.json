@@ -1,0 +1,116 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170716",
+  "image_path": "test_output_three_agents\\pdf_images_1\\page_002.png",
+  "reasoning": "",
+  "result": {
+    "quality_checkpoints": [
+      {
+        "checkpoint_id": "QC-001",
+        "checkpoint_name": "底部加强筋基准件安装定位",
+        "inspection_item": "底部加强筋与底板配合尺寸",
+        "inspection_method": "使用游标卡尺测量底部加强筋与底板接触面的贴合间隙，确保无明显缝隙",
+        "measurement_tool": "游标卡尺",
+        "acceptance_criteria": "间隙≤0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "关键",
+        "related_parts": "底部加强筋、底板"
+      },
+      {
+        "checkpoint_id": "QC-002",
+        "checkpoint_name": "左右侧板对称度检查",
+        "inspection_item": "左右侧板相对位置",
+        "inspection_method": "使用直角尺测量左右侧板之间的垂直度，用卷尺测量两侧板到中心线的距离差",
+        "measurement_tool": "直角尺、卷尺",
+        "acceptance_criteria": "垂直度误差≤0.5mm，距离差≤1mm",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "左侧板、右侧板"
+      },
+      {
+        "checkpoint_id": "QC-003",
+        "checkpoint_name": "顶部框架水平度检测",
+        "inspection_item": "顶部框架平面度",
+        "inspection_method": "使用水平仪放置在顶部框架表面，观察气泡位置",
+        "measurement_tool": "水平仪",
+        "acceptance_criteria": "气泡居中或偏差≤0.2mm/m",
+        "inspection_timing": "装配后",
+        "importance": "重要",
+        "related_parts": "顶部框架"
+      },
+      {
+        "checkpoint_id": "QC-004",
+        "checkpoint_name": "螺栓孔位置精度",
+        "inspection_item": "螺栓孔中心距",
+        "inspection_method": "使用精密量规测量相邻螺栓孔中心距，与图纸标注值对比",
+        "measurement_tool": "精密量规",
+        "acceptance_criteria": "中心距公差±0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "关键",
+        "related_parts": "所有带螺栓孔的零件"
+      },
+      {
+        "checkpoint_id": "QC-005",
+        "checkpoint_name": "焊接部位焊缝质量",
+        "inspection_item": "焊缝外观及尺寸",
+        "inspection_method": "目视检查焊缝外观，使用焊缝规测量焊缝高度和宽度",
+        "measurement_tool": "焊缝规",
+        "acceptance_criteria": "焊缝高度≥6mm，宽度均匀，无裂纹、气孔等缺陷",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "焊接件（如框架、加强筋）"
+      },
+      {
+        "checkpoint_id": "QC-006",
+        "checkpoint_name": "表面粗糙度检查",
+        "inspection_item": "关键表面粗糙度",
+        "inspection_method": "使用粗糙度仪测量关键接触面的Ra值",
+        "measurement_tool": "粗糙度仪",
+        "acceptance_criteria": "Ra≤3.2μm",
+        "inspection_timing": "装配后",
+        "importance": "一般",
+        "related_parts": "接触面（如滑动导轨、轴承座）"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension_name": "整体长度",
+        "nominal_value": "1900mm",
+        "tolerance": "±0.5mm",
+        "location": "主视图"
+      },
+      {
+        "dimension_name": "整体宽度",
+        "nominal_value": "500mm",
+        "tolerance": "±0.3mm",
+        "location": "俯视图"
+      },
+      {
+        "dimension_name": "顶部框架高度",
+        "nominal_value": "300mm",
+        "tolerance": "±0.2mm",
+        "location": "左视图"
+      },
+      {
+        "dimension_name": "螺栓孔中心距",
+        "nominal_value": "200mm",
+        "tolerance": "±0.1mm",
+        "location": "俯视图"
+      },
+      {
+        "dimension_name": "焊缝高度",
+        "nominal_value": "6mm",
+        "tolerance": "0~+0.5mm",
+        "location": "剖视图"
+      },
+      {
+        "dimension_name": "表面粗糙度",
+        "nominal_value": "Ra3.2μm",
+        "tolerance": "",
+        "location": "技术要求栏"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"quality_checkpoints\": [\n    {\n      \"checkpoint_id\": \"QC-001\",\n      \"checkpoint_name\": \"底部加强筋基准件安装定位\",\n      \"inspection_item\": \"底部加强筋与底板配合尺寸\",\n      \"inspection_method\": \"使用游标卡尺测量底部加强筋与底板接触面的贴合间隙，确保无明显缝隙\",\n      \"measurement_tool\": \"游标卡尺\",\n      \"acceptance_criteria\": \"间隙≤0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"底部加强筋、底板\"\n    },\n    {\n      \"checkpoint_id\": \"QC-002\",\n      \"checkpoint_name\": \"左右侧板对称度检查\",\n      \"inspection_item\": \"左右侧板相对位置\",\n      \"inspection_method\": \"使用直角尺测量左右侧板之间的垂直度，用卷尺测量两侧板到中心线的距离差\",\n      \"measurement_tool\": \"直角尺、卷尺\",\n      \"acceptance_criteria\": \"垂直度误差≤0.5mm，距离差≤1mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"左侧板、右侧板\"\n    },\n    {\n      \"checkpoint_id\": \"QC-003\",\n      \"checkpoint_name\": \"顶部框架水平度检测\",\n      \"inspection_item\": \"顶部框架平面度\",\n      \"inspection_method\": \"使用水平仪放置在顶部框架表面，观察气泡位置\",\n      \"measurement_tool\": \"水平仪\",\n      \"acceptance_criteria\": \"气泡居中或偏差≤0.2mm/m\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"顶部框架\"\n    },\n    {\n      \"checkpoint_id\": \"QC-004\",\n      \"checkpoint_name\": \"螺栓孔位置精度\",\n      \"inspection_item\": \"螺栓孔中心距\",\n      \"inspection_method\": \"使用精密量规测量相邻螺栓孔中心距，与图纸标注值对比\",\n      \"measurement_tool\": \"精密量规\",\n      \"acceptance_criteria\": \"中心距公差±0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"所有带螺栓孔的零件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-005\",\n      \"checkpoint_name\": \"焊接部位焊缝质量\",\n      \"inspection_item\": \"焊缝外观及尺寸\",\n      \"inspection_method\": \"目视检查焊缝外观，使用焊缝规测量焊缝高度和宽度\",\n      \"measurement_tool\": \"焊缝规\",\n      \"acceptance_criteria\": \"焊缝高度≥6mm，宽度均匀，无裂纹、气孔等缺陷\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"焊接件（如框架、加强筋）\"\n    },\n    {\n      \"checkpoint_id\": \"QC-006\",\n      \"checkpoint_name\": \"表面粗糙度检查\",\n      \"inspection_item\": \"关键表面粗糙度\",\n      \"inspection_method\": \"使用粗糙度仪测量关键接触面的Ra值\",\n      \"measurement_tool\": \"粗糙度仪\",\n      \"acceptance_criteria\": \"Ra≤3.2μm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"接触面（如滑动导轨、轴承座）\"\n    }\n  ],\n  \"critical_dimensions\": [\n    {\n      \"dimension_name\": \"整体长度\",\n      \"nominal_value\": \"1900mm\",\n      \"tolerance\": \"±0.5mm\",\n      \"location\": \"主视图\"\n    },\n    {\n      \"dimension_name\": \"整体宽度\",\n      \"nominal_value\": \"500mm\",\n      \"tolerance\": \"±0.3mm\",\n      \"location\": \"俯视图\"\n    },\n    {\n      \"dimension_name\": \"顶部框架高度\",\n      \"nominal_value\": \"300mm\",\n      \"tolerance\": \"±0.2mm\",\n      \"location\": \"左视图\"\n    },\n    {\n      \"dimension_name\": \"螺栓孔中心距\",\n      \"nominal_value\": \"200mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"俯视图\"\n    },\n    {\n      \"dimension_name\": \"焊缝高度\",\n      \"nominal_value\": \"6mm\",\n      \"tolerance\": \"0~+0.5mm\",\n      \"location\": \"剖视图\"\n    },\n    {\n      \"dimension_name\": \"表面粗糙度\",\n      \"nominal_value\": \"Ra3.2μm\",\n      \"tolerance\": \"\",\n      \"location\": \"技术要求栏\"\n    }\n  ]\n}\n```"
+}

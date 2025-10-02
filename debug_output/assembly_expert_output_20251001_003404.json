@@ -1,0 +1,634 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251001_003404",
+  "image_count": 2,
+  "result": {
+    "overall_understanding": {
+      "product_name": "T-SPV1830-EURO 推雪板组件",
+      "assembly_type": "混合装配（焊接与螺栓连接）",
+      "complexity_level": "复杂",
+      "total_parts_count": 53,
+      "overall_description": "该产品为一款推雪板组件，主要用于积雪清理。整体结构包括左右铲雪板、后座组件、轮胎架及连接机构，通过多种螺栓和焊接方式组装成一个完整的作业单元。",
+      "structural_features": [
+        "双侧对称的铲雪板设计",
+        "带轮胎的移动底座",
+        "液压油缸驱动机构",
+        "前后支撑及连接框架"
+      ],
+      "working_principle": "通过液压油缸驱动铲雪板上下摆动，利用轮胎移动实现积雪的推移和清理。",
+      "main_function": "用于户外积雪清理作业，适用于道路、广场等大面积积雪清除。",
+      "key_challenges": [
+        "铲雪板与后座组件的精确配合",
+        "液压油缸安装位置的准确性",
+        "轮胎与底座的装配精度",
+        "焊接件的变形控制"
+      ]
+    },
+    "part_assembly_guide": [
+      {
+        "part_code": "01.09.2549",
+        "part_name": "T-SPV1830-EURO-01 连接器后座组件",
+        "bom_reference": {
+          "seq": 1,
+          "code": "01.09.2549",
+          "qty": 1,
+          "weight": 77.27
+        },
+        "assembly_sequence": 1,
+        "process_requirements": [
+          "清洁所有配合面，去除油污和毛刺",
+          "使用水平仪校准底座平面度",
+          "检查所有孔位尺寸是否符合图纸要求",
+          "按GB/T 1800系列公差标准进行配合检查"
+        ],
+        "key_points": [
+          "此零件为整个组件的基准件，必须首先装配",
+          "装配前需确认底座平面度误差不超过0.1mm",
+          "注意保护油漆表面，避免划伤",
+          "确保所有安装孔位对中"
+        ],
+        "tools_needed": [
+          "水平仪",
+          "游标卡尺",
+          "扭矩扳手",
+          "清洁布"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 46,
+            "bom_code": "01.09.0304",
+            "name": "SPE1.83-LD-06-45# 推雪板大垫圈-镀锌",
+            "qty": 6,
+            "torque": "150Nm",
+            "location": "与M30螺栓配合，用于固定铲雪板连接处"
+          }
+        ],
+        "quality_check": [
+          "底座平面度检查",
+          "配合孔位尺寸测量",
+          "基准面平行度检查"
+        ],
+        "safety_notes": [
+          "吊装时使用专用吊具，防止磕碰",
+          "装配过程中佩戴防护手套",
+          "确保工作区域整洁，防止滑倒"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-02 后座连接架组件",
+          "T-SPV1830-EURO-03 左铲雪板组件",
+          "T-SPV1830-EURO-04 右铲雪板组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中位于底部的大型框架结构"
+        }
+      },
+      {
+        "part_code": "01.09.2550",
+        "part_name": "T-SPV1830-EURO-02 后座连接架组件",
+        "bom_reference": {
+          "seq": 2,
+          "code": "01.09.2550",
+          "qty": 1,
+          "weight": 59.64
+        },
+        "assembly_sequence": 2,
+        "process_requirements": [
+          "检查焊接质量，确保焊缝无裂纹、气孔",
+          "使用塞尺检查配合间隙",
+          "涂抹防锈油保护未加工表面"
+        ],
+        "key_points": [
+          "此零件需要与基准件连接，装配顺序靠前",
+          "注意焊接变形控制，使用夹具固定",
+          "检查所有螺栓孔是否通畅",
+          "确保前后支撑臂对称"
+        ],
+        "tools_needed": [
+          "磁粉探伤仪",
+          "塞尺",
+          "防锈油刷"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 45,
+            "bom_code": "02.03.0458",
+            "name": "M30*60 六角头螺栓全螺纹8.8级GB/T5783-2016",
+            "qty": 6,
+            "torque": "250Nm",
+            "location": "用于连接前后座组件"
+          }
+        ],
+        "quality_check": [
+          "焊缝质量检测",
+          "配合间隙检查",
+          "对称性检查"
+        ],
+        "safety_notes": [
+          "焊接作业时佩戴防护面罩",
+          "使用专用夹具固定工件",
+          "确保通风良好"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件",
+          "T-SPV1830-EURO-03 左铲雪板组件",
+          "T-SPV1830-EURO-04 右铲雪板组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中位于中间位置的大型框架结构"
+        }
+      },
+      {
+        "part_code": "01.09.2551",
+        "part_name": "T-SPV1830-EURO-03 左铲雪板组件",
+        "bom_reference": {
+          "seq": 3,
+          "code": "01.09.2551",
+          "qty": 1,
+          "weight": 60.69
+        },
+        "assembly_sequence": 3,
+        "process_requirements": [
+          "检查铲雪板表面平整度",
+          "使用水平仪校准铲雪板角度",
+          "涂抹润滑脂于活动关节"
+        ],
+        "key_points": [
+          "铲雪板与后座组件的配合精度至关重要",
+          "注意保持铲雪板两侧对称",
+          "检查液压油缸连接孔位",
+          "确保活动关节灵活无卡滞"
+        ],
+        "tools_needed": [
+          "水平仪",
+          "百分表",
+          "润滑脂枪"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 47,
+            "bom_code": "02.03.0147",
+            "name": "M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+            "qty": 6,
+            "torque": "300Nm",
+            "location": "用于固定铲雪板与后座连接"
+          }
+        ],
+        "quality_check": [
+          "铲雪板平整度检查",
+          "角度校准检查",
+          "活动关节灵活性测试"
+        ],
+        "safety_notes": [
+          "吊装铲雪板时使用专用吊具",
+          "装配过程中佩戴护目镜",
+          "确保液压系统无泄漏"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件",
+          "T-SPV1830-EURO-02 后座连接架组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中左侧的铲雪板结构"
+        }
+      },
+      {
+        "part_code": "01.09.2552",
+        "part_name": "T-SPV1830-EURO-04 右铲雪板组件",
+        "bom_reference": {
+          "seq": 4,
+          "code": "01.09.2552",
+          "qty": 1,
+          "weight": 60.68
+        },
+        "assembly_sequence": 4,
+        "process_requirements": [
+          "检查铲雪板表面平整度",
+          "使用水平仪校准铲雪板角度",
+          "涂抹润滑脂于活动关节"
+        ],
+        "key_points": [
+          "铲雪板与后座组件的配合精度至关重要",
+          "注意保持铲雪板两侧对称",
+          "检查液压油缸连接孔位",
+          "确保活动关节灵活无卡滞"
+        ],
+        "tools_needed": [
+          "水平仪",
+          "百分表",
+          "润滑脂枪"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 47,
+            "bom_code": "02.03.0147",
+            "name": "M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+            "qty": 6,
+            "torque": "300Nm",
+            "location": "用于固定铲雪板与后座连接"
+          }
+        ],
+        "quality_check": [
+          "铲雪板平整度检查",
+          "角度校准检查",
+          "活动关节灵活性测试"
+        ],
+        "safety_notes": [
+          "吊装铲雪板时使用专用吊具",
+          "装配过程中佩戴护目镜",
+          "确保液压系统无泄漏"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件",
+          "T-SPV1830-EURO-02 后座连接架组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中右侧的铲雪板结构"
+        }
+      },
+      {
+        "part_code": "01.09.2553",
+        "part_name": "T-SPV1830-EURO-05 右刀板后座组件",
+        "bom_reference": {
+          "seq": 6,
+          "code": "01.09.2553",
+          "qty": 1,
+          "weight": 11.17
+        },
+        "assembly_sequence": 5,
+        "process_requirements": [
+          "检查刀板表面平整度",
+          "使用水平仪校准刀板角度",
+          "涂抹润滑脂于活动关节"
+        ],
+        "key_points": [
+          "刀板与后座组件的配合精度至关重要",
+          "注意保持刀板两侧对称",
+          "检查液压油缸连接孔位",
+          "确保活动关节灵活无卡滞"
+        ],
+        "tools_needed": [
+          "水平仪",
+          "百分表",
+          "润滑脂枪"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 47,
+            "bom_code": "02.03.0147",
+            "name": "M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+            "qty": 6,
+            "torque": "300Nm",
+            "location": "用于固定刀板与后座连接"
+          }
+        ],
+        "quality_check": [
+          "刀板平整度检查",
+          "角度校准检查",
+          "活动关节灵活性测试"
+        ],
+        "safety_notes": [
+          "吊装刀板时使用专用吊具",
+          "装配过程中佩戴护目镜",
+          "确保液压系统无泄漏"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件",
+          "T-SPV1830-EURO-02 后座连接架组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中右侧的刀板结构"
+        }
+      },
+      {
+        "part_code": "01.09.2554",
+        "part_name": "T-SPV1830-EURO-06 左刀板后座组件",
+        "bom_reference": {
+          "seq": 5,
+          "code": "01.09.2554",
+          "qty": 1,
+          "weight": 11.17
+        },
+        "assembly_sequence": 6,
+        "process_requirements": [
+          "检查刀板表面平整度",
+          "使用水平仪校准刀板角度",
+          "涂抹润滑脂于活动关节"
+        ],
+        "key_points": [
+          "刀板与后座组件的配合精度至关重要",
+          "注意保持刀板两侧对称",
+          "检查液压油缸连接孔位",
+          "确保活动关节灵活无卡滞"
+        ],
+        "tools_needed": [
+          "水平仪",
+          "百分表",
+          "润滑脂枪"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 47,
+            "bom_code": "02.03.0147",
+            "name": "M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+            "qty": 6,
+            "torque": "300Nm",
+            "location": "用于固定刀板与后座连接"
+          }
+        ],
+        "quality_check": [
+          "刀板平整度检查",
+          "角度校准检查",
+          "活动关节灵活性测试"
+        ],
+        "safety_notes": [
+          "吊装刀板时使用专用吊具",
+          "装配过程中佩戴护目镜",
+          "确保液压系统无泄漏"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件",
+          "T-SPV1830-EURO-02 后座连接架组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中左侧的刀板结构"
+        }
+      },
+      {
+        "part_code": "01.09.2555",
+        "part_name": "T-SPV1830-EURO-08-Q235 方形板-机加-镀锌",
+        "bom_reference": {
+          "seq": 13,
+          "code": "01.09.2555",
+          "qty": 1,
+          "weight": 3.65
+        },
+        "assembly_sequence": 7,
+        "process_requirements": [
+          "清洁所有配合面，去除油污和毛刺",
+          "检查表面粗糙度是否符合要求",
+          "按GB/T 131标准进行表面处理"
+        ],
+        "key_points": [
+          "此零件为辅助结构件，需在主要组件装配完成后安装",
+          "注意保护镀锌层，避免刮伤",
+          "确保配合孔位准确"
+        ],
+        "tools_needed": [
+          "清洁布",
+          "粗糙度仪",
+          "游标卡尺"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 48,
+            "bom_code": "02.03.0378",
+            "name": "M6*20 六角头螺栓全螺纹8.8级GB/T5783-2016",
+            "qty": 12,
+            "torque": "10Nm",
+            "location": "用于固定方形板"
+          }
+        ],
+        "quality_check": [
+          "表面粗糙度检查",
+          "配合孔位尺寸检查",
+          "镀锌层完整性检查"
+        ],
+        "safety_notes": [
+          "搬运时轻拿轻放，防止变形",
+          "装配时佩戴防护手套"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-01 连接器后座组件"
+        ],
+        "visual_evidence": {
+          "page": 2,
+          "description": "右上角的方形板结构"
+        }
+      },
+      {
+        "part_code": "02.08.01.0338",
+        "part_name": "EHYG-φ63/φ35-428-251-Ⅱ 油缸",
+        "bom_reference": {
+          "seq": 18,
+          "code": "02.08.01.0338",
+          "qty": 2,
+          "weight": 17.1
+        },
+        "assembly_sequence": 8,
+        "process_requirements": [
+          "检查油缸活塞杆直线度",
+          "涂抹润滑油于活塞杆",
+          "按GB/T 1184标准进行配合检查"
+        ],
+        "key_points": [
+          "油缸安装位置必须精确，误差不超过0.1mm",
+          "注意保护活塞杆镀层",
+          "确保油缸与铲雪板连接可靠"
+        ],
+        "tools_needed": [
+          "千分尺",
+          "润滑脂枪",
+          "水平仪"
+        ],
+        "fasteners_used": [
+          {
+            "bom_seq": 48,
+            "bom_code": "02.03.0378",
+            "name": "M6*20 六角头螺栓全螺纹8.8级GB/T5783-2016",
+            "qty": 12,
+            "torque": "10Nm",
+            "location": "用于固定油缸"
+          }
+        ],
+        "quality_check": [
+          "活塞杆直线度检查",
+          "配合间隙检查",
+          "油缸安装位置检查"
+        ],
+        "safety_notes": [
+          "吊装油缸时使用专用吊具",
+          "装配过程中佩戴防护手套",
+          "确保液压系统无泄漏"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-03 左铲雪板组件",
+          "T-SPV1830-EURO-04 右铲雪板组件"
+        ],
+        "visual_evidence": {
+          "page": 2,
+          "description": "中心位置的油缸结构"
+        }
+      },
+      {
+        "part_code": "02.03.0147",
+        "part_name": "M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "bom_reference": {
+          "seq": 47,
+          "code": "02.03.0147",
+          "qty": 6,
+          "weight": 1.5
+        },
+        "assembly_sequence": 9,
+        "process_requirements": [
+          "检查螺母内螺纹是否完好",
+          "涂抹防咬合剂于螺纹",
+          "按GB/T 1685-2008标准进行防松性能测试"
+        ],
+        "key_points": [
+          "螺母安装时必须拧紧至规定扭矩",
+          "注意保护螺纹表面",
+          "确保螺母与螺栓配合良好"
+        ],
+        "tools_needed": [
+          "扭矩扳手",
+          "防咬合剂刷",
+          "螺纹规"
+        ],
+        "fasteners_used": [],
+        "quality_check": [
+          "螺纹检查",
+          "防松性能测试",
+          "扭矩检查"
+        ],
+        "safety_notes": [
+          "使用专用工具拧紧螺母",
+          "装配过程中佩戴防护手套"
+        ],
+        "related_parts": [
+          "T-SPV1830-EURO-03 左铲雪板组件",
+          "T-SPV1830-EURO-04 右铲雪板组件"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "铲雪板与后座连接处的螺母"
+        }
+      }
+    ],
+    "assembly_sequence_suggestion": [
+      {
+        "step": 1,
+        "description": "装配基准件 - T-SPV1830-EURO-01 连接器后座组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-01"
+        ],
+        "reason": "作为整个组件的基准件，必须首先装配以保证后续装配的基准统一"
+      },
+      {
+        "step": 2,
+        "description": "装配后座连接架 - T-SPV1830-EURO-02 后座连接架组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-02"
+        ],
+        "reason": "此零件与基准件连接，装配顺序靠前，确保前后结构的连续性"
+      },
+      {
+        "step": 3,
+        "description": "装配左铲雪板组件 - T-SPV1830-EURO-03 左铲雪板组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-03"
+        ],
+        "reason": "先装配一侧铲雪板，便于后续另一侧的对称装配"
+      },
+      {
+        "step": 4,
+        "description": "装配右铲雪板组件 - T-SPV1830-EURO-04 右铲雪板组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-04"
+        ],
+        "reason": "与左侧铲雪板对称装配，确保整体平衡"
+      },
+      {
+        "step": 5,
+        "description": "装配右刀板后座组件 - T-SPV1830-EURO-05 右刀板后座组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-05"
+        ],
+        "reason": "刀板后座组件与铲雪板组件配合，装配顺序靠前"
+      },
+      {
+        "step": 6,
+        "description": "装配左刀板后座组件 - T-SPV1830-EURO-06 左刀板后座组件",
+        "parts_involved": [
+          "T-SPV1830-EURO-06"
+        ],
+        "reason": "与右侧刀板后座组件对称装配，确保整体平衡"
+      },
+      {
+        "step": 7,
+        "description": "装配辅助结构件 - T-SPV1830-EURO-08-Q235 方形板-机加-镀锌",
+        "parts_involved": [
+          "T-SPV1830-EURO-08"
+        ],
+        "reason": "主要组件装配完成后，最后装配辅助结构件，不影响主要装配流程"
+      },
+      {
+        "step": 8,
+        "description": "装配液压油缸 - EHYG-φ63/φ35-428-251-Ⅱ 油缸",
+        "parts_involved": [
+          "EHYG-φ63/φ35-428-251-Ⅱ"
+        ],
+        "reason": "油缸是驱动机构，需要在铲雪板装配完成后安装，确保连接可靠"
+      },
+      {
+        "step": 9,
+        "description": "最终紧固 - 安装M30 1型非金属嵌件六角锁紧螺母",
+        "parts_involved": [
+          "M30 1型非金属嵌件六角锁紧螺母"
+        ],
+        "reason": "所有主要部件装配完成后，进行最终紧固，确保整体结构强度"
+      }
+    ],
+    "critical_connections": [
+      {
+        "connection_type": "焊接",
+        "parts": [
+          "T-SPV1830-EURO-01",
+          "T-SPV1830-EURO-02"
+        ],
+        "specifications": "焊缝高度≥6mm，焊缝长度≥100mm",
+        "special_requirements": "焊接前需清理表面氧化皮，焊接后需打磨平滑",
+        "quality_standard": "GB/T 5117-2012",
+        "location_description": "主视图中底部框架的连接处"
+      },
+      {
+        "connection_type": "螺栓连接",
+        "parts": [
+          "T-SPV1830-EURO-02",
+          "T-SPV1830-EURO-03",
+          "T-SPV1830-EURO-04"
+        ],
+        "specifications": "M30螺栓，扭矩250Nm",
+        "special_requirements": "螺栓安装前需涂抹防咬合剂，螺母需使用锁紧螺母",
+        "quality_standard": "GB/T 3098.1-2010",
+        "location_description": "铲雪板与后座连接处"
+      },
+      {
+        "connection_type": "螺栓连接",
+        "parts": [
+          "T-SPV1830-EURO-03",
+          "T-SPV1830-EURO-04",
+          "EHYG-φ63/φ35-428-251-Ⅱ"
+        ],
+        "specifications": "M6螺栓，扭矩10Nm",
+        "special_requirements": "螺栓安装前需涂抹润滑油，确保活动关节灵活",
+        "quality_standard": "GB/T 3098.1-2010",
+        "location_description": "油缸与铲雪板连接处"
+      }
+    ],
+    "technical_warnings": [
+      "装配过程中必须使用专用吊具，防止磕碰损伤",
+      "焊接作业时必须佩戴防护面罩和手套",
+      "液压系统装配完成后必须进行压力测试，确保无泄漏",
+      "所有螺栓连接必须按照规定的扭矩值拧紧，防止松动",
+      "装配完成后必须进行全面的功能测试，确保铲雪板运动顺畅"
+    ]
+  },
+  "raw_response": "```json\n{\n  \"overall_understanding\": {\n    \"product_name\": \"T-SPV1830-EURO 推雪板组件\",\n    \"assembly_type\": \"混合装配（焊接与螺栓连接）\",\n    \"complexity_level\": \"复杂\",\n    \"total_parts_count\": 53,\n\n    \"overall_description\": \"该产品为一款推雪板组件，主要用于积雪清理。整体结构包括左右铲雪板、后座组件、轮胎架及连接机构，通过多种螺栓和焊接方式组装成一个完整的作业单元。\",\n    \"structural_features\": [\n      \"双侧对称的铲雪板设计\",\n      \"带轮胎的移动底座\",\n      \"液压油缸驱动机构\",\n      \"前后支撑及连接框架\"\n    ],\n    \"working_principle\": \"通过液压油缸驱动铲雪板上下摆动，利用轮胎移动实现积雪的推移和清理。\",\n    \"main_function\": \"用于户外积雪清理作业，适用于道路、广场等大面积积雪清除。\",\n    \"key_challenges\": [\n      \"铲雪板与后座组件的精确配合\",\n      \"液压油缸安装位置的准确性\",\n      \"轮胎与底座的装配精度\",\n      \"焊接件的变形控制\"\n    ]\n  },\n\n  \"part_assembly_guide\": [\n    {\n      \"part_code\": \"01.09.2549\",\n      \"part_name\": \"T-SPV1830-EURO-01 连接器后座组件\",\n\n      \"bom_reference\": {\n        \"seq\": 1,\n        \"code\": \"01.09.2549\",\n        \"qty\": 1,\n        \"weight\": 77.27\n      },\n\n      \"assembly_sequence\": 1,\n\n      \"process_requirements\": [\n        \"清洁所有配合面，去除油污和毛刺\",\n        \"使用水平仪校准底座平面度\",\n        \"检查所有孔位尺寸是否符合图纸要求\",\n        \"按GB/T 1800系列公差标准进行配合检查\"\n      ],\n\n      \"key_points\": [\n        \"此零件为整个组件的基准件，必须首先装配\",\n        \"装配前需确认底座平面度误差不超过0.1mm\",\n        \"注意保护油漆表面，避免划伤\",\n        \"确保所有安装孔位对中\"\n      ],\n\n      \"tools_needed\": [\n        \"水平仪\",\n        \"游标卡尺\",\n        \"扭矩扳手\",\n        \"清洁布\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 46,\n          \"bom_code\": \"01.09.0304\",\n          \"name\": \"SPE1.83-LD-06-45# 推雪板大垫圈-镀锌\",\n          \"qty\": 6,\n          \"torque\": \"150Nm\",\n          \"location\": \"与M30螺栓配合，用于固定铲雪板连接处\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"底座平面度检查\",\n        \"配合孔位尺寸测量\",\n        \"基准面平行度检查\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装时使用专用吊具，防止磕碰\",\n        \"装配过程中佩戴防护手套\",\n        \"确保工作区域整洁，防止滑倒\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-02 后座连接架组件\",\n        \"T-SPV1830-EURO-03 左铲雪板组件\",\n        \"T-SPV1830-EURO-04 右铲雪板组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中位于底部的大型框架结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2550\",\n      \"part_name\": \"T-SPV1830-EURO-02 后座连接架组件\",\n\n      \"bom_reference\": {\n        \"seq\": 2,\n        \"code\": \"01.09.2550\",\n        \"qty\": 1,\n        \"weight\": 59.64\n      },\n\n      \"assembly_sequence\": 2,\n\n      \"process_requirements\": [\n        \"检查焊接质量，确保焊缝无裂纹、气孔\",\n        \"使用塞尺检查配合间隙\",\n        \"涂抹防锈油保护未加工表面\"\n      ],\n\n      \"key_points\": [\n        \"此零件需要与基准件连接，装配顺序靠前\",\n        \"注意焊接变形控制，使用夹具固定\",\n        \"检查所有螺栓孔是否通畅\",\n        \"确保前后支撑臂对称\"\n      ],\n\n      \"tools_needed\": [\n        \"磁粉探伤仪\",\n        \"塞尺\",\n        \"防锈油刷\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 45,\n          \"bom_code\": \"02.03.0458\",\n          \"name\": \"M30*60 六角头螺栓全螺纹8.8级GB/T5783-2016\",\n          \"qty\": 6,\n          \"torque\": \"250Nm\",\n          \"location\": \"用于连接前后座组件\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"焊缝质量检测\",\n        \"配合间隙检查\",\n        \"对称性检查\"\n      ],\n\n      \"safety_notes\": [\n        \"焊接作业时佩戴防护面罩\",\n        \"使用专用夹具固定工件\",\n        \"确保通风良好\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\",\n        \"T-SPV1830-EURO-03 左铲雪板组件\",\n        \"T-SPV1830-EURO-04 右铲雪板组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中位于中间位置的大型框架结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2551\",\n      \"part_name\": \"T-SPV1830-EURO-03 左铲雪板组件\",\n\n      \"bom_reference\": {\n        \"seq\": 3,\n        \"code\": \"01.09.2551\",\n        \"qty\": 1,\n        \"weight\": 60.69\n      },\n\n      \"assembly_sequence\": 3,\n\n      \"process_requirements\": [\n        \"检查铲雪板表面平整度\",\n        \"使用水平仪校准铲雪板角度\",\n        \"涂抹润滑脂于活动关节\"\n      ],\n\n      \"key_points\": [\n        \"铲雪板与后座组件的配合精度至关重要\",\n        \"注意保持铲雪板两侧对称\",\n        \"检查液压油缸连接孔位\",\n        \"确保活动关节灵活无卡滞\"\n      ],\n\n      \"tools_needed\": [\n        \"水平仪\",\n        \"百分表\",\n        \"润滑脂枪\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 47,\n          \"bom_code\": \"02.03.0147\",\n          \"name\": \"M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015\",\n          \"qty\": 6,\n          \"torque\": \"300Nm\",\n          \"location\": \"用于固定铲雪板与后座连接\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"铲雪板平整度检查\",\n        \"角度校准检查\",\n        \"活动关节灵活性测试\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装铲雪板时使用专用吊具\",\n        \"装配过程中佩戴护目镜\",\n        \"确保液压系统无泄漏\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\",\n        \"T-SPV1830-EURO-02 后座连接架组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中左侧的铲雪板结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2552\",\n      \"part_name\": \"T-SPV1830-EURO-04 右铲雪板组件\",\n\n      \"bom_reference\": {\n        \"seq\": 4,\n        \"code\": \"01.09.2552\",\n        \"qty\": 1,\n        \"weight\": 60.68\n      },\n\n      \"assembly_sequence\": 4,\n\n      \"process_requirements\": [\n        \"检查铲雪板表面平整度\",\n        \"使用水平仪校准铲雪板角度\",\n        \"涂抹润滑脂于活动关节\"\n      ],\n\n      \"key_points\": [\n        \"铲雪板与后座组件的配合精度至关重要\",\n        \"注意保持铲雪板两侧对称\",\n        \"检查液压油缸连接孔位\",\n        \"确保活动关节灵活无卡滞\"\n      ],\n\n      \"tools_needed\": [\n        \"水平仪\",\n        \"百分表\",\n        \"润滑脂枪\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 47,\n          \"bom_code\": \"02.03.0147\",\n          \"name\": \"M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015\",\n          \"qty\": 6,\n          \"torque\": \"300Nm\",\n          \"location\": \"用于固定铲雪板与后座连接\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"铲雪板平整度检查\",\n        \"角度校准检查\",\n        \"活动关节灵活性测试\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装铲雪板时使用专用吊具\",\n        \"装配过程中佩戴护目镜\",\n        \"确保液压系统无泄漏\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\",\n        \"T-SPV1830-EURO-02 后座连接架组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中右侧的铲雪板结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2553\",\n      \"part_name\": \"T-SPV1830-EURO-05 右刀板后座组件\",\n\n      \"bom_reference\": {\n        \"seq\": 6,\n        \"code\": \"01.09.2553\",\n        \"qty\": 1,\n        \"weight\": 11.17\n      },\n\n      \"assembly_sequence\": 5,\n\n      \"process_requirements\": [\n        \"检查刀板表面平整度\",\n        \"使用水平仪校准刀板角度\",\n        \"涂抹润滑脂于活动关节\"\n      ],\n\n      \"key_points\": [\n        \"刀板与后座组件的配合精度至关重要\",\n        \"注意保持刀板两侧对称\",\n        \"检查液压油缸连接孔位\",\n        \"确保活动关节灵活无卡滞\"\n      ],\n\n      \"tools_needed\": [\n        \"水平仪\",\n        \"百分表\",\n        \"润滑脂枪\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 47,\n          \"bom_code\": \"02.03.0147\",\n          \"name\": \"M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015\",\n          \"qty\": 6,\n          \"torque\": \"300Nm\",\n          \"location\": \"用于固定刀板与后座连接\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"刀板平整度检查\",\n        \"角度校准检查\",\n        \"活动关节灵活性测试\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装刀板时使用专用吊具\",\n        \"装配过程中佩戴护目镜\",\n        \"确保液压系统无泄漏\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\",\n        \"T-SPV1830-EURO-02 后座连接架组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中右侧的刀板结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2554\",\n      \"part_name\": \"T-SPV1830-EURO-06 左刀板后座组件\",\n\n      \"bom_reference\": {\n        \"seq\": 5,\n        \"code\": \"01.09.2554\",\n        \"qty\": 1,\n        \"weight\": 11.17\n      },\n\n      \"assembly_sequence\": 6,\n\n      \"process_requirements\": [\n        \"检查刀板表面平整度\",\n        \"使用水平仪校准刀板角度\",\n        \"涂抹润滑脂于活动关节\"\n      ],\n\n      \"key_points\": [\n        \"刀板与后座组件的配合精度至关重要\",\n        \"注意保持刀板两侧对称\",\n        \"检查液压油缸连接孔位\",\n        \"确保活动关节灵活无卡滞\"\n      ],\n\n      \"tools_needed\": [\n        \"水平仪\",\n        \"百分表\",\n        \"润滑脂枪\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 47,\n          \"bom_code\": \"02.03.0147\",\n          \"name\": \"M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015\",\n          \"qty\": 6,\n          \"torque\": \"300Nm\",\n          \"location\": \"用于固定刀板与后座连接\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"刀板平整度检查\",\n        \"角度校准检查\",\n        \"活动关节灵活性测试\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装刀板时使用专用吊具\",\n        \"装配过程中佩戴护目镜\",\n        \"确保液压系统无泄漏\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\",\n        \"T-SPV1830-EURO-02 后座连接架组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中左侧的刀板结构\"\n      }\n    },\n    {\n      \"part_code\": \"01.09.2555\",\n      \"part_name\": \"T-SPV1830-EURO-08-Q235 方形板-机加-镀锌\",\n\n      \"bom_reference\": {\n        \"seq\": 13,\n        \"code\": \"01.09.2555\",\n        \"qty\": 1,\n        \"weight\": 3.65\n      },\n\n      \"assembly_sequence\": 7,\n\n      \"process_requirements\": [\n        \"清洁所有配合面，去除油污和毛刺\",\n        \"检查表面粗糙度是否符合要求\",\n        \"按GB/T 131标准进行表面处理\"\n      ],\n\n      \"key_points\": [\n        \"此零件为辅助结构件，需在主要组件装配完成后安装\",\n        \"注意保护镀锌层，避免刮伤\",\n        \"确保配合孔位准确\"\n      ],\n\n      \"tools_needed\": [\n        \"清洁布\",\n        \"粗糙度仪\",\n        \"游标卡尺\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 48,\n          \"bom_code\": \"02.03.0378\",\n          \"name\": \"M6*20 六角头螺栓全螺纹8.8级GB/T5783-2016\",\n          \"qty\": 12,\n          \"torque\": \"10Nm\",\n          \"location\": \"用于固定方形板\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"表面粗糙度检查\",\n        \"配合孔位尺寸检查\",\n        \"镀锌层完整性检查\"\n      ],\n\n      \"safety_notes\": [\n        \"搬运时轻拿轻放，防止变形\",\n        \"装配时佩戴防护手套\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-01 连接器后座组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 2,\n        \"description\": \"右上角的方形板结构\"\n      }\n    },\n    {\n      \"part_code\": \"02.08.01.0338\",\n      \"part_name\": \"EHYG-φ63/φ35-428-251-Ⅱ 油缸\",\n\n      \"bom_reference\": {\n        \"seq\": 18,\n        \"code\": \"02.08.01.0338\",\n        \"qty\": 2,\n        \"weight\": 17.1\n      },\n\n      \"assembly_sequence\": 8,\n\n      \"process_requirements\": [\n        \"检查油缸活塞杆直线度\",\n        \"涂抹润滑油于活塞杆\",\n        \"按GB/T 1184标准进行配合检查\"\n      ],\n\n      \"key_points\": [\n        \"油缸安装位置必须精确，误差不超过0.1mm\",\n        \"注意保护活塞杆镀层\",\n        \"确保油缸与铲雪板连接可靠\"\n      ],\n\n      \"tools_needed\": [\n        \"千分尺\",\n        \"润滑脂枪\",\n        \"水平仪\"\n      ],\n\n      \"fasteners_used\": [\n        {\n          \"bom_seq\": 48,\n          \"bom_code\": \"02.03.0378\",\n          \"name\": \"M6*20 六角头螺栓全螺纹8.8级GB/T5783-2016\",\n          \"qty\": 12,\n          \"torque\": \"10Nm\",\n          \"location\": \"用于固定油缸\"\n        }\n      ],\n\n      \"quality_check\": [\n        \"活塞杆直线度检查\",\n        \"配合间隙检查\",\n        \"油缸安装位置检查\"\n      ],\n\n      \"safety_notes\": [\n        \"吊装油缸时使用专用吊具\",\n        \"装配过程中佩戴防护手套\",\n        \"确保液压系统无泄漏\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-03 左铲雪板组件\",\n        \"T-SPV1830-EURO-04 右铲雪板组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 2,\n        \"description\": \"中心位置的油缸结构\"\n      }\n    },\n    {\n      \"part_code\": \"02.03.0147\",\n      \"part_name\": \"M30 1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015\",\n\n      \"bom_reference\": {\n        \"seq\": 47,\n        \"code\": \"02.03.0147\",\n        \"qty\": 6,\n        \"weight\": 1.5\n      },\n\n      \"assembly_sequence\": 9,\n\n      \"process_requirements\": [\n        \"检查螺母内螺纹是否完好\",\n        \"涂抹防咬合剂于螺纹\",\n        \"按GB/T 1685-2008标准进行防松性能测试\"\n      ],\n\n      \"key_points\": [\n        \"螺母安装时必须拧紧至规定扭矩\",\n        \"注意保护螺纹表面\",\n        \"确保螺母与螺栓配合良好\"\n      ],\n\n      \"tools_needed\": [\n        \"扭矩扳手\",\n        \"防咬合剂刷\",\n        \"螺纹规\"\n      ],\n\n      \"fasteners_used\": [],\n\n      \"quality_check\": [\n        \"螺纹检查\",\n        \"防松性能测试\",\n        \"扭矩检查\"\n      ],\n\n      \"safety_notes\": [\n        \"使用专用工具拧紧螺母\",\n        \"装配过程中佩戴防护手套\"\n      ],\n\n      \"related_parts\": [\n        \"T-SPV1830-EURO-03 左铲雪板组件\",\n        \"T-SPV1830-EURO-04 右铲雪板组件\"\n      ],\n\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"铲雪板与后座连接处的螺母\"\n      }\n    }\n  ],\n\n  \"assembly_sequence_suggestion\": [\n    {\n      \"step\": 1,\n      \"description\": \"装配基准件 - T-SPV1830-EURO-01 连接器后座组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-01\"],\n      \"reason\": \"作为整个组件的基准件，必须首先装配以保证后续装配的基准统一\"\n    },\n    {\n      \"step\": 2,\n      \"description\": \"装配后座连接架 - T-SPV1830-EURO-02 后座连接架组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-02\"],\n      \"reason\": \"此零件与基准件连接，装配顺序靠前，确保前后结构的连续性\"\n    },\n    {\n      \"step\": 3,\n      \"description\": \"装配左铲雪板组件 - T-SPV1830-EURO-03 左铲雪板组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-03\"],\n      \"reason\": \"先装配一侧铲雪板，便于后续另一侧的对称装配\"\n    },\n    {\n      \"step\": 4,\n      \"description\": \"装配右铲雪板组件 - T-SPV1830-EURO-04 右铲雪板组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-04\"],\n      \"reason\": \"与左侧铲雪板对称装配，确保整体平衡\"\n    },\n    {\n      \"step\": 5,\n      \"description\": \"装配右刀板后座组件 - T-SPV1830-EURO-05 右刀板后座组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-05\"],\n      \"reason\": \"刀板后座组件与铲雪板组件配合，装配顺序靠前\"\n    },\n    {\n      \"step\": 6,\n      \"description\": \"装配左刀板后座组件 - T-SPV1830-EURO-06 左刀板后座组件\",\n      \"parts_involved\": [\"T-SPV1830-EURO-06\"],\n      \"reason\": \"与右侧刀板后座组件对称装配，确保整体平衡\"\n    },\n    {\n      \"step\": 7,\n      \"description\": \"装配辅助结构件 - T-SPV1830-EURO-08-Q235 方形板-机加-镀锌\",\n      \"parts_involved\": [\"T-SPV1830-EURO-08\"],\n      \"reason\": \"主要组件装配完成后，最后装配辅助结构件，不影响主要装配流程\"\n    },\n    {\n      \"step\": 8,\n      \"description\": \"装配液压油缸 - EHYG-φ63/φ35-428-251-Ⅱ 油缸\",\n      \"parts_involved\": [\"EHYG-φ63/φ35-428-251-Ⅱ\"],\n      \"reason\": \"油缸是驱动机构，需要在铲雪板装配完成后安装，确保连接可靠\"\n    },\n    {\n      \"step\": 9,\n      \"description\": \"最终紧固 - 安装M30 1型非金属嵌件六角锁紧螺母\",\n      \"parts_involved\": [\"M30 1型非金属嵌件六角锁紧螺母\"],\n      \"reason\": \"所有主要部件装配完成后，进行最终紧固，确保整体结构强度\"\n    }\n  ],\n\n  \"critical_connections\": [\n    {\n      \"connection_type\": \"焊接\",\n      \"parts\": [\"T-SPV1830-EURO-01\", \"T-SPV1830-EURO-02\"],\n      \"specifications\": \"焊缝高度≥6mm，焊缝长度≥100mm\",\n      \"special_requirements\": \"焊接前需清理表面氧化皮，焊接后需打磨平滑\",\n      \"quality_standard\": \"GB/T 5117-2012\",\n      \"location_description\": \"主视图中底部框架的连接处\"\n    },\n    {\n      \"connection_type\": \"螺栓连接\",\n      \"parts\": [\"T-SPV1830-EURO-02\", \"T-SPV1830-EURO-03\", \"T-SPV1830-EURO-04\"],\n      \"specifications\": \"M30螺栓，扭矩250Nm\",\n      \"special_requirements\": \"螺栓安装前需涂抹防咬合剂，螺母需使用锁紧螺母\",\n      \"quality_standard\": \"GB/T 3098.1-2010\",\n      \"location_description\": \"铲雪板与后座连接处\"\n    },\n    {\n      \"connection_type\": \"螺栓连接\",\n      \"parts\": [\"T-SPV1830-EURO-03\", \"T-SPV1830-EURO-04\", \"EHYG-φ63/φ35-428-251-Ⅱ\"],\n      \"specifications\": \"M6螺栓，扭矩10Nm\",\n      \"special_requirements\": \"螺栓安装前需涂抹润滑油，确保活动关节灵活\",\n      \"quality_standard\": \"GB/T 3098.1-2010\",\n      \"location_description\": \"油缸与铲雪板连接处\"\n    }\n  ],\n\n  \"technical_warnings\": [\n    \"装配过程中必须使用专用吊具，防止磕碰损伤\",\n    \"焊接作业时必须佩戴防护面罩和手套\",\n    \"液压系统装配完成后必须进行压力测试，确保无泄漏\",\n    \"所有螺栓连接必须按照规定的扭矩值拧紧，防止松动\",\n    \"装配完成后必须进行全面的功能测试，确保铲雪板运动顺畅\"\n  ]\n}\n```"
+}

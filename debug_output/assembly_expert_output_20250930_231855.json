@@ -1,0 +1,275 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20250930_231855",
+  "image_count": 2,
+  "result": {
+    "overall_understanding": {
+      "product_name": "T-SPV1830-EURO型推板",
+      "assembly_type": "混合装配（焊接、螺栓连接为主）",
+      "complexity_level": "复杂",
+      "total_parts_count": 50,
+      "key_challenges": [
+        "多部件精密配合，需严格控制尺寸链",
+        "焊接部位质量要求高，易产生变形",
+        "紧固件较多，扭矩控制要求严格"
+      ]
+    },
+    "part_assembly_guide": [
+      {
+        "part_code": "01",
+        "part_name": "主框架底座",
+        "assembly_sequence": 1,
+        "process_requirements": [
+          "按图纸尺寸校准定位基准线",
+          "使用水平仪确保底座水平度误差≤0.5mm",
+          "检查各安装孔位置精度，偏差≤0.2mm"
+        ],
+        "key_points": [
+          "焊接前必须进行点焊固定，防止变形",
+          "焊接完成后需用专用夹具校正平面度",
+          "注意检查焊缝外观质量，不得有裂纹、气孔等缺陷"
+        ],
+        "tools_needed": [
+          "划线规",
+          "水平仪",
+          "焊接夹具",
+          "焊机"
+        ],
+        "quality_check": [
+          "底座平面度检测",
+          "定位基准线复核",
+          "焊缝外观检查"
+        ],
+        "related_parts": [
+          "02（侧板）",
+          "03（支撑结构）"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中底部结构"
+        }
+      },
+      {
+        "part_code": "02",
+        "part_name": "侧板组件",
+        "assembly_sequence": 2,
+        "process_requirements": [
+          "按图纸要求预钻定位孔",
+          "使用专用夹具将侧板与底座对齐固定",
+          "检查侧板垂直度，误差≤0.3mm"
+        ],
+        "key_points": [
+          "焊接前需确认侧板与底座贴合面无间隙",
+          "焊接时采用分段退焊法，防止局部过热变形",
+          "焊接后需用塞尺检查接缝间隙，应≤0.2mm"
+        ],
+        "tools_needed": [
+          "夹具",
+          "焊接设备",
+          "塞尺"
+        ],
+        "quality_check": [
+          "垂直度检测",
+          "接缝间隙检查",
+          "焊缝质量检查"
+        ],
+        "related_parts": [
+          "01（底座）",
+          "03（支撑结构）"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "主视图中两侧结构"
+        }
+      },
+      {
+        "part_code": "03",
+        "part_name": "支撑结构组件",
+        "assembly_sequence": 3,
+        "process_requirements": [
+          "按图纸要求组装内部支架和加强筋",
+          "使用螺栓临时固定后进行焊接",
+          "检查整体刚性，确保无松动"
+        ],
+        "key_points": [
+          "焊接前需确认所有加强筋位置正确",
+          "焊接时注意保护内部精密部件",
+          "焊接完成后需进行应力消除处理"
+        ],
+        "tools_needed": [
+          "螺栓扳手",
+          "焊接设备",
+          "应力消除炉"
+        ],
+        "quality_check": [
+          "刚性测试",
+          "焊接应力检测",
+          "内部结构完整性检查"
+        ],
+        "related_parts": [
+          "01（底座）",
+          "02（侧板）"
+        ],
+        "visual_evidence": {
+          "page": 1,
+          "description": "俯视图中内部支撑结构"
+        }
+      },
+      {
+        "part_code": "04",
+        "part_name": "推板总成",
+        "assembly_sequence": 4,
+        "process_requirements": [
+          "按图纸要求组装推板主体和导向机构",
+          "使用专用夹具固定后进行焊接",
+          "检查推板运动轨迹，确保直线度≤0.5mm"
+        ],
+        "key_points": [
+          "焊接前需确认导向槽与推板贴合紧密",
+          "焊接时采用低热输入焊接工艺",
+          "焊接后需进行表面抛光处理"
+        ],
+        "tools_needed": [
+          "夹具",
+          "焊接设备",
+          "抛光机"
+        ],
+        "quality_check": [
+          "直线度检测",
+          "导向槽间隙检查",
+          "表面粗糙度检测"
+        ],
+        "related_parts": [
+          "01（底座）",
+          "02（侧板）"
+        ],
+        "visual_evidence": {
+          "page": 2,
+          "description": "右上角推板总成图"
+        }
+      },
+      {
+        "part_code": "05",
+        "part_name": "驱动电机组件",
+        "assembly_sequence": 5,
+        "process_requirements": [
+          "按图纸要求安装电机和减速器",
+          "使用扭矩扳手拧紧地脚螺栓",
+          "检查电机轴与减速器输入轴同轴度≤0.1mm"
+        ],
+        "key_points": [
+          "安装前需检查电机绝缘电阻值≥1MΩ",
+          "拧紧螺栓时采用交叉对称紧固方式",
+          "安装完成后需进行空载试运转"
+        ],
+        "tools_needed": [
+          "扭矩扳手",
+          "同轴度测量仪",
+          "兆欧表"
+        ],
+        "quality_check": [
+          "同轴度检测",
+          "绝缘电阻测试",
+          "空载运转测试"
+        ],
+        "related_parts": [
+          "01（底座）"
+        ],
+        "visual_evidence": {
+          "page": 2,
+          "description": "右下角电机组件图"
+        }
+      }
+    ],
+    "assembly_sequence_suggestion": [
+      {
+        "step": 1,
+        "description": "底座与侧板组件的焊接与校正",
+        "parts_involved": [
+          "01",
+          "02"
+        ],
+        "reason": "作为整个产品的基础结构，需要先完成以保证后续装配的基准",
+        "estimated_time": "2小时"
+      },
+      {
+        "step": 2,
+        "description": "支撑结构组件的组装与焊接",
+        "parts_involved": [
+          "03"
+        ],
+        "reason": "在底座和侧板基础上增加结构强度，同时为推板总成提供支撑",
+        "estimated_time": "1.5小时"
+      },
+      {
+        "step": 3,
+        "description": "推板总成的组装与焊接",
+        "parts_involved": [
+          "04"
+        ],
+        "reason": "推板是核心工作部件，需要在基础结构完成后进行精确安装",
+        "estimated_time": "2小时"
+      },
+      {
+        "step": 4,
+        "description": "驱动电机组件的安装与调试",
+        "parts_involved": [
+          "05"
+        ],
+        "reason": "作为动力源，需要在机械结构基本完成后进行安装，便于后续调试",
+        "estimated_time": "1小时"
+      },
+      {
+        "step": 5,
+        "description": "电气系统与控制系统的安装与联调",
+        "parts_involved": [
+          "05",
+          "其他电气部件"
+        ],
+        "reason": "在机械结构完成后进行电气安装，便于布线和调试",
+        "estimated_time": "2小时"
+      }
+    ],
+    "critical_connections": [
+      {
+        "connection_type": "焊接",
+        "parts": [
+          "01",
+          "02"
+        ],
+        "specifications": "连续焊缝，焊脚高度6mm，焊缝长度满足图纸要求",
+        "special_requirements": "焊接前需清理焊缝区域，焊接后需进行X射线探伤检测",
+        "location_description": "主视图中底座与侧板的连接处"
+      },
+      {
+        "connection_type": "螺栓连接",
+        "parts": [
+          "03",
+          "01"
+        ],
+        "specifications": "M16螺栓，扭矩150Nm，使用防松垫圈",
+        "special_requirements": "螺栓安装前需涂抹润滑剂，拧紧时采用力矩扳手",
+        "location_description": "俯视图中支撑结构与底座的连接处"
+      },
+      {
+        "connection_type": "焊接",
+        "parts": [
+          "04",
+          "01"
+        ],
+        "specifications": "间断焊缝，焊脚高度4mm，间距符合图纸要求",
+        "special_requirements": "焊接时需使用专用夹具固定，焊接后需进行磁粉探伤",
+        "location_description": "右上角推板总成与底座的连接处"
+      }
+    ],
+    "technical_warnings": [
+      "焊接过程中必须佩戴防护装备，防止飞溅伤害",
+      "螺栓紧固时必须使用力矩扳手，严禁随意敲击",
+      "电气安装前必须确认电源已切断，防止触电事故",
+      "装配过程中需定期检查关键部位的尺寸精度，避免累积误差",
+      "所有焊接部位必须进行无损检测，合格后方可进入下一道工序"
+    ]
+  },
+  "raw_response": "```json\n{\n  \"overall_understanding\": {\n    \"product_name\": \"T-SPV1830-EURO型推板\",\n    \"assembly_type\": \"混合装配（焊接、螺栓连接为主）\",\n    \"complexity_level\": \"复杂\",\n    \"total_parts_count\": 50,\n    \"key_challenges\": [\n      \"多部件精密配合，需严格控制尺寸链\",\n      \"焊接部位质量要求高，易产生变形\",\n      \"紧固件较多，扭矩控制要求严格\"\n    ]\n  },\n  \"part_assembly_guide\": [\n    {\n      \"part_code\": \"01\",\n      \"part_name\": \"主框架底座\",\n      \"assembly_sequence\": 1,\n      \"process_requirements\": [\n        \"按图纸尺寸校准定位基准线\",\n        \"使用水平仪确保底座水平度误差≤0.5mm\",\n        \"检查各安装孔位置精度，偏差≤0.2mm\"\n      ],\n      \"key_points\": [\n        \"焊接前必须进行点焊固定，防止变形\",\n        \"焊接完成后需用专用夹具校正平面度\",\n        \"注意检查焊缝外观质量，不得有裂纹、气孔等缺陷\"\n      ],\n      \"tools_needed\": [\n        \"划线规\",\n        \"水平仪\",\n        \"焊接夹具\",\n        \"焊机\"\n      ],\n      \"quality_check\": [\n        \"底座平面度检测\",\n        \"定位基准线复核\",\n        \"焊缝外观检查\"\n      ],\n      \"related_parts\": [\n        \"02（侧板）\",\n        \"03（支撑结构）\"\n      ],\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中底部结构\"\n      }\n    },\n    {\n      \"part_code\": \"02\",\n      \"part_name\": \"侧板组件\",\n      \"assembly_sequence\": 2,\n      \"process_requirements\": [\n        \"按图纸要求预钻定位孔\",\n        \"使用专用夹具将侧板与底座对齐固定\",\n        \"检查侧板垂直度，误差≤0.3mm\"\n      ],\n      \"key_points\": [\n        \"焊接前需确认侧板与底座贴合面无间隙\",\n        \"焊接时采用分段退焊法，防止局部过热变形\",\n        \"焊接后需用塞尺检查接缝间隙，应≤0.2mm\"\n      ],\n      \"tools_needed\": [\n        \"夹具\",\n        \"焊接设备\",\n        \"塞尺\"\n      ],\n      \"quality_check\": [\n        \"垂直度检测\",\n        \"接缝间隙检查\",\n        \"焊缝质量检查\"\n      ],\n      \"related_parts\": [\n        \"01（底座）\",\n        \"03（支撑结构）\"\n      ],\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"主视图中两侧结构\"\n      }\n    },\n    {\n      \"part_code\": \"03\",\n      \"part_name\": \"支撑结构组件\",\n      \"assembly_sequence\": 3,\n      \"process_requirements\": [\n        \"按图纸要求组装内部支架和加强筋\",\n        \"使用螺栓临时固定后进行焊接\",\n        \"检查整体刚性，确保无松动\"\n      ],\n      \"key_points\": [\n        \"焊接前需确认所有加强筋位置正确\",\n        \"焊接时注意保护内部精密部件\",\n        \"焊接完成后需进行应力消除处理\"\n      ],\n      \"tools_needed\": [\n        \"螺栓扳手\",\n        \"焊接设备\",\n        \"应力消除炉\"\n      ],\n      \"quality_check\": [\n        \"刚性测试\",\n        \"焊接应力检测\",\n        \"内部结构完整性检查\"\n      ],\n      \"related_parts\": [\n        \"01（底座）\",\n        \"02（侧板）\"\n      ],\n      \"visual_evidence\": {\n        \"page\": 1,\n        \"description\": \"俯视图中内部支撑结构\"\n      }\n    },\n    {\n      \"part_code\": \"04\",\n      \"part_name\": \"推板总成\",\n      \"assembly_sequence\": 4,\n      \"process_requirements\": [\n        \"按图纸要求组装推板主体和导向机构\",\n        \"使用专用夹具固定后进行焊接\",\n        \"检查推板运动轨迹，确保直线度≤0.5mm\"\n      ],\n      \"key_points\": [\n        \"焊接前需确认导向槽与推板贴合紧密\",\n        \"焊接时采用低热输入焊接工艺\",\n        \"焊接后需进行表面抛光处理\"\n      ],\n      \"tools_needed\": [\n        \"夹具\",\n        \"焊接设备\",\n        \"抛光机\"\n      ],\n      \"quality_check\": [\n        \"直线度检测\",\n        \"导向槽间隙检查\",\n        \"表面粗糙度检测\"\n      ],\n      \"related_parts\": [\n        \"01（底座）\",\n        \"02（侧板）\"\n      ],\n      \"visual_evidence\": {\n        \"page\": 2,\n        \"description\": \"右上角推板总成图\"\n      }\n    },\n    {\n      \"part_code\": \"05\",\n      \"part_name\": \"驱动电机组件\",\n      \"assembly_sequence\": 5,\n      \"process_requirements\": [\n        \"按图纸要求安装电机和减速器\",\n        \"使用扭矩扳手拧紧地脚螺栓\",\n        \"检查电机轴与减速器输入轴同轴度≤0.1mm\"\n      ],\n      \"key_points\": [\n        \"安装前需检查电机绝缘电阻值≥1MΩ\",\n        \"拧紧螺栓时采用交叉对称紧固方式\",\n        \"安装完成后需进行空载试运转\"\n      ],\n      \"tools_needed\": [\n        \"扭矩扳手\",\n        \"同轴度测量仪\",\n        \"兆欧表\"\n      ],\n      \"quality_check\": [\n        \"同轴度检测\",\n        \"绝缘电阻测试\",\n        \"空载运转测试\"\n      ],\n      \"related_parts\": [\n        \"01（底座）\"\n      ],\n      \"visual_evidence\": {\n        \"page\": 2,\n        \"description\": \"右下角电机组件图\"\n      }\n    }\n  ],\n  \"assembly_sequence_suggestion\": [\n    {\n      \"step\": 1,\n      \"description\": \"底座与侧板组件的焊接与校正\",\n      \"parts_involved\": [\"01\", \"02\"],\n      \"reason\": \"作为整个产品的基础结构，需要先完成以保证后续装配的基准\",\n      \"estimated_time\": \"2小时\"\n    },\n    {\n      \"step\": 2,\n      \"description\": \"支撑结构组件的组装与焊接\",\n      \"parts_involved\": [\"03\"],\n      \"reason\": \"在底座和侧板基础上增加结构强度，同时为推板总成提供支撑\",\n      \"estimated_time\": \"1.5小时\"\n    },\n    {\n      \"step\": 3,\n      \"description\": \"推板总成的组装与焊接\",\n      \"parts_involved\": [\"04\"],\n      \"reason\": \"推板是核心工作部件，需要在基础结构完成后进行精确安装\",\n      \"estimated_time\": \"2小时\"\n    },\n    {\n      \"step\": 4,\n      \"description\": \"驱动电机组件的安装与调试\",\n      \"parts_involved\": [\"05\"],\n      \"reason\": \"作为动力源，需要在机械结构基本完成后进行安装，便于后续调试\",\n      \"estimated_time\": \"1小时\"\n    },\n    {\n      \"step\": 5,\n      \"description\": \"电气系统与控制系统的安装与联调\",\n      \"parts_involved\": [\"05\", \"其他电气部件\"],\n      \"reason\": \"在机械结构完成后进行电气安装，便于布线和调试\",\n      \"estimated_time\": \"2小时\"\n    }\n  ],\n  \"critical_connections\": [\n    {\n      \"connection_type\": \"焊接\",\n      \"parts\": [\"01\", \"02\"],\n      \"specifications\": \"连续焊缝，焊脚高度6mm，焊缝长度满足图纸要求\",\n      \"special_requirements\": \"焊接前需清理焊缝区域，焊接后需进行X射线探伤检测\",\n      \"location_description\": \"主视图中底座与侧板的连接处\"\n    },\n    {\n      \"connection_type\": \"螺栓连接\",\n      \"parts\": [\"03\", \"01\"],\n      \"specifications\": \"M16螺栓，扭矩150Nm，使用防松垫圈\",\n      \"special_requirements\": \"螺栓安装前需涂抹润滑剂，拧紧时采用力矩扳手\",\n      \"location_description\": \"俯视图中支撑结构与底座的连接处\"\n    },\n    {\n      \"connection_type\": \"焊接\",\n      \"parts\": [\"04\", \"01\"],\n      \"specifications\": \"间断焊缝，焊脚高度4mm，间距符合图纸要求\",\n      \"special_requirements\": \"焊接时需使用专用夹具固定，焊接后需进行磁粉探伤\",\n      \"location_description\": \"右上角推板总成与底座的连接处\"\n    }\n  ],\n  \"technical_warnings\": [\n    \"焊接过程中必须佩戴防护装备，防止飞溅伤害\",\n    \"螺栓紧固时必须使用力矩扳手，严禁随意敲击\",\n    \"电气安装前必须确认电源已切断，防止触电事故\",\n    \"装配过程中需定期检查关键部位的尺寸精度，避免累积误差\",\n    \"所有焊接部位必须进行无损检测，合格后方可进入下一道工序\"\n  ]\n}\n```"
+}

@@ -1,0 +1,121 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_172003",
+  "image_path": "test_output_three_agents\\pdf_images_4\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "quality_checkpoints": [
+      {
+        "checkpoint_id": "QC-001",
+        "checkpoint_name": "底部加强筋基准件安装定位",
+        "inspection_item": "基准件位置度",
+        "inspection_method": "使用三坐标测量仪检测基准件相对于底板的X、Y方向位置偏差",
+        "measurement_tool": "三坐标测量仪",
+        "acceptance_criteria": "X方向偏差≤0.1mm，Y方向偏差≤0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "关键",
+        "related_parts": "底部加强筋基准件"
+      },
+      {
+        "checkpoint_id": "QC-002",
+        "checkpoint_name": "左右侧框架安装垂直度",
+        "inspection_method": "使用直角尺和塞尺检查框架与底板的垂直度",
+        "measurement_tool": "直角尺、塞尺",
+        "acceptance_criteria": "垂直度误差≤0.2mm/100mm",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "左侧框架, 右侧框架"
+      },
+      {
+        "checkpoint_id": "QC-003",
+        "checkpoint_name": "顶部封板安装平面度",
+        "inspection_method": "使用平板和指示表检测封板表面平面度",
+        "measurement_tool": "平板、指示表",
+        "acceptance_criteria": "平面度误差≤0.1mm",
+        "inspection_timing": "装配后",
+        "importance": "重要",
+        "related_parts": "顶部封板"
+      },
+      {
+        "checkpoint_id": "QC-004",
+        "checkpoint_name": "油缸固定板与铲雪板配合尺寸",
+        "inspection_method": "使用游标卡尺测量油缸固定板与铲雪板之间的配合间隙",
+        "measurement_tool": "游标卡尺",
+        "acceptance_criteria": "配合间隙为0.05-0.15mm",
+        "inspection_timing": "装配中",
+        "importance": "一般",
+        "related_parts": "油缸固定板, 左右铲雪板"
+      },
+      {
+        "checkpoint_id": "QC-005",
+        "checkpoint_name": "焊接部位焊缝高度",
+        "inspection_method": "目视检查并使用焊缝规测量焊缝高度",
+        "measurement_tool": "焊缝规",
+        "acceptance_criteria": "焊缝高度≥6mm",
+        "inspection_timing": "装配后",
+        "importance": "重要",
+        "related_parts": "各焊接部位"
+      },
+      {
+        "checkpoint_id": "QC-006",
+        "checkpoint_name": "整体宽度尺寸",
+        "inspection_method": "使用钢卷尺测量产品整体宽度",
+        "measurement_tool": "钢卷尺",
+        "acceptance_criteria": "宽度尺寸为188±0.5mm",
+        "inspection_timing": "装配后",
+        "importance": "一般",
+        "related_parts": "整机"
+      },
+      {
+        "checkpoint_id": "QC-007",
+        "checkpoint_name": "前后端面距离",
+        "inspection_method": "使用深度游标卡尺测量前后端面之间的距离",
+        "measurement_tool": "深度游标卡尺",
+        "acceptance_criteria": "距离为423±0.3mm",
+        "inspection_timing": "装配后",
+        "importance": "一般",
+        "related_parts": "整机"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension_name": "整体宽度",
+        "nominal_value": "188mm",
+        "tolerance": "±0.5mm",
+        "location": "图纸右侧标注"
+      },
+      {
+        "dimension_name": "前后端面距离",
+        "nominal_value": "423mm",
+        "tolerance": "±0.3mm",
+        "location": "图纸中部标注"
+      },
+      {
+        "dimension_name": "油缸固定板与铲雪板配合间隙",
+        "nominal_value": "0.05-0.15mm",
+        "tolerance": "",
+        "location": "图纸下方标注"
+      },
+      {
+        "dimension_name": "焊缝高度",
+        "nominal_value": "≥6mm",
+        "tolerance": "",
+        "location": "技术要求中说明"
+      },
+      {
+        "dimension_name": "基准件位置度",
+        "nominal_value": "X,Y方向偏差≤0.1mm",
+        "tolerance": "",
+        "location": "图纸左上角标注"
+      },
+      {
+        "dimension_name": "垂直度",
+        "nominal_value": "≤0.2mm/100mm",
+        "tolerance": "",
+        "location": "图纸中部标注"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"quality_checkpoints\": [\n    {\n      \"checkpoint_id\": \"QC-001\",\n      \"checkpoint_name\": \"底部加强筋基准件安装定位\",\n      \"inspection_item\": \"基准件位置度\",\n      \"inspection_method\": \"使用三坐标测量仪检测基准件相对于底板的X、Y方向位置偏差\",\n      \"measurement_tool\": \"三坐标测量仪\",\n      \"acceptance_criteria\": \"X方向偏差≤0.1mm，Y方向偏差≤0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"底部加强筋基准件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-002\",\n      \"checkpoint_name\": \"左右侧框架安装垂直度\",\n      \"inspection_method\": \"使用直角尺和塞尺检查框架与底板的垂直度\",\n      \"measurement_tool\": \"直角尺、塞尺\",\n      \"acceptance_criteria\": \"垂直度误差≤0.2mm/100mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"左侧框架, 右侧框架\"\n    },\n    {\n      \"checkpoint_id\": \"QC-003\",\n      \"checkpoint_name\": \"顶部封板安装平面度\",\n      \"inspection_method\": \"使用平板和指示表检测封板表面平面度\",\n      \"measurement_tool\": \"平板、指示表\",\n      \"acceptance_criteria\": \"平面度误差≤0.1mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"顶部封板\"\n    },\n    {\n      \"checkpoint_id\": \"QC-004\",\n      \"checkpoint_name\": \"油缸固定板与铲雪板配合尺寸\",\n      \"inspection_method\": \"使用游标卡尺测量油缸固定板与铲雪板之间的配合间隙\",\n      \"measurement_tool\": \"游标卡尺\",\n      \"acceptance_criteria\": \"配合间隙为0.05-0.15mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"油缸固定板, 左右铲雪板\"\n    },\n    {\n      \"checkpoint_id\": \"QC-005\",\n      \"checkpoint_name\": \"焊接部位焊缝高度\",\n      \"inspection_method\": \"目视检查并使用焊缝规测量焊缝高度\",\n      \"measurement_tool\": \"焊缝规\",\n      \"acceptance_criteria\": \"焊缝高度≥6mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"各焊接部位\"\n    },\n    {\n      \"checkpoint_id\": \"QC-006\",\n      \"checkpoint_name\": \"整体宽度尺寸\",\n      \"inspection_method\": \"使用钢卷尺测量产品整体宽度\",\n      \"measurement_tool\": \"钢卷尺\",\n      \"acceptance_criteria\": \"宽度尺寸为188±0.5mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"整机\"\n    },\n    {\n      \"checkpoint_id\": \"QC-007\",\n      \"checkpoint_name\": \"前后端面距离\",\n      \"inspection_method\": \"使用深度游标卡尺测量前后端面之间的距离\",\n      \"measurement_tool\": \"深度游标卡尺\",\n      \"acceptance_criteria\": \"距离为423±0.3mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"整机\"\n    }\n  ],\n  \"critical_dimensions\": [\n    {\n      \"dimension_name\": \"整体宽度\",\n      \"nominal_value\": \"188mm\",\n      \"tolerance\": \"±0.5mm\",\n      \"location\": \"图纸右侧标注\"\n    },\n    {\n      \"dimension_name\": \"前后端面距离\",\n      \"nominal_value\": \"423mm\",\n      \"tolerance\": \"±0.3mm\",\n      \"location\": \"图纸中部标注\"\n    },\n    {\n      \"dimension_name\": \"油缸固定板与铲雪板配合间隙\",\n      \"nominal_value\": \"0.05-0.15mm\",\n      \"tolerance\": \"\",\n      \"location\": \"图纸下方标注\"\n    },\n    {\n      \"dimension_name\": \"焊缝高度\",\n      \"nominal_value\": \"≥6mm\",\n      \"tolerance\": \"\",\n      \"location\": \"技术要求中说明\"\n    },\n    {\n      \"dimension_name\": \"基准件位置度\",\n      \"nominal_value\": \"X,Y方向偏差≤0.1mm\",\n      \"tolerance\": \"\",\n      \"location\": \"图纸左上角标注\"\n    },\n    {\n      \"dimension_name\": \"垂直度\",\n      \"nominal_value\": \"≤0.2mm/100mm\",\n      \"tolerance\": \"\",\n      \"location\": \"图纸中部标注\"\n    }\n  ]\n}\n```"
+}

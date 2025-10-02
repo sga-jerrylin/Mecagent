@@ -1,0 +1,46 @@
+# 智能装配说明书生成系统依赖包
+
+# Web框架和API
+fastapi>=0.104.0                 # 现代化API框架
+uvicorn>=0.24.0                  # ASGI服务器
+pydantic>=2.5.0                  # 数据验证库
+
+# AI和机器学习
+openai>=1.0.0                    # OpenAI API客户端 (兼容DeepSeek)
+dashscope>=1.14.0                # 阿里云DashScope SDK
+
+# PDF和文档处理
+PyPDF2>=3.0.0                    # PDF文本提取
+PyMuPDF>=1.23.0                  # PDF处理库
+camelot-py[cv]>=0.11.0           # PDF表格提取
+tabula-py>=2.8.0                 # PDF表格解析
+
+# 图像处理
+Pillow>=10.0.0                   # 图像处理库
+opencv-python>=4.8.0             # 计算机视觉库
+
+# 数据处理
+pandas>=2.1.0                    # 数据分析库
+numpy>=1.24.0                    # 数值计算库
+
+# 3D模型处理
+trimesh>=4.0.0                   # 3D网格处理库
+cascadio>=0.0.13                 # STEP文件加载 (OpenCASCADE封装)
+
+# 模板和生成
+Jinja2>=3.1.0                    # HTML模板引擎
+
+# 网络和工具
+requests>=2.31.0                 # HTTP请求库
+
+# 开发和测试依赖 (可选)
+pytest>=7.0.0                    # 测试框架
+black>=23.0.0                    # 代码格式化
+flake8>=6.0.0                    # 代码检查
+
+# 注意事项:
+# 1. Blender需要单独安装，用于3D模型转换
+# 2. 需要设置以下环境变量:
+#    - DASHSCOPE_API_KEY: 阿里云DashScope API密钥
+#    - DEEPSEEK_API_KEY: DeepSeek API密钥
+#    - BLENDER_EXE: Blender可执行文件路径 (可选)

@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_172016",
+  "image_path": "test_output_three_agents\\pdf_images_4\\page_002.png",
+  "reasoning": "",
+  "result": {
+    "quality_checkpoints": [
+      {
+        "checkpoint_id": "QC-001",
+        "checkpoint_name": "左铲雪板加强筋平面度",
+        "inspection_item": "平面度",
+        "inspection_method": "使用平板和塞尺测量最大间隙",
+        "measurement_tool": "平板、塞尺",
+        "acceptance_criteria": "≤0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "关键",
+        "related_parts": "T-U2500-02-12-Q345"
+      },
+      {
+        "checkpoint_id": "QC-002",
+        "checkpoint_name": "左右侧框架安装孔距",
+        "inspection_item": "孔距",
+        "inspection_method": "使用游标卡尺测量相邻孔中心距离",
+        "measurement_tool": "游标卡尺",
+        "acceptance_criteria": "±0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "重要",
+        "related_parts": "T-SPV250-Z602-03-11-Q235"
+      },
+      {
+        "checkpoint_id": "QC-003",
+        "checkpoint_name": "顶部封板与侧框架垂直度",
+        "inspection_item": "垂直度",
+        "inspection_method": "使用直角尺和塞尺测量偏差",
+        "measurement_tool": "直角尺、塞尺",
+        "acceptance_criteria": "≤0.2mm/100mm",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "T-SPV250-Z602-03-11-Q235, T-SPV1830-EURO-03-03-Q355B"
+      },
+      {
+        "checkpoint_id": "QC-004",
+        "checkpoint_name": "加强筋与底板焊接处平整度",
+        "inspection_item": "平整度",
+        "inspection_method": "目视检查并用塞尺测量最大间隙",
+        "measurement_tool": "塞尺",
+        "acceptance_criteria": "≤0.15mm",
+        "inspection_timing": "装配后",
+        "importance": "一般",
+        "related_parts": "T-U2500-02-12-Q345"
+      },
+      {
+        "checkpoint_id": "QC-005",
+        "checkpoint_name": "轴套安装孔直径",
+        "inspection_item": "孔径",
+        "inspection_method": "使用内径千分尺测量孔的直径",
+        "measurement_tool": "内径千分尺",
+        "acceptance_criteria": "φ35±0.02mm",
+        "inspection_timing": "装配前",
+        "importance": "重要",
+        "related_parts": "T-SPV250-Z602-03-10-Q235"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension_name": "左铲雪板总宽度",
+        "nominal_value": "1900mm",
+        "tolerance": "±0.1mm",
+        "location": "主视图标注"
+      },
+      {
+        "dimension_name": "加强筋长度",
+        "nominal_value": "1200mm",
+        "tolerance": "±0.15mm",
+        "location": "俯视图标注"
+      },
+      {
+        "dimension_name": "轴套安装孔中心距",
+        "nominal_value": "350mm",
+        "tolerance": "±0.1mm",
+        "location": "左视图标注"
+      },
+      {
+        "dimension_name": "顶部封板倾斜角度",
+        "nominal_value": "50°",
+        "tolerance": "±0.5°",
+        "location": "右视图标注"
+      },
+      {
+        "dimension_name": "加强筋与底板连接孔间距",
+        "nominal_value": "200mm",
+        "tolerance": "±0.1mm",
+        "location": "左视图标注"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"quality_checkpoints\": [\n    {\n      \"checkpoint_id\": \"QC-001\",\n      \"checkpoint_name\": \"左铲雪板加强筋平面度\",\n      \"inspection_item\": \"平面度\",\n      \"inspection_method\": \"使用平板和塞尺测量最大间隙\",\n      \"measurement_tool\": \"平板、塞尺\",\n      \"acceptance_criteria\": \"≤0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"T-U2500-02-12-Q345\"\n    },\n    {\n      \"checkpoint_id\": \"QC-002\",\n      \"checkpoint_name\": \"左右侧框架安装孔距\",\n      \"inspection_item\": \"孔距\",\n      \"inspection_method\": \"使用游标卡尺测量相邻孔中心距离\",\n      \"measurement_tool\": \"游标卡尺\",\n      \"acceptance_criteria\": \"±0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"T-SPV250-Z602-03-11-Q235\"\n    },\n    {\n      \"checkpoint_id\": \"QC-003\",\n      \"checkpoint_name\": \"顶部封板与侧框架垂直度\",\n      \"inspection_item\": \"垂直度\",\n      \"inspection_method\": \"使用直角尺和塞尺测量偏差\",\n      \"measurement_tool\": \"直角尺、塞尺\",\n      \"acceptance_criteria\": \"≤0.2mm/100mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"T-SPV250-Z602-03-11-Q235, T-SPV1830-EURO-03-03-Q355B\"\n    },\n    {\n      \"checkpoint_id\": \"QC-004\",\n      \"checkpoint_name\": \"加强筋与底板焊接处平整度\",\n      \"inspection_item\": \"平整度\",\n      \"inspection_method\": \"目视检查并用塞尺测量最大间隙\",\n      \"measurement_tool\": \"塞尺\",\n      \"acceptance_criteria\": \"≤0.15mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"T-U2500-02-12-Q345\"\n    },\n    {\n      \"checkpoint_id\": \"QC-005\",\n      \"checkpoint_name\": \"轴套安装孔直径\",\n      \"inspection_item\": \"孔径\",\n      \"inspection_method\": \"使用内径千分尺测量孔的直径\",\n      \"measurement_tool\": \"内径千分尺\",\n      \"acceptance_criteria\": \"φ35±0.02mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"T-SPV250-Z602-03-10-Q235\"\n    }\n  ],\n  \"critical_dimensions\": [\n    {\n      \"dimension_name\": \"左铲雪板总宽度\",\n      \"nominal_value\": \"1900mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"主视图标注\"\n    },\n    {\n      \"dimension_name\": \"加强筋长度\",\n      \"nominal_value\": \"1200mm\",\n      \"tolerance\": \"±0.15mm\",\n      \"location\": \"俯视图标注\"\n    },\n    {\n      \"dimension_name\": \"轴套安装孔中心距\",\n      \"nominal_value\": \"350mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"左视图标注\"\n    },\n    {\n      \"dimension_name\": \"顶部封板倾斜角度\",\n      \"nominal_value\": \"50°\",\n      \"tolerance\": \"±0.5°\",\n      \"location\": \"右视图标注\"\n    },\n    {\n      \"dimension_name\": \"加强筋与底板连接孔间距\",\n      \"nominal_value\": \"200mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"左视图标注\"\n    }\n  ]\n}\n```"
+}

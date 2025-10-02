@@ -1,0 +1,122 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170740",
+  "image_path": "test_output_three_agents\\pdf_images_3\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "quality_checkpoints": [
+      {
+        "checkpoint_id": "QC-001",
+        "checkpoint_name": "底板平面度检测",
+        "inspection_item": "底板平面度",
+        "inspection_method": "使用平板和塞尺测量底板与平板之间的最大间隙",
+        "measurement_tool": "平板、塞尺",
+        "acceptance_criteria": "最大间隙≤0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "重要",
+        "related_parts": "底板组件"
+      },
+      {
+        "checkpoint_id": "QC-002",
+        "checkpoint_name": "孔距尺寸检测",
+        "inspection_item": "孔间距",
+        "inspection_method": "使用游标卡尺测量相邻孔中心线之间的距离",
+        "measurement_tool": "游标卡尺",
+        "acceptance_criteria": "公称值±0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "重要",
+        "related_parts": "底板组件"
+      },
+      {
+        "checkpoint_id": "QC-003",
+        "checkpoint_name": "垂直度检测",
+        "inspection_item": "侧板与底板垂直度",
+        "inspection_method": "使用直角尺和塞尺测量侧板与底板接触面的间隙",
+        "measurement_tool": "直角尺、塞尺",
+        "acceptance_criteria": "最大间隙≤0.15mm",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "侧板组件"
+      },
+      {
+        "checkpoint_id": "QC-004",
+        "checkpoint_name": "同轴度检测",
+        "inspection_item": "转轴孔与左右铲雪板配合孔的同轴度",
+        "inspection_method": "使用专用检具或三坐标测量仪检测",
+        "measurement_tool": "三坐标测量仪",
+        "acceptance_criteria": "同轴度公差≤0.2mm",
+        "inspection_timing": "装配中",
+        "importance": "关键",
+        "related_parts": "转轴孔组件"
+      },
+      {
+        "checkpoint_id": "QC-005",
+        "checkpoint_name": "表面粗糙度检测",
+        "inspection_item": "焊接表面粗糙度",
+        "inspection_method": "使用粗糙度比较样块目视比对",
+        "measurement_tool": "粗糙度比较样块",
+        "acceptance_criteria": "Ra≤6.3μm",
+        "inspection_timing": "装配后",
+        "importance": "一般",
+        "related_parts": "焊接件"
+      },
+      {
+        "checkpoint_id": "QC-006",
+        "checkpoint_name": "整体长度检测",
+        "inspection_item": "总长度",
+        "inspection_method": "使用钢卷尺测量产品两端点之间的距离",
+        "measurement_tool": "钢卷尺",
+        "acceptance_criteria": "公称值±1mm",
+        "inspection_timing": "装配后",
+        "importance": "重要",
+        "related_parts": "整机组件"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension_name": "总长度",
+        "nominal_value": "532mm",
+        "tolerance": "±1mm",
+        "location": "图纸底部标注"
+      },
+      {
+        "dimension_name": "总高度",
+        "nominal_value": "485mm",
+        "tolerance": "±0.5mm",
+        "location": "图纸左侧标注"
+      },
+      {
+        "dimension_name": "孔间距（水平）",
+        "nominal_value": "294mm",
+        "tolerance": "±0.1mm",
+        "location": "图纸中部标注"
+      },
+      {
+        "dimension_name": "孔间距（垂直）",
+        "nominal_value": "120mm",
+        "tolerance": "±0.1mm",
+        "location": "图纸中部标注"
+      },
+      {
+        "dimension_name": "转轴孔直径",
+        "nominal_value": "φ20mm",
+        "tolerance": "H7",
+        "location": "图纸右侧标注"
+      },
+      {
+        "dimension_name": "焊接焊缝宽度",
+        "nominal_value": "6mm",
+        "tolerance": "无",
+        "location": "技术要求中说明"
+      },
+      {
+        "dimension_name": "焊接焊缝高度",
+        "nominal_value": "6mm",
+        "tolerance": "无",
+        "location": "技术要求中说明"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"quality_checkpoints\": [\n    {\n      \"checkpoint_id\": \"QC-001\",\n      \"checkpoint_name\": \"底板平面度检测\",\n      \"inspection_item\": \"底板平面度\",\n      \"inspection_method\": \"使用平板和塞尺测量底板与平板之间的最大间隙\",\n      \"measurement_tool\": \"平板、塞尺\",\n      \"acceptance_criteria\": \"最大间隙≤0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"底板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-002\",\n      \"checkpoint_name\": \"孔距尺寸检测\",\n      \"inspection_item\": \"孔间距\",\n      \"inspection_method\": \"使用游标卡尺测量相邻孔中心线之间的距离\",\n      \"measurement_tool\": \"游标卡尺\",\n      \"acceptance_criteria\": \"公称值±0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"底板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-003\",\n      \"checkpoint_name\": \"垂直度检测\",\n      \"inspection_item\": \"侧板与底板垂直度\",\n      \"inspection_method\": \"使用直角尺和塞尺测量侧板与底板接触面的间隙\",\n      \"measurement_tool\": \"直角尺、塞尺\",\n      \"acceptance_criteria\": \"最大间隙≤0.15mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"侧板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-004\",\n      \"checkpoint_name\": \"同轴度检测\",\n      \"inspection_item\": \"转轴孔与左右铲雪板配合孔的同轴度\",\n      \"inspection_method\": \"使用专用检具或三坐标测量仪检测\",\n      \"measurement_tool\": \"三坐标测量仪\",\n      \"acceptance_criteria\": \"同轴度公差≤0.2mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"转轴孔组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-005\",\n      \"checkpoint_name\": \"表面粗糙度检测\",\n      \"inspection_item\": \"焊接表面粗糙度\",\n      \"inspection_method\": \"使用粗糙度比较样块目视比对\",\n      \"measurement_tool\": \"粗糙度比较样块\",\n      \"acceptance_criteria\": \"Ra≤6.3μm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"焊接件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-006\",\n      \"checkpoint_name\": \"整体长度检测\",\n      \"inspection_item\": \"总长度\",\n      \"inspection_method\": \"使用钢卷尺测量产品两端点之间的距离\",\n      \"measurement_tool\": \"钢卷尺\",\n      \"acceptance_criteria\": \"公称值±1mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"整机组件\"\n    }\n  ],\n  \"critical_dimensions\": [\n    {\n      \"dimension_name\": \"总长度\",\n      \"nominal_value\": \"532mm\",\n      \"tolerance\": \"±1mm\",\n      \"location\": \"图纸底部标注\"\n    },\n    {\n      \"dimension_name\": \"总高度\",\n      \"nominal_value\": \"485mm\",\n      \"tolerance\": \"±0.5mm\",\n      \"location\": \"图纸左侧标注\"\n    },\n    {\n      \"dimension_name\": \"孔间距（水平）\",\n      \"nominal_value\": \"294mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"图纸中部标注\"\n    },\n    {\n      \"dimension_name\": \"孔间距（垂直）\",\n      \"nominal_value\": \"120mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"图纸中部标注\"\n    },\n    {\n      \"dimension_name\": \"转轴孔直径\",\n      \"nominal_value\": \"φ20mm\",\n      \"tolerance\": \"H7\",\n      \"location\": \"图纸右侧标注\"\n    },\n    {\n      \"dimension_name\": \"焊接焊缝宽度\",\n      \"nominal_value\": \"6mm\",\n      \"tolerance\": \"无\",\n      \"location\": \"技术要求中说明\"\n    },\n    {\n      \"dimension_name\": \"焊接焊缝高度\",\n      \"nominal_value\": \"6mm\",\n      \"tolerance\": \"无\",\n      \"location\": \"技术要求中说明\"\n    }\n  ]\n}\n```"
+}

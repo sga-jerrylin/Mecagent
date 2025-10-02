@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170632",
+  "image_path": "test_output_three_agents\\pdf_images_3\\page_002.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "底部加强筋与侧板连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝表面平整，无气孔、裂纹等缺陷",
+        "worker_instruction": "使用手工电弧焊焊接，焊脚高度控制在6mm。焊接时注意保持焊缝均匀，避免出现气孔或裂纹。",
+        "inspection_method": "目视检查+渗透检测",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "顶部框架与侧板连接处",
+        "welding_type": "角焊",
+        "welding_method": "气保焊",
+        "weld_size": "焊脚高度8mm",
+        "quality_requirement": "焊缝牢固，无虚焊、漏焊现象",
+        "worker_instruction": "采用气保焊焊接，焊脚高度为8mm。焊接过程中要确保焊缝牢固，仔细检查是否有虚焊或漏焊。",
+        "inspection_method": "目视检查+超声波检测",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "后座轴套与侧板连接处",
+        "welding_type": "塞焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "焊缝直径10mm",
+        "quality_requirement": "焊缝填充饱满，无夹渣",
+        "worker_instruction": "使用手工电弧焊进行塞焊，焊缝直径控制在10mm。焊接时确保焊缝填充饱满，避免出现夹渣。",
+        "inspection_method": "目视检查+X射线检测",
+        "importance": "一般"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"底部加强筋与侧板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无气孔、裂纹等缺陷\",\n      \"worker_instruction\": \"使用手工电弧焊焊接，焊脚高度控制在6mm。焊接时注意保持焊缝均匀，避免出现气孔或裂纹。\",\n      \"inspection_method\": \"目视检查+渗透检测\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"顶部框架与侧板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"气保焊\",\n      \"weld_size\": \"焊脚高度8mm\",\n      \"quality_requirement\": \"焊缝牢固，无虚焊、漏焊现象\",\n      \"worker_instruction\": \"采用气保焊焊接，焊脚高度为8mm。焊接过程中要确保焊缝牢固，仔细检查是否有虚焊或漏焊。\",\n      \"inspection_method\": \"目视检查+超声波检测\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"后座轴套与侧板连接处\",\n      \"welding_type\": \"塞焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"焊缝直径10mm\",\n      \"quality_requirement\": \"焊缝填充饱满，无夹渣\",\n      \"worker_instruction\": \"使用手工电弧焊进行塞焊，焊缝直径控制在10mm。焊接时确保焊缝填充饱满，避免出现夹渣。\",\n      \"inspection_method\": \"目视检查+X射线检测\",\n      \"importance\": \"一般\"\n    }\n  ]\n}\n```"
+}

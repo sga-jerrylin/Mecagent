@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170641",
+  "image_path": "test_output_three_agents\\pdf_images_4\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "铲板与框架连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊（111）",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝表面平整，无气孔、夹渣等缺陷",
+        "worker_instruction": "使用直径3.2mm的E4303焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊缝过高或过低。",
+        "inspection_method": "目视检查+渗透检测",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "顶部框架拼接处",
+        "welding_type": "对接焊",
+        "welding_method": "气保焊（135）",
+        "weld_size": "焊缝宽度10mm",
+        "quality_requirement": "焊缝熔透良好，无裂纹、未熔合等缺陷",
+        "worker_instruction": "采用CO2气体保护，使用直径1.2mm的ER70S-6焊丝。焊接前清理坡口，确保焊接质量。",
+        "inspection_method": "X射线探伤",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "油缸固定板与铲雪板连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊（111）",
+        "weld_size": "焊脚高度8mm",
+        "quality_requirement": "焊缝连续均匀，无咬边、烧穿等现象",
+        "worker_instruction": "采用多层多道焊工艺，每层焊缝厚度不超过3mm。焊接过程中注意散热，防止变形。",
+        "inspection_method": "目视检查+磁粉探伤",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-004",
+        "welding_location": "加强筋与侧板连接处",
+        "welding_type": "塞焊",
+        "welding_method": "手工电弧焊（111）",
+        "weld_size": "焊孔直径10mm",
+        "quality_requirement": "焊孔填充饱满，无虚焊、漏焊",
+        "worker_instruction": "先钻孔后焊接，确保焊孔内壁清洁。焊接时采用短弧操作，防止飞溅。",
+        "inspection_method": "目视检查+超声波探伤",
+        "importance": "一般"
+      },
+      {
+        "requirement_id": "WR-005",
+        "welding_location": "顶部框架与侧板连接处",
+        "welding_type": "角焊",
+        "welding_method": "气保焊（135）",
+        "weld_size": "焊脚高度5mm",
+        "quality_requirement": "焊缝成型美观，无明显缺陷",
+        "worker_instruction": "采用平焊位置施焊，焊接速度均匀。焊接完成后及时清理焊渣。",
+        "inspection_method": "目视检查",
+        "importance": "一般"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"铲板与框架连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊（111）\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无气孔、夹渣等缺陷\",\n      \"worker_instruction\": \"使用直径3.2mm的E4303焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊缝过高或过低。\",\n      \"inspection_method\": \"目视检查+渗透检测\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"顶部框架拼接处\",\n      \"welding_type\": \"对接焊\",\n      \"welding_method\": \"气保焊（135）\",\n      \"weld_size\": \"焊缝宽度10mm\",\n      \"quality_requirement\": \"焊缝熔透良好，无裂纹、未熔合等缺陷\",\n      \"worker_instruction\": \"采用CO2气体保护，使用直径1.2mm的ER70S-6焊丝。焊接前清理坡口，确保焊接质量。\",\n      \"inspection_method\": \"X射线探伤\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"油缸固定板与铲雪板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊（111）\",\n      \"weld_size\": \"焊脚高度8mm\",\n      \"quality_requirement\": \"焊缝连续均匀，无咬边、烧穿等现象\",\n      \"worker_instruction\": \"采用多层多道焊工艺，每层焊缝厚度不超过3mm。焊接过程中注意散热，防止变形。\",\n      \"inspection_method\": \"目视检查+磁粉探伤\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-004\",\n      \"welding_location\": \"加强筋与侧板连接处\",\n      \"welding_type\": \"塞焊\",\n      \"welding_method\": \"手工电弧焊（111）\",\n      \"weld_size\": \"焊孔直径10mm\",\n      \"quality_requirement\": \"焊孔填充饱满，无虚焊、漏焊\",\n      \"worker_instruction\": \"先钻孔后焊接，确保焊孔内壁清洁。焊接时采用短弧操作，防止飞溅。\",\n      \"inspection_method\": \"目视检查+超声波探伤\",\n      \"importance\": \"一般\"\n    },\n    {\n      \"requirement_id\": \"WR-005\",\n      \"welding_location\": \"顶部框架与侧板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"气保焊（135）\",\n      \"weld_size\": \"焊脚高度5mm\",\n      \"quality_requirement\": \"焊缝成型美观，无明显缺陷\",\n      \"worker_instruction\": \"采用平焊位置施焊，焊接速度均匀。焊接完成后及时清理焊渣。\",\n      \"inspection_method\": \"目视检查\",\n      \"importance\": \"一般\"\n    }\n  ]\n}\n```"
+}

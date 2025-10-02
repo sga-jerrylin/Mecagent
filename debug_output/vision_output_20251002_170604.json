@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170604",
+  "image_path": "test_output_three_agents\\pdf_images_1\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "铲板与框架连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝表面平整，无气孔、夹渣等缺陷",
+        "worker_instruction": "使用直径3.2mm的E7018焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊缝过热。",
+        "inspection_method": "目视检查焊缝外观，并用磁粉探伤检测内部缺陷",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "左右侧板与底部加强筋连接处",
+        "welding_type": "角焊",
+        "welding_method": "气保焊",
+        "weld_size": "焊脚高度5mm",
+        "quality_requirement": "焊缝成型良好，无裂纹、未熔合等缺陷",
+        "worker_instruction": "使用CO2气体保护焊，采用立焊位置施焊。焊接前清理焊缝区域的油污和锈迹。",
+        "inspection_method": "目视检查焊缝外观，并用超声波探伤检测内部缺陷",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "顶部框架与侧板连接处",
+        "welding_type": "对接焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "焊缝宽度8mm",
+        "quality_requirement": "焊缝完全熔透，无未焊透、未熔合等缺陷",
+        "worker_instruction": "使用直径4.0mm的E7018焊条，采用仰焊位置施焊。焊接前对焊缝进行预热处理。",
+        "inspection_method": "X射线探伤检测焊缝内部质量",
+        "importance": "关键"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"铲板与框架连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无气孔、夹渣等缺陷\",\n      \"worker_instruction\": \"使用直径3.2mm的E7018焊条，采用平焊位置施焊。焊接时注意控制电流，避免焊缝过热。\",\n      \"inspection_method\": \"目视检查焊缝外观，并用磁粉探伤检测内部缺陷\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"左右侧板与底部加强筋连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"气保焊\",\n      \"weld_size\": \"焊脚高度5mm\",\n      \"quality_requirement\": \"焊缝成型良好，无裂纹、未熔合等缺陷\",\n      \"worker_instruction\": \"使用CO2气体保护焊，采用立焊位置施焊。焊接前清理焊缝区域的油污和锈迹。\",\n      \"inspection_method\": \"目视检查焊缝外观，并用超声波探伤检测内部缺陷\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"顶部框架与侧板连接处\",\n      \"welding_type\": \"对接焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"焊缝宽度8mm\",\n      \"quality_requirement\": \"焊缝完全熔透，无未焊透、未熔合等缺陷\",\n      \"worker_instruction\": \"使用直径4.0mm的E7018焊条，采用仰焊位置施焊。焊接前对焊缝进行预热处理。\",\n      \"inspection_method\": \"X射线探伤检测焊缝内部质量\",\n      \"importance\": \"关键\"\n    }\n  ]\n}\n```"
+}

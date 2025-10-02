@@ -1,0 +1,67 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_171846",
+  "image_path": "test_output_three_agents\\pdf_images_4\\page_001.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "铲板与框架连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "6mm",
+        "quality_requirement": "焊缝表面平整，无气孔、夹渣等缺陷",
+        "worker_instruction": "使用直径3.2mm的E4303焊条，焊接电流120-150A。焊接时注意控制焊接速度，确保焊缝成型良好。",
+        "inspection_method": "目视检查+渗透检测",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "顶部封板拼接处",
+        "welding_type": "对接焊",
+        "welding_method": "气保焊",
+        "weld_size": "8mm",
+        "quality_requirement": "焊缝熔深≥80%板厚，无裂纹、未熔合等缺陷",
+        "worker_instruction": "采用CO2气体保护焊，焊接电流180-220A，焊接速度15-20cm/min。焊接前清理坡口处油污和锈迹。",
+        "inspection_method": "X射线探伤+超声波检测",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "左右侧框架与底部加强筋连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "5mm",
+        "quality_requirement": "焊脚高度均匀，焊缝宽度一致",
+        "worker_instruction": "使用直径2.5mm的E4303焊条，焊接电流100-130A。焊接时注意保持焊枪角度稳定，避免咬边。",
+        "inspection_method": "目视检查+焊缝规测量",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-004",
+        "welding_location": "油缸固定板与铲雪板连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "6mm",
+        "quality_requirement": "焊缝连续饱满，无虚焊现象",
+        "worker_instruction": "焊接前预热至100℃以上，焊接电流120-150A。焊接完成后自然冷却。",
+        "inspection_method": "目视检查+敲击检查",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-005",
+        "welding_location": "后座连接架与铲雪板组件配合焊接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "5mm",
+        "quality_requirement": "焊缝外观整齐，无明显缺陷",
+        "worker_instruction": "焊接电流100-130A，焊接速度适中。焊接时注意观察熔池状态，及时调整参数。",
+        "inspection_method": "目视检查+焊缝规测量",
+        "importance": "一般"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"铲板与框架连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无气孔、夹渣等缺陷\",\n      \"worker_instruction\": \"使用直径3.2mm的E4303焊条，焊接电流120-150A。焊接时注意控制焊接速度，确保焊缝成型良好。\",\n      \"inspection_method\": \"目视检查+渗透检测\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"顶部封板拼接处\",\n      \"welding_type\": \"对接焊\",\n      \"welding_method\": \"气保焊\",\n      \"weld_size\": \"8mm\",\n      \"quality_requirement\": \"焊缝熔深≥80%板厚，无裂纹、未熔合等缺陷\",\n      \"worker_instruction\": \"采用CO2气体保护焊，焊接电流180-220A，焊接速度15-20cm/min。焊接前清理坡口处油污和锈迹。\",\n      \"inspection_method\": \"X射线探伤+超声波检测\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"左右侧框架与底部加强筋连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"5mm\",\n      \"quality_requirement\": \"焊脚高度均匀，焊缝宽度一致\",\n      \"worker_instruction\": \"使用直径2.5mm的E4303焊条，焊接电流100-130A。焊接时注意保持焊枪角度稳定，避免咬边。\",\n      \"inspection_method\": \"目视检查+焊缝规测量\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-004\",\n      \"welding_location\": \"油缸固定板与铲雪板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"6mm\",\n      \"quality_requirement\": \"焊缝连续饱满，无虚焊现象\",\n      \"worker_instruction\": \"焊接前预热至100℃以上，焊接电流120-150A。焊接完成后自然冷却。\",\n      \"inspection_method\": \"目视检查+敲击检查\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-005\",\n      \"welding_location\": \"后座连接架与铲雪板组件配合焊接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"5mm\",\n      \"quality_requirement\": \"焊缝外观整齐，无明显缺陷\",\n      \"worker_instruction\": \"焊接电流100-130A，焊接速度适中。焊接时注意观察熔池状态，及时调整参数。\",\n      \"inspection_method\": \"目视检查+焊缝规测量\",\n      \"importance\": \"一般\"\n    }\n  ]\n}\n```"
+}

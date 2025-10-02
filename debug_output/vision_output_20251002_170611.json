@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_170611",
+  "image_path": "test_output_three_agents\\pdf_images_1\\page_002.png",
+  "reasoning": "",
+  "result": {
+    "welding_requirements": [
+      {
+        "requirement_id": "WR-001",
+        "welding_location": "顶部框架与侧板连接处",
+        "welding_type": "角焊",
+        "welding_method": "气保焊（MAG焊）",
+        "weld_size": "焊脚高度6mm",
+        "quality_requirement": "焊缝表面平整，无裂纹、气孔等缺陷",
+        "worker_instruction": "使用气保焊焊接，焊枪角度保持垂直，焊接电流适中。焊接时注意控制熔池形状，确保焊缝饱满。焊接完成后清理焊渣。",
+        "inspection_method": "目视检查+渗透检测",
+        "importance": "关键"
+      },
+      {
+        "requirement_id": "WR-002",
+        "welding_location": "底部加强筋与侧板连接处",
+        "welding_type": "角焊",
+        "welding_method": "手工电弧焊",
+        "weld_size": "焊脚高度8mm",
+        "quality_requirement": "焊缝必须连续，无咬边、未熔合等缺陷",
+        "worker_instruction": "采用手工电弧焊，选择合适的焊条型号。焊接时要注意焊缝的连续性，避免出现断焊或虚焊。焊接后敲掉焊渣。",
+        "inspection_method": "目视检查+超声波检测",
+        "importance": "重要"
+      },
+      {
+        "requirement_id": "WR-003",
+        "welding_location": "顶部框架与底部加强筋连接处",
+        "welding_type": "对接焊",
+        "welding_method": "自动埋弧焊",
+        "weld_size": "焊缝宽度10mm",
+        "quality_requirement": "焊缝必须完全熔透，无夹渣、气孔等内部缺陷",
+        "worker_instruction": "使用自动埋弧焊进行焊接，确保焊缝完全熔透。焊接前清理坡口处的油污和锈迹，焊接过程中保持焊剂均匀覆盖焊缝。",
+        "inspection_method": "X射线检测+超声波检测",
+        "importance": "关键"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"welding_requirements\": [\n    {\n      \"requirement_id\": \"WR-001\",\n      \"welding_location\": \"顶部框架与侧板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"气保焊（MAG焊）\",\n      \"weld_size\": \"焊脚高度6mm\",\n      \"quality_requirement\": \"焊缝表面平整，无裂纹、气孔等缺陷\",\n      \"worker_instruction\": \"使用气保焊焊接，焊枪角度保持垂直，焊接电流适中。焊接时注意控制熔池形状，确保焊缝饱满。焊接完成后清理焊渣。\",\n      \"inspection_method\": \"目视检查+渗透检测\",\n      \"importance\": \"关键\"\n    },\n    {\n      \"requirement_id\": \"WR-002\",\n      \"welding_location\": \"底部加强筋与侧板连接处\",\n      \"welding_type\": \"角焊\",\n      \"welding_method\": \"手工电弧焊\",\n      \"weld_size\": \"焊脚高度8mm\",\n      \"quality_requirement\": \"焊缝必须连续，无咬边、未熔合等缺陷\",\n      \"worker_instruction\": \"采用手工电弧焊，选择合适的焊条型号。焊接时要注意焊缝的连续性，避免出现断焊或虚焊。焊接后敲掉焊渣。\",\n      \"inspection_method\": \"目视检查+超声波检测\",\n      \"importance\": \"重要\"\n    },\n    {\n      \"requirement_id\": \"WR-003\",\n      \"welding_location\": \"顶部框架与底部加强筋连接处\",\n      \"welding_type\": \"对接焊\",\n      \"welding_method\": \"自动埋弧焊\",\n      \"weld_size\": \"焊缝宽度10mm\",\n      \"quality_requirement\": \"焊缝必须完全熔透，无夹渣、气孔等内部缺陷\",\n      \"worker_instruction\": \"使用自动埋弧焊进行焊接，确保焊缝完全熔透。焊接前清理坡口处的油污和锈迹，焊接过程中保持焊剂均匀覆盖焊缝。\",\n      \"inspection_method\": \"X射线检测+超声波检测\",\n      \"importance\": \"关键\"\n    }\n  ]\n}\n```"
+}

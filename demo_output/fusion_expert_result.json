@@ -1,0 +1,218 @@
+{
+  "success": true,
+  "assembly_spec": {
+    "doc_meta": {
+      "filename": "产品总图.pdf",
+      "pages": 2,
+      "analysis_timestamp": "2024-01-16T10:30:00Z"
+    },
+    "extracted": {
+      "bom_items": [
+        {
+          "item_id": "1",
+          "name": "V型推雪板EURO连接器",
+          "material": "Q345B",
+          "quantity": 1,
+          "unit": "台",
+          "weight": "414.28 kg",
+          "evidence": {
+            "page_id": 1,
+            "line_number": 25
+          }
+        }
+      ],
+      "technical_requirements": [
+        {
+          "requirement": "未注公差尺寸按GB/T 1804-m",
+          "category": "tolerance",
+          "evidence": {
+            "page_id": 1,
+            "line_number": 58
+          }
+        },
+        {
+          "requirement": "表面处理：灰黑RAL7021喷粉",
+          "category": "surface_treatment",
+          "evidence": {
+            "page_id": 1,
+            "line_number": 62
+          }
+        }
+      ],
+      "dimensions": [
+        {
+          "dimension": "总长度",
+          "value": "3590",
+          "unit": "mm",
+          "evidence": {
+            "page_id": 1,
+            "region": "main_view"
+          }
+        },
+        {
+          "dimension": "总高度",
+          "value": "996",
+          "unit": "mm",
+          "evidence": {
+            "page_id": 1,
+            "region": "main_view"
+          }
+        }
+      ]
+    },
+    "parts": [
+      {
+        "part_id": "T-SPV1830-EURO",
+        "name": "V型推雪板EURO连接器",
+        "material": "Q345B",
+        "weight": "414.28 kg",
+        "dimensions": {
+          "total_length": "3590 mm",
+          "total_height": "996 mm"
+        },
+        "evidence": [
+          {
+            "source": "text_channel",
+            "page_id": 1,
+            "line_number": 25,
+            "confidence": 0.9
+          },
+          {
+            "source": "vision_channel",
+            "page_id": 1,
+            "region": "main_view",
+            "confidence": 0.7
+          }
+        ],
+        "confidence": 0.85
+      }
+    ],
+    "connections": [
+      {
+        "connection_id": "CONN-001",
+        "type": "hydraulic",
+        "from_part": "T-SPV1830-EURO",
+        "to_part": "液压缸组件",
+        "specifications": {
+          "pressure": "16 MPa",
+          "flow_rate": "60 lpm"
+        },
+        "evidence": [
+          {
+            "source": "vision_channel",
+            "page_id": 1,
+            "region": "side_view",
+            "confidence": 0.6
+          }
+        ],
+        "confidence": 0.65
+      }
+    ],
+    "assembly_plan": {
+      "sequence": [
+        {
+          "step": 1,
+          "action": "定位",
+          "description": "定位V型推雪板主体结构",
+          "parts_involved": [
+            "T-SPV1830-EURO"
+          ],
+          "inspection_point": false
+        },
+        {
+          "step": 2,
+          "action": "连接",
+          "description": "安装液压缸组件并连接管路",
+          "parts_involved": [
+            "T-SPV1830-EURO",
+            "液压缸组件"
+          ],
+          "inspection_point": true
+        },
+        {
+          "step": 3,
+          "action": "检验",
+          "description": "液压系统功能测试",
+          "parts_involved": [
+            "全部"
+          ],
+          "inspection_point": true
+        }
+      ]
+    },
+    "qc_plan": {
+      "inspection_items": [
+        {
+          "item": "总长度",
+          "specification": "3590 mm",
+          "method": "三坐标测量",
+          "sample_rate": "100%",
+          "evidence": {
+            "page_id": 1,
+            "region": "main_view"
+          }
+        },
+        {
+          "item": "总高度",
+          "specification": "996 mm",
+          "method": "三坐标测量",
+          "sample_rate": "100%",
+          "evidence": {
+            "page_id": 1,
+            "region": "main_view"
+          }
+        },
+        {
+          "item": "液压系统压力",
+          "specification": "16 MPa",
+          "method": "压力表测试",
+          "sample_rate": "100%",
+          "evidence": {
+            "source": "vision_channel",
+            "confidence": 0.7
+          }
+        }
+      ]
+    },
+    "risks": [
+      {
+        "risk": "液压系统泄漏",
+        "severity": "高",
+        "mitigation": "严格检查密封件和连接处",
+        "evidence": {
+          "source": "vision_channel",
+          "confidence": 0.7
+        }
+      },
+      {
+        "risk": "尺寸超差",
+        "severity": "中",
+        "mitigation": "按GB/T 1804-m公差控制",
+        "evidence": {
+          "page_id": 1,
+          "line_number": 58
+        }
+      }
+    ],
+    "unknowns": [
+      "液压缸具体型号规格",
+      "连接螺栓规格和扭矩要求",
+      "喷涂膜厚要求"
+    ],
+    "questions_to_ask": [
+      "液压缸的具体型号和安装要求是什么？",
+      "连接螺栓的规格、等级和紧固扭矩是多少？",
+      "喷涂膜厚的具体要求是什么？"
+    ],
+    "traceability": {
+      "extraction_sources": [
+        "text_channel",
+        "vision_channel"
+      ],
+      "confidence_calculation": "基于来源权重(BOM表0.9>技术要求0.8>视觉0.7)和一致性评估",
+      "data_integrity": "部分液压参数仅来自视觉识别，需进一步确认"
+    }
+  },
+  "summary": "**要点摘要：**\n1. 识别出V型推雪板EURO连接器，材料Q345B，重414.28kg\n2. 产品总长3590mm，总高996mm，含液压系统(16MPa, 60lpm)\n3. 表面处理为灰黑RAL7021喷粉，公差按GB/T 1804-m\n4. 装配流程：定位→液压连接→功能测试\n5. 关键质检项：尺寸、液压压力\n6. 主要风险：液压泄漏、尺寸超差\n7. 缺失信息：液压缸型号、螺栓规格、喷涂膜厚\n8. 需确认液压连接细节和紧固要求",
+  "raw_response": "```json\n{\n  \"doc_meta\": {\n    \"filename\": \"产品总图.pdf\",\n    \"pages\": 2,\n    \"analysis_timestamp\": \"2024-01-16T10:30:00Z\"\n  },\n  \"extracted\": {\n    \"bom_items\": [\n      {\n        \"item_id\": \"1\",\n        \"name\": \"V型推雪板EURO连接器\",\n        \"material\": \"Q345B\",\n        \"quantity\": 1,\n        \"unit\": \"台\",\n        \"weight\": \"414.28 kg\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"line_number\": 25\n        }\n      }\n    ],\n    \"technical_requirements\": [\n      {\n        \"requirement\": \"未注公差尺寸按GB/T 1804-m\",\n        \"category\": \"tolerance\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"line_number\": 58\n        }\n      },\n      {\n        \"requirement\": \"表面处理：灰黑RAL7021喷粉\",\n        \"category\": \"surface_treatment\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"line_number\": 62\n        }\n      }\n    ],\n    \"dimensions\": [\n      {\n        \"dimension\": \"总长度\",\n        \"value\": \"3590\",\n        \"unit\": \"mm\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"region\": \"main_view\"\n        }\n      },\n      {\n        \"dimension\": \"总高度\",\n        \"value\": \"996\",\n        \"unit\": \"mm\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"region\": \"main_view\"\n        }\n      }\n    ]\n  },\n  \"parts\": [\n    {\n      \"part_id\": \"T-SPV1830-EURO\",\n      \"name\": \"V型推雪板EURO连接器\",\n      \"material\": \"Q345B\",\n      \"weight\": \"414.28 kg\",\n      \"dimensions\": {\n        \"total_length\": \"3590 mm\",\n        \"total_height\": \"996 mm\"\n      },\n      \"evidence\": [\n        {\n          \"source\": \"text_channel\",\n          \"page_id\": 1,\n          \"line_number\": 25,\n          \"confidence\": 0.9\n        },\n        {\n          \"source\": \"vision_channel\", \n          \"page_id\": 1,\n          \"region\": \"main_view\",\n          \"confidence\": 0.7\n        }\n      ],\n      \"confidence\": 0.85\n    }\n  ],\n  \"connections\": [\n    {\n      \"connection_id\": \"CONN-001\",\n      \"type\": \"hydraulic\",\n      \"from_part\": \"T-SPV1830-EURO\",\n      \"to_part\": \"液压缸组件\",\n      \"specifications\": {\n        \"pressure\": \"16 MPa\",\n        \"flow_rate\": \"60 lpm\"\n      },\n      \"evidence\": [\n        {\n          \"source\": \"vision_channel\",\n          \"page_id\": 1,\n          \"region\": \"side_view\",\n          \"confidence\": 0.6\n        }\n      ],\n      \"confidence\": 0.65\n    }\n  ],\n  \"assembly_plan\": {\n    \"sequence\": [\n      {\n        \"step\": 1,\n        \"action\": \"定位\",\n        \"description\": \"定位V型推雪板主体结构\",\n        \"parts_involved\": [\"T-SPV1830-EURO\"],\n        \"inspection_point\": false\n      },\n      {\n        \"step\": 2, \n        \"action\": \"连接\",\n        \"description\": \"安装液压缸组件并连接管路\",\n        \"parts_involved\": [\"T-SPV1830-EURO\", \"液压缸组件\"],\n        \"inspection_point\": true\n      },\n      {\n        \"step\": 3,\n        \"action\": \"检验\",\n        \"description\": \"液压系统功能测试\",\n        \"parts_involved\": [\"全部\"],\n        \"inspection_point\": true\n      }\n    ]\n  },\n  \"qc_plan\": {\n    \"inspection_items\": [\n      {\n        \"item\": \"总长度\",\n        \"specification\": \"3590 mm\",\n        \"method\": \"三坐标测量\",\n        \"sample_rate\": \"100%\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"region\": \"main_view\"\n        }\n      },\n      {\n        \"item\": \"总高度\", \n        \"specification\": \"996 mm\",\n        \"method\": \"三坐标测量\",\n        \"sample_rate\": \"100%\",\n        \"evidence\": {\n          \"page_id\": 1,\n          \"region\": \"main_view\"\n        }\n      },\n      {\n        \"item\": \"液压系统压力\",\n        \"specification\": \"16 MPa\",\n        \"method\": \"压力表测试\",\n        \"sample_rate\": \"100%\",\n        \"evidence\": {\n          \"source\": \"vision_channel\",\n          \"confidence\": 0.7\n        }\n      }\n    ]\n  },\n  \"risks\": [\n    {\n      \"risk\": \"液压系统泄漏\",\n      \"severity\": \"高\",\n      \"mitigation\": \"严格检查密封件和连接处\",\n      \"evidence\": {\n        \"source\": \"vision_channel\",\n        \"confidence\": 0.7\n      }\n    },\n    {\n      \"risk\": \"尺寸超差\",\n      \"severity\": \"中\", \n      \"mitigation\": \"按GB/T 1804-m公差控制\",\n      \"evidence\": {\n        \"page_id\": 1,\n        \"line_number\": 58\n      }\n    }\n  ],\n  \"unknowns\": [\n    \"液压缸具体型号规格\",\n    \"连接螺栓规格和扭矩要求\",\n    \"喷涂膜厚要求\"\n  ],\n  \"questions_to_ask\": [\n    \"液压缸的具体型号和安装要求是什么？\",\n    \"连接螺栓的规格、等级和紧固扭矩是多少？\",\n    \"喷涂膜厚的具体要求是什么？\"\n  ],\n  \"traceability\": {\n    \"extraction_sources\": [\"text_channel\", \"vision_channel\"],\n    \"confidence_calculation\": \"基于来源权重(BOM表0.9>技术要求0.8>视觉0.7)和一致性评估\",\n    \"data_integrity\": \"部分液压参数仅来自视觉识别，需进一步确认\"\n  }\n}\n```\n\n**要点摘要：**\n1. 识别出V型推雪板EURO连接器，材料Q345B，重414.28kg\n2. 产品总长3590mm，总高996mm，含液压系统(16MPa, 60lpm)\n3. 表面处理为灰黑RAL7021喷粉，公差按GB/T 1804-m\n4. 装配流程：定位→液压连接→功能测试\n5. 关键质检项：尺寸、液压压力\n6. 主要风险：液压泄漏、尺寸超差\n7. 缺失信息：液压缸型号、螺栓规格、喷涂膜厚\n8. 需确认液压连接细节和紧固要求"
+}

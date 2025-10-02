@@ -1,0 +1,50 @@
+{
+  "pages": [
+    {
+      "page_id": 1,
+      "width_px": 3367,
+      "height_px": 2381
+    }
+  ],
+  "regions": [],
+  "bom_candidates": [],
+  "feature_candidates": [],
+  "note_candidates": [
+    {
+      "text": "1.根据板厚、焊缝类型、焊缝大小及焊接位置，选择合适的电流、电压、焊接速度、焊接顺序、焊接角度；",
+      "source": "text_channel",
+      "evidence": {
+        "page_id": 1,
+        "line_number": 146
+      },
+      "confidence": 0.8
+    },
+    {
+      "text": "2.焊后清渣，焊接牢固，无虚焊、漏焊等不良；",
+      "source": "text_channel",
+      "evidence": {
+        "page_id": 1,
+        "line_number": 147
+      },
+      "confidence": 0.8
+    },
+    {
+      "text": "4.未注尺寸公差按GB/T 1804-m，未注形位公差按GT/T1184-K。",
+      "source": "text_channel",
+      "evidence": {
+        "page_id": 1,
+        "line_number": 149
+      },
+      "confidence": 0.8
+    }
+  ],
+  "part_bubble_candidates": [],
+  "units_notes": [
+    {
+      "scope": "page",
+      "unit": "mm",
+      "confidence": 0.95
+    }
+  ],
+  "warnings": []
+}

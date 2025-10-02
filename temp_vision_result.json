@@ -1,0 +1,589 @@
+﻿{
+    "product_overview":  {
+                             "product_name":  "T-SPV1830-EURO",
+                             "product_type":  "推雪板",
+                             "main_structure":  "框架+铲板+液压系统+驱动轮",
+                             "working_principle":  "通过液压系统控制铲板角度和位置，实现积雪的推移和清理。",
+                             "complexity":  "中等"
+                         },
+    "drawing_number_to_bom":  [
+                                  {
+                                      "drawing_number":  53,
+                                      "bom_seq":  53,
+                                      "bom_code":  "01.09.2556"
+                                  },
+                                  {
+                                      "drawing_number":  51,
+                                      "bom_seq":  51,
+                                      "bom_code":  "01.09.1240"
+                                  },
+                                  {
+                                      "drawing_number":  49,
+                                      "bom_seq":  49,
+                                      "bom_code":  "01.09.0308"
+                                  },
+                                  {
+                                      "drawing_number":  46,
+                                      "bom_seq":  46,
+                                      "bom_code":  "01.09.0304"
+                                  },
+                                  {
+                                      "drawing_number":  28,
+                                      "bom_seq":  28,
+                                      "bom_code":  "01.09.2566"
+                                  },
+                                  {
+                                      "drawing_number":  27,
+                                      "bom_seq":  27,
+                                      "bom_code":  "01.09.2565"
+                                  },
+                                  {
+                                      "drawing_number":  24,
+                                      "bom_seq":  24,
+                                      "bom_code":  "01.09.0999"
+                                  },
+                                  {
+                                      "drawing_number":  23,
+                                      "bom_seq":  23,
+                                      "bom_code":  "01.09.0503"
+                                  },
+                                  {
+                                      "drawing_number":  21,
+                                      "bom_seq":  21,
+                                      "bom_code":  "01.09.0995"
+                                  },
+                                  {
+                                      "drawing_number":  19,
+                                      "bom_seq":  19,
+                                      "bom_code":  "01.09.2564"
+                                  },
+                                  {
+                                      "drawing_number":  16,
+                                      "bom_seq":  16,
+                                      "bom_code":  "01.09.2563"
+                                  },
+                                  {
+                                      "drawing_number":  15,
+                                      "bom_seq":  15,
+                                      "bom_code":  "01.09.2562"
+                                  },
+                                  {
+                                      "drawing_number":  14,
+                                      "bom_seq":  14,
+                                      "bom_code":  "01.09.2561"
+                                  },
+                                  {
+                                      "drawing_number":  13,
+                                      "bom_seq":  13,
+                                      "bom_code":  "01.09.2555"
+                                  },
+                                  {
+                                      "drawing_number":  12,
+                                      "bom_seq":  12,
+                                      "bom_code":  "01.02.07.0071"
+                                  }
+                              ],
+    "spatial_relationships":  [
+                                  {
+                                      "drawing_number":  53,
+                                      "bom_code":  "01.09.2556",
+                                      "location":  "底部中央",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             51,
+                                                             49,
+                                                             46
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "主视图显示其作为整个结构的基础"
+                                  },
+                                  {
+                                      "drawing_number":  51,
+                                      "bom_code":  "01.09.1240",
+                                      "location":  "顶部中央",
+                                      "orientation":  "垂直",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "俯视图显示其位于框架上方"
+                                  },
+                                  {
+                                      "drawing_number":  49,
+                                      "bom_code":  "01.09.0308",
+                                      "location":  "左侧",
+                                      "orientation":  "倾斜50°",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "侧视图显示其与框架连接"
+                                  },
+                                  {
+                                      "drawing_number":  46,
+                                      "bom_code":  "01.09.0304",
+                                      "location":  "右侧",
+                                      "orientation":  "倾斜50°",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "侧视图显示其与框架连接"
+                                  },
+                                  {
+                                      "drawing_number":  28,
+                                      "bom_code":  "01.09.2566",
+                                      "location":  "底部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为支撑"
+                                  },
+                                  {
+                                      "drawing_number":  27,
+                                      "bom_code":  "01.09.2565",
+                                      "location":  "底部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为支撑"
+                                  },
+                                  {
+                                      "drawing_number":  24,
+                                      "bom_code":  "01.09.0999",
+                                      "location":  "中部偏左",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "剖视图显示其内部结构"
+                                  },
+                                  {
+                                      "drawing_number":  23,
+                                      "bom_code":  "01.09.0503",
+                                      "location":  "中部偏右",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "剖视图显示其内部结构"
+                                  },
+                                  {
+                                      "drawing_number":  21,
+                                      "bom_code":  "01.09.0995",
+                                      "location":  "中部偏左",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "剖视图显示其内部结构"
+                                  },
+                                  {
+                                      "drawing_number":  19,
+                                      "bom_code":  "01.09.2564",
+                                      "location":  "前部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为把手"
+                                  },
+                                  {
+                                      "drawing_number":  16,
+                                      "bom_code":  "01.09.2563",
+                                      "location":  "前部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为把手"
+                                  },
+                                  {
+                                      "drawing_number":  15,
+                                      "bom_code":  "01.09.2562",
+                                      "location":  "前部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为把手"
+                                  },
+                                  {
+                                      "drawing_number":  14,
+                                      "bom_code":  "01.09.2561",
+                                      "location":  "前部中央",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "俯视图显示其作为中心轴"
+                                  },
+                                  {
+                                      "drawing_number":  13,
+                                      "bom_code":  "01.09.2555",
+                                      "location":  "后部中央",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "无",
+                                      "visual_evidence":  "主视图显示其作为后部结构"
+                                  },
+                                  {
+                                      "drawing_number":  12,
+                                      "bom_code":  "01.02.07.0071",
+                                      "location":  "前部两侧",
+                                      "orientation":  "水平",
+                                      "adjacent_parts":  [
+                                                             53
+                                                         ],
+                                      "symmetry":  "左右对称",
+                                      "visual_evidence":  "俯视图显示其作为挡板"
+                                  }
+                              ],
+    "assembly_connections":  [
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  51,
+                                                    "bom_code":  "01.09.1240"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  49,
+                                                    "bom_code":  "01.09.0308"
+                                                },
+                                     "connection_type":  "螺栓连接",
+                                     "fastener_bom_code":  "02.03.0458",
+                                     "fastener_spec":  "M30*60",
+                                     "quantity":  6,
+                                     "visual_evidence":  "爆炸图显示6个螺栓孔"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  46,
+                                                    "bom_code":  "01.09.0304"
+                                                },
+                                     "connection_type":  "螺栓连接",
+                                     "fastener_bom_code":  "02.03.0458",
+                                     "fastener_spec":  "M30*60",
+                                     "quantity":  6,
+                                     "visual_evidence":  "爆炸图显示6个螺栓孔"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  28,
+                                                    "bom_code":  "01.09.2566"
+                                                },
+                                     "connection_type":  "螺栓连接",
+                                     "fastener_bom_code":  "02.03.0458",
+                                     "fastener_spec":  "M30*60",
+                                     "quantity":  4,
+                                     "visual_evidence":  "爆炸图显示4个螺栓孔"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  27,
+                                                    "bom_code":  "01.09.2565"
+                                                },
+                                     "connection_type":  "螺栓连接",
+                                     "fastener_bom_code":  "02.03.0458",
+                                     "fastener_spec":  "M30*60",
+                                     "quantity":  4,
+                                     "visual_evidence":  "爆炸图显示4个螺栓孔"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  24,
+                                                    "bom_code":  "01.09.0999"
+                                                },
+                                     "connection_type":  "销钉连接",
+                                     "fastener_bom_code":  "01.09.0999",
+                                     "fastener_spec":  "φ12*150",
+                                     "quantity":  1,
+                                     "visual_evidence":  "剖视图显示销钉插入"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  23,
+                                                    "bom_code":  "01.09.0503"
+                                                },
+                                     "connection_type":  "销钉连接",
+                                     "fastener_bom_code":  "01.09.0503",
+                                     "fastener_spec":  "φ12*150",
+                                     "quantity":  1,
+                                     "visual_evidence":  "剖视图显示销钉插入"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  21,
+                                                    "bom_code":  "01.09.0995"
+                                                },
+                                     "connection_type":  "销钉连接",
+                                     "fastener_bom_code":  "01.09.0995",
+                                     "fastener_spec":  "φ12*150",
+                                     "quantity":  6,
+                                     "visual_evidence":  "剖视图显示销钉插入"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  19,
+                                                    "bom_code":  "01.09.2564"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  16,
+                                                    "bom_code":  "01.09.2563"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  15,
+                                                    "bom_code":  "01.09.2562"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  14,
+                                                    "bom_code":  "01.09.2561"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  13,
+                                                    "bom_code":  "01.09.2555"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 },
+                                 {
+                                     "part_a":  {
+                                                    "drawing_number":  53,
+                                                    "bom_code":  "01.09.2556"
+                                                },
+                                     "part_b":  {
+                                                    "drawing_number":  12,
+                                                    "bom_code":  "01.02.07.0071"
+                                                },
+                                     "connection_type":  "焊接",
+                                     "weld_type":  "角焊",
+                                     "weld_size":  "6mm",
+                                     "visual_evidence":  "剖视图显示两者焊接连接"
+                                 }
+                             ],
+    "critical_dimensions":  [
+                                {
+                                    "dimension":  "996mm",
+                                    "description":  "整体宽度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "主视图"
+                                },
+                                {
+                                    "dimension":  "1045mm",
+                                    "description":  "整体高度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "侧视图"
+                                },
+                                {
+                                    "dimension":  "880mm",
+                                    "description":  "铲板长度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "俯视图"
+                                },
+                                {
+                                    "dimension":  "50°",
+                                    "description":  "铲板展开角度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "俯视图"
+                                },
+                                {
+                                    "dimension":  "300mm",
+                                    "description":  "驱动轮直径",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "侧视图"
+                                },
+                                {
+                                    "dimension":  "1080mm",
+                                    "description":  "铲板有效工作长度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "俯视图"
+                                },
+                                {
+                                    "dimension":  "790.5mm",
+                                    "description":  "铲板有效工作宽度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "俯视图"
+                                },
+                                {
+                                    "dimension":  "147mm",
+                                    "description":  "铲板厚度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "主视图"
+                                },
+                                {
+                                    "dimension":  "28°",
+                                    "description":  "铲板倾斜角度",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "主视图"
+                                },
+                                {
+                                    "dimension":  "±0.1mm",
+                                    "description":  "关键部位平面度公差",
+                                    "tolerance":  "",
+                                    "page":  1,
+                                    "view":  "技术要求"
+                                }
+                            ],
+    "assembly_sequence_hints":  [
+                                    {
+                                        "hint":  "零件53（方形板）位于爆炸图最底层，应作为基准件首先安装",
+                                        "confidence":  "高",
+                                        "visual_evidence":  "3D爆炸图层级关系"
+                                    },
+                                    {
+                                        "hint":  "零件49和零件46（推雪板反光片固定板）对称布置，需同步安装保证对称性",
+                                        "confidence":  "高",
+                                        "visual_evidence":  "俯视图显示对称结构"
+                                    },
+                                    {
+                                        "hint":  "零件28和零件27（圆钢）位于底部两侧，应在零件53安装后进行安装",
+                                        "confidence":  "中",
+                                        "visual_evidence":  "俯视图显示装配路径"
+                                    },
+                                    {
+                                        "hint":  "零件24、23、21（销轴组件）位于中部，应在框架主体安装完成后进行安装",
+                                        "confidence":  "中",
+                                        "visual_evidence":  "剖视图显示内部装配顺序"
+                                    },
+                                    {
+                                        "hint":  "零件19、16、15、14、13、12（把手和挡板组件）位于前部和后部，应在框架主体安装完成后进行安装",
+                                        "confidence":  "中",
+                                        "visual_evidence":  "俯视图显示装配路径"
+                                    }
+                                ],
+    "technical_requirements":  [
+                                   "1. 未注公差尺寸按GB/T 1804-m",
+                                   "2. 表面均匀，美观，无露白、划伤等不良",
+                                   "3. 操作压力16Mpa",
+                                   "4. 流量60L/min",
+                                   "5. 口径M14*1.5，M18*1.5"
+                               ],
+    "welding_info":  [
+                         {
+                             "location":  "框架与铲板连接处",
+                             "weld_type":  "角焊",
+                             "weld_size":  "6mm",
+                             "page":  1,
+                             "visual_evidence":  "剖视图显示焊接符号"
+                         },
+                         {
+                             "location":  "框架与把手连接处",
+                             "weld_type":  "角焊",
+                             "weld_size":  "6mm",
+                             "page":  1,
+                             "visual_evidence":  "剖视图显示焊接符号"
+                         },
+                         {
+                             "location":  "框架与挡板连接处",
+                             "weld_type":  "角焊",
+                             "weld_size":  "6mm",
+                             "page":  1,
+                             "visual_evidence":  "剖视图显示焊接符号"
+                         }
+                     ]
+}

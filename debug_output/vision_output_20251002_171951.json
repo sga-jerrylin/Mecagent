@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "model": "qwen-vl-plus",
+  "timestamp": "20251002_171951",
+  "image_path": "test_output_three_agents\\pdf_images_3\\page_002.png",
+  "reasoning": "",
+  "result": {
+    "quality_checkpoints": [
+      {
+        "checkpoint_id": "QC-001",
+        "checkpoint_name": "底板平面度检测",
+        "inspection_item": "底板平面度",
+        "inspection_method": "使用平板和塞尺测量底板与平板之间的最大间隙",
+        "measurement_tool": "平板、塞尺",
+        "acceptance_criteria": "≤0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "关键",
+        "related_parts": "底板组件"
+      },
+      {
+        "checkpoint_id": "QC-002",
+        "checkpoint_name": "侧框架垂直度检测",
+        "inspection_item": "侧框架垂直度",
+        "inspection_method": "使用直角尺和塞尺测量侧框架与底板的垂直偏差",
+        "measurement_tool": "直角尺、塞尺",
+        "acceptance_criteria": "≤0.2mm/100mm",
+        "inspection_timing": "装配中",
+        "importance": "重要",
+        "related_parts": "侧框架组件"
+      },
+      {
+        "checkpoint_id": "QC-003",
+        "checkpoint_name": "顶部封板水平度检测",
+        "inspection_item": "顶部封板水平度",
+        "inspection_method": "使用水平仪测量顶部封板的水平偏差",
+        "measurement_tool": "水平仪",
+        "acceptance_criteria": "≤0.1mm/100mm",
+        "inspection_timing": "装配后",
+        "importance": "重要",
+        "related_parts": "顶部封板组件"
+      },
+      {
+        "checkpoint_id": "QC-004",
+        "checkpoint_name": "孔距尺寸检测",
+        "inspection_item": "孔距尺寸",
+        "inspection_method": "使用游标卡尺测量相邻孔中心距",
+        "measurement_tool": "游标卡尺",
+        "acceptance_criteria": "±0.1mm",
+        "inspection_timing": "装配前",
+        "importance": "一般",
+        "related_parts": "底板组件"
+      },
+      {
+        "checkpoint_id": "QC-005",
+        "checkpoint_name": "圆柱销配合检测",
+        "inspection_item": "圆柱销与销孔配合",
+        "inspection_method": "目视检查圆柱销插入销孔的松紧程度，确保无晃动",
+        "measurement_tool": "目视",
+        "acceptance_criteria": "配合紧密，无明显晃动",
+        "inspection_timing": "装配中",
+        "importance": "一般",
+        "related_parts": "圆柱销组件"
+      }
+    ],
+    "critical_dimensions": [
+      {
+        "dimension_name": "底板长度",
+        "nominal_value": "600mm",
+        "tolerance": "±0.1mm",
+        "location": "底板长边"
+      },
+      {
+        "dimension_name": "侧框架高度",
+        "nominal_value": "400mm",
+        "tolerance": "±0.15mm",
+        "location": "侧框架垂直方向"
+      },
+      {
+        "dimension_name": "孔间距",
+        "nominal_value": "200mm",
+        "tolerance": "±0.1mm",
+        "location": "底板上两相邻孔中心距"
+      },
+      {
+        "dimension_name": "圆柱销直径",
+        "nominal_value": "φ10mm",
+        "tolerance": "H7/g6",
+        "location": "圆柱销与销孔配合处"
+      },
+      {
+        "dimension_name": "底板厚度",
+        "nominal_value": "10mm",
+        "tolerance": "±0.1mm",
+        "location": "底板整体厚度"
+      }
+    ]
+  },
+  "raw_response": "```json\n{\n  \"quality_checkpoints\": [\n    {\n      \"checkpoint_id\": \"QC-001\",\n      \"checkpoint_name\": \"底板平面度检测\",\n      \"inspection_item\": \"底板平面度\",\n      \"inspection_method\": \"使用平板和塞尺测量底板与平板之间的最大间隙\",\n      \"measurement_tool\": \"平板、塞尺\",\n      \"acceptance_criteria\": \"≤0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"关键\",\n      \"related_parts\": \"底板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-002\",\n      \"checkpoint_name\": \"侧框架垂直度检测\",\n      \"inspection_item\": \"侧框架垂直度\",\n      \"inspection_method\": \"使用直角尺和塞尺测量侧框架与底板的垂直偏差\",\n      \"measurement_tool\": \"直角尺、塞尺\",\n      \"acceptance_criteria\": \"≤0.2mm/100mm\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"侧框架组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-003\",\n      \"checkpoint_name\": \"顶部封板水平度检测\",\n      \"inspection_item\": \"顶部封板水平度\",\n      \"inspection_method\": \"使用水平仪测量顶部封板的水平偏差\",\n      \"measurement_tool\": \"水平仪\",\n      \"acceptance_criteria\": \"≤0.1mm/100mm\",\n      \"inspection_timing\": \"装配后\",\n      \"importance\": \"重要\",\n      \"related_parts\": \"顶部封板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-004\",\n      \"checkpoint_name\": \"孔距尺寸检测\",\n      \"inspection_item\": \"孔距尺寸\",\n      \"inspection_method\": \"使用游标卡尺测量相邻孔中心距\",\n      \"measurement_tool\": \"游标卡尺\",\n      \"acceptance_criteria\": \"±0.1mm\",\n      \"inspection_timing\": \"装配前\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"底板组件\"\n    },\n    {\n      \"checkpoint_id\": \"QC-005\",\n      \"checkpoint_name\": \"圆柱销配合检测\",\n      \"inspection_item\": \"圆柱销与销孔配合\",\n      \"inspection_method\": \"目视检查圆柱销插入销孔的松紧程度，确保无晃动\",\n      \"measurement_tool\": \"目视\",\n      \"acceptance_criteria\": \"配合紧密，无明显晃动\",\n      \"inspection_timing\": \"装配中\",\n      \"importance\": \"一般\",\n      \"related_parts\": \"圆柱销组件\"\n    }\n  ],\n  \"critical_dimensions\": [\n    {\n      \"dimension_name\": \"底板长度\",\n      \"nominal_value\": \"600mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"底板长边\"\n    },\n    {\n      \"dimension_name\": \"侧框架高度\",\n      \"nominal_value\": \"400mm\",\n      \"tolerance\": \"±0.15mm\",\n      \"location\": \"侧框架垂直方向\"\n    },\n    {\n      \"dimension_name\": \"孔间距\",\n      \"nominal_value\": \"200mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"底板上两相邻孔中心距\"\n    },\n    {\n      \"dimension_name\": \"圆柱销直径\",\n      \"nominal_value\": \"φ10mm\",\n      \"tolerance\": \"H7/g6\",\n      \"location\": \"圆柱销与销孔配合处\"\n    },\n    {\n      \"dimension_name\": \"底板厚度\",\n      \"nominal_value\": \"10mm\",\n      \"tolerance\": \"±0.1mm\",\n      \"location\": \"底板整体厚度\"\n    }\n  ]\n}\n```"
+}
