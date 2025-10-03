@@ -4,6 +4,7 @@ AI智能匹配器
 """
 
 import json
+import re
 from typing import List, Dict
 from openai import OpenAI
 import sys
@@ -13,20 +14,26 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # 导入提示词
-from prompts.agent_2_ai_bom_matcher_prompts import (
+from prompts.agent_2_bom_3d_matching import (
     build_ai_matching_prompt,
-    AI_MATCHER_SYSTEM_PROMPT
+    AI_MATCHING_SYSTEM_PROMPT
 )
 
 
 class AIBOMMatcher:
-    """AI智能BOM匹配器"""
-    
-    def __init__(self, api_key: str = "sk-ea98b5da86954ddcaa2ff10e5bbba2b4"):
+    """AI智能BOM匹配器（使用Gemini 2.5 Flash）"""
+
+    def __init__(self, api_key: str = None):
+        # 使用Gemini 2.5 Flash（通过OpenRouter）
+        self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
+        if not self.api_key:
+            raise ValueError("需要设置OPENROUTER_API_KEY环境变量或传入api_key参数")
+
         self.client = OpenAI(
-            api_key=api_key,
-            base_url="https://api.deepseek.com"
+            api_key=self.api_key,
+            base_url="https://openrouter.ai/api/v1"
         )
+        self.model = "google/gemini-2.5-flash-preview-09-2025"  # 和其他agent使用相同的模型
     
     def match_unmatched_parts(
         self,
@@ -43,50 +50,84 @@ class AIBOMMatcher:
         Returns:
             AI匹配结果列表
         """
-        print(f"\n🤖 启动AI智能匹配...")
-        print(f"   未匹配零件数: {len(unmatched_parts)}")
-        print(f"   BOM项数: {len(bom_data)}")
-        print(f"   策略: 一次性处理所有未匹配零件")
+        print(f"\n   🤖 AI员工开始工作...")
+        print(f"      📊 他看到了 {len(unmatched_parts)} 个未匹配的3D零件")
+        print(f"      📋 他参考了 {len(bom_data)} 个BOM项")
+        print(f"      🎯 他准备用智能算法进行匹配...")
+        import sys
+        sys.stdout.flush()
 
         # 一次性处理所有零件
         all_results = self._match_all_at_once(unmatched_parts, bom_data)
 
-        # 统计
+        # 统计（降低阈值到0.6，追求100%匹配率）
         matched_count = sum(1 for r in all_results if r.get('matched_bom_code'))
-        high_confidence_count = sum(1 for r in all_results if r.get('confidence', 0) >= 0.8)
+        high_confidence_count = sum(1 for r in all_results if r.get('confidence', 0) >= 0.6)
 
-        print(f"\n✅ AI匹配完成:")
-        print(f"   成功匹配: {matched_count}/{len(all_results)}")
-        print(f"   高置信度(≥0.8): {high_confidence_count}/{len(all_results)}")
+        print(f"\n      ✅ AI员工分析完成:")
+        print(f"         成功匹配: {matched_count}/{len(all_results)}")
+        print(f"         高置信度(≥0.6): {high_confidence_count}/{len(all_results)}")
+        import sys
+        sys.stdout.flush()
 
         return all_results
     
     def _match_all_at_once(self, parts: List[Dict], bom_data: List[Dict]) -> List[Dict]:
-        """一次性匹配所有零件"""
+        """
+        一次性匹配所有零件
 
-        print(f"   📝 构建prompt...")
+        Args:
+            parts: 未匹配的3D零件列表
+            bom_data: 未匹配的BOM列表（已经在调用方计算好了）
+        """
+
+        print(f"      📝 他正在准备分析资料...")
+        import sys
+        sys.stdout.flush()
+
+        # ✅ bom_data已经是未匹配的BOM了，不需要再次计算
+        unmatched_bom = bom_data
+
+        print(f"      📊 他发现还有 {len(unmatched_bom)} 个BOM未匹配")
+        sys.stdout.flush()
 
         # 使用提示词文件构建prompt
-        prompt = build_ai_matching_prompt(parts, bom_data)
+        system_prompt, user_query = build_ai_matching_prompt(parts, unmatched_bom)
 
-        print(f"   🤖 调用DeepSeek API...")
+        print(f"      🤖 他开始调用Gemini 2.5 Flash进行深度分析...")
+        print(f"      ⏱️  请稍候，Gemini速度很快...")
+        sys.stdout.flush()
 
         # 调用AI
         try:
+            import time
+            start_time = time.time()
+
             response = self.client.chat.completions.create(
-                model="deepseek-chat",
+                model=self.model,  # 使用Gemini 2.5 Flash
                 messages=[
-                    {"role": "system", "content": AI_MATCHER_SYSTEM_PROMPT},
-                    {"role": "user", "content": prompt}
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_query}
                 ],
-                temperature=0.1,
-                max_tokens=8000,  # 增加token限制以处理更多零件
-                stream=False
+                temperature=0.4,  # ✅ 提高到0.4，使用COT推理，追求100%匹配率
+                # ✅ 不限制max_tokens，Gemini 2.5 Flash支持65.5K输出（COT需要更多token）
+                stream=False,
+                timeout=60
             )
 
+            elapsed = time.time() - start_time
             result_text = response.choices[0].message.content
 
-            print(f"   📊 AI返回了 {len(result_text)} 个字符")
+            print(f"      📊 AI大脑返回了分析结果 ({len(result_text)} 字符, 耗时: {elapsed:.1f}秒)")
+            import sys
+            sys.stdout.flush()
+
+            # 调试：保存AI原始响应
+            debug_file = f"debug_output/ai_matching_response_{int(time.time())}.txt"
+            os.makedirs("debug_output", exist_ok=True)
+            with open(debug_file, 'w', encoding='utf-8') as f:
+                f.write(result_text)
+            print(f"      💾 AI响应已保存到: {debug_file}")
 
             # 解析JSON
             ai_results = self._parse_response(result_text)
@@ -96,28 +137,39 @@ class AIBOMMatcher:
                 return self._create_empty_results(parts)
 
             # 将AI结果映射回原始零件
+            # AI返回格式：{"mesh_id": "...", "geometry_name": "...", "bom_code": "...", "confidence": 0.85, "reasoning": "..."}
             results = []
             for part in parts:
-                # 查找对应的AI结果
+                # 查找对应的AI结果（通过mesh_id或geometry_name匹配）
                 ai_result = None
+                part_mesh_id = part.get('mesh_id', '')
+                part_geometry = part.get('geometry_name', '')
+
                 for ar in ai_results:
-                    if ar.get('index') is not None:
-                        # 通过index匹配
-                        if ar['index'] == parts.index(part):
-                            ai_result = ar
-                            break
+                    # 尝试通过mesh_id匹配
+                    if ar.get('mesh_id') == part_mesh_id:
+                        ai_result = ar
+                        break
+                    # 尝试通过geometry_name匹配
+                    elif ar.get('geometry_name') == part_geometry:
+                        ai_result = ar
+                        break
 
                 if ai_result:
                     results.append({
-                        'geometry_name': part['geometry_name'],
-                        'matched_bom_code': ai_result.get('matched_bom_code'),
+                        'mesh_id': part.get('mesh_id'),
+                        'geometry_name': part.get('geometry_name'),
+                        'node_name': part.get('node_name'),
+                        'matched_bom_code': ai_result.get('bom_code'),  # AI返回的是bom_code
                         'confidence': ai_result.get('confidence', 0.0),
-                        'reason': ai_result.get('reason', '')
+                        'reason': ai_result.get('reasoning', '')  # AI返回的是reasoning
                     })
                 else:
                     # 如果没找到对应结果，返回空匹配
                     results.append({
-                        'geometry_name': part['geometry_name'],
+                        'mesh_id': part.get('mesh_id'),
+                        'geometry_name': part.get('geometry_name'),
+                        'node_name': part.get('node_name'),
                         'matched_bom_code': None,
                         'confidence': 0.0,
                         'reason': 'AI未返回匹配结果'
@@ -135,7 +187,9 @@ class AIBOMMatcher:
         """创建空的匹配结果"""
         return [
             {
-                "geometry_name": p['geometry_name'],
+                "mesh_id": p.get('mesh_id'),
+                "geometry_name": p.get('geometry_name'),
+                "node_name": p.get('node_name'),
                 "matched_bom_code": None,
                 "confidence": 0.0,
                 "reason": "AI匹配失败"
@@ -185,24 +239,64 @@ class AIBOMMatcher:
         return prompt
     
     def _parse_response(self, response_text: str) -> List[Dict]:
-        """解析AI响应"""
-        
-        # 提取JSON部分
-        if "```json" in response_text:
-            json_start = response_text.find("```json") + 7
-            json_end = response_text.find("```", json_start)
-            response_text = response_text[json_start:json_end].strip()
-        elif "```" in response_text:
-            json_start = response_text.find("```") + 3
-            json_end = response_text.find("```", json_start)
-            response_text = response_text[json_start:json_end].strip()
-        
-        # 解析JSON
-        try:
-            results = json.loads(response_text)
-            return results
-        except Exception as e:
-            print(f"   ⚠️  JSON解析失败: {e}")
+        """解析AI响应（参考dual_channel_parser的成熟方案）"""
+
+        # 移除markdown代码块标记（参考dual_channel_parser）
+        content = response_text.strip()
+
+        if content.startswith('```json'):
+            content = content[7:]  # 移除 ```json
+
+        if content.startswith('```'):
+            content = content[3:]  # 移除 ```
+
+        if content.endswith('```'):
+            content = content[:-3]  # 移除结尾的 ```
+
+        content = content.strip()
+
+        # 查找JSON的开始和结束
+        json_start = content.find('{')
+        json_end = content.rfind('}') + 1
+
+        if json_start >= 0 and json_end > json_start:
+            json_str = content[json_start:json_end]
+
+            # ✅ 自动修复常见的JSON格式错误
+            # 1. 移除数组/对象最后一个元素后的逗号（如 },\n] 或 },\n}）
+            json_str = re.sub(r',(\s*[\]}])', r'\1', json_str)
+
+            # 2. 移除控制字符
+            json_str = ''.join(char for char in json_str if ord(char) >= 32 or char in '\n\r\t')
+
+            # 尝试解析JSON
+            try:
+                parsed_result = json.loads(json_str)
+                print(f"      ✅ JSON解析成功")
+
+                # 如果返回的是对象，提取ai_matched_pairs字段
+                if isinstance(parsed_result, dict):
+                    if 'ai_matched_pairs' in parsed_result:
+                        return parsed_result['ai_matched_pairs']
+                    else:
+                        print(f"      ⚠️  JSON格式错误：缺少'ai_matched_pairs'字段")
+                        return []
+                # 如果直接返回数组
+                elif isinstance(parsed_result, list):
+                    return parsed_result
+                else:
+                    print(f"      ⚠️  JSON格式错误：期望对象或数组，得到 {type(parsed_result)}")
+                    return []
+
+            except json.JSONDecodeError as e:
+                error_msg = f"JSON解析失败: line {e.lineno} column {e.colno} (char {e.pos})"
+                print(f"      ⚠️  {error_msg}")
+                return []
+            except Exception as e:
+                print(f"      ⚠️  解析错误: {e}")
+                return []
+        else:
+            print(f"      ⚠️  未找到有效的JSON数据")
             return []
     
     def apply_ai_matches(

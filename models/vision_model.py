@@ -55,7 +55,7 @@ class Qwen3VLModel:
     
     def analyze_engineering_drawing(
         self,
-        image_path: str,
+        image_path: Union[str, List[str]],
         focus_areas: Optional[List[str]] = None,
         drawing_type: str = "装配图",
         enable_thinking: bool = True,
@@ -66,7 +66,7 @@ class Qwen3VLModel:
         分析工程图纸
 
         Args:
-            image_path: 图片文件路径
+            image_path: 图片文件路径（单张）或图片路径列表（多张）
             focus_areas: 重点关注领域，可选值：['welding', 'assembly', 'quality']
             drawing_type: 图纸类型描述
             enable_thinking: 是否启用思考过程
@@ -89,13 +89,31 @@ class Qwen3VLModel:
                 drawing_type=drawing_type,
                 focus_description="BOM表格、技术要求和装配工艺"
             )
-        
-        # 准备图片数据
-        if image_path.startswith('http'):
-            image_url = image_path
-        else:
-            image_url = self.encode_image_to_base64(image_path)
-        
+
+        # 准备图片数据（支持单张或多张）
+        image_paths = [image_path] if isinstance(image_path, str) else image_path
+
+        # 构建用户消息内容（多张图片）
+        user_content = []
+
+        # 添加所有图片
+        for img_path in image_paths:
+            if img_path.startswith('http'):
+                image_url = img_path
+            else:
+                image_url = self.encode_image_to_base64(img_path)
+
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": image_url}
+            })
+
+        # 添加文本查询
+        user_content.append({
+            "type": "text",
+            "text": user_query
+        })
+
         # 构建消息
         messages = [
             {
@@ -103,17 +121,8 @@ class Qwen3VLModel:
                 "content": system_prompt
             },
             {
-                "role": "user", 
-                "content": [
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": image_url}
-                    },
-                    {
-                        "type": "text", 
-                        "text": user_query
-                    }
-                ]
+                "role": "user",
+                "content": user_content
             }
         ]
         

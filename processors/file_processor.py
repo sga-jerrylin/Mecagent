@@ -204,9 +204,19 @@ class ModelProcessor:
 
             if isinstance(scene, self.trimesh.Scene):
                 for node_name in scene.graph.nodes_geometry:
-                    transform, geometry_name = scene.graph[node_name]
+                    # scene.graph[node_name] 返回 (transform_matrix, geometry_name)
+                    # 但有时geometry_name可能是对象而不是字符串
+                    try:
+                        transform, geometry_name = scene.graph[node_name]
+                        # 确保geometry_name是字符串
+                        if not isinstance(geometry_name, str):
+                            geometry_name = str(geometry_name)
+                    except (ValueError, TypeError) as e:
+                        # 如果解包失败，使用默认值
+                        geometry_name = f"geometry_{len(parts_info)}"
+
                     parts_info.append({
-                        "node_name": node_name,
+                        "node_name": str(node_name),  # 确保是字符串
                         "geometry_name": geometry_name
                     })
                 part_count = len(parts_info)
