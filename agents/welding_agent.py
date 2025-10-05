@@ -65,15 +65,31 @@ class WeldingAgent(BaseGeminiAgent):
                 if step.get("welding", {}).get("required", False)
             )
 
+            # ✅ 计算覆盖率
+            coverage_rate = (welding_steps_count / len(enhanced_steps) * 100) if len(enhanced_steps) > 0 else 0
+
+            # ✅ 统计焊接点数量
+            total_welding_points = 0
+            for step in enhanced_steps:
+                welding_info = step.get("welding", {})
+                if welding_info.get("required", False):
+                    welding_points = welding_info.get("welding_points", [])
+                    total_welding_points += len(welding_points)
+
             print(f"\n ✅ 焊接分析完成:")
             print(f"   - 总步骤数: {len(enhanced_steps)}")
             print(f"   - 涉及焊接的步骤: {welding_steps_count}")
+            print(f"   - 焊接覆盖率: {coverage_rate:.1f}%")
+            if total_welding_points > 0:
+                print(f"   - 总焊接点数: {total_welding_points}")
 
             return {
                 "success": True,
                 "enhanced_steps": enhanced_steps,
                 "total_steps": len(enhanced_steps),
                 "welding_steps_count": welding_steps_count,
+                "coverage_rate": coverage_rate,
+                "total_welding_points": total_welding_points,
                 "raw_result": parsed
             }
         else:

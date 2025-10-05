@@ -1,0 +1,269 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.09.2549",
+      "component_name": "连接器后座组件-漆后",
+      "drawing_number": "①",
+      "assembly_order": 1,
+      "reason": "该组件（77.27kg）是产品中最重的组件，应优先预装配作为产品基准。",
+      "base_part_code": "01.01.01.11509",
+      "base_part_name": "连接板 1",
+      "base_part_drawing_number": "4",
+      "base_part_weight_kg": 21.36,
+      "assembly_steps": [
+        "将图纸上序号4的连接板作为基准件。",
+        "将序号3的矩形管1和序号5的矩形管2焊接在序号4上。",
+        "将序号6的右挂件和序号7的左挂件虚拟组件焊接在主体结构上。",
+        "将序号1的矩形管1和序号2的加强筋2焊接在主体结构上。",
+        "将序号8的方形板-机加4和序号9的封板2焊接在指定位置。"
+      ]
+    },
+    {
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "drawing_number": "④",
+      "assembly_order": 2,
+      "reason": "该组件（59.64kg）是第二重的组件，且在产品总图中位于中央位置。",
+      "base_part_code": "01.01.01.11513",
+      "base_part_name": "侧连接板 2",
+      "base_part_drawing_number": "3",
+      "base_part_weight_kg": 24.97,
+      "assembly_steps": [
+        "将图纸上序号3的侧连接板2作为基准件。",
+        "将序号1的方形板-机加1和序号2的上连接板2焊接在侧连接板3上。",
+        "将序号5的油缸固定板4和序号6的加强板4焊接在主体结构上。",
+        "将序号7的角钢-机加1和序号8的轴套1焊接在指定位置。",
+        "将序号9的后座轴套1和序号10的后座轴套1焊接在主体结构上。"
+      ]
+    },
+    {
+      "component_code": "01.09.2551",
+      "component_name": "左铲雪板组件-漆后",
+      "drawing_number": "②",
+      "assembly_order": 3,
+      "reason": "该组件（60.69kg）是第三重的组件，与右铲雪板组件对称。",
+      "base_part_code": "01.01.01.18598",
+      "base_part_name": "左铲板 1",
+      "base_part_drawing_number": "1",
+      "base_part_weight_kg": 28.38,
+      "assembly_steps": [
+        "将图纸上序号1的左铲板作为基准件。",
+        "将序号2的方形板-机加1和序号3的后加强板1焊接在左铲板1上。",
+        "将序号5的底部连接板6和序号6的前油缸固定板2焊接在底部。",
+        "将序号14的左铲雪板加强板2和序号15的反光片安装板1焊接在指定位置。",
+        "将序号10的轴套2和序号11的轴套加强板2焊接在侧面。"
+      ]
+    },
+    {
+      "component_code": "01.09.2552",
+      "component_name": "右铲雪板组件-漆后",
+      "drawing_number": "③",
+      "assembly_order": 4,
+      "reason": "该组件（60.68kg）与左铲雪板组件对称，应在左侧完成后进行预装配。",
+      "base_part_code": "01.01.01.18598",
+      "base_part_name": "右铲板 1",
+      "base_part_drawing_number": "未提供",
+      "base_part_weight_kg": 28.38,
+      "assembly_steps": [
+        "参考左铲雪板组件（②）的装配步骤，进行对称装配。",
+        "将右铲板作为基准件，焊接加强板和连接板。",
+        "焊接前油缸固定板和底部连接板。",
+        "焊接轴套和轴套加强板。"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.09.2549",
+    "base_component_name": "连接器后座组件-漆后",
+    "base_component_drawing_number": "①",
+    "reason": "①号组件（77.27kg）是所有组件中最重的，作为产品装配的基准。",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.09.2549",
+        "component_drawing_number": "①",
+        "action": "将预装配好的①连接器后座组件固定在工装台上。"
+      },
+      {
+        "step": 2,
+        "component_code": "01.09.2550",
+        "component_drawing_number": "④",
+        "action": "将预装配好的④后座连接架组件安装到①组件的上方，用销轴连接。"
+      },
+      {
+        "step": 3,
+        "component_code": "01.09.2551",
+        "component_drawing_number": "②",
+        "action": "将预装配好的②左铲雪板组件安装到①组件的左侧，用销轴连接。"
+      },
+      {
+        "step": 4,
+        "component_code": "01.09.2552",
+        "component_drawing_number": "③",
+        "action": "将预装配好的③右铲雪板组件安装到①组件的右侧，用销轴连接。"
+      },
+      {
+        "step": 5,
+        "component_code": "02.08.01.0338",
+        "component_drawing_number": "17",
+        "action": "安装序号17的油缸（17.1kg），连接④和②/③组件。"
+      },
+      {
+        "step": 6,
+        "component_code": "01.09.2559",
+        "component_drawing_number": "7",
+        "action": "安装序号7的推雪板弹簧导柱组件（15.85kg）及序号39的压缩弹簧。"
+      },
+      {
+        "step": 7,
+        "component_code": "01.09.2557",
+        "component_drawing_number": "9",
+        "action": "安装序号9的轮胎架外臂组件（11.34kg）和序号8的轮胎架内臂组件（9.38kg）。"
+      },
+      {
+        "step": 8,
+        "component_code": "02.16.0142",
+        "component_drawing_number": "26",
+        "action": "安装序号26的实心橡胶轮（2.95kg）到轮胎架上。"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "V型推雪板滑板注油器",
+    "total_components": 10,
+    "visual_analysis": {
+      "product_drawing_observation": "产品总图显示了由①连接器后座组件（77.27kg）作为基准，连接②左铲雪板组件（60.69kg）和③右铲雪板组件（60.68kg）形成主体结构。",
+      "component_drawings_observation": "组件图1中，连接板（序号4，21.36kg）是基准件；组件图2中，侧连接板（序号3，24.97kg）是基准件；组件图3中，左铲板（序号1，28.38kg）是基准件。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.09.2549",
+        "component_name": "连接器后座组件-漆后",
+        "drawing_number": "①",
+        "assembly_order": 1,
+        "reason": "该组件（77.27kg）是产品中最重的组件，应优先预装配作为产品基准。",
+        "base_part_code": "01.01.01.11509",
+        "base_part_name": "连接板 1",
+        "base_part_drawing_number": "4",
+        "base_part_weight_kg": 21.36,
+        "assembly_steps": [
+          "将图纸上序号4的连接板作为基准件。",
+          "将序号3的矩形管1和序号5的矩形管2焊接在序号4上。",
+          "将序号6的右挂件和序号7的左挂件虚拟组件焊接在主体结构上。",
+          "将序号1的矩形管1和序号2的加强筋2焊接在主体结构上。",
+          "将序号8的方形板-机加4和序号9的封板2焊接在指定位置。"
+        ]
+      },
+      {
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件-漆后",
+        "drawing_number": "④",
+        "assembly_order": 2,
+        "reason": "该组件（59.64kg）是第二重的组件，且在产品总图中位于中央位置。",
+        "base_part_code": "01.01.01.11513",
+        "base_part_name": "侧连接板 2",
+        "base_part_drawing_number": "3",
+        "base_part_weight_kg": 24.97,
+        "assembly_steps": [
+          "将图纸上序号3的侧连接板2作为基准件。",
+          "将序号1的方形板-机加1和序号2的上连接板2焊接在侧连接板3上。",
+          "将序号5的油缸固定板4和序号6的加强板4焊接在主体结构上。",
+          "将序号7的角钢-机加1和序号8的轴套1焊接在指定位置。",
+          "将序号9的后座轴套1和序号10的后座轴套1焊接在主体结构上。"
+        ]
+      },
+      {
+        "component_code": "01.09.2551",
+        "component_name": "左铲雪板组件-漆后",
+        "drawing_number": "②",
+        "assembly_order": 3,
+        "reason": "该组件（60.69kg）是第三重的组件，与右铲雪板组件对称。",
+        "base_part_code": "01.01.01.18598",
+        "base_part_name": "左铲板 1",
+        "base_part_drawing_number": "1",
+        "base_part_weight_kg": 28.38,
+        "assembly_steps": [
+          "将图纸上序号1的左铲板作为基准件。",
+          "将序号2的方形板-机加1和序号3的后加强板1焊接在左铲板1上。",
+          "将序号5的底部连接板6和序号6的前油缸固定板2焊接在底部。",
+          "将序号14的左铲雪板加强板2和序号15的反光片安装板1焊接在指定位置。",
+          "将序号10的轴套2和序号11的轴套加强板2焊接在侧面。"
+        ]
+      },
+      {
+        "component_code": "01.09.2552",
+        "component_name": "右铲雪板组件-漆后",
+        "drawing_number": "③",
+        "assembly_order": 4,
+        "reason": "该组件（60.68kg）与左铲雪板组件对称，应在左侧完成后进行预装配。",
+        "base_part_code": "01.01.01.18598",
+        "base_part_name": "右铲板 1",
+        "base_part_drawing_number": "未提供",
+        "base_part_weight_kg": 28.38,
+        "assembly_steps": [
+          "参考左铲雪板组件（②）的装配步骤，进行对称装配。",
+          "将右铲板作为基准件，焊接加强板和连接板。",
+          "焊接前油缸固定板和底部连接板。",
+          "焊接轴套和轴套加强板。"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.09.2549",
+      "base_component_name": "连接器后座组件-漆后",
+      "base_component_drawing_number": "①",
+      "reason": "①号组件（77.27kg）是所有组件中最重的，作为产品装配的基准。",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.09.2549",
+          "component_drawing_number": "①",
+          "action": "将预装配好的①连接器后座组件固定在工装台上。"
+        },
+        {
+          "step": 2,
+          "component_code": "01.09.2550",
+          "component_drawing_number": "④",
+          "action": "将预装配好的④后座连接架组件安装到①组件的上方，用销轴连接。"
+        },
+        {
+          "step": 3,
+          "component_code": "01.09.2551",
+          "component_drawing_number": "②",
+          "action": "将预装配好的②左铲雪板组件安装到①组件的左侧，用销轴连接。"
+        },
+        {
+          "step": 4,
+          "component_code": "01.09.2552",
+          "component_drawing_number": "③",
+          "action": "将预装配好的③右铲雪板组件安装到①组件的右侧，用销轴连接。"
+        },
+        {
+          "step": 5,
+          "component_code": "02.08.01.0338",
+          "component_drawing_number": "17",
+          "action": "安装序号17的油缸（17.1kg），连接④和②/③组件。"
+        },
+        {
+          "step": 6,
+          "component_code": "01.09.2559",
+          "component_drawing_number": "7",
+          "action": "安装序号7的推雪板弹簧导柱组件（15.85kg）及序号39的压缩弹簧。"
+        },
+        {
+          "step": 7,
+          "component_code": "01.09.2557",
+          "component_drawing_number": "9",
+          "action": "安装序号9的轮胎架外臂组件（11.34kg）和序号8的轮胎架内臂组件（9.38kg）。"
+        },
+        {
+          "step": 8,
+          "component_code": "02.16.0142",
+          "component_drawing_number": "26",
+          "action": "安装序号26的实心橡胶轮（2.95kg）到轮胎架上。"
+        }
+      ]
+    }
+  }
+}

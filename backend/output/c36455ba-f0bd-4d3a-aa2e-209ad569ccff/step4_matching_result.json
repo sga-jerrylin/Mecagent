@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "component_level_mappings": {
+    "01.03.6999": {
+      "component_name": "连接器后座组件",
+      "glb_file": "output\\c36455ba-f0bd-4d3a-aa2e-209ad569ccff\\glb_files\\component_01_03_6999.glb",
+      "bom_to_mesh": {
+        "01.01.03.2720": [
+          "mesh_003",
+          "mesh_006",
+          "mesh_007",
+          "mesh_019"
+        ],
+        "01.01.01.17678": [
+          "mesh_001"
+        ],
+        "01.01.01.16608": [
+          "mesh_004"
+        ],
+        "01.05.0018": [
+          "mesh_008"
+        ],
+        "01.05.0019": [
+          "mesh_009"
+        ],
+        "01.01.01.6589": [
+          "mesh_014"
+        ],
+        "01.01.01.11509": [
+          "mesh_018"
+        ]
+      },
+      "total_bom_count": 9,
+      "bom_matched_count": 7,
+      "total_3d_parts": 19,
+      "code_matched": 1,
+      "ai_matched": 6,
+      "matching_rate": 0.7777777777777778
+    }
+  },
+  "product_level_mapping": {},
+  "glb_files": {
+    "component_1": "output\\c36455ba-f0bd-4d3a-aa2e-209ad569ccff\\glb_files\\component_01_03_6999.glb"
+  }
+}

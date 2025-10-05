@@ -1,0 +1,127 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.03.7000",
+      "component_name": "后座连接架组件",
+      "drawing_number": "无（这是产品本身）",
+      "assembly_order": 1,
+      "reason": "该图纸仅展示一个组件的内部装配，因此它是唯一的预装配对象。",
+      "base_part_code": "01.01.01.11513",
+      "base_part_name": "侧连接板 2",
+      "base_part_drawing_number": "3",
+      "base_part_weight_kg": 24.97,
+      "assembly_steps": [
+        "将图纸上序号③的侧连接板（24.97kg）作为基准件。",
+        "将序号①的方形板-机加（15.79kg）与基准件③进行定位和焊接。",
+        "将序号②的上连接板（11.35kg）定位在①和③的上方并焊接。",
+        "将序号⑤、⑥、⑦的加强板、油缸固定板、折弯板等零件依次定位并焊接在主体结构上。",
+        "将序号⑧、⑨、⑩的轴套类零件装配到相应孔位，并进行焊接固定。"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.03.7000",
+    "base_component_name": "后座连接架组件",
+    "base_component_drawing_number": "无（这是产品本身）",
+    "reason": "该图纸仅展示一个组件的装配过程，因此该组件是最终产品。",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.01.01.11513",
+        "component_drawing_number": "3",
+        "action": "将序号③侧连接板作为基准，开始主体结构焊接。"
+      },
+      {
+        "step": 2,
+        "component_code": "01.01.01.11511",
+        "component_drawing_number": "1",
+        "action": "将序号①方形板与基准件③定位并焊接。"
+      },
+      {
+        "step": 3,
+        "component_code": "01.01.01.11512",
+        "component_drawing_number": "2",
+        "action": "将序号②上连接板定位在上方并焊接。"
+      },
+      {
+        "step": 4,
+        "component_code": "01.01.01.11515",
+        "component_drawing_number": "5",
+        "action": "将序号⑤油缸固定板等小零件焊接在主体结构上。"
+      },
+      {
+        "step": 5,
+        "component_code": "01.02.02.0490",
+        "component_drawing_number": "9",
+        "action": "将序号⑧、⑨、⑩轴套类零件装配到相应孔位并焊接。"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "后座连接架组件",
+    "total_components": 10,
+    "visual_analysis": {
+      "product_drawing_observation": "产品总图（T-SPV1830-EURO-02）显示了后座连接架组件的整体结构，该组件由多个零件通过焊接和装配形成。图纸上标注了零件的序号（如①、②、③...）和装配关系。",
+      "component_drawings_observation": "组件图显示了10个零件的装配关系。其中，序号①、②、③、④、⑤等零件构成了组件的主体结构，它们通过焊接连接。序号⑧、⑨、⑩等是轴套类零件，安装在主体结构上。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.03.7000",
+        "component_name": "后座连接架组件",
+        "drawing_number": "无（这是产品本身）",
+        "assembly_order": 1,
+        "reason": "该图纸仅展示一个组件的内部装配，因此它是唯一的预装配对象。",
+        "base_part_code": "01.01.01.11513",
+        "base_part_name": "侧连接板 2",
+        "base_part_drawing_number": "3",
+        "base_part_weight_kg": 24.97,
+        "assembly_steps": [
+          "将图纸上序号③的侧连接板（24.97kg）作为基准件。",
+          "将序号①的方形板-机加（15.79kg）与基准件③进行定位和焊接。",
+          "将序号②的上连接板（11.35kg）定位在①和③的上方并焊接。",
+          "将序号⑤、⑥、⑦的加强板、油缸固定板、折弯板等零件依次定位并焊接在主体结构上。",
+          "将序号⑧、⑨、⑩的轴套类零件装配到相应孔位，并进行焊接固定。"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.03.7000",
+      "base_component_name": "后座连接架组件",
+      "base_component_drawing_number": "无（这是产品本身）",
+      "reason": "该图纸仅展示一个组件的装配过程，因此该组件是最终产品。",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.01.01.11513",
+          "component_drawing_number": "3",
+          "action": "将序号③侧连接板作为基准，开始主体结构焊接。"
+        },
+        {
+          "step": 2,
+          "component_code": "01.01.01.11511",
+          "component_drawing_number": "1",
+          "action": "将序号①方形板与基准件③定位并焊接。"
+        },
+        {
+          "step": 3,
+          "component_code": "01.01.01.11512",
+          "component_drawing_number": "2",
+          "action": "将序号②上连接板定位在上方并焊接。"
+        },
+        {
+          "step": 4,
+          "component_code": "01.01.01.11515",
+          "component_drawing_number": "5",
+          "action": "将序号⑤油缸固定板等小零件焊接在主体结构上。"
+        },
+        {
+          "step": 5,
+          "component_code": "01.02.02.0490",
+          "component_drawing_number": "9",
+          "action": "将序号⑧、⑨、⑩轴套类零件装配到相应孔位并焊接。"
+        }
+      ]
+    }
+  }
+}

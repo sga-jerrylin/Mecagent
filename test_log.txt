@@ -1,0 +1,35 @@
+
+================================================================================
+  🧪 BOM-3D匹配率测试
+================================================================================
+
+📂 PDF目录: 测试-pdf
+📂 STEP目录: step-stl文件
+📂 输出目录: test_matching_output
+
+================================================================================
+  📋 步骤1: 准备文件
+================================================================================
+✅ 找到 8 个PDF文件:
+   - 产品总图.pdf
+   - 组件图1.pdf
+   - 组件图2.pdf
+   - 组件图3.pdf
+   - 产品总图.pdf
+   - 组件图1.pdf
+   - 组件图2.pdf
+   - 组件图3.pdf
+✅ 找到 8 个STEP文件:
+   - 产品总图.STEP
+   - 组件图1.STEP
+   - 组件图2.STEP
+   - 组件图3.STEP
+   - 产品总图.STEP
+
+❌ 测试失败: [Errno 13] Permission denied: 'test_matching_output\\step_files\\产品总图.STEP'
+object address  : 00000267081AFCA0
+object refcount : 3
+object type     : 00007FF9DF34AA80
+object type name: ValueError
+object repr     : ValueError('I/O operation on closed file.')
+lost sys.stderr

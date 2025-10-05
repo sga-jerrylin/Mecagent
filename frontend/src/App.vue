@@ -29,12 +29,16 @@
         </div>
         
         <div class="nav-actions">
-          <el-button 
-            :icon="isDark ? 'Sunny' : 'Moon'" 
-            circle 
-            @click="toggleDark"
+          <el-button
+            circle
+            @click="toggleDark()"
             class="theme-toggle"
-          />
+          >
+            <el-icon>
+              <Moon v-if="isDark" />
+              <Sunny v-else />
+            </el-icon>
+          </el-button>
           <el-button type="primary" @click="showHelp">
             <el-icon><QuestionFilled /></el-icon>
             帮助
@@ -61,10 +65,41 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+
+// 更新主题CSS变量
+const updateTheme = () => {
+  if (isDark.value) {
+    document.documentElement.style.setProperty('--bg-color', '#0a0a0a')
+    document.documentElement.style.setProperty('--text-color', '#ffffff')
+    document.documentElement.style.setProperty('--text-secondary', 'rgba(255,255,255,0.65)')
+    document.documentElement.style.setProperty('--grid-color', '#00ffff')
+    document.documentElement.style.setProperty('--accent-color', '#00ffff')
+    document.documentElement.style.setProperty('--card-bg', 'rgba(0,255,255,0.15)')
+    document.documentElement.style.setProperty('--active-card-bg', 'rgba(0,255,255,0.25)')
+    document.documentElement.style.setProperty('--card-border', 'rgba(0,255,255,0.4)')
+  } else {
+    document.documentElement.style.setProperty('--bg-color', '#f5f5f5')
+    document.documentElement.style.setProperty('--text-color', '#1f2937')
+    document.documentElement.style.setProperty('--text-secondary', 'rgba(0,0,0,0.55)')
+    document.documentElement.style.setProperty('--grid-color', '#0066cc')
+    document.documentElement.style.setProperty('--accent-color', '#0066cc')
+    document.documentElement.style.setProperty('--card-bg', 'rgba(0,102,204,0.10)')
+    document.documentElement.style.setProperty('--active-card-bg', 'rgba(0,102,204,0.20)')
+    document.documentElement.style.setProperty('--card-border', 'rgba(0,102,204,0.35)')
+  }
+  document.documentElement.setAttribute('data-theme', isDark.value ? 'dark' : 'light')
+}
+
+// 监听主题变化
+watch(isDark, () => {
+  updateTheme()
+}, { immediate: true })
 
 const showHelp = () => {
   ElMessageBox.alert(

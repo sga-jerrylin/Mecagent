@@ -1,0 +1,187 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.09.2549",
+      "component_name": "连接器后座组件-漆后",
+      "drawing_number": "1",
+      "assembly_order": 1,
+      "reason": "图纸上1号居中最重为基准",
+      "base_part_code": "01.01.01.11509",
+      "base_part_name": "连接板",
+      "base_part_drawing_number": "2",
+      "base_part_weight_kg": 21.36,
+      "assembly_steps": [
+        "以②连接板为基准定位",
+        "装①⑥⑧矩形管于②两侧",
+        "装⑦封板并点固定位",
+        "装④⑤挂件于②上侧",
+        "补焊③⑨加强并校正"
+      ]
+    },
+    {
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "drawing_number": "2",
+      "assembly_order": 2,
+      "reason": "2号在1号上方作连接件",
+      "base_part_code": "01.01.01.11513",
+      "base_part_name": "侧连接板",
+      "base_part_drawing_number": "3",
+      "base_part_weight_kg": 24.97,
+      "assembly_steps": [
+        "以③侧连接板为基准",
+        "对称装②上连接板",
+        "装①方形板于前端",
+        "装⑤油缸固定板与④",
+        "焊⑩⑨⑧轴套及⑦角钢"
+      ]
+    },
+    {
+      "component_code": "01.09.2551",
+      "component_name": "左铲雪板组件-漆后",
+      "drawing_number": "3",
+      "assembly_order": 3,
+      "reason": "3号位于2号左前侧后装",
+      "base_part_code": "01.01.01.18598",
+      "base_part_name": "左铲板",
+      "base_part_drawing_number": "1",
+      "base_part_weight_kg": 28.38,
+      "assembly_steps": [
+        "以①左铲板为基准",
+        "装②方形板-机加于背面",
+        "装③④前后加强板",
+        "装⑤⑥底部连接板成排",
+        "装⑦⑨⑩⑫固定件与轴套"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.09.2549",
+    "base_component_name": "连接器后座组件-漆后",
+    "base_component_drawing_number": "1",
+    "reason": "1号最重居中为基准",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.09.2549",
+        "component_drawing_number": "1",
+        "action": "定位①于装配平台并找正"
+      },
+      {
+        "step": 2,
+        "component_code": "01.09.2550",
+        "component_drawing_number": "2",
+        "action": "将②固定在①上方中部"
+      },
+      {
+        "step": 3,
+        "component_code": "01.09.2551",
+        "component_drawing_number": "3",
+        "action": "将③铰接安装在②左侧"
+      },
+      {
+        "step": 4,
+        "component_code": "01.09.2552",
+        "component_drawing_number": "4",
+        "action": "将④铰接安装在②右侧"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "V型推雪板EURO连接器",
+    "total_components": 3,
+    "visual_analysis": {
+      "product_drawing_observation": "产品总图中1号居中为主框架。3、4号为左右铲板，位于前方。2号在1号上方中部连接。",
+      "component_drawings_observation": "组件01图中②连接板最重。组件02图中③侧连接板最重。组件03图中①左铲板最重。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.09.2549",
+        "component_name": "连接器后座组件-漆后",
+        "drawing_number": "1",
+        "assembly_order": 1,
+        "reason": "图纸上1号居中最重为基准",
+        "base_part_code": "01.01.01.11509",
+        "base_part_name": "连接板",
+        "base_part_drawing_number": "2",
+        "base_part_weight_kg": 21.36,
+        "assembly_steps": [
+          "以②连接板为基准定位",
+          "装①⑥⑧矩形管于②两侧",
+          "装⑦封板并点固定位",
+          "装④⑤挂件于②上侧",
+          "补焊③⑨加强并校正"
+        ]
+      },
+      {
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件-漆后",
+        "drawing_number": "2",
+        "assembly_order": 2,
+        "reason": "2号在1号上方作连接件",
+        "base_part_code": "01.01.01.11513",
+        "base_part_name": "侧连接板",
+        "base_part_drawing_number": "3",
+        "base_part_weight_kg": 24.97,
+        "assembly_steps": [
+          "以③侧连接板为基准",
+          "对称装②上连接板",
+          "装①方形板于前端",
+          "装⑤油缸固定板与④",
+          "焊⑩⑨⑧轴套及⑦角钢"
+        ]
+      },
+      {
+        "component_code": "01.09.2551",
+        "component_name": "左铲雪板组件-漆后",
+        "drawing_number": "3",
+        "assembly_order": 3,
+        "reason": "3号位于2号左前侧后装",
+        "base_part_code": "01.01.01.18598",
+        "base_part_name": "左铲板",
+        "base_part_drawing_number": "1",
+        "base_part_weight_kg": 28.38,
+        "assembly_steps": [
+          "以①左铲板为基准",
+          "装②方形板-机加于背面",
+          "装③④前后加强板",
+          "装⑤⑥底部连接板成排",
+          "装⑦⑨⑩⑫固定件与轴套"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.09.2549",
+      "base_component_name": "连接器后座组件-漆后",
+      "base_component_drawing_number": "1",
+      "reason": "1号最重居中为基准",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.09.2549",
+          "component_drawing_number": "1",
+          "action": "定位①于装配平台并找正"
+        },
+        {
+          "step": 2,
+          "component_code": "01.09.2550",
+          "component_drawing_number": "2",
+          "action": "将②固定在①上方中部"
+        },
+        {
+          "step": 3,
+          "component_code": "01.09.2551",
+          "component_drawing_number": "3",
+          "action": "将③铰接安装在②左侧"
+        },
+        {
+          "step": 4,
+          "component_code": "01.09.2552",
+          "component_drawing_number": "4",
+          "action": "将④铰接安装在②右侧"
+        }
+      ]
+    }
+  }
+}

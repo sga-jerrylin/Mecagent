@@ -1,23 +1,6 @@
 <template>
   <div class="generator-page">
     <div class="container">
-      <!-- 页面标题 -->
-      <div class="page-header">
-        <h1>智能装配说明书生成器</h1>
-        <p>上传PDF工程图纸和3D模型，AI将自动生成专业的装配说明书</p>
-      </div>
-
-      <!-- 生成步骤 -->
-      <div class="generation-steps">
-        <el-steps :active="currentStep" align-center>
-          <el-step title="上传文件" icon="Upload" />
-          <el-step title="AI解析" icon="Cpu" />
-          <el-step title="工艺生成" icon="Setting" />
-          <el-step title="3D处理" icon="Monitor" />
-          <el-step title="完成" icon="Check" />
-        </el-steps>
-      </div>
-
       <!-- 步骤内容 -->
       <div class="step-content">
         <!-- 步骤1: 文件上传 -->
@@ -105,46 +88,49 @@
               </div>
             </div>
 
-            <!-- 配置选项 -->
-            <div class="config-section">
-              <h3>生成配置</h3>
-              <div class="config-grid">
-                <div class="config-item">
-                  <label>专业重点</label>
-                  <el-select v-model="config.focus" placeholder="选择专业重点">
-                    <el-option label="通用装配" value="general" />
-                    <el-option label="焊接重点" value="welding" />
-                    <el-option label="精密装配" value="precision" />
-                    <el-option label="重型装配" value="heavy" />
-                  </el-select>
+            <!-- 文件验证提示 -->
+            <div class="validation-section" v-if="pdfFiles.length > 0 || modelFiles.length > 0">
+              <h3>
+                <el-icon><Warning /></el-icon>
+                文件验证
+              </h3>
+              <div class="validation-content">
+                <div class="validation-tips">
+                  <p><strong>📋 上传要求：</strong></p>
+                  <ul>
+                    <li>PDF文件和STEP文件需要<strong>文件名对应</strong>（如：产品总图.pdf ↔ 产品总图.step）</li>
+                    <li>请上传<strong>完整的文件包</strong>，包括组件图和整体产品图</li>
+                    <li>确保所有图纸都包含<strong>BOM表格</strong>和<strong>技术要求</strong></li>
+                  </ul>
                 </div>
-                
-                <div class="config-item">
-                  <label>质量等级</label>
-                  <el-select v-model="config.quality" placeholder="选择质量等级">
-                    <el-option label="基础质量" value="basic" />
-                    <el-option label="标准质量" value="standard" />
-                    <el-option label="高质量" value="high" />
-                    <el-option label="关键质量" value="critical" />
-                  </el-select>
-                </div>
-                
-                <div class="config-item">
-                  <label>输出语言</label>
-                  <el-select v-model="config.language" placeholder="选择输出语言">
-                    <el-option label="中文" value="zh" />
-                    <el-option label="English" value="en" />
-                  </el-select>
+
+                <!-- 文件对应性验证结果 -->
+                <div class="validation-result" v-if="validationResult">
+                  <div v-if="validationResult.isValid" class="validation-success">
+                    <el-icon><CircleCheck /></el-icon>
+                    <span>文件验证通过！所有PDF和STEP文件都有对应关系</span>
+                  </div>
+                  <div v-else class="validation-errors">
+                    <el-icon><CircleClose /></el-icon>
+                    <span>发现文件对应问题：</span>
+                    <ul>
+                      <li v-for="error in validationResult.errors" :key="error">{{ error }}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              
-              <div class="config-item full-width">
-                <label>特殊要求</label>
+            </div>
+
+            <!-- 项目配置 -->
+            <div class="config-section">
+              <h3>项目配置</h3>
+              <div class="config-item">
+                <label>项目名称 *</label>
                 <el-input
-                  v-model="config.requirements"
-                  type="textarea"
-                  :rows="3"
-                  placeholder="请描述特殊的装配要求或注意事项..."
+                  v-model="config.projectName"
+                  placeholder="请输入项目名称，如：V型推雪板EURO连接器"
+                  :prefix-icon="Folder"
+                  size="large"
                 />
               </div>
             </div>
@@ -167,12 +153,51 @@
 
         <!-- 步骤2-4: 处理中 -->
         <div v-show="currentStep >= 1 && currentStep <= 4" class="step-panel">
-          <ProcessingSteps
-            :progress="processingProgress"
-            :message="processingText"
-            :stage="currentProcessingStage"
-            ref="processingStepsRef"
-          />
+          <!-- ✅ 全屏日志显示 -->
+          <div class="fullscreen-logs-container">
+            <!-- 日志头部 -->
+            <div class="logs-header-large">
+              <h2>📋 多智能体协作可视面板 </h2>
+              <div class="header-actions">
+                <el-button text @click="clearLogs" :icon="Delete">清空日志</el-button>
+              </div>
+            </div>
+
+            <!-- 日志内容区域 - 大字体 -->
+            <div class="logs-content-large" ref="logsContainer">
+              <div
+                v-for="log in processingLogs"
+                :key="log.id"
+                class="log-item-large"
+                :class="log.type"
+              >
+                <span class="log-time-large">{{ log.time }}</span>
+                <span class="log-message-large">{{ log.message }}</span>
+              </div>
+              <div v-if="processingLogs.length === 0" class="empty-logs-large">
+                <el-icon size="48"><Document /></el-icon>
+                <p>等待任务开始...</p>
+              </div>
+            </div>
+
+            <!-- ✅ 生成完成后的操作按钮 -->
+            <div v-if="!isGenerating && taskId && processingStatus === 'success'" class="completion-actions-large">
+              <el-button
+                type="primary"
+                size="large"
+                @click="viewManual"
+                :icon="View"
+              >
+                📖 查看装配说明书
+              </el-button>
+              <el-button
+                size="large"
+                @click="resetGenerator"
+              >
+                🔄 重新生成
+              </el-button>
+            </div>
+          </div>
         </div>
 
         <!-- 步骤5: 完成 -->
@@ -238,13 +263,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onUnmounted } from 'vue'
+import { ref, reactive, computed, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { UploadFile, UploadFiles } from 'element-plus'
 import {
   Document, UploadFilled, Right, CircleCheck,
-  Download, View, Delete, Share, Box
+  Download, View, Delete, Share, Box, Warning,
+  CircleClose, Folder, Hide
 } from '@element-plus/icons-vue'
 import ProcessingSteps from '../components/ProcessingSteps.vue'
 import axios from 'axios'
@@ -258,11 +284,355 @@ const pdfFiles = ref<UploadFiles>([])
 const modelFiles = ref<UploadFiles>([])
 
 const config = reactive({
-  focus: 'welding',
-  quality: 'standard',
-  language: 'zh',
-  requirements: ''
+  projectName: ''
 })
+
+// 文件验证相关
+const validationResult = ref(null)
+
+// Agent协作相关
+// 6个AI智能体（根据 docs/AGENT_ARCHITECTURE.md）
+// ✅ 基于实际日志的 8 个 AI 员工
+const agents = ref([
+  {
+    id: 'file-manager',
+    name: '📂 文件管理员',
+    icon: '📂',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'bom-analyst',
+    name: '📊 BOM数据分析员',
+    icon: '📊',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'assembly-planner',
+    name: '🔍 装配规划师',
+    icon: '🔍',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: '3d-engineer',
+    name: '🎨 3D模型工程师',
+    icon: '🎨',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'component-engineer',
+    name: '🔨 组件装配工程师',
+    icon: '🔨',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'product-engineer',
+    name: '🏗️ 产品总装工程师',
+    icon: '🏗️',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'welding-engineer',
+    name: '⚡ 焊接工程师',
+    icon: '⚡',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  },
+  {
+    id: 'safety-officer',
+    name: '🛡️ 安全专员',
+    icon: '🛡️',
+    currentTask: '等待启动...',
+    status: 'idle',
+    progress: 0,
+    results: []
+  }
+])
+
+// ✅ 清空日志
+const clearLogs = () => {
+  processingLogs.value = []
+}
+
+// ✅ 添加日志
+const addLog = (message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info') => {
+  const now = new Date()
+  const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`
+
+  processingLogs.value.push({
+    id: Date.now(),
+    time,
+    message,
+    type
+  })
+
+  // ✅ 根据日志内容更新 Agent 状态
+  updateAgentStatus(message)
+
+  // 自动滚动到底部
+  nextTick(() => {
+    if (logsContainer.value) {
+      logsContainer.value.scrollTop = logsContainer.value.scrollHeight
+    }
+  })
+}
+
+// ✅ 根据日志内容更新 Agent 状态
+const updateAgentStatus = (message: string) => {
+  // Agent 关键词映射（基于实际后端日志）
+  const agentKeywords = {
+    'file-manager': ['文件管理', '图纸', 'PDF', '转换成图片', '整理好了所有图纸'],
+    'bom-analyst': ['BOM分析', 'BOM数据分析', '零件清单', '提取到', '个零件'],
+    'assembly-planner': ['装配规划', '装配顺序', 'Agent 1', '识别出了', '个组件'],
+    '3d-engineer': ['3D模型', 'BOM-3D匹配', 'STEP', 'GLB', '匹配率', '代码匹配', 'AI匹配'],
+    'component-engineer': ['组件装配工', 'Agent 3', '组件级别', '编写', '装配步骤'],
+    'product-engineer': ['产品总装', 'Agent 4', '产品级别', '总装步骤', 'BOM覆盖率'],
+    'welding-engineer': ['焊接工程师', 'Agent 5', '焊接要点', '焊接分析'],
+    'safety-officer': ['安全专员', 'Agent 6', '安全警告', '安全FAQ']
+  }
+
+  // 检查哪个 Agent 正在工作
+  for (const [agentId, keywords] of Object.entries(agentKeywords)) {
+    const agent = agents.value.find(a => a.id === agentId)
+    if (!agent) continue
+
+    // 检查是否包含关键词
+    const isWorking = keywords.some(keyword => message.includes(keyword))
+
+    if (isWorking) {
+      // 检查是否是完成消息
+      if (message.includes('成功') || message.includes('完成') || message.includes('✅')) {
+        agent.status = 'completed'
+        agent.progress = 100
+        agent.currentTask = '已完成'
+
+        // 提取成果信息（支持多个结果）
+        if (agentId === 'file-manager') {
+          // 文件管理员：提取PDF和图片数量
+          const pdfMatch = message.match(/(\d+)\s*个PDF/)
+          const imgMatch = message.match(/(\d+)\s*张图片/)
+          if (pdfMatch) agent.results.push(`📄 ${pdfMatch[1]} 个PDF图纸`)
+          if (imgMatch) agent.results.push(`🖼️ ${imgMatch[1]} 张图片`)
+        } else if (agentId === 'bom-analyst') {
+          // BOM分析员：提取零件数量
+          const match = message.match(/(\d+)\s*个零件/)
+          if (match) agent.results.push(`📦 ${match[1]} 个零件`)
+        } else if (agentId === 'assembly-planner') {
+          // 装配规划师：提取组件数量
+          const match = message.match(/(\d+)\s*个组件/)
+          if (match) agent.results.push(`🎯 ${match[1]} 个组件`)
+        } else if (agentId === '3d-engineer') {
+          // 3D工程师：提取匹配率
+          const totalMatch = message.match(/总匹配率:\s*BOM\s*(\d+)\/(\d+)\s*\((\d+\.?\d*)%\)/)
+          const codeMatch = message.match(/代码:\s*(\d+)/)
+          const aiMatch = message.match(/AI:\s*(\d+)/)
+          if (totalMatch) {
+            agent.results.push(`📊 总匹配率: ${totalMatch[3]}% (${totalMatch[1]}/${totalMatch[2]})`)
+          }
+          if (codeMatch) agent.results.push(`🔧 代码匹配: ${codeMatch[1]} 项`)
+          if (aiMatch) agent.results.push(`🤖 AI匹配: ${aiMatch[1]} 项`)
+        } else if (agentId === 'component-engineer') {
+          // 组件装配工程师：提取组件数量
+          const match = message.match(/(\d+)\s*个组件/)
+          if (match) agent.results.push(`🔨 ${match[1]} 个组件`)
+        } else if (agentId === 'product-engineer') {
+          // 产品总装工程师：提取步骤数和覆盖率
+          const stepsMatch = message.match(/(\d+)\s*个总装步骤/)
+          const coverageMatch = message.match(/BOM覆盖率:\s*(\d+)\/(\d+)\s*\((\d+\.?\d*)%\)/)
+          if (stepsMatch) agent.results.push(`📋 ${stepsMatch[1]} 个总装步骤`)
+          if (coverageMatch) {
+            agent.results.push(`✅ BOM覆盖率: ${coverageMatch[3]}% (${coverageMatch[1]}/${coverageMatch[2]})`)
+          }
+        } else if (agentId === 'welding-engineer') {
+          // 焊接工程师：提取焊接步骤数
+          const match = message.match(/涉及焊接的步骤:\s*(\d+)/)
+          if (match) agent.results.push(`⚡ ${match[1]} 个焊接步骤`)
+        } else if (agentId === 'safety-officer') {
+          // 安全专员
+          agent.results.push('🛡️ 安全检查完成')
+        }
+      } else {
+        // 正在工作
+        agent.status = 'working'
+
+        // 提取任务描述（去除emoji和特殊字符）
+        const cleanMessage = message.replace(/[🔄📊📦📏✅❌⚠️👷🤖🎯📝⏱️💾]/g, '').trim()
+        agent.currentTask = cleanMessage.substring(0, 60) + (cleanMessage.length > 60 ? '...' : '')
+
+        // 尝试提取进度
+        const progressMatch = message.match(/(\d+)%/)
+        if (progressMatch) {
+          agent.progress = parseInt(progressMatch[1])
+        } else {
+          // 根据不同阶段设置默认进度
+          if (message.includes('开始') || message.includes('启动')) {
+            agent.progress = 10
+          } else if (message.includes('处理中') || message.includes('分析')) {
+            agent.progress = 50
+          } else {
+            agent.progress = 70
+          }
+        }
+      }
+    }
+  }
+}
+
+// ✅ 日志容器引用
+const logsContainer = ref(null)
+
+// ✅ 查看说明书（带重试逻辑）
+const viewManual = async () => {
+  if (!taskId.value) {
+    ElMessage.error('任务ID不存在，无法查看说明书')
+    return
+  }
+
+  const loading = ElMessage({
+    message: '正在加载说明书...',
+    type: 'info',
+    duration: 0
+  })
+
+  try {
+    // ✅ 重试逻辑：最多尝试3次，每次间隔1秒
+    let retryCount = 0
+    const maxRetries = 3
+    let manualData = null
+
+    while (retryCount < maxRetries) {
+      try {
+        console.log(`尝试获取说明书 (${retryCount + 1}/${maxRetries})...`)
+        const response = await axios.get(`/api/manual/${taskId.value}`)
+        manualData = response.data
+        break // 成功获取，跳出循环
+      } catch (error: any) {
+        retryCount++
+        if (retryCount < maxRetries) {
+          console.log(`获取失败，${1}秒后重试...`)
+          await new Promise(resolve => setTimeout(resolve, 1000))
+        } else {
+          throw error // 最后一次尝试失败，抛出错误
+        }
+      }
+    }
+
+    if (!manualData) {
+      throw new Error('无法获取说明书数据')
+    }
+
+    loading.close()
+
+    // 2. 保存到 localStorage 的历史记录
+    const historyKey = 'assembly_manual_history'
+    let history = []
+
+    try {
+      const stored = localStorage.getItem(historyKey)
+      if (stored) {
+        history = JSON.parse(stored)
+      }
+    } catch (e) {
+      console.warn('读取历史记录失败:', e)
+    }
+
+    // 3. 添加当前记录到历史
+    const historyItem = {
+      taskId: taskId.value,
+      productName: manualData.metadata?.product_name || manualData.product_name || '未命名产品',
+      timestamp: new Date().toISOString(),
+      data: manualData
+    }
+
+    // 检查是否已存在
+    const existingIndex = history.findIndex((item: any) => item.taskId === taskId.value)
+    if (existingIndex >= 0) {
+      // 更新现有记录
+      history[existingIndex] = historyItem
+    } else {
+      // 添加新记录（最多保存 10 条）
+      history.unshift(historyItem)
+      if (history.length > 10) {
+        history = history.slice(0, 10)
+      }
+    }
+
+    // 4. 保存到 localStorage
+    localStorage.setItem(historyKey, JSON.stringify(history))
+
+    // 5. 设置当前查看的说明书
+    localStorage.setItem('current_manual', JSON.stringify(manualData))
+
+    // 6. 跳转到查看页面
+    ElMessage.success('说明书加载成功！')
+    router.push(`/manual/${taskId.value}`)
+  } catch (error: any) {
+    loading.close()
+    console.error('获取说明书失败:', error)
+
+    const errorMsg = error.response?.data?.detail || error.message || '未知错误'
+    ElMessage.error({
+      message: `获取说明书失败: ${errorMsg}`,
+      duration: 5000,
+      showClose: true
+    })
+
+    // ✅ 显示详细错误信息
+    console.error('详细错误信息:', {
+      taskId: taskId.value,
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      data: error.response?.data
+    })
+  }
+}
+
+// ✅ 重新生成
+const resetGenerator = () => {
+  // 重置所有状态
+  currentStep.value = 0
+  pdfFiles.value = []
+  modelFiles.value = []
+  taskId.value = ''
+  processingProgress.value = 0
+  processingStatus.value = undefined
+  processingText.value = ''
+  processingLogs.value = []
+  isGenerating.value = false
+
+  // 重置所有 Agent 状态
+  agents.value.forEach(agent => {
+    agent.status = 'idle'
+    agent.currentTask = '等待启动...'
+    agent.progress = 0
+    agent.results = []
+  })
+
+  ElMessage.info('已重置，可以重新上传文件')
+}
+
+const agentDialogs = ref([])
+const typingAgent = ref(null)
+const dialogContainer = ref(null)
 
 const processingProgress = ref(0)
 const processingStatus = ref<'success' | 'exception' | undefined>()
@@ -311,16 +681,53 @@ const processingSteps = [
 
 // 计算属性
 const canStartGeneration = computed(() => {
-  return pdfFiles.value.length > 0 && modelFiles.value.length > 0
+  return pdfFiles.value.length > 0 &&
+         modelFiles.value.length > 0 &&
+         config.projectName.trim() !== '' &&
+         (!validationResult.value || validationResult.value.isValid)
 })
 
 // 方法
 const handlePdfChange = (file: UploadFile, fileList: UploadFiles) => {
   pdfFiles.value = fileList
+  validateFileCorrespondence()
 }
 
 const handleModelChange = (file: UploadFile, fileList: UploadFiles) => {
   modelFiles.value = fileList
+  validateFileCorrespondence()
+}
+
+// 文件对应性验证
+const validateFileCorrespondence = () => {
+  if (pdfFiles.value.length === 0 && modelFiles.value.length === 0) {
+    validationResult.value = null
+    return
+  }
+
+  const pdfNames = pdfFiles.value.map(f => f.name.replace(/\.pdf$/i, ''))
+  const stepNames = modelFiles.value.map(f => f.name.replace(/\.(step|stp)$/i, ''))
+
+  const errors = []
+
+  // 检查PDF文件是否有对应的STEP文件
+  pdfNames.forEach(pdfName => {
+    if (!stepNames.includes(pdfName)) {
+      errors.push(`PDF文件"${pdfName}.pdf"缺少对应的STEP文件`)
+    }
+  })
+
+  // 检查STEP文件是否有对应的PDF文件
+  stepNames.forEach(stepName => {
+    if (!pdfNames.includes(stepName)) {
+      errors.push(`STEP文件"${stepName}"缺少对应的PDF文件`)
+    }
+  })
+
+  validationResult.value = {
+    isValid: errors.length === 0,
+    errors: errors
+  }
 }
 
 const removePdfFile = (file: UploadFile) => {
@@ -350,14 +757,34 @@ const startGeneration = async () => {
     return
   }
 
+  // 验证项目名称
+  if (!config.projectName.trim()) {
+    ElMessage.warning('请输入项目名称')
+    return
+  }
+
+  // 验证文件对应关系
+  if (validationResult.value && !validationResult.value.isValid) {
+    ElMessage.error('请先解决文件对应性问题')
+    return
+  }
+
   isGenerating.value = true
   currentStep.value = 1
   processingStatus.value = undefined
   processingProgress.value = 0
   processingText.value = '准备上传文件...'
 
-  // 清空之前的日志
+  // 清空之前的日志和对话
   processingLogs.value = []
+  agentDialogs.value = []
+
+  // 初始化Agent状态
+  agents.value.forEach(agent => {
+    agent.status = 'idle'
+    agent.progress = 0
+    agent.currentTask = '等待启动...'
+  })
 
   try {
     // 1. 上传文件
@@ -381,13 +808,13 @@ const startGeneration = async () => {
     ElMessage.error('生成失败: ' + (error.message || '未知错误'))
     processingStatus.value = 'exception'
     processingText.value = '生成失败'
-    processingStepsRef.value?.addLog(`❌ 生成失败: ${error.message}`, 'error')
+    addLog(`❌ 生成失败: ${error.message}`, 'error')
     isGenerating.value = false
 
-    // 关闭WebSocket
-    if (ws) {
-      ws.close()
-      ws = null
+    // 关闭 SSE
+    if (eventSource) {
+      eventSource.close()
+      eventSource = null
     }
   }
 }
@@ -423,17 +850,14 @@ const uploadFiles = async () => {
   return response.data.data
 }
 
-// WebSocket连接
-let ws: WebSocket | null = null
+// EventSource 连接（SSE）
+let eventSource: EventSource | null = null
 
-// 开始生成任务 - 使用WebSocket实时更新
+// 开始生成任务 - 使用 SSE 实时更新
 const startGenerationTask = async () => {
   const response = await axios.post('/api/generate', {
     config: {
-      focus: config.focus,
-      quality: config.quality,
-      language: config.language,
-      requirements: config.requirements
+      projectName: config.projectName
     },
     pdf_files: pdfFiles.value.map(f => f.name),
     model_files: modelFiles.value.map(f => f.name)
@@ -446,124 +870,107 @@ const startGenerationTask = async () => {
   const newTaskId = response.data.task_id
   taskId.value = newTaskId
 
-  // 建立WebSocket连接
-  connectWebSocket(newTaskId)
+  // 建立 SSE 连接
+  connectEventSource(newTaskId)
 
   return newTaskId
 }
 
-// 连接WebSocket
-const connectWebSocket = (taskId: string) => {
-  const wsUrl = `ws://localhost:8000/ws/task/${taskId}`
-  ws = new WebSocket(wsUrl)
+// 连接 EventSource (SSE)
+const connectEventSource = (taskId: string) => {
+  const sseUrl = `http://localhost:8000/api/stream/${taskId}`
+  eventSource = new EventSource(sseUrl)
 
-  ws.onopen = () => {
-    console.log('WebSocket连接已建立')
-    processingStepsRef.value?.addLog('✅ WebSocket连接成功', 'success')
+  eventSource.onopen = () => {
+    console.log('✅ SSE 连接已建立')
+    addLog('✅ 实时日志连接成功', 'success')
   }
 
-  ws.onmessage = (event) => {
-    const data = JSON.parse(event.data)
-    handleWebSocketMessage(data)
+  eventSource.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data)
+      handleSSEMessage(data)
+    } catch (error) {
+      console.error('解析 SSE 消息失败:', error)
+    }
   }
 
-  ws.onerror = (error) => {
-    console.error('WebSocket错误:', error)
-    processingStepsRef.value?.addLog('❌ WebSocket连接错误', 'error')
-  }
-
-  ws.onclose = () => {
-    console.log('WebSocket连接已关闭')
+  eventSource.onerror = (error) => {
+    console.error('❌ SSE 错误:', error)
+    eventSource?.close()
+    eventSource = null
   }
 }
 
-// 处理WebSocket消息
-const handleWebSocketMessage = (data: any) => {
-  console.log('收到WebSocket消息:', data)
+// 处理 SSE 消息
+const handleSSEMessage = (data: any) => {
+  console.log('收到 SSE 消息:', data)
 
   switch (data.type) {
-    case 'initial_state':
-      // 初始状态
-      if (data.data) {
-        Object.keys(data.data).forEach(stage => {
-          updateProcessingData(stage, data.data[stage])
-        })
-      }
-      break
-
-    case 'progress_update':
-      // 进度更新
-      currentProcessingStage.value = data.stage
-      processingProgress.value = data.progress
-      processingText.value = data.message
-
-      if (data.data) {
-        updateProcessingData(data.stage, data.data)
-      }
-      break
-
-    case 'parallel_progress':
-      // 并行处理进度
-      currentProcessingStage.value = 'parallel'
-      processingData.value = {
-        ...processingData.value,
-        parallel_progress: data.parallel_data,
-        stage_data: data.parallel_data
-      }
-
-      // 计算总体进度
-      const avgProgress = Object.values(data.parallel_data).reduce((sum: number, item: any) => {
-        return sum + (item.progress || 0)
-      }, 0) / Object.keys(data.parallel_data).length
-      processingProgress.value = Math.round(avgProgress)
+    case 'connected':
+      // 连接成功
+      addLog(`📡 ${data.message}`, 'info')
       break
 
     case 'log':
-      // 日志消息
-      processingStepsRef.value?.addLog(data.message, data.level)
-
-      // 根据日志内容更新步骤状态
-      updateStepByLog(data.message, data.level)
+      // ✅ 实时日志消息
+      addLog(data.message, 'info')
       break
 
-    case 'completion':
+    case 'progress':
+      // 进度更新
+      processingProgress.value = data.progress
+      if (data.status === 'processing') {
+        processingStatus.value = undefined
+        processingText.value = '正在处理中...'
+      }
+      break
+
+    case 'status_change':
+      // 状态变化
+      if (data.status === 'processing') {
+        addLog('🚀 任务开始处理...', 'info')
+      } else if (data.status === 'completed') {
+        addLog('✅ 任务处理完成', 'success')
+      } else if (data.status === 'failed') {
+        addLog('❌ 任务处理失败', 'error')
+      }
+      break
+
+    case 'complete':
       // 任务完成
-      if (data.success) {
+      eventSource?.close()
+      eventSource = null
+
+      if (data.status === 'completed') {
         processingProgress.value = 100
         processingStatus.value = 'success'
         processingText.value = '生成完成！'
         currentStep.value = 4
 
-        // 更新结果统计
-        if (data.result) {
-          resultStats.pdfPages = data.result.statistics?.pdf_count || 0
-          resultStats.bomItems = data.result.statistics?.bom_items || 0
-          resultStats.assemblySteps = data.result.statistics?.assembly_steps || 0
-          generatedManualUrl.value = data.result.output_file || ''
-        }
+        addLog('✅ 装配说明书生成完成！', 'success')
 
-        processingStepsRef.value?.addLog('✅ 装配说明书生成完成！', 'success')
-
-        // 提示用户并跳转到查看器
+        // ✅ 不自动跳转，只显示成功消息
         ElMessage.success({
-          message: '装配说明书生成完成！即将跳转到查看器...',
-          duration: 2000
+          message: '装配说明书生成完成！',
+          duration: 3000
         })
-
-        setTimeout(() => {
-          router.push(`/manual/${taskId.value}`)
-        }, 2000)
       } else {
         processingStatus.value = 'exception'
         processingText.value = data.error || '生成失败'
-        processingStepsRef.value?.addLog(`❌ ${data.error}`, 'error')
+        addLog(`❌ ${data.error}`, 'error')
       }
 
-      // 关闭WebSocket
-      if (ws) {
-        ws.close()
-        ws = null
-      }
+      isGenerating.value = false
+      break
+
+    case 'error':
+      // 错误消息
+      processingStatus.value = 'exception'
+      processingText.value = data.message || '发生错误'
+      addLog(`❌ ${data.message}`, 'error')
+      eventSource?.close()
+      eventSource = null
       isGenerating.value = false
       break
   }
@@ -755,14 +1162,123 @@ const shareResult = () => {
   ElMessage.info('分享功能开发中...')
 }
 
+// Agent对话处理方法
+const parseAndAddAgentDialog = (message: string, level: string) => {
+  const agentDialog = parseAgentLog(message, level)
+  if (agentDialog) {
+    addAgentDialog(agentDialog)
+  }
+}
+
+const parseAgentLog = (message: string, level: string) => {
+  // 解析后端Agent日志格式
+  const agentStartMatch = message.match(/👷 (.+?)AI员工加入工作，他开始(.+?)\.\.\./)
+  if (agentStartMatch) {
+    const agentName = mapAgentName(agentStartMatch[1])
+    updateAgentStatus(agentName, 'working', `正在${agentStartMatch[2]}...`)
+
+    return {
+      id: generateDialogId(),
+      agent: agentName,
+      agentIcon: getAgentIcon(agentName),
+      message: `我开始${agentStartMatch[2]}...`,
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'working',
+      status: 'typing'
+    }
+  }
+
+  const agentSuccessMatch = message.match(/✅ (.+?)AI员工完成了工作，他(.+)/)
+  if (agentSuccessMatch) {
+    const agentName = mapAgentName(agentSuccessMatch[1])
+    updateAgentStatus(agentName, 'completed', '任务完成')
+
+    return {
+      id: generateDialogId(),
+      agent: agentName,
+      agentIcon: getAgentIcon(agentName),
+      message: `我已经完成了${agentSuccessMatch[2]}！`,
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'reporting',
+      status: 'complete'
+    }
+  }
+
+  // 解析其他类型的Agent消息
+  if (message.includes('Qwen-VL') || message.includes('视觉智能体')) {
+    return {
+      id: generateDialogId(),
+      agent: 'Qwen-VL视觉智能体',
+      agentIcon: '👁️',
+      message: message,
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'working',
+      status: 'complete'
+    }
+  }
+
+  if (message.includes('DeepSeek') || message.includes('推理智能体')) {
+    return {
+      id: generateDialogId(),
+      agent: 'DeepSeek推理智能体',
+      agentIcon: '🧠',
+      message: message,
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'thinking',
+      status: 'complete'
+    }
+  }
+
+  return null
+}
+
+const mapAgentName = (rawName: string) => {
+  const nameMap = {
+    '文件管理': '文件管理员',
+    'Qwen-VL': 'Qwen-VL视觉智能体',
+    'DeepSeek': 'DeepSeek推理智能体',
+    'BOM提取': 'BOM提取专家',
+    '装配专家': '装配工艺专家'
+  }
+  return nameMap[rawName] || rawName
+}
+
+const getAgentIcon = (agentName: string) => {
+  const iconMap = {
+    '文件管理员': '📁',
+    'Qwen-VL视觉智能体': '👁️',
+    'DeepSeek推理智能体': '🧠',
+    'BOM提取专家': '📋',
+    '装配工艺专家': '🔧'
+  }
+  return iconMap[agentName] || '🤖'
+}
+
+const generateDialogId = () => {
+  return Date.now() + Math.random().toString(36).substr(2, 9)
+}
+
+const addAgentDialog = (dialog: any) => {
+  agentDialogs.value.push(dialog)
+
+  // 自动滚动到底部
+  nextTick(() => {
+    if (dialogContainer.value) {
+      dialogContainer.value.scrollTop = dialogContainer.value.scrollHeight
+    }
+  })
+}
+
+// ✅ 旧的 updateAgentStatus 已删除，使用新版本（在 addLog 函数附近）
+
 // 路由
 const router = useRouter()
 
-// 组件卸载时清理WebSocket
+// 组件卸载时清理 SSE
 onUnmounted(() => {
-  if (ws) {
-    ws.close()
-    ws = null
+  if (eventSource) {
+    eventSource.close()
+    eventSource = null
   }
 })
 </script>
@@ -779,29 +1295,7 @@ onUnmounted(() => {
   }
 }
 
-.page-header {
-  text-align: center;
-  margin-bottom: 40px;
-  
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #409eff, #67c23a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  p {
-    font-size: 1.1rem;
-    color: var(--el-text-color-secondary);
-  }
-}
-
-.generation-steps {
-  margin-bottom: 60px;
-}
+// ✅ 上传指南样式已删除
 
 .step-content {
   .step-panel {
@@ -907,29 +1401,19 @@ onUnmounted(() => {
     padding: 24px;
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    
+
     h3 {
       margin-bottom: 20px;
       color: var(--el-text-color-primary);
     }
-    
-    .config-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    
+
     .config-item {
-      &.full-width {
-        grid-column: 1 / -1;
-      }
-      
       label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         font-weight: 500;
         color: var(--el-text-color-primary);
+        font-size: 16px;
       }
     }
   }
@@ -1073,21 +1557,471 @@ onUnmounted(() => {
   }
 }
 
+// 文件验证样式
+.validation-section {
+  background: var(--el-bg-color);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: var(--el-color-warning);
+  }
+
+  .validation-tips {
+    ul {
+      margin: 8px 0;
+      padding-left: 20px;
+
+      li {
+        margin: 4px 0;
+        color: var(--el-text-color-regular);
+      }
+    }
+  }
+
+  .validation-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--el-color-success-light-9);
+    border: 1px solid var(--el-color-success-light-7);
+    border-radius: 8px;
+    color: var(--el-color-success);
+    margin-top: 16px;
+  }
+
+  .validation-errors {
+    padding: 12px;
+    background: var(--el-color-danger-light-9);
+    border: 1px solid var(--el-color-danger-light-7);
+    border-radius: 8px;
+    color: var(--el-color-danger);
+    margin-top: 16px;
+
+    ul {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+    }
+  }
+}
+
+// Agent协作样式
+.agent-collaboration-section {
+  background: var(--el-bg-color);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #409eff, #67c23a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  > p {
+    color: var(--el-text-color-secondary);
+    margin-bottom: 32px;
+  }
+}
+
+.agent-status-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+
+  .agent-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    background: var(--el-fill-color-lighter);
+    border: 2px solid var(--el-border-color-light);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    min-height: 140px;
+
+    &.active {
+      border-color: var(--el-color-primary);
+      background: var(--el-color-primary-light-9);
+      box-shadow: 0 0 20px rgba(64, 158, 255, 0.3);
+    }
+
+    &.completed {
+      border-color: var(--el-color-success);
+      background: var(--el-color-success-light-9);
+    }
+
+    .agent-avatar {
+      position: relative;
+      align-self: center;
+
+      .avatar-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--el-color-primary-light-8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+      }
+
+      .status-indicator {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 3px solid var(--el-bg-color);
+
+        &.idle { background: var(--el-color-info); }
+        &.working {
+          background: var(--el-color-primary);
+          animation: pulse 2s infinite;
+        }
+        &.completed { background: var(--el-color-success); }
+      }
+    }
+
+    .agent-info {
+      flex: 1;
+      width: 100%;
+
+      h4 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--el-text-color-primary);
+      }
+
+      p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--el-text-color-secondary);
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+// ✅ 全屏日志显示样式
+.fullscreen-logs-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 300px);
+  min-height: 600px;
+  background: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 12px;
+  overflow: hidden;
+
+  .logs-header-large {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    background: linear-gradient(135deg, var(--el-color-primary-light-9), var(--el-fill-color-light));
+    border-bottom: 2px solid var(--el-border-color-light);
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--el-text-color-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  .logs-content-large {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    background: #1e1e1e;
+    color: #d4d4d4;
+
+    .log-item-large {
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      display: flex;
+      gap: 16px;
+      transition: all 0.2s;
+      font-size: 16px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.03);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateX(4px);
+      }
+
+      .log-time-large {
+        color: #858585;
+        flex-shrink: 0;
+        width: 100px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .log-message-large {
+        flex: 1;
+        color: #d4d4d4;
+        word-break: break-word;
+      }
+
+      &.info {
+        border-left: 4px solid #3b82f6;
+        .log-message-large { color: #60a5fa; }
+      }
+
+      &.success {
+        border-left: 4px solid #10b981;
+        .log-message-large { color: #34d399; font-weight: 500; }
+      }
+
+      &.warning {
+        border-left: 4px solid #f59e0b;
+        .log-message-large { color: #fbbf24; }
+      }
+
+      &.error {
+        border-left: 4px solid #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+        .log-message-large { color: #f87171; font-weight: 600; }
+      }
+    }
+
+    .empty-logs-large {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 16px;
+      color: #6b7280;
+
+      .el-icon {
+        color: #4b5563;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+
+    // 滚动条样式
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #2d2d2d;
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #4b5563;
+      border-radius: 6px;
+
+      &:hover {
+        background: #6b7280;
+      }
+    }
+  }
+
+  .completion-actions-large {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 32px;
+    background: linear-gradient(135deg, var(--el-color-success-light-9), var(--el-fill-color-light));
+    border-top: 2px solid var(--el-color-success-light-5);
+
+    .el-button {
+      min-width: 220px;
+      font-size: 18px;
+      padding: 18px 36px;
+      font-weight: 600;
+    }
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(64, 158, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(64, 158, 255, 0.6);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dialog-stream {
+  .dialog-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h4 {
+      margin: 0;
+      color: var(--el-text-color-primary);
+    }
+  }
+
+  .dialog-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--el-fill-color-darker);
+    border-radius: 12px;
+
+    .dialog-message {
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--el-bg-color);
+      border-left: 4px solid var(--el-color-primary);
+
+      &.qwenvl {
+        border-left-color: #ff6b6b;
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), transparent);
+      }
+
+      &.deepseek {
+        border-left-color: #4ecdc4;
+        background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), transparent);
+      }
+
+      &.filemanager {
+        border-left-color: #45b7d1;
+        background: linear-gradient(135deg, rgba(69, 183, 209, 0.1), transparent);
+      }
+
+      &.typing {
+        animation: typing-glow 2s infinite;
+      }
+
+      .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .agent-name {
+          font-weight: 600;
+          color: var(--el-color-primary);
+        }
+
+        .timestamp {
+          font-size: 12px;
+          color: var(--el-text-color-secondary);
+        }
+      }
+
+      .message-content {
+        color: var(--el-text-color-primary);
+        line-height: 1.5;
+
+        .agent-highlight {
+          color: var(--el-color-primary);
+          font-weight: 600;
+        }
+
+        .number-highlight {
+          color: var(--el-color-success);
+          font-weight: 600;
+        }
+
+        .percentage-highlight {
+          color: var(--el-color-warning);
+          font-weight: 600;
+        }
+
+        .typing-text {
+          color: var(--el-text-color-secondary);
+        }
+
+        .typing-cursor {
+          color: var(--el-color-primary);
+          animation: blink 1s infinite;
+        }
+      }
+
+      .message-progress {
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+@keyframes typing-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(64, 158, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(64, 158, 255, 0.6); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 // 响应式设计
 @media (max-width: 768px) {
   .upload-grid {
     grid-template-columns: 1fr !important;
   }
-  
+
   .processing-section {
     flex-direction: column;
     gap: 40px;
     text-align: center;
   }
-  
+
   .result-actions {
     flex-direction: column;
     align-items: center;
+  }
+
+  .agent-status-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog-container {
+    max-height: 300px;
   }
 }
 </style>

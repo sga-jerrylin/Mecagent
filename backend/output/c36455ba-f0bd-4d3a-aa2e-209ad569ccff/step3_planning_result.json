@@ -1,0 +1,163 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.03.6999",
+      "component_name": "连接器后座组件",
+      "drawing_number": "总装配体",
+      "assembly_order": 1,
+      "reason": "这是一个单层级装配体，所有零件直接装配到基准件上。",
+      "base_part_code": "01.01.01.11509",
+      "base_part_name": "连接板",
+      "base_part_drawing_number": "②",
+      "base_part_weight_kg": 21.36,
+      "assembly_steps": [
+        "将图纸②号连接板（21.36kg）作为基准件。",
+        "将图纸①号矩形管（14.56kg）和⑧号矩形管（12.61kg）焊接到②号连接板上。",
+        "将图纸⑥号矩形管（8.71kg）焊接到①和⑧号矩形管之间。",
+        "将图纸⑦号封板（5.12kg）焊接到框架上方。",
+        "将图纸④号和⑤号挂件虚拟组件（6.53kg）配装到框架两侧。"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.01.01.11509",
+    "base_component_name": "连接板",
+    "base_component_drawing_number": "②",
+    "reason": "②号连接板重量最大（21.36kg），且位于装配体的中心位置，作为基准件。",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.01.01.11509",
+        "component_drawing_number": "②",
+        "action": "将②号连接板作为基准件固定。"
+      },
+      {
+        "step": 2,
+        "component_code": "01.01.03.2718",
+        "component_drawing_number": "①",
+        "action": "将①号矩形管焊接到②号连接板底部。"
+      },
+      {
+        "step": 3,
+        "component_code": "01.01.03.2720",
+        "component_drawing_number": "⑧",
+        "action": "将⑧号矩形管焊接到②号连接板顶部。"
+      },
+      {
+        "step": 4,
+        "component_code": "01.01.03.2719",
+        "component_drawing_number": "⑥",
+        "action": "将⑥号矩形管焊接到①和⑧号矩形管之间。"
+      },
+      {
+        "step": 5,
+        "component_code": "01.01.01.16608",
+        "component_drawing_number": "⑦",
+        "action": "将⑦号封板焊接到框架上方。"
+      },
+      {
+        "step": 6,
+        "component_code": "01.05.0019 / 01.05.0018",
+        "component_drawing_number": "④ / ⑤",
+        "action": "将④号和⑤号挂件组件配装到框架两侧。"
+      },
+      {
+        "step": 7,
+        "component_code": "01.01.01.6589",
+        "component_drawing_number": "③",
+        "action": "将③号方形板-机加焊接到指定位置。"
+      },
+      {
+        "step": 8,
+        "component_code": "01.01.01.17678",
+        "component_drawing_number": "⑨",
+        "action": "将⑨号加强筋焊接到指定位置。"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "连接器后座组件",
+    "total_components": 9,
+    "visual_analysis": {
+      "product_drawing_observation": "该图纸为连接器后座组件的装配图，显示了9个零件/组件（①至⑨）的空间位置关系。装配主要由矩形管（①、⑥、⑧）和连接板（②）构成框架，并安装挂件（④、⑤）和封板（⑦）。",
+      "component_drawings_observation": "所有零件均在同一张图纸上显示，表明这是一个单层级的装配体，没有更深层次的预装配组件（除了虚拟组件④和⑤）。装配顺序应遵循从内到外、从重到轻的原则。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.03.6999",
+        "component_name": "连接器后座组件",
+        "drawing_number": "总装配体",
+        "assembly_order": 1,
+        "reason": "这是一个单层级装配体，所有零件直接装配到基准件上。",
+        "base_part_code": "01.01.01.11509",
+        "base_part_name": "连接板",
+        "base_part_drawing_number": "②",
+        "base_part_weight_kg": 21.36,
+        "assembly_steps": [
+          "将图纸②号连接板（21.36kg）作为基准件。",
+          "将图纸①号矩形管（14.56kg）和⑧号矩形管（12.61kg）焊接到②号连接板上。",
+          "将图纸⑥号矩形管（8.71kg）焊接到①和⑧号矩形管之间。",
+          "将图纸⑦号封板（5.12kg）焊接到框架上方。",
+          "将图纸④号和⑤号挂件虚拟组件（6.53kg）配装到框架两侧。"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.01.01.11509",
+      "base_component_name": "连接板",
+      "base_component_drawing_number": "②",
+      "reason": "②号连接板重量最大（21.36kg），且位于装配体的中心位置，作为基准件。",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.01.01.11509",
+          "component_drawing_number": "②",
+          "action": "将②号连接板作为基准件固定。"
+        },
+        {
+          "step": 2,
+          "component_code": "01.01.03.2718",
+          "component_drawing_number": "①",
+          "action": "将①号矩形管焊接到②号连接板底部。"
+        },
+        {
+          "step": 3,
+          "component_code": "01.01.03.2720",
+          "component_drawing_number": "⑧",
+          "action": "将⑧号矩形管焊接到②号连接板顶部。"
+        },
+        {
+          "step": 4,
+          "component_code": "01.01.03.2719",
+          "component_drawing_number": "⑥",
+          "action": "将⑥号矩形管焊接到①和⑧号矩形管之间。"
+        },
+        {
+          "step": 5,
+          "component_code": "01.01.01.16608",
+          "component_drawing_number": "⑦",
+          "action": "将⑦号封板焊接到框架上方。"
+        },
+        {
+          "step": 6,
+          "component_code": "01.05.0019 / 01.05.0018",
+          "component_drawing_number": "④ / ⑤",
+          "action": "将④号和⑤号挂件组件配装到框架两侧。"
+        },
+        {
+          "step": 7,
+          "component_code": "01.01.01.6589",
+          "component_drawing_number": "③",
+          "action": "将③号方形板-机加焊接到指定位置。"
+        },
+        {
+          "step": 8,
+          "component_code": "01.01.01.17678",
+          "component_drawing_number": "⑨",
+          "action": "将⑨号加强筋焊接到指定位置。"
+        }
+      ]
+    }
+  }
+}

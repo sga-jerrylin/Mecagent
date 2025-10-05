@@ -58,26 +58,28 @@ from utils.logger import (
 
 class GeminiAssemblyPipeline:
     """基于Gemini 2.5 Flash的6-Agent装配说明书生成工作流"""
-    
-    def __init__(self, api_key: str, output_dir: str = "pipeline_output"):
+
+    def __init__(self, api_key: str, output_dir: str = "pipeline_output", product_name: str = ""):
         """
         初始化工作流
-        
+
         Args:
             api_key: OpenRouter API密钥
             output_dir: 输出目录
+            product_name: 产品名称（用户输入）
         """
         self.api_key = api_key
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
+        self.product_name = product_name  # ✅ 保存产品名称
+
         # 设置API密钥
         os.environ["OPENROUTER_API_KEY"] = api_key
         
         # 初始化复用的Core组件
         self.file_classifier = FileClassifier()
         self.bom_matcher = HierarchicalBOMMatcher()
-        self.integrator = ManualIntegratorV2()
+        self.integrator = ManualIntegratorV2(product_name=product_name)  # ✅ 传入产品名称
         
         # 初始化6个Agent
         self.vision_agent = VisionPlanningAgent()
@@ -170,7 +172,7 @@ class GeminiAssemblyPipeline:
             self.current_step = 8
             final_manual = self._step8_integrate_manual(
                 planning_result, enhanced_component_results, enhanced_product_result,
-                matching_result
+                matching_result, image_hierarchy  # ✅ 传入图片层级结构
             )
             
             # 计算总耗时
@@ -496,6 +498,23 @@ class GeminiAssemblyPipeline:
 
             if not component_images:
                 print_warning(f"未找到组件{comp_code}的图片", indent=1)
+                # ✅ 标记为跳过状态，确保前端卡片能收到完成信号
+                self.log_agent_call(
+                    f"组件装配工 #{i}",
+                    f"跳过了工作，因为缺少组件图片",
+                    "skipped"
+                )
+                sys.stdout.flush()
+
+                # ✅ 添加一个跳过的结果
+                component_results.append({
+                    "success": False,
+                    "skipped": True,
+                    "component_code": comp_code,
+                    "component_name": comp_name,
+                    "assembly_order": comp_order,
+                    "reason": "缺少组件图片"
+                })
                 continue
 
             # ✅ 获取组件的BOM列表（从BOM数据中筛选）
@@ -506,10 +525,13 @@ class GeminiAssemblyPipeline:
                 if item.get("source_pdf", "").startswith(comp_pdf_name.replace(".pdf", ""))
             ]
 
-            # 获取组件的BOM-3D映射
+            # ✅ 获取组件的BOM-3D映射（宽表和旧格式都获取）
             bom_to_mesh = None
+            bom_mapping_table = None
+
             if comp_code in component_level_mappings:
                 bom_to_mesh = component_level_mappings[comp_code].get("bom_to_mesh", {})
+                bom_mapping_table = component_level_mappings[comp_code].get("bom_mapping_table", None)
 
             # 调用Agent 3
             print_info(f"   📖 他正在研究【{comp_name}】的图纸", indent=1)
@@ -520,7 +542,8 @@ class GeminiAssemblyPipeline:
                 component_plan=comp_plan,
                 component_images=component_images,
                 parts_list=component_bom,  # ✅ 传入组件的BOM列表
-                bom_to_mesh_mapping=bom_to_mesh
+                bom_to_mesh_mapping=bom_to_mesh,  # 兼容旧代码
+                bom_mapping_table=bom_mapping_table  # ✅ 新增：传入BOM映射宽表
             )
 
             if result["success"]:
@@ -557,6 +580,17 @@ class GeminiAssemblyPipeline:
 
             component_results.append(result)
 
+        # ✅ 输出步骤总结
+        total_components = len(component_plans)
+        successful_components = sum(1 for r in component_results if r.get("success", False))
+        skipped_components = sum(1 for r in component_results if r.get("skipped", False))
+
+        print_info(f"\n📊 组件装配工程师工作总结:", indent=1)
+        print_info(f"   总组件数: {total_components}", indent=1)
+        print_info(f"   成功处理: {successful_components}", indent=1)
+        print_info(f"   跳过: {skipped_components}", indent=1)
+        sys.stdout.flush()
+
         # 保存结果
         with open(self.output_dir / "step5_component_results.json", "w", encoding="utf-8") as f:
             json.dump(component_results, f, ensure_ascii=False, indent=2)
@@ -587,20 +621,19 @@ class GeminiAssemblyPipeline:
                 bom_data = json.load(f)
 
         # ✅ 筛选产品级BOM（从产品总图提取的零件）
-        # ⚠️  排除组件：产品级3D模型中，组件是整体，不会有单独的零件名称
+        # ✅ 修改：不排除组件，组件的零件也要参与匹配
         product_bom_all = [
             item for item in bom_data
             if item.get("source_pdf", "").startswith("产品总图")
         ]
 
-        # 筛选出真正的零件（排除组件）
-        product_bom = [
-            item for item in product_bom_all
-            if '组件' not in item.get('name', '')
-        ]
+        # ✅ 新策略：包含所有BOM项（组件+零件）
+        # 原因：产品总装步骤需要高亮组件内的零件，所以组件的零件也要参与匹配
+        product_bom = product_bom_all
 
-        # ✅ 获取产品级BOM-3D映射
+        # ✅ 获取产品级BOM-3D映射（宽表和旧格式都获取）
         product_bom_to_mesh = matching_result.get("product_level_mapping", {}).get("bom_to_mesh", {})
+        product_bom_mapping_table = matching_result.get("product_level_mapping", {}).get("bom_mapping_table", None)
 
         import sys
         print_info(f"📋 他正在研究产品总图", indent=1)
@@ -612,7 +645,8 @@ class GeminiAssemblyPipeline:
             product_images=product_images,
             components_list=planning_result.get("component_assembly_plan", []),
             product_bom=product_bom,  # ✅ 传入产品级BOM
-            bom_to_mesh_mapping=product_bom_to_mesh  # ✅ 传入BOM-3D映射
+            bom_to_mesh_mapping=product_bom_to_mesh,  # 兼容旧代码
+            bom_mapping_table=product_bom_mapping_table  # ✅ 新增：传入BOM映射宽表
         )
 
         if result["success"]:
@@ -771,7 +805,8 @@ class GeminiAssemblyPipeline:
         planning_result: Dict,
         component_results: List[Dict],
         product_result: Dict,
-        matching_result: Dict
+        matching_result: Dict,
+        image_hierarchy: Dict  # ✅ 新增参数
     ) -> Dict:
         """
         步骤8: 整合最终手册
@@ -797,6 +832,9 @@ class GeminiAssemblyPipeline:
         print_info("📝 他正在整理所有内容...", indent=1)
         sys.stdout.flush()
 
+        # ✅ 使用输出目录名作为task_id
+        task_id = self.output_dir.name
+
         final_manual = self.integrator.integrate(
             planning_result=planning_result,
             component_assembly_results=component_results,
@@ -804,7 +842,9 @@ class GeminiAssemblyPipeline:
             welding_result={},  # 焊接信息已经在步骤中了
             safety_faq_result={},  # 安全信息已经在步骤中了
             component_to_glb_mapping=component_to_glb_mapping,
-            bom_to_mesh_mapping=matching_result.get("product_level_mapping", {}).get("bom_to_mesh", {})
+            bom_to_mesh_mapping=matching_result.get("product_level_mapping", {}).get("bom_to_mesh", {}),
+            image_hierarchy=image_hierarchy,  # ✅ 传入图片层级结构
+            task_id=task_id  # ✅ 使用输出目录名作为task_id
         )
 
         print_success("📖 装配说明书编辑完成", indent=1)

@@ -66,9 +66,21 @@ class SafetyFAQAgent(BaseGeminiAgent):
                 if step.get("safety_warnings") and len(step.get("safety_warnings", [])) > 0
             )
 
+            # ✅ 计算覆盖率
+            coverage_rate = (safety_steps_count / len(enhanced_steps) * 100) if len(enhanced_steps) > 0 else 0
+
+            # ✅ 统计安全警告总数
+            total_warnings = 0
+            for step in enhanced_steps:
+                warnings = step.get("safety_warnings", [])
+                total_warnings += len(warnings)
+
             print(f"\n ✅ 安全分析完成:")
             print(f"   - 总步骤数: {len(enhanced_steps)}")
             print(f"   - 有安全警告的步骤: {safety_steps_count}")
+            print(f"   - 安全覆盖率: {coverage_rate:.1f}%")
+            if total_warnings > 0:
+                print(f"   - 总安全警告数: {total_warnings}")
             print(f"   - FAQ条目: {len(faq_items)}")
 
             return {
@@ -77,6 +89,8 @@ class SafetyFAQAgent(BaseGeminiAgent):
                 "faq_items": faq_items,
                 "total_steps": len(enhanced_steps),
                 "safety_steps_count": safety_steps_count,
+                "coverage_rate": coverage_rate,
+                "total_warnings": total_warnings,
                 "raw_result": parsed
             }
         else:

@@ -7,11 +7,10 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import App from './App.vue'
-import Home from './views/Home.vue'
+import Home from './views/HomeNew.vue'
 import Generator from './views/Generator.vue'
 import Viewer from './views/Viewer.vue'
 import ManualViewer from './views/ManualViewer.vue'
-import Worker from './views/Worker.vue'
 import Engineer from './views/Engineer.vue'
 import Settings from './views/Settings.vue'
 import GLBTest from './views/GLBTest.vue'
@@ -26,7 +25,6 @@ const routes = [
   { path: '/generator', name: 'Generator', component: Generator },
   { path: '/viewer/:id?', name: 'Viewer', component: Viewer, props: true },
   { path: '/manual/:taskId', name: 'ManualViewer', component: ManualViewer, props: true },
-  { path: '/worker', name: 'Worker', component: Worker },
   { path: '/engineer', name: 'Engineer', component: Engineer },
   { path: '/settings', name: 'Settings', component: Settings },
   { path: '/glb-test', name: 'GLBTest', component: GLBTest },

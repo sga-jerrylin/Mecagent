@@ -1,0 +1,83 @@
+[
+  {
+    "seq": "9",
+    "code": "01.01.01.17678",
+    "product_code": "CS-ST1070(42IN)-MP910-LDY100D-01-03-Q355B",
+    "name": "加强筋 2",
+    "quantity": 2,
+    "weight": 1.2,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "8",
+    "code": "01.01.03.2720",
+    "product_code": "JXG-T6*100*50-970-Q355B",
+    "name": "矩形管 1",
+    "quantity": 1,
+    "weight": 12.61,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "7",
+    "code": "01.01.01.16608",
+    "product_code": "S-SBE2130(84IN)-MP1220-01-01-Q355B",
+    "name": "封板 2",
+    "quantity": 2,
+    "weight": 5.12,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "6",
+    "code": "01.01.03.2719",
+    "product_code": "JXG-T6*100*50-335-Q355B",
+    "name": "矩形管 2",
+    "quantity": 2,
+    "weight": 8.71,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "5",
+    "code": "01.05.0019",
+    "product_code": "T-EURO-00",
+    "name": "左挂件虚拟组件 1",
+    "quantity": 1,
+    "weight": 6.53,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "4",
+    "code": "01.05.0018",
+    "product_code": "T-EURO-00",
+    "name": "右挂件虚拟组件 1",
+    "quantity": 1,
+    "weight": 6.53,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "3",
+    "code": "01.01.01.6589",
+    "product_code": "T-SPE-FL-01-SMS-01-Q235",
+    "name": "方形板-机加 4",
+    "quantity": 4,
+    "weight": 0.64,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "2",
+    "code": "01.01.01.11509",
+    "product_code": "T-SPV250-Z602-01-01-Q355B",
+    "name": "连接板 1",
+    "quantity": 1,
+    "weight": 21.36,
+    "source_pdf": "组件图1.pdf"
+  },
+  {
+    "seq": "1",
+    "code": "01.01.03.2718",
+    "product_code": "JXG-T6*100*50-1120-Q355B",
+    "name": "矩形管 1",
+    "quantity": 1,
+    "weight": 14.56,
+    "source_pdf": "组件图1.pdf"
+  }
+]

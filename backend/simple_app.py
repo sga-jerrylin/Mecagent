@@ -1,0 +1,534 @@
+# -*- coding: utf-8 -*-
+"""
+简化版后端测试
+"""
+
+import os
+import json
+import uuid
+import traceback
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List
+
+from fastapi import FastAPI, UploadFile, File, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, StreamingResponse
+from pydantic import BaseModel
+import uvicorn
+import asyncio
+
+# 加载环境变量
+from dotenv import load_dotenv
+load_dotenv()
+
+# 创建FastAPI应用
+app = FastAPI(
+    title="智能装配说明书生成系统",
+    description="基于AI的装配说明书自动生成系统",
+    version="1.0.0",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc"
+)
+
+# CORS中间件
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 数据模型
+class GenerationConfig(BaseModel):
+    projectName: str
+
+class GenerationRequest(BaseModel):
+    config: GenerationConfig
+    pdf_files: List[str]
+    model_files: List[str]
+
+# 全局变量
+tasks = {}
+upload_dir = Path("uploads")
+upload_dir.mkdir(exist_ok=True)
+
+@app.get("/")
+async def root():
+    return {"message": "智能装配说明书生成系统 API"}
+
+@app.post("/api/upload")
+async def upload_files(
+    pdf_files: List[UploadFile] = File(default=[]),
+    model_files: List[UploadFile] = File(default=[])
+):
+    """上传文件接口 - 支持PDF和3D模型文件"""
+    uploaded_files = {
+        "pdf_files": [],
+        "model_files": []
+    }
+
+    # 处理PDF文件
+    for file in pdf_files:
+        if file.filename:
+            file_path = upload_dir / file.filename
+            with open(file_path, "wb") as buffer:
+                content = await file.read()
+                buffer.write(content)
+
+            uploaded_files["pdf_files"].append({
+                "filename": file.filename,
+                "size": len(content),
+                "path": str(file_path)
+            })
+
+    # 处理3D模型文件
+    for file in model_files:
+        if file.filename:
+            file_path = upload_dir / file.filename
+            with open(file_path, "wb") as buffer:
+                content = await file.read()
+                buffer.write(content)
+
+            uploaded_files["model_files"].append({
+                "filename": file.filename,
+                "size": len(content),
+                "path": str(file_path)
+            })
+
+    return {
+        "success": True,
+        "message": "文件上传成功",
+        "data": uploaded_files
+    }
+
+@app.post("/api/generate")
+async def generate_manual(request: GenerationRequest):
+    """生成装配说明书接口 - 直接调用gemini_pipeline"""
+    task_id = str(uuid.uuid4())
+
+    try:
+        # 创建任务目录
+        task_dir = Path("output") / task_id
+        pdf_dir = task_dir / "pdf_files"
+        step_dir = task_dir / "step_files"
+
+        pdf_dir.mkdir(parents=True, exist_ok=True)
+        step_dir.mkdir(parents=True, exist_ok=True)
+
+        # 复制文件到任务目录
+        import shutil
+        for pdf_file in request.pdf_files:
+            src = upload_dir / pdf_file
+            dst = pdf_dir / pdf_file
+            if src.exists():
+                shutil.copy2(src, dst)
+
+        for step_file in request.model_files:
+            src = upload_dir / step_file
+            dst = step_dir / step_file
+            if src.exists():
+                shutil.copy2(src, dst)
+
+        # 创建任务记录
+        tasks[task_id] = {
+            "task_id": task_id,
+            "status": "processing",
+            "progress": 0,
+            "config": request.config.model_dump(),
+            "pdf_files": request.pdf_files,
+            "model_files": request.model_files,
+            "created_at": datetime.now(),
+            "updated_at": datetime.now()
+        }
+
+        # 直接调用gemini_pipeline（在后台线程中）
+        import threading
+
+        def run_pipeline():
+            try:
+                # 导入并运行pipeline
+                import sys
+                import os
+                sys.path.append(str(Path(__file__).parent.parent))
+                from core.gemini_pipeline import GeminiAssemblyPipeline
+                from utils.logger import set_current_task  # ✅ 导入日志任务设置函数
+
+                # ✅ 设置当前任务ID，让logger知道日志应该路由到哪个任务
+                set_current_task(task_id)
+
+                # 从环境变量读取API密钥
+                api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+                if not api_key:
+                    raise ValueError("未设置 GEMINI_API_KEY 或 GOOGLE_API_KEY 环境变量")
+
+                # ✅ 获取用户输入的产品名称
+                product_name = request.config.projectName
+
+                pipeline = GeminiAssemblyPipeline(
+                    api_key=api_key,
+                    output_dir=str(task_dir),
+                    product_name=product_name  # ✅ 传入产品名称
+                )
+
+                # 运行pipeline
+                result = pipeline.run(
+                    pdf_dir=str(pdf_dir),
+                    step_dir=str(step_dir)
+                )
+
+                # 更新任务状态
+                tasks[task_id]["status"] = "completed"
+                tasks[task_id]["progress"] = 100
+                tasks[task_id]["result"] = result
+                tasks[task_id]["updated_at"] = datetime.now()
+
+            except Exception as e:
+                print(f"Pipeline执行错误: {e}")
+                tasks[task_id]["status"] = "failed"
+                tasks[task_id]["error"] = str(e)
+                tasks[task_id]["updated_at"] = datetime.now()
+
+        # 在后台线程中运行
+        thread = threading.Thread(target=run_pipeline)
+        thread.start()
+
+        return {
+            "success": True,
+            "task_id": task_id,
+            "status": "processing",
+            "message": "任务已启动"
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"启动任务失败: {str(e)}")
+
+@app.get("/api/status/{task_id}")
+async def get_status(task_id: str):
+    """获取任务状态"""
+    if task_id not in tasks:
+        raise HTTPException(status_code=404, detail="任务不存在")
+
+    return tasks[task_id]
+
+@app.get("/api/stream/{task_id}")
+async def stream_task_logs(task_id: str):
+    """使用 Server-Sent Events 流式传输任务日志"""
+    async def event_generator():
+        """生成 SSE 事件"""
+        try:
+            # ✅ 导入日志获取函数
+            from utils.logger import get_task_logs
+
+            # 发送初始连接消息
+            yield f"data: {json.dumps({'type': 'connected', 'task_id': task_id, 'message': '已连接到任务流'})}\n\n"
+
+            last_status = None
+            last_log_count = 0
+
+            while True:
+                if task_id in tasks:
+                    task = tasks[task_id]
+                    current_status = task.get("status")
+
+                    # ✅ 获取新的日志并发送
+                    logs = get_task_logs(task_id)
+                    if len(logs) > last_log_count:
+                        new_logs = logs[last_log_count:]
+                        for log in new_logs:
+                            yield f"data: {json.dumps({'type': 'log', 'task_id': task_id, 'message': log})}\n\n"
+                        last_log_count = len(logs)
+
+                    # 发送进度更新
+                    yield f"data: {json.dumps({'type': 'progress', 'task_id': task_id, 'progress': task.get('progress', 0), 'status': current_status})}\n\n"
+
+                    # 如果状态变化，发送状态更新
+                    if current_status != last_status:
+                        yield f"data: {json.dumps({'type': 'status_change', 'task_id': task_id, 'status': current_status})}\n\n"
+                        last_status = current_status
+
+                    # 如果任务完成或失败，发送最终消息并结束
+                    if current_status in ["completed", "failed"]:
+                        yield f"data: {json.dumps({'type': 'complete', 'task_id': task_id, 'status': current_status, 'result': task.get('result'), 'error': task.get('error')})}\n\n"
+                        break
+
+                # 等待0.5秒再检查（更频繁地检查日志）
+                await asyncio.sleep(0.5)
+
+        except asyncio.CancelledError:
+            print(f"SSE 连接已取消: {task_id}")
+        except Exception as e:
+            print(f"SSE 错误: {e}")
+            yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )
+
+@app.websocket("/ws/task/{task_id}")
+async def websocket_endpoint(websocket: WebSocket, task_id: str):
+    """WebSocket连接"""
+    try:
+        await websocket.accept()
+        print(f"✅ WebSocket连接已建立: {task_id}")
+
+        # 发送欢迎消息
+        await websocket.send_json({
+            "type": "log",
+            "task_id": task_id,
+            "message": "👷 文件管理员AI员工加入工作，他开始分析上传的文件...",
+            "level": "info",
+            "timestamp": datetime.now().isoformat()
+        })
+
+        # 保持连接并监听任务状态变化
+        while True:
+            try:
+                # 检查任务状态
+                if task_id in tasks:
+                    task = tasks[task_id]
+
+                    # 发送进度更新
+                    await websocket.send_json({
+                        "type": "progress",
+                        "task_id": task_id,
+                        "progress": task.get("progress", 0),
+                        "status": task.get("status", "processing"),
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                    # 如果任务完成或失败，发送最终消息
+                    if task["status"] in ["completed", "failed"]:
+                        await websocket.send_json({
+                            "type": "complete",
+                            "task_id": task_id,
+                            "status": task["status"],
+                            "result": task.get("result"),
+                            "error": task.get("error"),
+                            "timestamp": datetime.now().isoformat()
+                        })
+                        break
+
+                # 等待1秒再检查
+                import asyncio
+                await asyncio.sleep(1)
+
+            except Exception as e:
+                print(f"WebSocket发送消息错误: {e}")
+                break
+
+    except WebSocketDisconnect:
+        print(f"❌ WebSocket连接断开: {task_id}")
+    except Exception as e:
+        print(f"❌ WebSocket错误: {e}")
+
+@app.get("/api/manuals")
+async def list_manuals():
+    """
+    获取所有已生成的装配说明书列表
+    ✅ 扫描output目录，返回所有包含assembly_manual.json的任务
+    """
+    try:
+        output_base = Path("output")
+        if not output_base.exists():
+            return {"manuals": [], "total": 0}
+
+        manuals = []
+
+        # 遍历output目录下的所有子目录
+        for task_dir in output_base.iterdir():
+            if not task_dir.is_dir():
+                continue
+
+            manual_path = task_dir / "assembly_manual.json"
+            if not manual_path.exists():
+                continue
+
+            try:
+                # 读取说明书元数据
+                with open(manual_path, 'r', encoding='utf-8') as f:
+                    manual_data = json.load(f)
+
+                # 获取文件修改时间
+                mtime = manual_path.stat().st_mtime
+                timestamp = datetime.fromtimestamp(mtime).isoformat()
+
+                # 提取关键信息
+                metadata = manual_data.get('metadata', {})
+                product_name = metadata.get('product_name', '未命名产品')
+
+                # 统计信息
+                assembly_steps = manual_data.get('assembly_steps', [])
+                step_count = len(assembly_steps)
+
+                manuals.append({
+                    'taskId': task_dir.name,
+                    'productName': product_name,
+                    'timestamp': timestamp,
+                    'stepCount': step_count,
+                    'status': 'completed'
+                })
+            except Exception as e:
+                print(f"⚠️ 读取任务 {task_dir.name} 失败: {e}")
+                continue
+
+        # 按时间倒序排序
+        manuals.sort(key=lambda x: x['timestamp'], reverse=True)
+
+        return {
+            "manuals": manuals,
+            "total": len(manuals)
+        }
+
+    except Exception as e:
+        print(f"❌ 获取说明书列表失败: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取说明书列表失败: {str(e)}")
+
+@app.get("/api/manual/{task_id}/glb/{glb_filename}")
+async def get_glb_file(task_id: str, glb_filename: str):
+    """
+    获取任务的GLB 3D模型文件
+    """
+    try:
+        output_dir = Path("output") / task_id
+
+        # ✅ 尝试多个可能的路径
+        possible_paths = [
+            output_dir / "glb_files" / glb_filename,  # 新版本：glb_files子目录
+            output_dir / glb_filename,                 # 旧版本：直接在任务目录
+        ]
+
+        glb_path = None
+        for path in possible_paths:
+            if path.exists():
+                glb_path = path
+                break
+
+        if not glb_path:
+            raise HTTPException(status_code=404, detail=f"GLB文件不存在: {glb_filename}")
+
+        print(f"✅ 找到GLB文件: {glb_path}")
+        return FileResponse(
+            path=str(glb_path),
+            media_type="model/gltf-binary",
+            filename=glb_filename
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 获取GLB文件失败: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取GLB文件失败: {str(e)}")
+
+@app.get("/api/manual/{task_id}/pdf_images/{image_path:path}")
+async def get_pdf_image(task_id: str, image_path: str):
+    """
+    获取任务的PDF图片文件（支持子目录）
+
+    例如：
+    - /api/manual/{task_id}/pdf_images/page_001.png
+    - /api/manual/{task_id}/pdf_images/1/page_001.png
+    """
+    try:
+        output_dir = Path("output") / task_id
+
+        # 构建完整路径（image_path可能包含子目录，如 "1/page_001.png"）
+        full_image_path = output_dir / "pdf_images" / image_path
+
+        if not full_image_path.exists():
+            # 尝试旧版本路径（直接在任务目录）
+            fallback_path = output_dir / image_path
+            if fallback_path.exists():
+                full_image_path = fallback_path
+            else:
+                raise HTTPException(status_code=404, detail=f"PDF图片不存在: {image_path}")
+
+        print(f"✅ 找到PDF图片: {full_image_path}")
+
+        # 提取文件名用于下载
+        filename = Path(image_path).name
+
+        return FileResponse(
+            path=str(full_image_path),
+            media_type="image/png",
+            filename=filename
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 获取PDF图片失败: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取PDF图片失败: {str(e)}")
+
+@app.get("/api/manual/{task_id}")
+async def get_manual(task_id: str):
+    """
+    获取生成的装配说明书数据
+    ✅ 修改：直接检查文件是否存在，不依赖内存中的任务记录
+    这样即使后端重启，只要文件存在就能查看
+    """
+    try:
+        # ✅ 直接检查输出目录（不依赖tasks字典）
+        output_dir = Path("output") / task_id
+
+        if not output_dir.exists():
+            raise HTTPException(
+                status_code=404,
+                detail=f"任务输出目录不存在。任务ID: {task_id}，可能任务未执行或已被删除。"
+            )
+
+        # ✅ 可选：如果任务在内存中，检查状态
+        if task_id in tasks:
+            task = tasks[task_id]
+            if task["status"] == "processing":
+                raise HTTPException(status_code=400, detail="任务正在处理中，请稍后再试")
+            elif task["status"] == "failed":
+                raise HTTPException(status_code=400, detail=f"任务失败: {task.get('error', '未知错误')}")
+
+        # 查找 assembly_manual.json
+        manual_path = output_dir / "assembly_manual.json"
+        if not manual_path.exists():
+            raise HTTPException(
+                status_code=404,
+                detail=f"装配说明书文件不存在。路径: {manual_path}"
+            )
+
+        # 读取并返回 JSON 数据
+        with open(manual_path, 'r', encoding='utf-8') as f:
+            manual_data = json.load(f)
+
+        # ✅ 替换所有的{task_id}占位符为实际的task_id
+        manual_json_str = json.dumps(manual_data, ensure_ascii=False)
+        manual_json_str = manual_json_str.replace("{task_id}", task_id)
+        manual_data = json.loads(manual_json_str)
+
+        print(f"✅ 成功加载说明书: {task_id}")
+        return manual_data
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"❌ 获取说明书失败: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取说明书失败: {str(e)}")
+
+if __name__ == "__main__":
+    print("🚀 启动简化版智能装配说明书生成系统...")
+    print("📖 API文档: http://localhost:8000/api/docs")
+    print("🌐 前端界面: http://localhost:3001")
+    
+    uvicorn.run(
+        "simple_app:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        log_level="info"
+    )

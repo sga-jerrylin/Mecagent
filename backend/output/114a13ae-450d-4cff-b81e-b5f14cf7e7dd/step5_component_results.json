@@ -1,0 +1,10 @@
+[
+  {
+    "success": false,
+    "skipped": true,
+    "component_code": "01.03.7000",
+    "component_name": "后座连接架组件",
+    "assembly_order": 1,
+    "reason": "缺少组件图片"
+  }
+]

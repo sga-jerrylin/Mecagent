@@ -230,11 +230,27 @@ class AIBOMMatcher:
 ## 输出格式
 返回JSON数组，每个元素包含：
 - geometry_name: 3D零件的原始名称（必须与输入完全一致）
-- matched_bom_code: 匹配到的BOM代号（如"01.09.2556"），如果无法匹配则为null
+- bom_code: 匹配到的BOM代号（如"01.09.2556"），如果无法匹配则为null
 - confidence: 匹配置信度（0-1）
-- reason: 匹配理由（简短说明）
+- reasoning: 匹配理由（简短说明）
 
 请只返回JSON数组，不要其他解释。
+
+示例输出：
+[
+  {
+    "geometry_name": "T-SPV1830-EURO-09-Q235",
+    "bom_code": "01.09.2556",
+    "confidence": 0.95,
+    "reasoning": "产品代号完全匹配"
+  },
+  {
+    "geometry_name": "M16x60-GB/T5782-2000",
+    "bom_code": "02.03.0088",
+    "confidence": 0.85,
+    "reasoning": "规格M16匹配"
+  }
+]
 """
         return prompt
     

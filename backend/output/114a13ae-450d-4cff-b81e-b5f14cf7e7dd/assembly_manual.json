@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "product_name": "",
+    "total_components": 1,
+    "base_component": {
+      "code": "01.03.7000",
+      "name": "后座连接架组件"
+    },
+    "generated_at": "2025-10-05 01:11:54"
+  },
+  "component_assembly": [],
+  "product_assembly": {
+    "chapter_type": "product_assembly",
+    "product_name": "",
+    "glb_file": "product_total.glb",
+    "steps": [],
+    "3d_display_mode": "component_level_explosion"
+  },
+  "welding_requirements": [],
+  "safety_and_faq": {
+    "safety_warnings": [],
+    "faq_items": []
+  },
+  "3d_resources": {
+    "bom_to_mesh": {},
+    "component_to_glb": {},
+    "product_glb": "product_total.glb"
+  }
+}

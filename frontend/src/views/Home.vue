@@ -1,160 +1,150 @@
 <template>
   <div class="home-page">
-    <!-- 英雄区域 -->
+    <!-- 粒子背景 -->
+    <div class="particles-bg" ref="particlesBg"></div>
+
+    <!-- 主要内容区域 -->
     <section class="hero-section">
       <div class="hero-content">
-        <div class="hero-text">
+        <!-- 左侧：主要信息 -->
+        <div class="hero-main">
+          <div class="system-status">
+            <div class="status-indicator" :class="{ active: systemActive }"></div>
+            <span class="status-text">{{ systemActive ? 'AI系统在线' : '系统离线' }}</span>
+          </div>
+
           <h1 class="hero-title">
-            <span class="gradient-text">智能装配说明书</span>
-            <br>
-            生成系统
+            <span class="title-line">
+              <span class="gradient-text creative-title">
+                <span class="char-animation" style="--delay: 0s">智</span>
+                <span class="char-animation" style="--delay: 0.1s">能</span>
+                <span class="char-animation" style="--delay: 0.2s">装</span>
+                <span class="char-animation" style="--delay: 0.3s">配</span>
+                <span class="char-animation" style="--delay: 0.4s">说</span>
+                <span class="char-animation" style="--delay: 0.5s">明</span>
+                <span class="char-animation" style="--delay: 0.6s">书</span>
+              </span>
+            </span>
+            <span class="title-line">
+              <span class="subtitle-text glow-text">AI Assembly Manual Generator</span>
+            </span>
           </h1>
-          <p class="hero-subtitle">
-            基于AI视觉识别和专家模型，自动将工程图纸和3D模型转换为工人友好的装配说明书
-          </p>
-          <div class="hero-features">
-            <div class="feature-item">
-              <el-icon><View /></el-icon>
-              <span>AI视觉解析</span>
-            </div>
-            <div class="feature-item">
-              <el-icon><Setting /></el-icon>
-              <span>专家工艺</span>
-            </div>
-            <div class="feature-item">
-              <el-icon><Monitor /></el-icon>
-              <span>3D交互</span>
-            </div>
-          </div>
-          <div class="hero-actions">
-            <el-button
-              type="primary"
-              size="large"
-              @click="$router.push('/generator')"
-              class="cta-button"
-            >
-              <el-icon><DocumentAdd /></el-icon>
-              开始生成
-            </el-button>
-            <el-button
-              size="large"
-              @click="$router.push('/settings')"
-              class="settings-button"
-            >
-              <el-icon><Setting /></el-icon>
-              API设置
-            </el-button>
-            <el-button
-              size="large"
-              @click="showDemo"
-              class="demo-button"
-            >
-              <el-icon><VideoPlay /></el-icon>
-              查看演示
-            </el-button>
-          </div>
-        </div>
-        
-        <div class="hero-visual">
-          <div class="visual-container">
-            <!-- 3D预览 -->
-            <div class="preview-3d">
-              <ThreeViewer 
-                :model-url="demoModelUrl"
-                :auto-rotate="true"
-                :show-grid="false"
-              />
-            </div>
-            
-            <!-- 浮动卡片 -->
-            <div class="floating-cards">
-              <div class="card card-1" :class="{ active: activeCard === 1 }">
-                <el-icon><Document /></el-icon>
-                <span>PDF解析</span>
-              </div>
-              <div class="card card-2" :class="{ active: activeCard === 2 }">
-                <el-icon><Cpu /></el-icon>
-                <span>AI分析</span>
-              </div>
-              <div class="card card-3" :class="{ active: activeCard === 3 }">
-                <el-icon><Monitor /></el-icon>
-                <span>3D渲染</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 功能特性 -->
-    <section class="features-section">
-      <div class="container">
-        <h2 class="section-title">核心功能</h2>
-        <div class="features-grid">
-          <div class="feature-card" v-for="feature in features" :key="feature.id">
-            <div class="feature-icon">
-              <el-icon :size="32"><component :is="feature.icon" /></el-icon>
-            </div>
-            <h3>{{ feature.title }}</h3>
-            <p>{{ feature.description }}</p>
-            <div class="feature-tags">
-              <el-tag 
-                v-for="tag in feature.tags" 
-                :key="tag" 
-                size="small"
-                effect="plain"
+          <div class="hero-description">
+            <p class="description-text">
+              基于多Agent协作的智能装配说明书生成系统
+            </p>
+            <p class="tech-specs">
+              🤖 6个AI智能体协同工作 | 📊 实时处理监控 | 🔧 专业级装配指导
+            </p>
+          </div>
+
+          <div class="action-panel">
+            <div class="primary-actions">
+              <el-button
+                type="primary"
+                size="large"
+                @click="$router.push('/generator')"
+                class="main-cta"
               >
-                {{ tag }}
-              </el-tag>
+                <el-icon><Upload /></el-icon>
+                开始生成说明书
+              </el-button>
+              <el-button
+                size="large"
+                @click="$router.push('/engineer')"
+                class="monitor-btn"
+              >
+                <el-icon><Monitor /></el-icon>
+                监控台
+              </el-button>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 工作流程 -->
-    <section class="workflow-section">
-      <div class="container">
-        <h2 class="section-title">工作流程</h2>
-        <div class="workflow-steps">
-          <div 
-            class="step" 
-            v-for="(step, index) in workflowSteps" 
-            :key="step.id"
-            :class="{ active: currentStep === index }"
-            @click="currentStep = index"
-          >
-            <div class="step-number">{{ index + 1 }}</div>
-            <div class="step-content">
-              <h4>{{ step.title }}</h4>
-              <p>{{ step.description }}</p>
-            </div>
-            <div class="step-arrow" v-if="index < workflowSteps.length - 1">
-              <el-icon><ArrowRight /></el-icon>
+            <div class="quick-actions">
+              <el-button
+                text
+                @click="$router.push('/viewer')"
+                class="quick-btn"
+              >
+                <el-icon><View /></el-icon>
+                查看历史
+              </el-button>
+              <el-button
+                text
+                @click="showSystemInfo"
+                class="quick-btn"
+              >
+                <el-icon><InfoFilled /></el-icon>
+                系统信息
+              </el-button>
             </div>
           </div>
         </div>
-        
-        <!-- 步骤详情 -->
-        <div class="step-detail" v-if="workflowSteps[currentStep]">
-          <div class="detail-content">
-            <h3>{{ workflowSteps[currentStep].title }}</h3>
-            <p>{{ workflowSteps[currentStep].detail }}</p>
-            <div class="detail-image">
-              <img :src="workflowSteps[currentStep].image" :alt="workflowSteps[currentStep].title">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 统计数据 -->
-    <section class="stats-section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item" v-for="stat in stats" :key="stat.label">
-            <div class="stat-number">{{ animatedStats[stat.label] }}</div>
-            <div class="stat-label">{{ stat.label }}</div>
+        <!-- 右侧：3D模型展示 -->
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>🔧 3D装配预览</h3>
+            <div class="model-controls">
+              <el-button
+                :type="autoRotate ? 'primary' : 'default'"
+                @click="toggleAutoRotate"
+                size="small"
+                class="rotate-btn"
+              >
+                {{ autoRotate ? '停止旋转' : '自动旋转' }}
+              </el-button>
+            </div>
+          </div>
+
+          <!-- 3D模型容器 -->
+          <div ref="threeContainer" class="three-container"></div>
+
+          <!-- Agent状态面板 -->
+          <div class="agents-panel">
+            <h4>🤖 AI智能体状态</h4>
+            <div class="agents-grid">
+              <div
+                v-for="agent in agentList"
+                :key="agent.id"
+                class="agent-card"
+                :class="{ active: agent.status === 'online' }"
+              >
+                <div class="agent-icon">{{ agent.icon }}</div>
+                <div class="agent-info">
+                  <div class="agent-name">{{ agent.name }}</div>
+                  <div class="agent-status">{{ agent.status === 'online' ? '在线' : '离线' }}</div>
+                </div>
+                <div class="agent-indicator" :class="agent.status"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 实时数据统计 -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">{{ metrics.totalProjects }}</div>
+              <div class="metric-label">总项目数</div>
+              <div class="metric-trend">+{{ metrics.todayProjects }} 今日</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">{{ metrics.activeAgents }}/6</div>
+              <div class="metric-label">活跃Agent</div>
+              <div class="metric-trend">{{ metrics.agentStatus }}</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">{{ metrics.avgProcessTime }}s</div>
+              <div class="metric-label">平均处理时间</div>
+              <div class="metric-trend">-12% 优化</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">{{ metrics.successRate }}%</div>
+              <div class="metric-label">成功率</div>
+              <div class="metric-trend">+5% 提升</div>
+            </div>
           </div>
         </div>
       </div>
@@ -163,516 +153,858 @@
 </template>
 
 <script setup lang="ts">
-import ThreeViewer from '@/components/ThreeViewer.vue'
-import { gsap } from 'gsap'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { Upload, Monitor, View, InfoFilled } from '@element-plus/icons-vue'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 // 响应式数据
-const activeCard = ref(1)
-const currentStep = ref(0)
-// ✅ 暂时禁用demo模型，避免加载不存在的文件导致错误
-const demoModelUrl = ref('')  // 原值: '/models/demo.glb'
+const systemActive = ref(true)
+const autoRotate = ref(true)
+const dataRefreshing = ref(false)
+const titleText = ref(null)
+const particlesBg = ref(null)
+const threeContainer = ref<HTMLElement>()
 
-const animatedStats = reactive({
-  '处理图纸': 0,
-  '生成说明书': 0,
-  '节省时间': 0,
-  '准确率': 0
+// 实时数据统计
+const metrics = reactive({
+  totalProjects: 156,
+  todayProjects: 8,
+  activeAgents: 6,
+  agentStatus: '全部在线',
+  avgProcessTime: 45,
+  successRate: 98.5
 })
 
-// 功能特性
-const features = [
+// 6个AI智能体信息
+const agentList = reactive([
   {
     id: 1,
-    icon: 'View',
-    title: 'AI视觉识别',
-    description: '基于Qwen3-VL模型，自动识别工程图纸中的BOM表格、技术要求、尺寸标注等信息',
-    tags: ['OCR', '表格识别', '符号识别']
+    name: '视觉规划智能体',
+    icon: '👁️',
+    status: 'online',
+    description: '分析图纸，规划装配顺序'
   },
   {
     id: 2,
-    icon: 'Setting',
-    title: '专家工艺生成',
-    description: '20年经验的装配焊接专家模型，生成符合工业标准的装配工艺规程',
-    tags: ['装配顺序', '焊接工艺', '质量控制']
+    name: 'BOM-3D匹配智能体',
+    icon: '🔗',
+    status: 'online',
+    description: '匹配BOM表与3D模型'
   },
   {
     id: 3,
-    icon: 'Monitor',
-    title: '3D交互展示',
-    description: '支持STL/STEP模型自动转换，提供爆炸视图、零件高亮等交互功能',
-    tags: ['Three.js', '爆炸视图', '实时渲染']
+    name: '组件装配智能体',
+    icon: '🔧',
+    status: 'online',
+    description: '生成组件装配步骤'
   },
   {
     id: 4,
-    icon: 'DocumentAdd',
-    title: '智能说明书',
-    description: '生成工人友好的HTML装配说明书，支持离线使用和移动设备',
-    tags: ['响应式', 'PWA', '离线可用']
-  }
-]
-
-// 工作流程
-const workflowSteps = [
-  {
-    id: 1,
-    title: '上传文件',
-    description: '上传PDF工程图纸和3D模型文件',
-    detail: '支持PDF格式的工程图纸和STL/STEP格式的3D模型文件。系统会自动验证文件格式和完整性。',
-    image: '/images/step1.png'
-  },
-  {
-    id: 2,
-    title: 'AI解析',
-    description: '视觉模型自动解析图纸内容',
-    detail: 'Qwen3-VL视觉模型会自动识别BOM表格、技术要求、尺寸标注、焊接符号等关键信息，准确率超过95%。',
-    image: '/images/step2.png'
-  },
-  {
-    id: 3,
-    title: '工艺生成',
-    description: '专家模型生成装配工艺规程',
-    detail: 'DeepSeek专家模型基于解析结果，结合20年工程经验，生成详细的装配步骤、质量要求和安全注意事项。',
-    image: '/images/step3.png'
-  },
-  {
-    id: 4,
-    title: '3D处理',
-    description: '自动转换和优化3D模型',
-    detail: '使用Blender自动将STEP/STL模型转换为Web友好的GLB格式，并进行模型优化和材质处理。',
-    image: '/images/step4.png'
+    name: '产品总装智能体',
+    icon: '🏗️',
+    status: 'online',
+    description: '生成产品总装步骤'
   },
   {
     id: 5,
-    title: '生成说明书',
-    description: '输出交互式装配说明书',
-    detail: '生成包含3D交互、步骤导航、质量检查的完整HTML装配说明书，工人可直接使用。',
-    image: '/images/step5.png'
+    name: '焊接工艺智能体',
+    icon: '⚡',
+    status: 'online',
+    description: '识别焊接符号，生成工艺要求'
+  },
+  {
+    id: 6,
+    name: '安全FAQ智能体',
+    icon: '🛡️',
+    status: 'online',
+    description: '生成安全警告和FAQ'
   }
-]
+])
 
-// 统计数据
-const stats = [
-  { label: '处理图纸', value: 1250 },
-  { label: '生成说明书', value: 890 },
-  { label: '节省时间', value: 75 },
-  { label: '准确率', value: 96 }
-]
+// Three.js 相关变量
+let scene: THREE.Scene
+let camera: THREE.PerspectiveCamera
+let renderer: THREE.WebGLRenderer
+let controls: OrbitControls
+let model: THREE.Group
+let animationId: number
 
-// 方法
-const showDemo = () => {
+// 初始化Three.js场景
+const initThreeJS = () => {
+  if (!threeContainer.value) return
+
+  // 创建场景
+  scene = new THREE.Scene()
+  scene.background = new THREE.Color(0x1a1a2e)
+
+  // 创建相机
+  camera = new THREE.PerspectiveCamera(
+    75,
+    threeContainer.value.clientWidth / threeContainer.value.clientHeight,
+    0.1,
+    1000
+  )
+  camera.position.set(8, 8, 8)
+
+  // 创建渲染器
+  renderer = new THREE.WebGLRenderer({ antialias: true })
+  renderer.setSize(threeContainer.value.clientWidth, threeContainer.value.clientHeight)
+  renderer.shadowMap.enabled = true
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  threeContainer.value.appendChild(renderer.domElement)
+
+  // 创建控制器
+  controls = new OrbitControls(camera, renderer.domElement)
+  controls.enableDamping = true
+  controls.dampingFactor = 0.05
+  controls.autoRotate = autoRotate.value
+  controls.autoRotateSpeed = 2
+
+  // 添加更强的光源
+  const ambientLight = new THREE.AmbientLight(0x404040, 0.8)
+  scene.add(ambientLight)
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5)
+  directionalLight.position.set(10, 10, 5)
+  directionalLight.castShadow = true
+  scene.add(directionalLight)
+
+  // 添加额外的点光源
+  const pointLight = new THREE.PointLight(0x60a5fa, 1, 100)
+  pointLight.position.set(5, 5, 5)
+  scene.add(pointLight)
+
+  // 加载GLB模型
+  loadModel()
+
+  // 开始渲染循环
+  animate()
+}
+
+// 加载GLB模型
+const loadModel = () => {
+  const loader = new GLTFLoader()
+
+  // 尝试加载现有的GLB文件
+  loader.load(
+    '/产品测试.glb',
+    (gltf) => {
+      model = gltf.scene
+
+      // 计算模型边界盒，自动调整大小
+      const box = new THREE.Box3().setFromObject(model)
+      const size = box.getSize(new THREE.Vector3())
+      const maxDim = Math.max(size.x, size.y, size.z)
+      const scale = 4 / maxDim // 让模型占据更大空间
+
+      model.scale.set(scale, scale, scale)
+      model.position.set(0, 0, 0)
+
+      // 遍历模型的所有材质，设置为明亮的颜色
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true
+          child.receiveShadow = true
+          if (child.material) {
+            // 设置明亮的蓝色调
+            child.material.color.setHex(0x60a5fa)
+            child.material.metalness = 0.3
+            child.material.roughness = 0.4
+            child.material.emissive.setHex(0x001122) // 轻微发光
+          }
+        }
+      })
+
+      scene.add(model)
+      console.log('GLB模型加载成功')
+    },
+    (progress) => {
+      console.log('Loading progress:', progress)
+    },
+    (error) => {
+      console.error('Error loading model:', error)
+      // 如果加载失败，创建一个简单的几何体作为替代
+      createFallbackModel()
+    }
+  )
+}
+
+// 创建备用模型
+const createFallbackModel = () => {
+  const geometry = new THREE.BoxGeometry(3, 3, 3)
+  const material = new THREE.MeshPhongMaterial({
+    color: 0x60a5fa,
+    transparent: true,
+    opacity: 0.9,
+    emissive: 0x001122
+  })
+  model = new THREE.Mesh(geometry, material)
+  model.castShadow = true
+  scene.add(model)
+}
+
+// 动画循环
+const animate = () => {
+  animationId = requestAnimationFrame(animate)
+
+  controls.update()
+
+  // 如果启用自动旋转且有模型（以自己为圆心旋转）
+  if (autoRotate.value && model) {
+    model.rotation.y += 0.008 // 稍微慢一点的旋转
+  }
+
+  renderer.render(scene, camera)
+}
+
+// 切换自动旋转
+const toggleAutoRotate = () => {
+  autoRotate.value = !autoRotate.value
+  if (controls) {
+    controls.autoRotate = autoRotate.value
+  }
+}
+
+// 窗口大小调整
+const handleResize = () => {
+  if (!threeContainer.value || !camera || !renderer) return
+
+  camera.aspect = threeContainer.value.clientWidth / threeContainer.value.clientHeight
+  camera.updateProjectionMatrix()
+  renderer.setSize(threeContainer.value.clientWidth, threeContainer.value.clientHeight)
+}
+
+// 系统信息
+const showSystemInfo = () => {
   ElMessageBox.alert(
-    '演示功能正在开发中，敬请期待！',
-    '演示',
+    `
+    系统版本: v2.0.0
+    AI引擎: Gemini 2.5 Flash
+    Agent数量: 6个智能体
+    支持格式: PDF, STEP, STL
+    运行状态: 正常运行
+    `,
+    '系统信息',
     {
-      confirmButtonText: '了解',
+      confirmButtonText: '确定',
       type: 'info'
     }
   )
 }
 
-// 动画效果
-const animateCards = () => {
-  const interval = setInterval(() => {
-    activeCard.value = activeCard.value === 3 ? 1 : activeCard.value + 1
-  }, 2000)
-  
-  onUnmounted(() => {
-    clearInterval(interval)
-  })
+// 打字机效果
+const typeWriter = (element: HTMLElement, text: string, speed: number = 100) => {
+  let i = 0
+  element.innerHTML = ''
+
+  const timer = setInterval(() => {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i)
+      i++
+    } else {
+      clearInterval(timer)
+    }
+  }, speed)
 }
 
-const animateStats = () => {
-  stats.forEach(stat => {
-    gsap.to(animatedStats, {
-      [stat.label]: stat.value,
-      duration: 2,
-      ease: 'power2.out'
+// 粒子背景动画
+const initParticles = () => {
+  if (!particlesBg.value) return
+
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  particlesBg.value.appendChild(canvas)
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  const particles = []
+  const particleCount = 50
+
+  // 创建粒子
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      size: Math.random() * 2 + 1
     })
-  })
+  }
+
+  // 动画循环
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    particles.forEach(particle => {
+      particle.x += particle.vx
+      particle.y += particle.vy
+
+      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1
+      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1
+
+      ctx.beginPath()
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+      ctx.fillStyle = 'rgba(64, 158, 255, 0.3)'
+      ctx.fill()
+    })
+
+    requestAnimationFrame(animate)
+  }
+
+  animate()
 }
 
-// 生命周期
-onMounted(() => {
-  animateCards()
-  
-  // 延迟启动统计动画
+// 数据刷新
+const refreshData = () => {
+  dataRefreshing.value = true
+
   setTimeout(() => {
-    animateStats()
+    // 模拟数据更新
+    metrics.totalProjects += Math.floor(Math.random() * 3)
+    metrics.cpu = Math.floor(Math.random() * 40) + 20
+    metrics.memory = Math.floor(Math.random() * 30) + 50
+    metrics.gpu = Math.floor(Math.random() * 50) + 10
+
+    dataRefreshing.value = false
   }, 1000)
+}
+
+// 组件挂载
+onMounted(() => {
+  // 打字机效果
+  if (titleText.value) {
+    typeWriter(titleText.value, '智能装配说明书', 150)
+  }
+
+  // 初始化粒子背景
+  initParticles()
+
+  // 初始化3D场景
+  initThreeJS()
+  window.addEventListener('resize', handleResize)
+
+  // 数据刷新定时器
+  const refreshInterval = setInterval(refreshData, 10000)
+
+  // 系统状态定时器
+  const statusInterval = setInterval(() => {
+    systemActive.value = Math.random() > 0.1 // 90%在线率
+  }, 5000)
+
+  onUnmounted(() => {
+    clearInterval(refreshInterval)
+    clearInterval(statusInterval)
+  })
+})
+
+// 组件卸载
+onUnmounted(() => {
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+  }
+  if (renderer && threeContainer.value) {
+    threeContainer.value.removeChild(renderer.domElement)
+  }
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 
 <style lang="scss" scoped>
 .home-page {
+  position: relative;
   min-height: 100vh;
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #2d3748 100%);
+  overflow: hidden;
+  transition: background 0.3s ease;
+
+  // 浅色模式
+  html:not(.dark) & {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  }
 }
 
+// 粒子背景
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// 主要内容
 .hero-section {
+  position: relative;
+  z-index: 2;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 24px;
-  
+  padding: 0 40px;
+
   .hero-content {
     max-width: 1400px;
     margin: 0 auto;
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 400px;
     gap: 60px;
     align-items: center;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
   }
-  
-  .hero-text {
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 24px;
-      
+}
+
+// 左侧主要内容
+.hero-main {
+  .system-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ef4444;
+      transition: all 0.3s ease;
+
+      &.active {
+        background: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        animation: pulse-green 2s infinite;
+      }
+    }
+
+    .status-text {
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  .hero-title {
+    margin-bottom: 32px;
+
+    .title-line {
+      display: block;
+
       .gradient-text {
-        background: linear-gradient(135deg, #409eff, #67c23a);
+        font-size: 4rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #60a5fa, #34d399, #fbbf24);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        line-height: 1.1;
+
+        @media (max-width: 768px) {
+          font-size: 2.5rem;
+        }
+
+        &.creative-title {
+          .char-animation {
+            display: inline-block;
+            animation: charBounce 2s ease-in-out infinite;
+            animation-delay: var(--delay);
+            transform-origin: center bottom;
+          }
+        }
+      }
+
+      .subtitle-text {
+        font-size: 1.2rem;
+        color: #64748b;
+        font-weight: 400;
+        margin-top: 8px;
+        display: block;
+
+        &.glow-text {
+          text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+          animation: textGlow 3s ease-in-out infinite alternate;
+        }
       }
     }
-    
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--el-text-color-secondary);
+  }
+
+  .hero-description {
+    margin-bottom: 48px;
+
+    .description-text {
+      font-size: 1.3rem;
+      color: #e2e8f0;
+      margin-bottom: 16px;
       line-height: 1.6;
-      margin-bottom: 32px;
     }
-    
-    .hero-features {
+
+    .tech-specs {
+      font-size: 1rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+  }
+
+  .action-panel {
+    .primary-actions {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+
+      .main-cta {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        border: none;
+        padding: 16px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        }
+      }
+
+      .monitor-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #e2e8f0;
+        padding: 16px 32px;
+        font-size: 16px;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    .quick-actions {
       display: flex;
       gap: 24px;
-      margin-bottom: 40px;
-      
-      .feature-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--el-color-primary);
-        font-weight: 500;
-      }
-    }
-    
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      
-      .cta-button {
-        padding: 16px 32px;
-        font-size: 16px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #409eff, #67c23a);
-        border: none;
-        
+
+      .quick-btn {
+        color: #94a3b8;
+        font-size: 14px;
+        transition: all 0.3s ease;
+
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(64, 158, 255, 0.3);
-        }
-      }
-      
-      .demo-button {
-        padding: 16px 32px;
-        font-size: 16px;
-        border-radius: 12px;
-        
-        &:hover {
-          transform: translateY(-2px);
-        }
-      }
-    }
-  }
-  
-  .hero-visual {
-    .visual-container {
-      position: relative;
-      height: 500px;
-      
-      .preview-3d {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      }
-      
-      .floating-cards {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-        
-        .card {
-          position: absolute;
-          background: rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(10px);
-          border-radius: 12px;
-          padding: 16px 20px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-          transition: all 0.3s ease;
-          opacity: 0.7;
-          
-          &.active {
-            opacity: 1;
-            transform: scale(1.05);
-          }
-          
-          &.card-1 {
-            top: 20px;
-            left: 20px;
-          }
-          
-          &.card-2 {
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-          }
-          
-          &.card-3 {
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-          }
+          color: #60a5fa;
         }
       }
     }
   }
 }
 
-.features-section {
-  padding: 100px 0;
-  background: var(--el-fill-color-lighter);
-  
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  
-  .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 60px;
-    color: var(--el-text-color-primary);
-  }
-  
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    
-    .feature-card {
-      background: var(--el-bg-color);
-      border-radius: 16px;
-      padding: 32px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      
-      &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-      }
-      
-      .feature-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #409eff, #67c23a);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 24px;
-        color: white;
-      }
-      
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-        color: var(--el-text-color-primary);
-      }
-      
-      p {
-        color: var(--el-text-color-secondary);
-        line-height: 1.6;
-        margin-bottom: 20px;
-      }
-      
-      .feature-tags {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-    }
-  }
-}
+// 右侧数据面板
+.data-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(20px);
 
-.workflow-section {
-  padding: 100px 0;
-  
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-  
-  .workflow-steps {
+  .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 60px;
-    
-    .step {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      
-      &.active {
-        .step-number {
-          background: var(--el-color-primary);
+    margin-bottom: 24px;
+
+    h3 {
+      margin: 0;
+      color: #e2e8f0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .model-controls {
+      .rotate-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #e2e8f0;
+
+        &.el-button--primary {
+          background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+          border: none;
           color: white;
         }
-        
-        .step-content h4 {
-          color: var(--el-color-primary);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.3);
         }
-      }
-      
-      .step-number {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--el-fill-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        margin-right: 16px;
-        transition: all 0.3s ease;
-      }
-      
-      .step-content {
-        h4 {
-          margin: 0 0 8px 0;
-          font-weight: 600;
-          transition: color 0.3s ease;
-        }
-        
-        p {
-          margin: 0;
-          color: var(--el-text-color-secondary);
-          font-size: 14px;
-        }
-      }
-      
-      .step-arrow {
-        margin: 0 20px;
-        color: var(--el-text-color-placeholder);
       }
     }
   }
-  
-  .step-detail {
-    background: var(--el-bg-color);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    
-    .detail-content {
+
+  .three-container {
+    height: 300px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 12px;
+    }
+  }
+
+  .agents-panel {
+    margin-bottom: 24px;
+
+    h4 {
+      margin: 0 0 16px 0;
+      color: #e2e8f0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+
+      .agent-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+
+        &.active {
+          border-color: rgba(16, 185, 129, 0.5);
+          background: rgba(16, 185, 129, 0.1);
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateY(-1px);
+        }
+
+        .agent-icon {
+          font-size: 18px;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(96, 165, 250, 0.2);
+          border-radius: 6px;
+        }
+
+        .agent-info {
+          flex: 1;
+
+          .agent-name {
+            font-size: 12px;
+            color: #e2e8f0;
+            font-weight: 500;
+            line-height: 1.2;
+          }
+
+          .agent-status {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 2px;
+          }
+        }
+
+        .agent-indicator {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #ef4444;
+
+          &.online {
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+            animation: pulse-green 2s infinite;
+          }
+        }
+      }
+    }
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
       text-align: center;
-      
-      h3 {
-        font-size: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #60a5fa;
+        margin-bottom: 8px;
+      }
+
+      .metric-label {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-bottom: 4px;
+      }
+
+      .metric-trend {
+        font-size: 11px;
+        color: #10b981;
+      }
+    }
+  }
+
+  .system-health {
+    h4 {
+      margin: 0 0 20px 0;
+      color: #e2e8f0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .health-bars {
+      .health-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         margin-bottom: 16px;
-        color: var(--el-text-color-primary);
-      }
-      
-      p {
-        color: var(--el-text-color-secondary);
-        line-height: 1.6;
-        margin-bottom: 32px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      .detail-image {
-        img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 12px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+        span:first-child {
+          width: 40px;
+          font-size: 12px;
+          color: #94a3b8;
+        }
+
+        .health-bar {
+          flex: 1;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+          overflow: hidden;
+
+          .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+          }
+        }
+
+        span:last-child {
+          width: 35px;
+          font-size: 12px;
+          color: #e2e8f0;
+          text-align: right;
         }
       }
     }
   }
 }
 
-.stats-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #409eff, #67c23a);
-  
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
+// 动画
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
   }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    
-    .stat-item {
-      text-align: center;
-      color: white;
-      
-      .stat-number {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      
-      .stat-label {
-        font-size: 1.1rem;
-        opacity: 0.9;
-      }
-    }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.8);
   }
+}
+
+@keyframes charBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-10px) scale(1.1);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.6);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 // 响应式设计
 @media (max-width: 768px) {
-  .hero-section .hero-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
+  .hero-section {
+    padding: 0 20px;
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
   }
-  
-  .hero-text .hero-title {
-    font-size: 2.5rem;
+
+  .data-panel {
+    padding: 24px;
+
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .three-container {
+      height: 200px;
+    }
   }
-  
-  .workflow-steps {
-    flex-direction: column;
-    gap: 20px;
-    
-    .step-arrow {
-      transform: rotate(90deg);
-      margin: 10px 0;
+
+  .action-panel {
+    .primary-actions {
+      flex-direction: column;
+      gap: 16px;
+
+      .main-cta,
+      .monitor-btn {
+        width: 100%;
+      }
+    }
+
+    .quick-actions {
+      justify-content: center;
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "product": {
+    "pdf": "output\\38f370af-68be-4268-832b-2741b6642000\\pdf_files\\产品总图.pdf",
+    "step": null,
+    "product_code": ""
+  },
+  "components": [
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 1,
+      "pdf": "output\\38f370af-68be-4268-832b-2741b6642000\\pdf_files\\组件图1.pdf",
+      "step": null
+    },
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 2,
+      "pdf": "output\\38f370af-68be-4268-832b-2741b6642000\\pdf_files\\组件图2.pdf",
+      "step": null
+    },
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 3,
+      "pdf": "output\\38f370af-68be-4268-832b-2741b6642000\\pdf_files\\组件图3.pdf",
+      "step": null
+    }
+  ]
+}

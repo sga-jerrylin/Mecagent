@@ -6,6 +6,8 @@
 
 import sys
 import io
+from typing import Optional
+from collections import deque
 
 # 设置标准输出为UTF-8编码
 if sys.platform == 'win32':
@@ -13,17 +15,54 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
+# ✅ 全局日志缓冲区（用于SSE传输）
+# 每个任务一个日志队列，最多保留1000条日志
+_log_buffers = {}
+_current_task_id = None
+
+
+def set_current_task(task_id: Optional[str]):
+    """设置当前任务ID，用于日志路由"""
+    global _current_task_id
+    _current_task_id = task_id
+    if task_id and task_id not in _log_buffers:
+        _log_buffers[task_id] = deque(maxlen=1000)
+
+
+def get_task_logs(task_id: str, clear: bool = False) -> list:
+    """获取任务的日志"""
+    if task_id not in _log_buffers:
+        return []
+    logs = list(_log_buffers[task_id])
+    if clear:
+        _log_buffers[task_id].clear()
+    return logs
+
+
+def _append_to_buffer(message: str):
+    """将日志添加到当前任务的缓冲区"""
+    if _current_task_id and _current_task_id in _log_buffers:
+        _log_buffers[_current_task_id].append(message)
+
 
 def safe_print(*args, **kwargs):
     """
     安全的打印函数，自动处理编码问题
-    
+
     Args:
         *args: 要打印的内容
         **kwargs: print函数的其他参数
     """
     try:
+        # 构建消息字符串
+        message = ' '.join(str(arg) for arg in args)
+
+        # 打印到控制台
         print(*args, **kwargs)
+
+        # ✅ 同时添加到日志缓冲区
+        _append_to_buffer(message)
+
     except UnicodeEncodeError:
         # 如果还是有编码错误，使用ASCII安全模式
         safe_args = []
@@ -32,7 +71,9 @@ def safe_print(*args, **kwargs):
                 safe_args.append(arg.encode('ascii', 'replace').decode('ascii'))
             else:
                 safe_args.append(str(arg))
+        message = ' '.join(safe_args)
         print(*safe_args, **kwargs)
+        _append_to_buffer(message)
 
 
 def print_section(title: str, char: str = "=", width: int = 80):

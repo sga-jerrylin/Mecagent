@@ -4,6 +4,7 @@
 fastapi>=0.104.0                 # 现代化API框架
 uvicorn>=0.24.0                  # ASGI服务器
 pydantic>=2.5.0                  # 数据验证库
+python-multipart>=0.0.6          # 文件上传支持
 
 # AI和机器学习
 openai>=1.0.0                    # OpenAI API客户端 (兼容DeepSeek)

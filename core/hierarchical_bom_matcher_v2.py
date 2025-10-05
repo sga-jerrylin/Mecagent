@@ -7,7 +7,8 @@
 from typing import Dict, List
 from pathlib import Path
 from processors.file_processor import ModelProcessor
-from core.bom_3d_matcher import match_bom_to_3d
+from core.bom_3d_matcher import match_bom_to_3d  # ✅ 使用完整版的匹配函数
+
 from utils.logger import print_step, print_substep, print_info, print_success, print_error, print_warning
 
 
@@ -114,8 +115,15 @@ class HierarchicalBOMMatcher:
 
                 code_bom_matched = code_summary.get('bom_matched_count', 0)
                 total_bom = code_summary.get('total_bom_count', 0)
+                bom_rate = code_summary.get('bom_matching_rate', 0)
 
-                print_success(f"代码匹配完成: BOM {code_bom_matched}/{total_bom} ({code_summary.get('matching_rate', 0)*100:.1f}%)", indent=1)
+                code_parts_matched = code_summary.get('matched_3d_count', 0)
+                total_parts = code_summary.get('total_3d_parts', 0)
+                parts_rate = code_summary.get('parts_matching_rate', 0)
+
+                print_success(f"代码匹配完成:", indent=1)
+                print_info(f"  (1) BOM匹配率: {code_bom_matched}/{total_bom} ({bom_rate*100:.1f}%)", indent=1)
+                print_info(f"  (2) 3D零件匹配率: {code_parts_matched}/{total_parts} ({parts_rate*100:.1f}%)", indent=1)
 
                 # 步骤2：AI跟进匹配未匹配的零件
                 ai_bom_to_mesh = {}
@@ -153,21 +161,34 @@ class HierarchicalBOMMatcher:
                 # 合并代码匹配和AI匹配的结果
                 final_bom_to_mesh = {**code_bom_to_mesh, **ai_bom_to_mesh}
                 total_bom_matched = len(final_bom_to_mesh)  # 最终匹配的BOM数量
-                final_matching_rate = total_bom_matched / total_bom if total_bom else 0
+                final_bom_rate = total_bom_matched / total_bom if total_bom else 0
 
-                print_success(f"总匹配率: BOM {total_bom_matched}/{total_bom} ({final_matching_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
+                # 计算最终的3D零件匹配数
+                final_parts_matched = sum(len(meshes) for meshes in final_bom_to_mesh.values())
+                final_parts_rate = final_parts_matched / total_parts if total_parts else 0
+
+                print_success(f"✅ 总匹配结果:", indent=1)
+                print_info(f"  (1) BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
+                print_info(f"  (2) 3D零件匹配率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
+
+                # ✅ 获取BOM映射宽表（从代码匹配结果中获取）
+                bom_mapping_table = code_matching_result.get("bom_mapping_table", [])
 
                 # 保存组件级别的映射
                 component_level_mappings[comp_code] = {
                     "component_name": comp_name,
                     "glb_file": str(glb_file),
                     "bom_to_mesh": final_bom_to_mesh,
+                    "bom_mapping_table": bom_mapping_table,  # ✅ 新增：保存BOM映射宽表
                     "total_bom_count": total_bom,
                     "bom_matched_count": total_bom_matched,
-                    "total_3d_parts": len(parts_list),
+                    "bom_matching_rate": final_bom_rate,  # ✅ BOM匹配率
+                    "total_3d_parts": total_parts,
+                    "matched_3d_count": final_parts_matched,  # ✅ 匹配的3D零件数
+                    "parts_matching_rate": final_parts_rate,  # ✅ 3D零件匹配率
                     "code_matched": code_bom_matched,
                     "ai_matched": ai_bom_matched_count,
-                    "matching_rate": final_matching_rate
+                    "matching_rate": final_bom_rate  # ✅ 兼容旧代码
                 }
 
                 glb_files[f"component_{comp_order}"] = str(glb_file)
@@ -207,20 +228,17 @@ class HierarchicalBOMMatcher:
                 print_success(f"GLB转换成功: {len(parts_list)} 个零件", indent=1)
                 
                 # ✅ 产品级别的BOM数据（从产品总图PDF提取的零件）
-                # ⚠️  排除组件：产品级3D模型中，组件是整体，不会有单独的零件名称
+                # ✅ 修改：不排除组件，组件的零件也要参与匹配
                 product_bom_all = [
                     item for item in bom_data
                     if item.get("source_pdf", "").startswith("产品总图")
                 ]
 
-                # 筛选出真正的零件（排除组件）
-                product_bom = [
-                    item for item in product_bom_all
-                    if '组件' not in item.get('name', '')
-                ]
+                # ✅ 新策略：包含所有BOM项（组件+零件）
+                # 原因：产品总装步骤需要高亮组件内的零件，所以组件的零件也要参与匹配
+                product_bom = product_bom_all
 
-                component_count = len(product_bom_all) - len(product_bom)
-                print(f"  产品BOM: {len(product_bom)} 个零件（排除了 {component_count} 个组件）", flush=True)
+                print(f"  产品BOM: {len(product_bom)} 个项（包含组件和零件）", flush=True)
                 
                 # BOM-3D匹配（双匹配策略：代码匹配 + AI跟进匹配）
                 # 步骤1：代码匹配
@@ -232,8 +250,15 @@ class HierarchicalBOMMatcher:
 
                 code_bom_matched = code_summary.get('bom_matched_count', 0)
                 total_bom = code_summary.get('total_bom_count', 0)
+                bom_rate = code_summary.get('bom_matching_rate', 0)
 
-                print_success(f"代码匹配完成: BOM {code_bom_matched}/{total_bom} ({code_summary.get('matching_rate', 0)*100:.1f}%)", indent=1)
+                code_parts_matched = code_summary.get('matched_3d_count', 0)
+                total_parts = code_summary.get('total_3d_parts', 0)
+                parts_rate = code_summary.get('parts_matching_rate', 0)
+
+                print_success(f"代码匹配完成:", indent=1)
+                print_info(f"  (1) BOM匹配率: {code_bom_matched}/{total_bom} ({bom_rate*100:.1f}%)", indent=1)
+                print_info(f"  (2) 3D零件匹配率: {code_parts_matched}/{total_parts} ({parts_rate*100:.1f}%)", indent=1)
 
                 # 步骤2：AI跟进匹配未匹配的零件
                 ai_bom_to_mesh = {}
@@ -271,19 +296,32 @@ class HierarchicalBOMMatcher:
                 # 合并代码匹配和AI匹配的结果
                 final_bom_to_mesh = {**code_bom_to_mesh, **ai_bom_to_mesh}
                 total_bom_matched = len(final_bom_to_mesh)  # 最终匹配的BOM数量
-                final_matching_rate = total_bom_matched / total_bom if total_bom else 0
+                final_bom_rate = total_bom_matched / total_bom if total_bom else 0
 
-                print_success(f"总匹配率: BOM {total_bom_matched}/{total_bom} ({final_matching_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
+                # 计算最终的3D零件匹配数
+                final_parts_matched = sum(len(meshes) for meshes in final_bom_to_mesh.values())
+                final_parts_rate = final_parts_matched / total_parts if total_parts else 0
+
+                print_success(f"✅ 总匹配结果:", indent=1)
+                print_info(f"  (1) BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
+                print_info(f"  (2) 3D零件匹配率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
+
+                # ✅ 获取BOM映射宽表（从代码匹配结果中获取）
+                product_bom_mapping_table = code_matching_result.get("bom_mapping_table", [])
 
                 product_level_mapping = {
                     "glb_file": str(product_glb),
                     "bom_to_mesh": final_bom_to_mesh,
+                    "bom_mapping_table": product_bom_mapping_table,  # ✅ 新增：保存BOM映射宽表
                     "total_bom_count": total_bom,
                     "bom_matched_count": total_bom_matched,
-                    "total_3d_parts": len(parts_list),
+                    "bom_matching_rate": final_bom_rate,  # ✅ BOM匹配率
+                    "total_3d_parts": total_parts,
+                    "matched_3d_count": final_parts_matched,  # ✅ 匹配的3D零件数
+                    "parts_matching_rate": final_parts_rate,  # ✅ 3D零件匹配率
                     "code_matched": code_bom_matched,
                     "ai_matched": ai_bom_matched_count,
-                    "matching_rate": final_matching_rate
+                    "matching_rate": final_bom_rate  # ✅ 兼容旧代码
                 }
 
                 glb_files["product_total"] = str(product_glb)

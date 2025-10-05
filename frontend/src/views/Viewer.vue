@@ -1,271 +1,198 @@
 <template>
   <div class="viewer-page">
-    <div class="viewer-layout">
-      <!-- 左侧面板 -->
-      <div class="left-panel" :class="{ collapsed: leftPanelCollapsed }">
-        <div class="panel-header">
-          <h3>装配说明书</h3>
-          <el-button 
-            text 
-            :icon="leftPanelCollapsed ? 'Expand' : 'Fold'"
-            @click="leftPanelCollapsed = !leftPanelCollapsed"
+    <!-- 项目历史选择对话框 -->
+    <el-dialog
+      v-model="showProjectDialog"
+      title="选择项目"
+      width="80%"
+      :before-close="handleClose"
+      class="project-dialog"
+    >
+      <div class="dialog-content">
+        <!-- 搜索和筛选 -->
+        <div class="search-section">
+          <el-input
+            v-model="searchQuery"
+            placeholder="搜索项目名称或描述..."
+            :prefix-icon="Search"
+            clearable
+            class="search-input"
+          />
+          <el-select
+            v-model="statusFilter"
+            placeholder="状态筛选"
+            clearable
+            class="status-filter"
+          >
+            <el-option label="全部" value="" />
+            <el-option label="已完成" value="completed" />
+            <el-option label="处理中" value="processing" />
+            <el-option label="失败" value="failed" />
+          </el-select>
+          <el-date-picker
+            v-model="dateRange"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            class="date-picker"
           />
         </div>
         
-        <div class="panel-content" v-show="!leftPanelCollapsed">
-          <!-- 项目信息 -->
-          <div class="info-section">
-            <h4>项目信息</h4>
-            <div class="info-item">
-              <label>项目名称:</label>
-              <span>{{ projectInfo.name }}</span>
-            </div>
-            <div class="info-item">
-              <label>图号:</label>
-              <span>{{ projectInfo.drawingNumber }}</span>
-            </div>
-            <div class="info-item">
-              <label>版本:</label>
-              <span>{{ projectInfo.version }}</span>
-            </div>
-            <div class="info-item">
-              <label>生成时间:</label>
-              <span>{{ projectInfo.createdAt }}</span>
-            </div>
-          </div>
-          
-          <!-- 装配步骤导航 -->
-          <div class="steps-section">
-            <h4>装配步骤</h4>
-            <div class="steps-nav">
-              <div 
-                v-for="(step, index) in assemblySteps" 
-                :key="step.id"
-                class="step-nav-item"
-                :class="{ 
-                  active: currentStepIndex === index,
-                  completed: index < currentStepIndex 
-                }"
-                @click="goToStep(index)"
-              >
-                <div class="step-number">{{ index + 1 }}</div>
-                <div class="step-info">
-                  <div class="step-title">{{ step.title }}</div>
-                  <div class="step-duration">{{ step.estimatedTime }}</div>
+        <!-- 项目列表 -->
+        <div class="projects-section">
+          <el-table
+            :data="filteredProjects"
+            @row-click="selectProject"
+            highlight-current-row
+            class="projects-table"
+            v-loading="loading"
+          >
+            <el-table-column prop="projectName" label="项目名称" min-width="200">
+              <template #default="{ row }">
+                <div class="project-name">
+                  <el-icon class="project-icon"><Document /></el-icon>
+                  <span>{{ row.projectName }}</span>
                 </div>
-                <div class="step-status">
-                  <el-icon v-if="index < currentStepIndex"><Check /></el-icon>
-                  <el-icon v-else-if="currentStepIndex === index"><Right /></el-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- BOM清单 -->
-          <div class="bom-section">
-            <h4>零件清单 (BOM)</h4>
-            <div class="bom-list">
-              <div 
-                v-for="item in bomItems" 
-                :key="item.id"
-                class="bom-item"
-                :class="{ highlighted: highlightedPart === item.id }"
-                @click="highlightPart(item.id)"
-              >
-                <div class="bom-number">{{ item.number }}</div>
-                <div class="bom-info">
-                  <div class="bom-name">{{ item.name }}</div>
-                  <div class="bom-spec">{{ item.specification }}</div>
-                </div>
-                <div class="bom-qty">{{ item.quantity }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 主要内容区域 -->
-      <div class="main-content">
-        <!-- 顶部工具栏 -->
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <el-button-group>
-              <el-button 
-                :disabled="currentStepIndex === 0"
-                @click="previousStep"
-                :icon="ArrowLeft"
-              >
-                上一步
-              </el-button>
-              <el-button 
-                :disabled="currentStepIndex === assemblySteps.length - 1"
-                @click="nextStep"
-                :icon="ArrowRight"
-              >
-                下一步
-              </el-button>
-            </el-button-group>
+              </template>
+            </el-table-column>
             
-            <el-divider direction="vertical" />
+            <el-table-column prop="status" label="状态" width="120">
+              <template #default="{ row }">
+                <el-tag
+                  :type="getStatusType(row.status)"
+                  size="small"
+                >
+                  {{ getStatusText(row.status) }}
+                </el-tag>
+              </template>
+            </el-table-column>
             
-            <el-button-group>
-              <el-button @click="resetView" :icon="Refresh">重置视图</el-button>
-              <el-button @click="toggleFullscreen" :icon="FullScreen">全屏</el-button>
-            </el-button-group>
-          </div>
+            <el-table-column prop="createdAt" label="生成时间" width="180">
+              <template #default="{ row }">
+                {{ formatDate(row.createdAt) }}
+              </template>
+            </el-table-column>
+            
+            <el-table-column prop="fileCount" label="文件数量" width="120">
+              <template #default="{ row }">
+                <span class="file-count">
+                  {{ row.pdfCount }}PDF + {{ row.stepCount }}STEP
+                </span>
+              </template>
+            </el-table-column>
+            
+            <el-table-column prop="processingTime" label="处理时间" width="120">
+              <template #default="{ row }">
+                {{ row.processingTime }}s
+              </template>
+            </el-table-column>
+            
+            <el-table-column label="操作" width="200">
+              <template #default="{ row }">
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click.stop="viewProject(row)"
+                  :disabled="row.status !== 'completed'"
+                >
+                  <el-icon><View /></el-icon>
+                  查看说明书
+                </el-button>
+                <el-button
+                  type="danger"
+                  size="small"
+                  @click.stop="deleteProject(row)"
+                  plain
+                >
+                  <el-icon><Delete /></el-icon>
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
           
-          <div class="toolbar-center">
-            <div class="step-indicator">
-              <span class="current-step">步骤 {{ currentStepIndex + 1 }}</span>
-              <span class="total-steps">/ {{ assemblySteps.length }}</span>
-            </div>
-            <el-progress 
-              :percentage="stepProgress" 
-              :show-text="false"
-              :stroke-width="4"
+          <!-- 分页 -->
+          <div class="pagination-section">
+            <el-pagination
+              v-model:current-page="currentPage"
+              v-model:page-size="pageSize"
+              :page-sizes="[10, 20, 50, 100]"
+              :total="totalProjects"
+              layout="total, sizes, prev, pager, next, jumper"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
             />
           </div>
-          
-          <div class="toolbar-right">
-            <el-button @click="exportPDF" :icon="Download">导出PDF</el-button>
-            <el-button @click="printManual" :icon="Printer">打印</el-button>
-          </div>
-        </div>
-
-        <!-- 3D查看器 -->
-        <div class="viewer-container">
-          <ThreeViewer 
-            :model-url="currentModelUrl"
-            :auto-rotate="false"
-            :show-grid="true"
-            ref="threeViewerRef"
-          />
-          
-          <!-- 步骤覆盖层 -->
-          <div class="step-overlay">
-            <div class="step-content">
-              <h2>{{ currentStep?.title }}</h2>
-              <div class="step-description" v-html="currentStep?.description"></div>
-              
-              <!-- 关键点标注 -->
-              <div class="key-points" v-if="currentStep?.keyPoints?.length">
-                <h4>关键要点:</h4>
-                <ul>
-                  <li v-for="point in currentStep.keyPoints" :key="point">
-                    {{ point }}
-                  </li>
-                </ul>
-              </div>
-              
-              <!-- 质量检查 -->
-              <div class="quality-check" v-if="currentStep?.qualityCheck">
-                <h4>质量检查:</h4>
-                <div class="check-items">
-                  <div 
-                    v-for="check in currentStep.qualityCheck" 
-                    :key="check.id"
-                    class="check-item"
-                  >
-                    <el-checkbox v-model="check.completed">
-                      {{ check.description }}
-                    </el-checkbox>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- 工具和材料 -->
-              <div class="tools-materials" v-if="currentStep?.tools?.length || currentStep?.materials?.length">
-                <div class="tools" v-if="currentStep?.tools?.length">
-                  <h4>所需工具:</h4>
-                  <div class="tool-list">
-                    <el-tag 
-                      v-for="tool in currentStep.tools" 
-                      :key="tool"
-                      class="tool-tag"
-                    >
-                      {{ tool }}
-                    </el-tag>
-                  </div>
-                </div>
-                
-                <div class="materials" v-if="currentStep?.materials?.length">
-                  <h4>所需材料:</h4>
-                  <div class="material-list">
-                    <div 
-                      v-for="material in currentStep.materials" 
-                      :key="material.id"
-                      class="material-item"
-                    >
-                      <span class="material-name">{{ material.name }}</span>
-                      <span class="material-qty">{{ material.quantity }}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 右侧面板 -->
-      <div class="right-panel" :class="{ collapsed: rightPanelCollapsed }">
-        <div class="panel-header">
-          <h3>辅助信息</h3>
-          <el-button 
-            text 
-            :icon="rightPanelCollapsed ? 'Expand' : 'Fold'"
-            @click="rightPanelCollapsed = !rightPanelCollapsed"
-          />
         </div>
         
-        <div class="panel-content" v-show="!rightPanelCollapsed">
-          <!-- 技术图纸 -->
-          <div class="drawings-section">
-            <h4>技术图纸</h4>
-            <div class="drawing-thumbnails">
-              <div 
-                v-for="drawing in technicalDrawings" 
-                :key="drawing.id"
-                class="drawing-thumb"
-                @click="showDrawing(drawing)"
-              >
-                <img :src="drawing.thumbnail" :alt="drawing.name">
-                <span class="drawing-name">{{ drawing.name }}</span>
-              </div>
-            </div>
+        <!-- 空状态 -->
+        <div v-if="filteredProjects.length === 0 && !loading" class="empty-state">
+          <el-empty description="暂无项目数据">
+            <el-button type="primary" @click="$router.push('/generator')">
+              创建新项目
+            </el-button>
+          </el-empty>
+        </div>
+      </div>
+      
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="handleClose">取消</el-button>
+          <el-button type="primary" @click="$router.push('/generator')">
+            <el-icon><Plus /></el-icon>
+            新建项目
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
+    
+    <!-- 项目详情预览 -->
+    <div v-if="!showProjectDialog" class="project-preview">
+      <div class="preview-header">
+        <h2>项目历史</h2>
+        <el-button type="primary" @click="showProjectDialog = true">
+          <el-icon><FolderOpened /></el-icon>
+          选择项目
+        </el-button>
+      </div>
+      
+      <div class="preview-content">
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-value">{{ projectStats.total }}</div>
+            <div class="stat-label">总项目数</div>
           </div>
-          
-          <!-- 注意事项 -->
-          <div class="notes-section">
-            <h4>安全注意事项</h4>
-            <div class="safety-notes">
-              <div 
-                v-for="note in safetyNotes" 
-                :key="note.id"
-                class="safety-note"
-                :class="note.level"
-              >
-                <el-icon class="note-icon">
-                  <component :is="getNoteIcon(note.level)" />
-                </el-icon>
-                <span class="note-text">{{ note.text }}</span>
-              </div>
-            </div>
+          <div class="stat-card">
+            <div class="stat-value">{{ projectStats.completed }}</div>
+            <div class="stat-label">已完成</div>
           </div>
-          
-          <!-- 常见问题 -->
-          <div class="faq-section">
-            <h4>常见问题</h4>
-            <el-collapse v-model="activeFAQ">
-              <el-collapse-item 
-                v-for="faq in frequentQuestions" 
-                :key="faq.id"
-                :title="faq.question"
-                :name="faq.id"
-              >
-                <p>{{ faq.answer }}</p>
-              </el-collapse-item>
-            </el-collapse>
+          <div class="stat-card">
+            <div class="stat-value">{{ projectStats.processing }}</div>
+            <div class="stat-label">处理中</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">{{ projectStats.avgTime }}s</div>
+            <div class="stat-label">平均处理时间</div>
+          </div>
+        </div>
+        
+        <div class="recent-projects">
+          <h3>最近项目</h3>
+          <div class="recent-list">
+            <div
+              v-for="project in recentProjects"
+              :key="project.id"
+              class="recent-item"
+              @click="viewProject(project)"
+            >
+              <div class="recent-info">
+                <div class="recent-name">{{ project.projectName }}</div>
+                <div class="recent-time">{{ formatDate(project.createdAt) }}</div>
+              </div>
+              <el-tag :type="getStatusType(project.status)" size="small">
+                {{ getStatusText(project.status) }}
+              </el-tag>
+            </div>
           </div>
         </div>
       </div>
@@ -274,676 +201,496 @@
 </template>
 
 <script setup lang="ts">
-import ThreeViewer from '@/components/ThreeViewer.vue'
+import { ref, reactive, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import {
+  Search, Document, View, Delete, Plus, FolderOpened
+} from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import axios from 'axios'
 
-interface Props {
-  id?: string
-}
-
-const props = defineProps<Props>()
+const router = useRouter()
 
 // 响应式数据
-const leftPanelCollapsed = ref(false)
-const rightPanelCollapsed = ref(false)
-const currentStepIndex = ref(0)
-const highlightedPart = ref('')
-const activeFAQ = ref([])
+const showProjectDialog = ref(true)
+const loading = ref(false)
+const searchQuery = ref('')
+const statusFilter = ref('')
+const dateRange = ref([])
+const currentPage = ref(1)
+const pageSize = ref(20)
 
-const threeViewerRef = ref()
+// ✅ 从 localStorage 加载项目数据
+const projects = ref<any[]>([])
 
-// 项目信息
-const projectInfo = reactive({
-  name: 'V型推雪板EURO连接器',
-  drawingNumber: 'T-SPV1830-EURO',
-  version: 'V1.0',
-  createdAt: '2024-01-15 14:30:25'
+// 加载历史记录
+const loadHistory = async () => {
+  try {
+    // ✅ 优先从后端API获取所有已生成的说明书
+    try {
+      const response = await axios.get('/api/manuals')
+      const manuals = response.data.manuals || []
+
+      console.log(`✅ 从后端加载了 ${manuals.length} 个说明书`)
+
+      // 转换为项目格式
+      projects.value = manuals.map((item: any) => ({
+        id: item.taskId,
+        projectName: item.productName || '未命名产品',
+        status: item.status || 'completed',
+        createdAt: item.timestamp,
+        pdfCount: 0,
+        stepCount: item.stepCount || 0,
+        processingTime: 0,
+        description: `装配步骤: ${item.stepCount || 0} 个`
+      }))
+
+      return
+    } catch (apiError) {
+      console.warn('从后端加载失败，尝试从localStorage加载:', apiError)
+    }
+
+    // ✅ 如果后端API失败，回退到localStorage
+    const historyKey = 'assembly_manual_history'
+    const stored = localStorage.getItem(historyKey)
+
+    if (stored) {
+      const history = JSON.parse(stored)
+
+      // 转换为项目格式
+      projects.value = history.map((item: any) => ({
+        id: item.taskId,
+        projectName: item.productName || '未命名产品',
+        status: 'completed',
+        createdAt: item.timestamp,
+        pdfCount: item.data?.pdf_files?.length || 0,
+        stepCount: item.data?.assembly_steps?.length || 0,
+        processingTime: 0,
+        description: `装配步骤: ${item.data?.assembly_steps?.length || 0} 个`,
+        data: item.data
+      }))
+
+      console.log(`✅ 从localStorage加载了 ${projects.value.length} 个说明书`)
+    }
+  } catch (e) {
+    console.error('加载历史记录失败:', e)
+    ElMessage.warning('加载历史记录失败')
+  }
+}
+
+// 项目统计
+const projectStats = computed(() => {
+  const total = projects.value.length
+  const completed = projects.value.filter(p => p.status === 'completed').length
+  const processing = projects.value.filter(p => p.status === 'processing').length
+  const avgTime = Math.round(
+    projects.value
+      .filter(p => p.processingTime > 0)
+      .reduce((sum, p) => sum + p.processingTime, 0) / 
+    projects.value.filter(p => p.processingTime > 0).length || 0
+  )
+  
+  return { total, completed, processing, avgTime }
 })
 
-// 装配步骤
-const assemblySteps = ref([
-  {
-    id: 1,
-    title: '准备工作',
-    description: '检查所有零件和工具，确保工作环境安全',
-    estimatedTime: '5分钟',
-    keyPoints: ['检查零件完整性', '准备必要工具', '清理工作台面'],
-    tools: ['扳手', '螺丝刀', '测量工具'],
-    materials: [
-      { id: 1, name: '主体框架', quantity: '1件' },
-      { id: 2, name: '连接螺栓', quantity: '4件' }
-    ],
-    qualityCheck: [
-      { id: 1, description: '零件无损伤', completed: false },
-      { id: 2, description: '工具齐全', completed: false }
-    ]
-  },
-  {
-    id: 2,
-    title: '主体安装',
-    description: '将主体框架固定到指定位置',
-    estimatedTime: '15分钟',
-    keyPoints: ['确保水平度', '预紧螺栓', '检查间隙'],
-    tools: ['扳手', '水平仪'],
-    materials: [
-      { id: 3, name: '固定螺栓', quantity: '8件' }
-    ],
-    qualityCheck: [
-      { id: 3, description: '水平度符合要求', completed: false },
-      { id: 4, description: '螺栓扭矩达标', completed: false }
-    ]
+// 最近项目
+const recentProjects = computed(() => {
+  return projects.value
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5)
+})
+
+// 过滤后的项目
+const filteredProjects = computed(() => {
+  let filtered = projects.value
+  
+  // 搜索过滤
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase()
+    filtered = filtered.filter(p => 
+      p.projectName.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query)
+    )
   }
-  // 更多步骤...
-])
+  
+  // 状态过滤
+  if (statusFilter.value) {
+    filtered = filtered.filter(p => p.status === statusFilter.value)
+  }
+  
+  // 日期过滤
+  if (dateRange.value && dateRange.value.length === 2) {
+    const [start, end] = dateRange.value
+    filtered = filtered.filter(p => {
+      const date = new Date(p.createdAt)
+      return date >= start && date <= end
+    })
+  }
+  
+  return filtered
+})
 
-// BOM清单
-const bomItems = ref([
-  { id: 1, number: '001', name: '主体框架', specification: '钢材 Q235', quantity: 1 },
-  { id: 2, number: '002', name: '连接板', specification: '钢板 10mm', quantity: 2 },
-  { id: 3, number: '003', name: '螺栓', specification: 'M12×50', quantity: 8 }
-])
-
-// 技术图纸
-const technicalDrawings = ref([
-  { id: 1, name: '总装图', thumbnail: '/images/drawing1-thumb.jpg', url: '/images/drawing1.jpg' },
-  { id: 2, name: '零件图', thumbnail: '/images/drawing2-thumb.jpg', url: '/images/drawing2.jpg' }
-])
-
-// 安全注意事项
-const safetyNotes = ref([
-  { id: 1, level: 'danger', text: '操作前必须佩戴安全帽和防护眼镜' },
-  { id: 2, level: 'warning', text: '注意螺栓扭矩，避免过紧或过松' },
-  { id: 3, level: 'info', text: '保持工作区域整洁，避免零件丢失' }
-])
-
-// 常见问题
-const frequentQuestions = ref([
-  { id: 1, question: '螺栓扭矩标准是多少？', answer: 'M12螺栓扭矩为85-95 N·m' },
-  { id: 2, question: '如何检查水平度？', answer: '使用水平仪，误差不超过0.5mm/m' }
-])
-
-// 计算属性
-const currentStep = computed(() => assemblySteps.value[currentStepIndex.value])
-const stepProgress = computed(() => ((currentStepIndex.value + 1) / assemblySteps.value.length) * 100)
-const currentModelUrl = computed(() => `/models/step-${currentStepIndex.value + 1}.glb`)
+const totalProjects = computed(() => filteredProjects.value.length)
 
 // 方法
-const goToStep = (index: number) => {
-  currentStepIndex.value = index
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleString('zh-CN')
 }
 
-const nextStep = () => {
-  if (currentStepIndex.value < assemblySteps.value.length - 1) {
-    currentStepIndex.value++
+const getStatusType = (status: string) => {
+  const types = {
+    completed: 'success',
+    processing: 'warning', 
+    failed: 'danger'
+  }
+  return types[status] || 'info'
+}
+
+const getStatusText = (status: string) => {
+  const texts = {
+    completed: '已完成',
+    processing: '处理中',
+    failed: '失败'
+  }
+  return texts[status] || '未知'
+}
+
+const selectProject = (row: any) => {
+  if (row.status === 'completed') {
+    viewProject(row)
   }
 }
 
-const previousStep = () => {
-  if (currentStepIndex.value > 0) {
-    currentStepIndex.value--
+const viewProject = async (project: any) => {
+  if (project.status !== 'completed') {
+    ElMessage.warning('项目尚未完成，无法查看说明书')
+    return
+  }
+
+  // ✅ 如果项目数据已经存在，直接使用
+  if (project.data) {
+    localStorage.setItem('current_manual', JSON.stringify(project.data))
+    router.push(`/manual/${project.id}`)
+    return
+  }
+
+  // ✅ 如果没有数据，从后端API获取
+  try {
+    const loading = ElMessage({
+      message: '正在加载说明书数据...',
+      type: 'info',
+      duration: 0
+    })
+
+    const response = await axios.get(`/api/manual/${project.id}`)
+    const manualData = response.data
+
+    loading.close()
+
+    // 保存到 localStorage
+    localStorage.setItem('current_manual', JSON.stringify(manualData))
+
+    // 跳转到装配说明书页面
+    router.push(`/manual/${project.id}`)
+  } catch (error: any) {
+    console.error('加载说明书失败:', error)
+    ElMessage.error('加载说明书失败: ' + (error.response?.data?.detail || error.message))
   }
 }
 
-const highlightPart = (partId: string) => {
-  highlightedPart.value = partId
-  // 在3D查看器中高亮对应零件
-  if (threeViewerRef.value) {
-    threeViewerRef.value.selectPart(partId)
-  }
-}
-
-const resetView = () => {
-  if (threeViewerRef.value) {
-    threeViewerRef.value.resetView()
-  }
-}
-
-const toggleFullscreen = () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen()
-  } else {
-    document.documentElement.requestFullscreen()
-  }
-}
-
-const showDrawing = (drawing: any) => {
-  // 显示技术图纸
-  ElMessageBox.alert(
-    `<img src="${drawing.url}" style="max-width: 100%; height: auto;">`,
-    drawing.name,
-    {
-      dangerouslyUseHTMLString: true,
-      customClass: 'drawing-dialog'
-    }
-  )
-}
-
-const getNoteIcon = (level: string) => {
-  switch (level) {
-    case 'danger': return 'Warning'
-    case 'warning': return 'InfoFilled'
-    case 'info': return 'QuestionFilled'
-    default: return 'InfoFilled'
-  }
-}
-
-const exportPDF = () => {
-  ElMessage.info('PDF导出功能开发中...')
-}
-
-const printManual = () => {
-  window.print()
-}
-
-// 键盘快捷键
-const handleKeydown = (event: KeyboardEvent) => {
-  switch (event.key) {
-    case 'ArrowLeft':
-      event.preventDefault()
-      previousStep()
-      break
-    case 'ArrowRight':
-      event.preventDefault()
-      nextStep()
-      break
-    case 'Escape':
-      if (document.fullscreenElement) {
-        document.exitFullscreen()
+const deleteProject = async (project: any) => {
+  try {
+    await ElMessageBox.confirm(
+      `确定要删除项目"${project.projectName}"吗？此操作不可恢复。`,
+      '确认删除',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       }
-      break
+    )
+
+    // ✅ 从 localStorage 删除项目
+    const historyKey = 'assembly_manual_history'
+    const stored = localStorage.getItem(historyKey)
+
+    if (stored) {
+      let history = JSON.parse(stored)
+      history = history.filter((item: any) => item.taskId !== project.id)
+      localStorage.setItem(historyKey, JSON.stringify(history))
+    }
+
+    // 从列表中删除
+    const index = projects.value.findIndex(p => p.id === project.id)
+    if (index > -1) {
+      projects.value.splice(index, 1)
+      ElMessage.success('项目删除成功')
+    }
+  } catch {
+    // 用户取消删除
   }
+}
+
+const handleClose = () => {
+  router.push('/')
+}
+
+const handleSizeChange = (size: number) => {
+  pageSize.value = size
+  currentPage.value = 1
+}
+
+const handleCurrentChange = (page: number) => {
+  currentPage.value = page
 }
 
 // 生命周期
 onMounted(() => {
-  document.addEventListener('keydown', handleKeydown)
-})
+  loading.value = true
 
-onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeydown)
-})
+  // ✅ 加载历史记录
+  loadHistory()
 
-// 监听路由参数
-watch(() => props.id, (newId) => {
-  if (newId) {
-    // 根据ID加载对应的装配说明书数据
-    console.log('Loading manual for ID:', newId)
-  }
-}, { immediate: true })
+  setTimeout(() => {
+    loading.value = false
+  }, 500)
+})
 </script>
 
 <style lang="scss" scoped>
 .viewer-page {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  background: var(--el-bg-color-page);
+  padding: 24px;
 }
 
-.viewer-layout {
-  display: grid;
-  grid-template-columns: 300px 1fr 300px;
-  height: 100vh;
-  
-  .left-panel,
-  .right-panel {
-    background: var(--el-bg-color);
-    border-right: 1px solid var(--el-border-color-light);
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    
-    &.collapsed {
-      width: 60px;
-      min-width: 60px;
-      
-      .panel-content {
-        display: none;
-      }
-    }
-    
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px;
-      border-bottom: 1px solid var(--el-border-color-light);
-      
-      h3 {
-        margin: 0;
-        font-size: 16px;
+// 项目对话框
+.project-dialog {
+  :deep(.el-dialog) {
+    border-radius: 16px;
+
+    .el-dialog__header {
+      background: var(--el-fill-color-lighter);
+      border-radius: 16px 16px 0 0;
+      padding: 24px;
+
+      .el-dialog__title {
+        font-size: 1.5rem;
         font-weight: 600;
       }
     }
-    
-    .panel-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
+
+    .el-dialog__body {
+      padding: 0;
     }
-  }
-  
-  .right-panel {
-    border-right: none;
-    border-left: 1px solid var(--el-border-color-light);
+
+    .el-dialog__footer {
+      background: var(--el-fill-color-lighter);
+      border-radius: 0 0 16px 16px;
+      padding: 20px 24px;
+    }
   }
 }
 
-.main-content {
+.dialog-content {
+  padding: 24px;
+}
+
+// 搜索区域
+.search-section {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  
-  .toolbar {
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+
+  .search-input {
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .status-filter {
+    width: 120px;
+  }
+
+  .date-picker {
+    width: 240px;
+  }
+}
+
+// 项目表格
+.projects-section {
+  .projects-table {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    .project-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .project-icon {
+        color: var(--el-color-primary);
+      }
+    }
+
+    .file-count {
+      font-size: 12px;
+      color: var(--el-text-color-secondary);
+    }
+  }
+
+  .pagination-section {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// 空状态
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+// 项目预览
+.project-preview {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .preview-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    background: var(--el-bg-color);
-    border-bottom: 1px solid var(--el-border-color-light);
-    
-    .toolbar-center {
-      flex: 1;
-      max-width: 300px;
-      margin: 0 20px;
-      
-      .step-indicator {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        font-size: 14px;
-        
-        .current-step {
-          font-weight: 600;
+    margin-bottom: 32px;
+
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--el-text-color-primary);
+    }
+  }
+
+  .preview-content {
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+
+      .stat-card {
+        background: var(--el-bg-color);
+        border-radius: 16px;
+        padding: 32px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-value {
+          font-size: 2.5rem;
+          font-weight: 700;
           color: var(--el-color-primary);
+          margin-bottom: 8px;
         }
-        
-        .total-steps {
+
+        .stat-label {
           color: var(--el-text-color-secondary);
+          font-size: 14px;
         }
       }
     }
-  }
-  
-  .viewer-container {
-    flex: 1;
-    position: relative;
-    
-    .step-overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 20px;
-      color: white;
-      max-height: 40%;
-      overflow-y: auto;
-      
-      .step-content {
-        h2 {
-          margin: 0 0 16px 0;
-          font-size: 1.5rem;
-          color: #00d4ff;
-        }
-        
-        .step-description {
-          margin-bottom: 20px;
-          line-height: 1.6;
-        }
-        
-        .key-points,
-        .quality-check,
-        .tools-materials {
-          margin-bottom: 20px;
-          
-          h4 {
-            margin: 0 0 12px 0;
-            color: #00d4ff;
-            font-size: 14px;
+
+    .recent-projects {
+      background: var(--el-bg-color);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+      h3 {
+        margin: 0 0 24px 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--el-text-color-primary);
+      }
+
+      .recent-list {
+        .recent-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px;
+          border-radius: 12px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: var(--el-fill-color-lighter);
           }
-          
-          ul {
-            margin: 0;
-            padding-left: 20px;
-            
-            li {
-              margin-bottom: 8px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .recent-info {
+            .recent-name {
+              font-weight: 500;
+              color: var(--el-text-color-primary);
+              margin-bottom: 4px;
             }
-          }
-        }
-        
-        .check-items {
-          .check-item {
-            margin-bottom: 8px;
-          }
-        }
-        
-        .tools-materials {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
-          
-          .tool-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            
-            .tool-tag {
-              background: rgba(64, 158, 255, 0.2);
-              border: 1px solid rgba(64, 158, 255, 0.5);
-            }
-          }
-          
-          .material-list {
-            .material-item {
-              display: flex;
-              justify-content: space-between;
-              margin-bottom: 8px;
-              padding: 4px 8px;
-              background: rgba(255, 255, 255, 0.1);
-              border-radius: 4px;
+
+            .recent-time {
+              font-size: 12px;
+              color: var(--el-text-color-secondary);
             }
           }
         }
       }
-    }
-  }
-}
-
-// 左侧面板样式
-.info-section,
-.steps-section,
-.bom-section {
-  margin-bottom: 24px;
-  
-  h4 {
-    margin: 0 0 12px 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--el-text-color-primary);
-  }
-}
-
-.info-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 12px;
-  
-  label {
-    color: var(--el-text-color-secondary);
-  }
-  
-  span {
-    color: var(--el-text-color-primary);
-    font-weight: 500;
-  }
-}
-
-.steps-nav {
-  .step-nav-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: 8px;
-    
-    &:hover {
-      background: var(--el-fill-color-light);
-    }
-    
-    &.active {
-      background: var(--el-color-primary-light-9);
-      border: 1px solid var(--el-color-primary-light-7);
-    }
-    
-    &.completed {
-      .step-number {
-        background: var(--el-color-success);
-        color: white;
-      }
-    }
-    
-    .step-number {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--el-fill-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-    
-    .step-info {
-      flex: 1;
-      
-      .step-title {
-        font-size: 13px;
-        font-weight: 500;
-        margin-bottom: 2px;
-      }
-      
-      .step-duration {
-        font-size: 11px;
-        color: var(--el-text-color-secondary);
-      }
-    }
-    
-    .step-status {
-      color: var(--el-color-primary);
-    }
-  }
-}
-
-.bom-list {
-  .bom-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: 4px;
-    
-    &:hover {
-      background: var(--el-fill-color-light);
-    }
-    
-    &.highlighted {
-      background: var(--el-color-warning-light-9);
-      border: 1px solid var(--el-color-warning-light-7);
-    }
-    
-    .bom-number {
-      width: 30px;
-      height: 30px;
-      border-radius: 4px;
-      background: var(--el-color-primary-light-9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--el-color-primary);
-      flex-shrink: 0;
-    }
-    
-    .bom-info {
-      flex: 1;
-      
-      .bom-name {
-        font-size: 12px;
-        font-weight: 500;
-        margin-bottom: 2px;
-      }
-      
-      .bom-spec {
-        font-size: 10px;
-        color: var(--el-text-color-secondary);
-      }
-    }
-    
-    .bom-qty {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--el-color-primary);
-    }
-  }
-}
-
-// 右侧面板样式
-.drawings-section,
-.notes-section,
-.faq-section {
-  margin-bottom: 24px;
-  
-  h4 {
-    margin: 0 0 12px 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--el-text-color-primary);
-  }
-}
-
-.drawing-thumbnails {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  
-  .drawing-thumb {
-    cursor: pointer;
-    border-radius: 6px;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    
-    &:hover {
-      transform: scale(1.05);
-    }
-    
-    img {
-      width: 100%;
-      height: 60px;
-      object-fit: cover;
-    }
-    
-    .drawing-name {
-      display: block;
-      padding: 4px 8px;
-      background: var(--el-fill-color-light);
-      font-size: 11px;
-      text-align: center;
-    }
-  }
-}
-
-.safety-notes {
-  .safety-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    
-    &.danger {
-      background: var(--el-color-danger-light-9);
-      color: var(--el-color-danger);
-    }
-    
-    &.warning {
-      background: var(--el-color-warning-light-9);
-      color: var(--el-color-warning);
-    }
-    
-    &.info {
-      background: var(--el-color-info-light-9);
-      color: var(--el-color-info);
-    }
-    
-    .note-icon {
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    
-    .note-text {
-      font-size: 12px;
-      line-height: 1.4;
     }
   }
 }
 
 // 响应式设计
-@media (max-width: 1200px) {
-  .viewer-layout {
-    grid-template-columns: 250px 1fr 250px;
-  }
-}
-
 @media (max-width: 768px) {
-  .viewer-layout {
-    grid-template-columns: 1fr;
-    
-    .left-panel,
-    .right-panel {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      z-index: 1000;
-      width: 300px;
-      transform: translateX(-100%);
-      
-      &:not(.collapsed) {
-        transform: translateX(0);
-      }
-    }
-    
-    .right-panel {
-      right: 0;
-      transform: translateX(100%);
-      
-      &:not(.collapsed) {
-        transform: translateX(0);
-      }
-    }
-  }
-  
-  .toolbar {
-    .toolbar-left,
-    .toolbar-right {
-      display: none;
-    }
-    
-    .toolbar-center {
-      margin: 0;
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+
+    .search-input,
+    .status-filter,
+    .date-picker {
+      width: 100%;
       max-width: none;
     }
   }
-}
 
-// 打印样式
-@media print {
-  .toolbar,
-  .left-panel,
-  .right-panel {
-    display: none !important;
+  .preview-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+    }
   }
-  
-  .viewer-layout {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .step-overlay {
-    position: static !important;
-    background: white !important;
-    color: black !important;
-    backdrop-filter: none !important;
+
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    .stat-card {
+      padding: 20px;
+
+      .stat-value {
+        font-size: 2rem;
+      }
+    }
   }
 }
 </style>

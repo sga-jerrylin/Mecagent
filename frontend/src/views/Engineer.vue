@@ -3,270 +3,326 @@
     <div class="container">
       <!-- 页面标题 -->
       <div class="page-header">
-        <h1>工程师工作台</h1>
-        <p>上传图纸和3D模型，AI解析后进行人工复核，最终分发给工人</p>
+        <h1>🔬 AI Agent 协作监控台</h1>
+        <p>实时监控多Agent协作过程，查看后端日志和Agent对话</p>
       </div>
 
-      <!-- 工作流程指示器 -->
-      <div class="workflow-steps">
-        <el-steps :active="currentStep" align-center>
-          <el-step title="上传文件" icon="Upload" />
-          <el-step title="AI解析" icon="Cpu" />
-          <el-step title="人工复核" icon="User" />
-          <el-step title="质量检查" icon="CircleCheck" />
-          <el-step title="分发工人" icon="Share" />
-        </el-steps>
-      </div>
-
-      <!-- 步骤内容 -->
-      <div class="step-content">
-        <!-- 步骤1: 文件上传 -->
-        <div v-show="currentStep === 0" class="step-panel">
-          <FileUploadSection 
-            @files-uploaded="handleFilesUploaded"
-            @upload-progress="handleUploadProgress"
-          />
-        </div>
-
-        <!-- 步骤2: AI解析中 -->
-        <div v-show="currentStep === 1" class="step-panel">
-          <AIProcessingSection 
-            :task-id="currentTaskId"
-            @processing-complete="handleProcessingComplete"
-            @processing-error="handleProcessingError"
-          />
-        </div>
-
-        <!-- 步骤3: 人工复核 -->
-        <div v-show="currentStep === 2" class="step-panel">
-          <HumanReviewSection 
-            :candidate-facts="candidateFacts"
-            :assembly-spec="assemblySpec"
-            @review-complete="handleReviewComplete"
-            @request-revision="handleRequestRevision"
-          />
-        </div>
-
-        <!-- 步骤4: 质量检查 -->
-        <div v-show="currentStep === 3" class="step-panel">
-          <QualityCheckSection 
-            :assembly-spec="reviewedAssemblySpec"
-            @quality-approved="handleQualityApproved"
-            @quality-rejected="handleQualityRejected"
-          />
-        </div>
-
-        <!-- 步骤5: 分发工人 -->
-        <div v-show="currentStep === 4" class="step-panel">
-          <WorkerDistributionSection 
-            :manual-id="finalManualId"
-            @distribution-complete="handleDistributionComplete"
-          />
+      <!-- Agent状态总览 -->
+      <div class="agent-overview">
+        <div class="overview-cards">
+          <div
+            v-for="agent in agents"
+            :key="agent.id"
+            class="agent-overview-card"
+            :class="{ active: agent.status === 'working' }"
+          >
+            <div class="agent-avatar">{{ agent.icon }}</div>
+            <div class="agent-info">
+              <h3>{{ agent.name }}</h3>
+              <p class="agent-status" :class="agent.status">{{ getStatusText(agent.status) }}</p>
+              <div class="agent-progress">
+                <el-progress
+                  :percentage="agent.progress"
+                  :status="agent.status === 'error' ? 'exception' : 'success'"
+                  :stroke-width="4"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 项目历史 -->
-      <div class="project-history" v-if="projectHistory.length > 0">
-        <h3>项目历史</h3>
-        <el-table :data="projectHistory" style="width: 100%">
-          <el-table-column prop="name" label="项目名称" />
-          <el-table-column prop="status" label="状态">
-            <template #default="scope">
-              <el-tag :type="getStatusType(scope.row.status)">
-                {{ getStatusText(scope.row.status) }}
-              </el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column prop="created_at" label="创建时间" />
-          <el-table-column prop="assigned_workers" label="分配工人数" />
-          <el-table-column label="操作">
-            <template #default="scope">
-              <el-button size="small" @click="viewProject(scope.row)">查看</el-button>
-              <el-button size="small" @click="editProject(scope.row)">编辑</el-button>
-              <el-button 
-                size="small" 
-                type="primary" 
-                @click="redistributeProject(scope.row)"
-                v-if="scope.row.status === 'approved'"
-              >
-                重新分发
+      <!-- 主要内容区域 -->
+      <div class="main-content">
+        <!-- 左侧：Agent对话流 -->
+        <div class="dialog-section">
+          <div class="section-header">
+            <h2>🤖 Agent 协作对话</h2>
+            <div class="dialog-controls">
+              <el-button size="small" @click="clearDialogs">清空日志</el-button>
+              <el-button size="small" @click="toggleAutoScroll">
+                {{ autoScroll ? '停止滚动' : '自动滚动' }}
               </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+            </div>
+          </div>
+
+          <div class="dialog-container" ref="dialogContainer">
+            <div
+              v-for="dialog in agentDialogs"
+              :key="dialog.id"
+              class="dialog-message"
+              :class="[dialog.type, dialog.status]"
+            >
+              <div class="dialog-avatar">{{ dialog.agentIcon }}</div>
+              <div class="dialog-content">
+                <div class="dialog-header">
+                  <span class="agent-name">{{ dialog.agent }}</span>
+                  <span class="dialog-time">{{ dialog.timestamp }}</span>
+                </div>
+                <div class="dialog-text" :class="{ typing: dialog.status === 'typing' }">
+                  {{ dialog.message }}
+                  <span v-if="dialog.status === 'typing'" class="typing-cursor">▋</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 空状态 -->
+            <div v-if="agentDialogs.length === 0" class="empty-state">
+              <div class="empty-icon">🤖</div>
+              <p>等待Agent开始工作...</p>
+              <el-button type="primary" @click="startDemo">启动演示模式</el-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：系统日志和统计 -->
+        <div class="log-section">
+          <div class="section-header">
+            <h2>📊 系统监控</h2>
+          </div>
+
+          <!-- 实时统计 -->
+          <div class="stats-panel">
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.totalTasks }}</div>
+              <div class="stat-label">总任务数</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.completedTasks }}</div>
+              <div class="stat-label">已完成</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.activeAgents }}</div>
+              <div class="stat-label">活跃Agent</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">{{ stats.avgProcessTime }}s</div>
+              <div class="stat-label">平均处理时间</div>
+            </div>
+          </div>
+
+          <!-- 系统日志 -->
+          <div class="system-logs">
+            <h3>系统日志</h3>
+            <div class="log-container">
+              <div
+                v-for="log in systemLogs"
+                :key="log.id"
+                class="log-entry"
+                :class="log.level"
+              >
+                <span class="log-time">{{ log.timestamp }}</span>
+                <span class="log-level">{{ log.level.toUpperCase() }}</span>
+                <span class="log-message">{{ log.message }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import FileUploadSection from '@/components/engineer/FileUploadSection.vue'
-import AIProcessingSection from '@/components/engineer/AIProcessingSection.vue'
-import HumanReviewSection from '@/components/engineer/HumanReviewSection.vue'
-import QualityCheckSection from '@/components/engineer/QualityCheckSection.vue'
-import WorkerDistributionSection from '@/components/engineer/WorkerDistributionSection.vue'
+import { ref, reactive, onMounted, onUnmounted, nextTick } from 'vue'
 
-// 响应式数据
-const currentStep = ref(0)
-const currentTaskId = ref('')
-const candidateFacts = ref({})
-const assemblySpec = ref({})
-const reviewedAssemblySpec = ref({})
-const finalManualId = ref('')
-
-const projectHistory = ref([
+// Agent数据
+const agents = ref([
   {
-    id: '1',
-    name: 'V型推雪板EURO连接器',
-    status: 'approved',
-    created_at: '2024-01-15 14:30',
-    assigned_workers: 3
+    id: 'file-manager',
+    name: '文件管理员',
+    icon: '📁',
+    status: 'idle',
+    progress: 0
   },
   {
-    id: '2', 
-    name: '液压支架底座',
-    status: 'in_review',
-    created_at: '2024-01-14 09:15',
-    assigned_workers: 0
+    id: 'qwen-vl',
+    name: 'Qwen-VL视觉分析师',
+    icon: '👁️',
+    status: 'idle',
+    progress: 0
+  },
+  {
+    id: 'deepseek',
+    name: 'DeepSeek推理专家',
+    icon: '🧠',
+    status: 'idle',
+    progress: 0
+  },
+  {
+    id: 'bom-extractor',
+    name: 'BOM提取器',
+    icon: '📋',
+    status: 'idle',
+    progress: 0
+  },
+  {
+    id: 'assembly-expert',
+    name: '装配专家',
+    icon: '🔧',
+    status: 'idle',
+    progress: 0
   }
 ])
 
+// Agent对话数据
+const agentDialogs = ref([])
+const systemLogs = ref([])
+const autoScroll = ref(true)
+const dialogContainer = ref(null)
+
+// 统计数据
+const stats = reactive({
+  totalTasks: 0,
+  completedTasks: 0,
+  activeAgents: 0,
+  avgProcessTime: 0
+})
+
 // 方法
-const handleFilesUploaded = (uploadResult: any) => {
-  console.log('文件上传完成:', uploadResult)
-  currentStep.value = 1
-  // 启动AI解析
-  startAIProcessing(uploadResult)
-}
-
-const handleUploadProgress = (progress: number) => {
-  console.log('上传进度:', progress)
-}
-
-const startAIProcessing = async (uploadResult: any) => {
-  try {
-    // 调用双通道解析API
-    const response = await apiService.startDualChannelParsing({
-      pdf_files: uploadResult.pdf_files,
-      model_files: uploadResult.model_files
-    })
-    
-    currentTaskId.value = response.task_id
-    
-  } catch (error) {
-    ElMessage.error('启动AI解析失败')
-    currentStep.value = 0
-  }
-}
-
-const handleProcessingComplete = (result: any) => {
-  console.log('AI解析完成:', result)
-  candidateFacts.value = result.candidate_facts
-  assemblySpec.value = result.assembly_spec
-  currentStep.value = 2
-}
-
-const handleProcessingError = (error: any) => {
-  console.error('AI解析失败:', error)
-  ElMessage.error('AI解析失败，请重试')
-  currentStep.value = 0
-}
-
-const handleReviewComplete = (reviewedData: any) => {
-  console.log('人工复核完成:', reviewedData)
-  reviewedAssemblySpec.value = reviewedData
-  currentStep.value = 3
-}
-
-const handleRequestRevision = (revisionRequest: any) => {
-  console.log('请求修订:', revisionRequest)
-  // 返回AI解析步骤
-  currentStep.value = 1
-  // 重新处理
-}
-
-const handleQualityApproved = (approvedData: any) => {
-  console.log('质量检查通过:', approvedData)
-  currentStep.value = 4
-}
-
-const handleQualityRejected = (rejectionReason: any) => {
-  console.log('质量检查不通过:', rejectionReason)
-  // 返回人工复核步骤
-  currentStep.value = 2
-}
-
-const handleDistributionComplete = (distributionResult: any) => {
-  console.log('分发完成:', distributionResult)
-  finalManualId.value = distributionResult.manual_id
-  
-  // 添加到项目历史
-  projectHistory.value.unshift({
-    id: distributionResult.manual_id,
-    name: distributionResult.project_name,
-    status: 'distributed',
-    created_at: new Date().toLocaleString(),
-    assigned_workers: distributionResult.worker_count
-  })
-  
-  ElMessage.success('装配说明书已成功分发给工人！')
-  
-  // 重置流程
-  setTimeout(() => {
-    resetWorkflow()
-  }, 3000)
-}
-
-const resetWorkflow = () => {
-  currentStep.value = 0
-  currentTaskId.value = ''
-  candidateFacts.value = {}
-  assemblySpec.value = {}
-  reviewedAssemblySpec.value = {}
-  finalManualId.value = ''
-}
-
-const getStatusType = (status: string) => {
-  const statusMap = {
-    'draft': 'info',
-    'in_review': 'warning', 
-    'approved': 'success',
-    'distributed': 'primary',
-    'completed': 'success',
-    'rejected': 'danger'
-  }
-  return statusMap[status] || 'info'
-}
-
 const getStatusText = (status: string) => {
   const statusMap = {
-    'draft': '草稿',
-    'in_review': '复核中',
-    'approved': '已批准',
-    'distributed': '已分发',
-    'completed': '已完成',
-    'rejected': '已拒绝'
+    idle: '待机中',
+    working: '工作中',
+    completed: '已完成',
+    error: '错误'
   }
   return statusMap[status] || status
 }
 
-const viewProject = (project: any) => {
-  // 跳转到项目详情页
-  router.push(`/engineer/project/${project.id}`)
+const clearDialogs = () => {
+  agentDialogs.value = []
+  systemLogs.value = []
 }
 
-const editProject = (project: any) => {
-  // 编辑项目
-  ElMessage.info('编辑功能开发中...')
+const toggleAutoScroll = () => {
+  autoScroll.value = !autoScroll.value
 }
 
-const redistributeProject = (project: any) => {
-  // 重新分发项目
-  ElMessage.info('重新分发功能开发中...')
+const startDemo = () => {
+  // 演示模式：模拟Agent协作过程
+  const demoDialogs = [
+    {
+      id: 1,
+      agent: '文件管理员',
+      agentIcon: '📁',
+      message: '我开始分析上传的文件结构...',
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'working',
+      status: 'typing'
+    },
+    {
+      id: 2,
+      agent: 'Qwen-VL视觉分析师',
+      agentIcon: '👁️',
+      message: '收到文件管理员的分类结果，开始视觉分析PDF图纸...',
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'collaborating',
+      status: 'typing'
+    },
+    {
+      id: 3,
+      agent: 'BOM提取器',
+      agentIcon: '📋',
+      message: '我从PDF中提取到53个BOM项目，传递给推理专家...',
+      timestamp: new Date().toLocaleTimeString(),
+      type: 'reporting',
+      status: 'complete'
+    }
+  ]
+
+  // 逐个添加对话，模拟实时效果
+  demoDialogs.forEach((dialog, index) => {
+    setTimeout(() => {
+      agentDialogs.value.push(dialog)
+      updateAgentStatus(dialog.agent, 'working', dialog.message)
+      scrollToBottom()
+    }, index * 2000)
+  })
 }
 
-// 路由
-const router = useRouter()
+const updateAgentStatus = (agentName: string, status: string, message: string) => {
+  const agent = agents.value.find(a => a.name === agentName)
+  if (agent) {
+    agent.status = status
+    if (status === 'working') {
+      agent.progress = Math.min(agent.progress + 20, 90)
+    } else if (status === 'completed') {
+      agent.progress = 100
+    }
+  }
+
+  // 更新活跃Agent数量
+  stats.activeAgents = agents.value.filter(a => a.status === 'working').length
+}
+
+const scrollToBottom = () => {
+  if (autoScroll.value && dialogContainer.value) {
+    nextTick(() => {
+      dialogContainer.value.scrollTop = dialogContainer.value.scrollHeight
+    })
+  }
+}
+
+const addSystemLog = (level: string, message: string) => {
+  systemLogs.value.unshift({
+    id: Date.now(),
+    level,
+    message,
+    timestamp: new Date().toLocaleTimeString()
+  })
+
+  // 限制日志数量
+  if (systemLogs.value.length > 100) {
+    systemLogs.value = systemLogs.value.slice(0, 100)
+  }
+}
+
+// WebSocket连接（用于接收后端Agent日志）
+let ws = null
+
+const connectWebSocket = () => {
+  // 这里可以连接到后端WebSocket来接收实时Agent日志
+  // ws = new WebSocket('ws://localhost:8000/ws/agent-logs')
+  // ws.onmessage = (event) => {
+  //   const data = JSON.parse(event.data)
+  //   handleAgentMessage(data)
+  // }
+}
+
+const handleAgentMessage = (data: any) => {
+  // 处理从后端接收到的Agent消息
+  if (data.type === 'agent_dialog') {
+    agentDialogs.value.push(data)
+    scrollToBottom()
+  } else if (data.type === 'system_log') {
+    addSystemLog(data.level, data.message)
+  }
+}
+
+// 生命周期
+onMounted(() => {
+  // 初始化统计数据
+  stats.totalTasks = 0
+  stats.completedTasks = 0
+  stats.activeAgents = 0
+  stats.avgProcessTime = 0
+
+  // 连接WebSocket（如果需要）
+  // connectWebSocket()
+
+  // 添加初始系统日志
+  addSystemLog('info', 'Agent协作监控台已启动')
+  addSystemLog('info', '等待Agent开始工作...')
+})
+
+onUnmounted(() => {
+  // 清理WebSocket连接
+  if (ws) {
+    ws.close()
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -274,9 +330,9 @@ const router = useRouter()
   min-height: 100vh;
   padding: 40px 0;
   background: var(--el-bg-color-page);
-  
+
   .container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -285,7 +341,7 @@ const router = useRouter()
 .page-header {
   text-align: center;
   margin-bottom: 40px;
-  
+
   h1 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -295,76 +351,312 @@ const router = useRouter()
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   p {
     font-size: 1.1rem;
     color: var(--el-text-color-secondary);
   }
 }
 
-.workflow-steps {
-  margin-bottom: 60px;
-  
-  :deep(.el-steps) {
-    .el-step__title {
-      font-weight: 500;
-    }
-    
-    .el-step__icon {
-      border-radius: 50%;
-    }
-    
-    .el-step.is-process .el-step__icon {
-      background: var(--el-color-primary);
-      border-color: var(--el-color-primary);
-    }
-  }
-}
+// Agent状态总览
+.agent-overview {
+  margin-bottom: 40px;
 
-.step-content {
-  .step-panel {
-    min-height: 500px;
-    background: var(--el-bg-color);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-  }
-}
+  .overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 
-.project-history {
-  margin-top: 60px;
-  
-  h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--el-text-color-primary);
-  }
-  
-  .el-table {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-}
+    .agent-overview-card {
+      background: var(--el-bg-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
 
-// 响应式设计
-@media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 2rem;
-  }
-  
-  .step-content .step-panel {
-    padding: 20px;
-  }
-  
-  .workflow-steps {
-    :deep(.el-steps) {
-      .el-step__title {
-        font-size: 12px;
+      &.active {
+        border-color: var(--el-color-primary);
+        box-shadow: 0 8px 30px rgba(64, 158, 255, 0.2);
+        animation: pulse 2s infinite;
+      }
+
+      .agent-avatar {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      .agent-info {
+        text-align: center;
+
+        h3 {
+          margin: 0 0 8px 0;
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--el-text-color-primary);
+        }
+
+        .agent-status {
+          font-size: 14px;
+          margin-bottom: 16px;
+
+          &.idle { color: var(--el-text-color-secondary); }
+          &.working { color: var(--el-color-primary); }
+          &.completed { color: var(--el-color-success); }
+          &.error { color: var(--el-color-danger); }
+        }
+
+        .agent-progress {
+          margin-top: 12px;
+        }
       }
     }
   }
+}
+
+// 主要内容区域
+.main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 对话区域
+.dialog-section {
+  background: var(--el-bg-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--el-text-color-primary);
+    }
+
+    .dialog-controls {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  .dialog-container {
+    height: 600px;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--el-fill-color-lighter);
+    border-radius: 12px;
+
+    .dialog-message {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: var(--el-bg-color);
+      border-radius: 12px;
+      border-left: 4px solid var(--el-color-primary);
+      transition: all 0.3s ease;
+
+      &.working {
+        border-left-color: var(--el-color-warning);
+        background: rgba(230, 162, 60, 0.1);
+      }
+
+      &.collaborating {
+        border-left-color: var(--el-color-info);
+        background: rgba(144, 147, 153, 0.1);
+      }
+
+      &.reporting {
+        border-left-color: var(--el-color-success);
+        background: rgba(103, 194, 58, 0.1);
+      }
+
+      .dialog-avatar {
+        font-size: 24px;
+        flex-shrink: 0;
+      }
+
+      .dialog-content {
+        flex: 1;
+
+        .dialog-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+
+          .agent-name {
+            font-weight: 600;
+            color: var(--el-text-color-primary);
+          }
+
+          .dialog-time {
+            font-size: 12px;
+            color: var(--el-text-color-secondary);
+          }
+        }
+
+        .dialog-text {
+          line-height: 1.6;
+          color: var(--el-text-color-regular);
+
+          &.typing {
+            .typing-cursor {
+              animation: blink 1s infinite;
+              color: var(--el-color-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--el-text-color-secondary);
+
+      .empty-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      p {
+        margin-bottom: 24px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// 日志区域
+.log-section {
+  background: var(--el-bg-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  .section-header {
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--el-text-color-primary);
+    }
+  }
+
+  .stats-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--el-fill-color-lighter);
+      border-radius: 12px;
+
+      .stat-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--el-color-primary);
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: var(--el-text-color-secondary);
+      }
+    }
+  }
+
+  .system-logs {
+    h3 {
+      margin: 0 0 16px 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--el-text-color-primary);
+    }
+
+    .log-container {
+      height: 300px;
+      overflow-y: auto;
+      background: var(--el-fill-color-darker);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'Courier New', monospace;
+
+      .log-entry {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 1.4;
+
+        .log-time {
+          color: var(--el-text-color-secondary);
+          flex-shrink: 0;
+        }
+
+        .log-level {
+          flex-shrink: 0;
+          width: 50px;
+          font-weight: 600;
+        }
+
+        .log-message {
+          flex: 1;
+        }
+
+        &.info {
+          .log-level { color: var(--el-color-info); }
+        }
+
+        &.success {
+          .log-level { color: var(--el-color-success); }
+        }
+
+        &.warning {
+          .log-level { color: var(--el-color-warning); }
+        }
+
+        &.error {
+          .log-level { color: var(--el-color-danger); }
+        }
+      }
+    }
+  }
+}
+
+// 动画
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 30px rgba(64, 158, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(64, 158, 255, 0.3);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 </style>

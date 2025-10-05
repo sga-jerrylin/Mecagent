@@ -1,0 +1,2298 @@
+{
+  "metadata": {
+    "product_name": "",
+    "total_components": 4,
+    "base_component": {
+      "code": "01.09.2549",
+      "name": "连接器后座组件-漆后"
+    },
+    "generated_at": "2025-10-05 00:54:20"
+  },
+  "component_assembly": [
+    {
+      "chapter_type": "component_assembly",
+      "component_code": "01.09.2549",
+      "component_name": "连接器后座组件-漆后",
+      "glb_file": "component_01_09_2549.glb",
+      "steps": [
+        {
+          "step_number": 1,
+          "action": "安装基准件",
+          "description": "将图纸上标注为2的连接板 1（01.01.01.11509）平放在焊接工装上作为基准件，确保定位准确。",
+          "position_description": "平放于工装台面，定位孔对齐工装销。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11509",
+              "bom_name": "连接板 1",
+              "quantity": 1,
+              "drawing_number": "2",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            }
+          ],
+          "tools": [
+            "焊接工装",
+            "定位销"
+          ],
+          "warnings": [
+            "确保连接板定位准确，防止后续焊接变形。"
+          ],
+          "estimated_time_minutes": 5,
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装并点焊矩形管 1",
+          "description": "将图纸上标注为1的矩形管 1（01.01.03.2718）放置在连接板 2 的一侧，根据图纸尺寸（如1120mm长度方向）定位，并进行点焊固定。",
+          "position_description": "矩形管 1 位于连接板 2 的长边一侧。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.03.2718",
+              "bom_name": "矩形管 1",
+              "quantity": 1,
+              "drawing_number": "1"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卡尺",
+            "直角尺"
+          ],
+          "warnings": [
+            "点焊位置要牢固，但不能影响后续满焊。"
+          ],
+          "estimated_time_minutes": 10,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10-15mm，共4点",
+            "welding_position": "矩形管 1 与连接板 2 的接触面",
+            "quality_requirements": "定位准确，焊点牢固，防止装配过程中移位。",
+            "safety_notes": "佩戴防护手套和面罩，注意防飞溅。"
+          },
+          "safety_warnings": [
+            "进行点焊作业时，必须佩戴焊接面罩、防护手套和工作服，防止弧光伤眼和烫伤。",
+            "确保工作区域通风良好，避免吸入焊接烟尘。",
+            "检查焊机接地线是否连接可靠，防止触电。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装并点焊矩形管 2",
+          "description": "将图纸上标注为6的矩形管 2（01.01.03.2719）放置在连接板 2 的另一侧，与矩形管 1 对称，根据图纸尺寸（如335mm长度方向）定位，并进行点焊固定。",
+          "position_description": "矩形管 2 位于连接板 2 的另一长边一侧。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.03.2719",
+              "bom_name": "矩形管 2",
+              "quantity": 2,
+              "drawing_number": "6"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卡尺",
+            "直角尺"
+          ],
+          "warnings": [
+            "注意矩形管 2 的数量是2个，需对称安装。"
+          ],
+          "estimated_time_minutes": 15,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10-15mm，每根管共4点",
+            "welding_position": "矩形管 6 与连接板 2 的接触面",
+            "quality_requirements": "确保两根矩形管 6 与矩形管 1 平行且对称。",
+            "safety_notes": "检查接地线是否牢固，防止触电。"
+          },
+          "safety_warnings": [
+            "焊接时注意周围环境，防止火花飞溅引燃周围物品。",
+            "佩戴好个人防护用品（焊接面罩、手套），避免弧光和高温伤害。",
+            "确认焊机电源线和气管无破损，避免漏电或漏气。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装并点焊矩形管 1 (970mm)",
+          "description": "将图纸上标注为8的矩形管 1（01.01.03.2720）放置在连接板 2 的中间位置，作为横向支撑，根据图纸尺寸（如970mm长度方向）定位，并进行点焊固定。",
+          "position_description": "矩形管 8 位于连接板 2 的中间，垂直于矩形管 1 和 6。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.03.2720",
+              "bom_name": "矩形管 1",
+              "quantity": 1,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_006",
+                "mesh_007",
+                "mesh_019"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卷尺"
+          ],
+          "warnings": [
+            "确保矩形管 8 与连接板 2 垂直，且与两侧矩形管平行。"
+          ],
+          "estimated_time_minutes": 8,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10-15mm，共4点",
+            "welding_position": "矩形管 8 与连接板 2 的接触面",
+            "quality_requirements": "检查垂直度，确保横向支撑到位。",
+            "safety_notes": "清理焊接区域的油污和杂物，防止产生有毒烟雾。"
+          },
+          "safety_warnings": [
+            "焊接前必须彻底清理工件表面的油污、锈迹和杂物，否则焊接时会产生大量有毒烟雾，影响健康。",
+            "保持身体与焊枪的安全距离，防止高温灼伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装并点焊右挂件",
+          "description": "将图纸上标注为4的右挂件虚拟组件 1（01.05.0018）安装在矩形管 6 的一端，根据图纸尺寸定位，并进行点焊固定。",
+          "position_description": "右挂件 4 安装在矩形管 6 的右侧端部。",
+          "parts_used": [
+            {
+              "bom_code": "01.05.0018",
+              "bom_name": "右挂件虚拟组件 1",
+              "quantity": 1,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_008",
+                "mesh_011"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "定位夹具"
+          ],
+          "warnings": [
+            "挂件的安装方向和角度必须符合图纸要求，确保挂钩朝向正确。"
+          ],
+          "estimated_time_minutes": 12,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10mm，共2点",
+            "welding_position": "右挂件 4 与矩形管 6 的接触面",
+            "quality_requirements": "挂件定位准确，不能歪斜。",
+            "safety_notes": "使用夹具固定挂件，防止焊接时掉落或移位。"
+          },
+          "safety_warnings": [
+            "使用夹具固定小型零件时，要确保夹紧力足够，防止零件在焊接过程中弹飞伤人。",
+            "焊接完成后，不要立即用手触摸工件，防止烫伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "安装并点焊左挂件",
+          "description": "将图纸上标注为5的左挂件虚拟组件 1（01.05.0019）安装在矩形管 6 的另一端，与右挂件对称，根据图纸尺寸定位，并进行点焊固定。",
+          "position_description": "左挂件 5 安装在矩形管 6 的左侧端部。",
+          "parts_used": [
+            {
+              "bom_code": "01.05.0019",
+              "bom_name": "左挂件虚拟组件 1",
+              "quantity": 1,
+              "drawing_number": "5",
+              "mesh_id": [
+                "mesh_009",
+                "mesh_010",
+                "mesh_012",
+                "mesh_013"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "定位夹具"
+          ],
+          "warnings": [
+            "检查左右挂件的中心距是否符合图纸要求。"
+          ],
+          "estimated_time_minutes": 12,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10mm，共2点",
+            "welding_position": "左挂件 5 与矩形管 6 的接触面",
+            "quality_requirements": "确保左右挂件对称，中心距符合要求。",
+            "safety_notes": "焊接前检查工件是否稳定，防止倾倒。"
+          },
+          "safety_warnings": [
+            "焊接前务必确认工件在工装上放置平稳，防止在操作过程中倾倒或滑落。",
+            "注意焊枪电缆和气管的走向，避免被绊倒或被高温工件烫伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "安装并点焊方形板",
+          "description": "将图纸上标注为3的方形板-机加 4（01.01.01.6589）安装在矩形管 1 和 6 的端部，用于封堵和加强，根据图纸定位，并进行点焊固定。",
+          "position_description": "方形板 3 安装在矩形管 1 和 6 的四个端面。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.6589",
+              "bom_name": "方形板-机加 4",
+              "quantity": 4,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015",
+                "mesh_016",
+                "mesh_017"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "磁力夹"
+          ],
+          "warnings": [
+            "方形板需与矩形管端面齐平，确保焊接质量。"
+          ],
+          "estimated_time_minutes": 15,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10mm，每块板共4点",
+            "welding_position": "方形板 3 与矩形管端面的接触面",
+            "quality_requirements": "板面与管端面齐平，无错位。",
+            "safety_notes": "使用磁力夹固定，防止焊接时板材移动。"
+          },
+          "safety_warnings": [
+            "使用磁力夹时，确保磁力夹牢固吸附，防止零件在焊接过程中脱落。",
+            "注意方形板边缘可能锋利，搬运和安装时请佩戴防割手套。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "安装并点焊封板",
+          "description": "将图纸上标注为7的封板 2（01.01.01.16608）安装在组件的顶部，覆盖矩形管 1 和 6 之间的空间，根据图纸尺寸定位，并进行点焊固定。",
+          "position_description": "封板 7 位于组件的顶部，覆盖在矩形管 1 和 6 上方。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.16608",
+              "bom_name": "封板 2",
+              "quantity": 2,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_004",
+                "mesh_005"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "压紧夹具"
+          ],
+          "warnings": [
+            "封板与矩形管的接触面必须紧密贴合，防止虚焊。"
+          ],
+          "estimated_time_minutes": 10,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10-15mm，每块板共4点",
+            "welding_position": "封板 7 与矩形管 1 和 6 的上表面",
+            "quality_requirements": "封板与矩形管贴合紧密，无缝隙。",
+            "safety_notes": "注意封板边缘可能锋利，操作时戴好手套。"
+          },
+          "safety_warnings": [
+            "封板边缘可能存在毛刺或尖锐，操作时必须佩戴防割手套，防止划伤。",
+            "使用压紧夹具时，注意夹具的稳定性，防止工件在焊接时松动。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "安装并点焊加强筋",
+          "description": "将图纸上标注为9的加强筋 2（01.01.01.17678）安装在连接板 2 和矩形管 1/6 之间，用于结构加强，根据图纸定位，并进行点焊固定。",
+          "position_description": "加强筋 9 位于连接板 2 和矩形管 1/6 的内侧，呈斜角支撑。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.17678",
+              "bom_name": "加强筋 2",
+              "quantity": 2,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角度尺"
+          ],
+          "warnings": [
+            "加强筋的安装角度和位置必须准确，确保受力均匀。"
+          ],
+          "estimated_time_minutes": 10,
+          "welding": {
+            "required": true,
+            "welding_type": "点焊（临时固定）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊长度10mm，每根筋共4点",
+            "welding_position": "加强筋 9 与连接板 2 和矩形管 1/6 的接触边",
+            "quality_requirements": "加强筋与两零件贴合紧密，角度正确。",
+            "safety_notes": "由于加强筋位置较深，注意焊枪角度，避免烫伤。"
+          },
+          "safety_warnings": [
+            "在狭小空间内焊接时，要特别注意焊枪喷嘴的高温，防止烫伤手部或身体。",
+            "确保通风系统能有效排出内部焊接烟雾。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 10,
+          "action": "满焊固定",
+          "description": "对所有已点焊的零件（矩形管 1、6、8，挂件 4、5，方形板 3，封板 7，加强筋 9）与连接板 2 的连接处进行满焊。焊接要求参照图纸技术要求1和2。",
+          "position_description": "所有连接面。",
+          "parts_used": [],
+          "tools": [
+            "焊机",
+            "焊条/焊丝",
+            "焊渣锤"
+          ],
+          "warnings": [
+            "注意焊接顺序，采用对称焊接，减少热变形。焊缝必须饱满、无虚焊、无漏焊。"
+          ],
+          "estimated_time_minutes": 60,
+          "welding": {
+            "required": true,
+            "welding_type": "角焊/满焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度6mm（或按图纸要求），所有连接边满焊",
+            "welding_position": "所有零件（1, 6, 8, 3, 4, 5, 7, 9）与连接板 2 的连接处",
+            "quality_requirements": "焊缝连续、均匀、饱满，无咬边、气孔、裂纹等缺陷。焊后清理焊渣。",
+            "safety_notes": "大面积焊接时，确保工作区域通风良好，防止烟尘中毒。注意控制热输入，防止工件严重变形。"
+          },
+          "safety_warnings": [
+            "进行长时间满焊作业时，必须佩戴专业的呼吸防护设备，防止吸入大量焊接烟尘。",
+            "注意控制焊接热量，防止工件因受热不均而发生严重变形，影响后续装配。",
+            "清理焊渣时，必须佩戴防护眼镜，防止焊渣飞溅伤眼。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        },
+        {
+          "step_number": 11,
+          "action": "焊后清理与校正",
+          "description": "清理所有焊渣和飞溅物。检查组件整体尺寸和平面度，如有变形，进行校正。",
+          "position_description": "整个组件。",
+          "parts_used": [],
+          "tools": [
+            "角磨机",
+            "钢丝刷",
+            "校正平台",
+            "大锤"
+          ],
+          "warnings": [
+            "校正时注意力度，避免二次损伤。锐边/尖角需倒钝处理。"
+          ],
+          "estimated_time_minutes": 20,
+          "safety_warnings": [
+            "使用角磨机清理焊缝时，必须佩戴防护面罩和耳塞，防止火花飞溅和噪音伤害。",
+            "角磨机操作时要握紧，防止反弹伤人，并确保磨片安装牢固。",
+            "进行校正作业时，注意周围人员安全，防止大锤或校正工具误伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/1/page_001.png"
+          ]
+        }
+      ],
+      "3d_display_mode": "part_level_explosion"
+    },
+    {
+      "chapter_type": "component_assembly",
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "glb_file": null,
+      "steps": [
+        {
+          "step_number": 1,
+          "action": "定位基准件",
+          "description": "将图纸上编号为3的侧连接板（01.01.01.11513）平稳放置在焊接平台上，作为装配的基准件。注意检查板材的平整度。",
+          "position_description": "焊接平台中心",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11513",
+              "bom_name": "侧连接板 2",
+              "quantity": 1,
+              "drawing_number": "3"
+            }
+          ],
+          "tools": [
+            "焊接平台",
+            "角尺"
+          ],
+          "warnings": [
+            "确保板材放置平稳，避免后续焊接变形。"
+          ],
+          "safety_warnings": [
+            "搬运板材时，请佩戴防割手套，防止边缘割伤。",
+            "如果板材较重，请使用合适的起重工具或两人协作搬运，避免扭伤或砸伤脚部。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_001.png"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装方形板",
+          "description": "将图纸上编号为1的方形板-机加（01.01.01.11511）放置在步骤1的侧连接板（3）的底部边缘，按照图纸所示位置进行点焊定位。注意方形板的机加工面朝向。",
+          "position_description": "侧连接板（3）的底部边缘",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11511",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "1"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "磁力夹具"
+          ],
+          "warnings": [
+            "点焊定位时，确保方形板与侧连接板的垂直度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，焊点长度10mm",
+            "welding_position": "方形板（1）与侧连接板（3）的连接处",
+            "quality_requirements": "焊点牢固，定位准确，确保垂直度90度",
+            "safety_notes": "点焊时注意佩戴防护眼镜和手套，防止飞溅物烫伤"
+          },
+          "safety_warnings": [
+            "进行点焊作业时，必须佩戴焊接面罩、防护手套和防火服，防止电弧光灼伤眼睛和皮肤。",
+            "确保工作区域通风良好，避免吸入焊接烟尘。",
+            "注意防止焊渣飞溅，清理周围易燃物品。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_001.png"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装上连接板",
+          "description": "将图纸上编号为2的上连接板 2（01.01.01.11512）放置在侧连接板（3）的顶部边缘，与方形板（1）平行，进行点焊定位。",
+          "position_description": "侧连接板（3）的顶部边缘",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11512",
+              "bom_name": "上连接板 2",
+              "quantity": 1,
+              "drawing_number": "2"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "角尺"
+          ],
+          "warnings": [
+            "确保上连接板与侧连接板的垂直度，并与方形板保持平行。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，焊点长度10mm",
+            "welding_position": "上连接板（2）与侧连接板（3）的连接处",
+            "quality_requirements": "焊点牢固，确保上连接板与侧连接板垂直度",
+            "safety_notes": "点焊时注意佩戴防护眼镜和手套，防止飞溅物烫伤"
+          },
+          "safety_warnings": [
+            "进行点焊作业时，必须佩戴焊接面罩，防止电弧光灼伤。",
+            "使用夹具固定时，确保夹具牢固，防止零件在焊接过程中松动或掉落。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_001.png"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装第二块侧连接板",
+          "description": "将第二块侧连接板（3）安装在方形板（1）和上连接板（2）的另一端，形成一个箱体结构。使用夹具固定后进行点焊定位。",
+          "position_description": "方形板（1）和上连接板（2）的另一端",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11513",
+              "bom_name": "侧连接板 2",
+              "quantity": 1,
+              "drawing_number": "3"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "快速夹具"
+          ],
+          "warnings": [
+            "检查箱体结构的对角线尺寸，确保无扭曲变形。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，每条边2个焊点",
+            "welding_position": "第二块侧连接板（3）与方形板（1）和上连接板（2）的连接处",
+            "quality_requirements": "箱体结构对角线误差小于1mm，确保结构方正",
+            "safety_notes": "使用夹具固定时，注意夹紧力度，点焊后检查结构稳定性"
+          },
+          "safety_warnings": [
+            "搬运和安装侧连接板时，注意保持平衡，防止结构倾倒。",
+            "使用快速夹具时，检查夹具是否完好，避免夹具突然松脱造成零件掉落伤人。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_001.png"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装折弯板和角钢",
+          "description": "将图纸上编号为4的折弯板 1（01.01.01.11514）和编号为7的角钢-机加 1（01.01.04.0592）安装在主体框架的内部，按照图纸所示位置进行点焊定位。",
+          "position_description": "主体框架内部，靠近侧连接板（3）",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11514",
+              "bom_name": "折弯板 1",
+              "quantity": 1,
+              "drawing_number": "4"
+            },
+            {
+              "bom_code": "01.01.04.0592",
+              "bom_name": "角钢-机加 1",
+              "quantity": 1,
+              "drawing_number": "7"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "卷尺"
+          ],
+          "warnings": [
+            "角钢和折弯板的位置是关键支撑点，必须严格按照尺寸定位。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，每条边2个焊点",
+            "welding_position": "折弯板（4）和角钢（7）与侧连接板（3）的连接处",
+            "quality_requirements": "定位准确，确保支撑件与侧板贴合紧密",
+            "safety_notes": "内部焊接空间较小，注意焊枪角度，避免烫伤内部线缆（如果存在）"
+          },
+          "safety_warnings": [
+            "在箱体内部进行点焊时，空间受限，操作时要小心，防止焊枪或身体部位触碰到高温表面造成烫伤。",
+            "确保内部光线充足，避免因视线不清导致焊接失误或意外伤害。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_001.png"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "安装加强板",
+          "description": "将4块图纸上编号为6的加强板 4（01.01.01.11516）分别安装在主体框架的四个角部，用于加强结构强度。进行点焊定位。",
+          "position_description": "主体框架的四个角部",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11516",
+              "bom_name": "加强板 4",
+              "quantity": 4,
+              "drawing_number": "6"
+            }
+          ],
+          "tools": [
+            "点焊机"
+          ],
+          "warnings": [
+            "加强板应紧密贴合主体结构，无间隙。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，每块加强板4个焊点",
+            "welding_position": "加强板（6）与侧连接板（3）和上/下方板的连接处",
+            "quality_requirements": "加强板必须紧贴，焊点均匀分布",
+            "safety_notes": "加强板通常在角部，注意焊接时防止反光伤害眼睛"
+          },
+          "safety_warnings": [
+            "在角部焊接时，电弧光反射较强，务必使用合格的焊接面罩，保护眼睛免受强光伤害。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_002.png"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "安装油缸固定板",
+          "description": "将4块图纸上编号为5的油缸固定板 4（01.01.01.11515）安装在侧连接板（3）的外部，按照图纸上的孔位和尺寸要求进行点焊定位。",
+          "position_description": "侧连接板（3）外部，靠近底部",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11515",
+              "bom_name": "油缸固定板 4",
+              "quantity": 4,
+              "drawing_number": "5"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "定位销"
+          ],
+          "warnings": [
+            "油缸固定板的孔位必须对齐，确保后续油缸安装顺利。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，每块固定板4个焊点",
+            "welding_position": "油缸固定板（5）与侧连接板（3）的外部连接面",
+            "quality_requirements": "定位销确保孔位对齐，焊点牢固，防止后续移动",
+            "safety_notes": "油缸固定板是受力件，点焊时要保证焊点强度，防止脱落"
+          },
+          "safety_warnings": [
+            "使用定位销时，确保定位销稳固，避免在焊接过程中因定位板移动造成定位销弹出伤人。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_002.png"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "安装轴套（8, 9, 10）",
+          "description": "依次将图纸上编号为8的轴套 1（01.01.02.1221）、编号为9的后座轴套 1（01.02.02.0490）和编号为10的后座轴套 1（01.01.02.0337）安装在侧连接板（3）的指定孔位上。轴套需从外部插入，并与侧连接板齐平，进行点焊定位。",
+          "position_description": "侧连接板（3）上的轴孔位置",
+          "parts_used": [
+            {
+              "bom_code": "01.01.02.1221",
+              "bom_name": "轴套 1",
+              "quantity": 1,
+              "drawing_number": "8"
+            },
+            {
+              "bom_code": "01.02.02.0490",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "9"
+            },
+            {
+              "bom_code": "01.01.02.0337",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "10"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "游标卡尺"
+          ],
+          "warnings": [
+            "轴套的端面必须与侧连接板的表面齐平，确保装配精度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "点焊定位",
+            "welding_method": "CO2气保焊",
+            "weld_size": "点焊，每个轴套3个点",
+            "welding_position": "轴套（8, 9, 10）与侧连接板（3）的圆周连接处",
+            "quality_requirements": "轴套端面与侧板齐平，焊点均匀，防止轴套倾斜",
+            "safety_notes": "轴套是精密零件，点焊时电流不宜过大，防止烧穿或严重变形"
+          },
+          "safety_warnings": [
+            "轴套点焊属于精密焊接，操作时要稳，防止焊枪意外接触到非焊接区域造成短路或烫伤。",
+            "点焊后轴套温度高，不要徒手触摸，防止烫伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_002.png"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "全面焊接",
+          "description": "对所有已定位的零件（1, 2, 3, 4, 5, 6, 7, 8, 9, 10）进行全面焊接。焊接要求参照图纸技术要求：焊缝饱满、焊道美观，焊脚大小及焊缝位置符合要求。注意控制焊接变形。",
+          "position_description": "所有连接面",
+          "parts_used": [],
+          "tools": [
+            "焊机",
+            "焊条/焊丝"
+          ],
+          "warnings": [
+            "焊接完成后，立即进行清渣和外观检查。避免过热导致结构变形。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊和对接焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度6mm（按图纸要求），连续焊",
+            "welding_position": "所有零件的连接缝，特别是箱体结构（1, 2, 3）和受力件（5, 7）",
+            "quality_requirements": "焊缝必须饱满，无气孔、夹渣、裂纹等缺陷。焊道均匀美观，焊后变形控制在1mm以内",
+            "safety_notes": "进行全面焊接时，必须佩戴全套防护装备（面罩、手套、防火服）。注意通风，并采用分段、对称焊接法，控制热输入，防止结构变形"
+          },
+          "safety_warnings": [
+            "全面焊接时，产生的烟尘和有害气体较多，必须开启强力通风设备或佩戴防毒面罩。",
+            "焊接电流大，注意检查焊机电缆和接地线是否完好，防止触电。",
+            "采用分段对称焊接，防止热应力集中导致结构突然变形或崩裂伤人。",
+            "焊接区域地面必须保持干燥，穿绝缘鞋，防止湿滑和触电。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_002.png"
+          ]
+        },
+        {
+          "step_number": 10,
+          "action": "校正与清理",
+          "description": "对焊接完成的组件进行整体校正，确保关键尺寸符合图纸要求。使用角磨机清理所有飞溅物和毛刺，确保表面光滑，为后续喷漆做准备。",
+          "position_description": "整体组件",
+          "parts_used": [],
+          "tools": [
+            "角磨机",
+            "校正平台",
+            "卷尺"
+          ],
+          "warnings": [
+            "校正时力度要均匀，避免二次损伤。清理后的组件表面应无尖锐边缘。"
+          ],
+          "safety_warnings": [
+            "使用角磨机时，必须佩戴防护面罩和耳塞，防止火花、金属碎屑飞溅伤眼和噪音损伤听力。",
+            "操作角磨机时，双手握紧，防止磨盘卡住反弹伤人。",
+            "清理焊渣时，使用专用工具，并佩戴防护眼镜，防止焊渣飞溅伤眼。",
+            "校正重型组件时，确保使用液压设备或专用夹具，并远离校正方向，防止组件突然移动或断裂。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/2/page_002.png"
+          ]
+        }
+      ],
+      "3d_display_mode": "part_level_explosion"
+    },
+    {
+      "chapter_type": "component_assembly",
+      "component_code": "01.09.2551",
+      "component_name": "左铲雪板组件-漆后",
+      "glb_file": "component_01_09_2551.glb",
+      "steps": [
+        {
+          "step_number": 1,
+          "action": "准备基准件",
+          "description": "将图纸上标注为15的左铲板（01.01.01.18598）放置在焊接平台上，确保铲板内侧（背面）朝上，作为后续所有零件的焊接基准。",
+          "position_description": "工作台中央，铲板内侧朝上。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.18598",
+              "bom_name": "左铲板 1",
+              "quantity": 1,
+              "drawing_number": "15",
+              "mesh_id": [
+                "mesh_026"
+              ]
+            }
+          ],
+          "tools": [
+            "焊接平台",
+            "夹具"
+          ],
+          "warnings": [
+            "确保铲板放置平稳，避免变形。"
+          ],
+          "safety_warnings": [
+            "左铲板是重物，搬运时请使用合适的吊具或叉车，并确保吊装平稳，防止砸伤。",
+            "放置时注意手部安全，避免被重物挤压。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_001.png"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "焊接后部加强结构",
+          "description": "将图纸上标注为14的方形板-机加（01.01.01.18599）和标注为13的后加强板（01.01.01.11519）放置在15号左铲板的后部指定位置。使用夹具固定，并按照图纸要求进行焊接。",
+          "position_description": "14号板位于铲板后部中央，13号板位于14号板上方。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.18599",
+              "bom_name": "方形板-机加 1",
+              "quantity": 1,
+              "drawing_number": "14",
+              "mesh_id": [
+                "mesh_025"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11519",
+              "bom_name": "后加强板 1",
+              "quantity": 1,
+              "drawing_number": "13",
+              "mesh_id": [
+                "mesh_024"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角尺",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接前确保两板与铲板贴合紧密，焊缝饱满，无虚焊。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度6mm（或按图纸要求）",
+            "welding_position": "平焊/横焊",
+            "quality_requirements": "14号方形板和13号后加强板与15号左铲板的连接处必须全焊，焊缝均匀，无咬边、气孔等缺陷。",
+            "safety_notes": "焊接时请佩戴好防护面罩、手套和防护服。确保工作区域通风良好，远离易燃物品。"
+          },
+          "safety_warnings": [
+            "进行焊接作业时，必须佩戴焊接面罩、防护手套和阻燃工作服，防止电弧光伤害眼睛和皮肤。",
+            "确保焊接区域通风良好，避免吸入有害烟尘。",
+            "检查焊机电缆和接地线是否完好，防止触电。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_001.png"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "焊接前加强板和底部连接板",
+          "description": "将图纸上标注为12的前加强板（01.01.01.18600）和6块标注为11的底部连接板（01.01.01.11521）安装在15号左铲板的底部边缘。12号板位于铲板前部中央，11号板均匀分布在底部边缘。点焊定位后，进行全焊。",
+          "position_description": "12号板位于铲板前部，11号板沿铲板底部边缘分布。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.18600",
+              "bom_name": "前加强板 1",
+              "quantity": 1,
+              "drawing_number": "12",
+              "mesh_id": [
+                "mesh_023"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11521",
+              "bom_name": "底部连接板 6",
+              "quantity": 6,
+              "drawing_number": "11",
+              "mesh_id": [
+                "mesh_012",
+                "mesh_013",
+                "mesh_014",
+                "mesh_015",
+                "mesh_021",
+                "mesh_022"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卷尺"
+          ],
+          "warnings": [
+            "底部连接板的间距和位置必须严格按照图纸尺寸要求，确保后续连接件的安装精度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度5mm",
+            "welding_position": "平焊/仰焊（根据铲板翻转情况）",
+            "quality_requirements": "12号前加强板和6块11号底部连接板与15号左铲板的连接处必须全焊。焊缝要连续，不能有中断，确保结构强度。",
+            "safety_notes": "在进行仰焊操作时，注意防止焊渣烫伤，穿戴好皮围裙和护袖。"
+          },
+          "safety_warnings": [
+            "如果需要翻转铲板进行仰焊，必须使用专用翻转工具或吊具，确保翻转过程平稳，防止工件滑落伤人。",
+            "仰焊时，焊渣容易掉落，必须穿戴皮围裙、护袖和高帮鞋，保护身体不被烫伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_001.png"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "焊接前油缸和弹簧固定板",
+          "description": "将2块标注为10的前油缸固定板（01.01.01.11522）和1块标注为9的前弹簧固定板（01.01.01.11523）安装在15号左铲板的指定位置。10号板位于铲板前部两侧，9号板位于中央。注意油缸固定板的孔位方向。",
+          "position_description": "铲板内侧前部，靠近12号前加强板。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11522",
+              "bom_name": "前油缸固定板 2",
+              "quantity": 2,
+              "drawing_number": "10",
+              "mesh_id": [
+                "mesh_019",
+                "mesh_020"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11523",
+              "bom_name": "前弹簧固定板 1",
+              "quantity": 1,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "定位销"
+          ],
+          "warnings": [
+            "确保油缸固定板的安装面与铲板垂直，孔位中心距符合图纸要求。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度6mm",
+            "welding_position": "平焊",
+            "quality_requirements": "10号油缸固定板和9号弹簧固定板与15号左铲板的连接面必须全焊。焊缝要光滑过渡，避免应力集中。",
+            "safety_notes": "焊接前务必使用定位销或夹具固定好零件，防止焊接过程中零件移位，影响孔位精度。"
+          },
+          "safety_warnings": [
+            "焊接过程中会产生高温，操作时要戴好隔热手套，避免接触刚焊完的零件，防止烫伤。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_001.png"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "焊接后弹簧和支撑固定板",
+          "description": "将2块标注为8的后弹簧固定板（01.01.01.11524）和1块标注为7的支撑固定板（01.01.01.11525）安装在15号左铲板的后部。8号板位于后部两侧，7号板位于后部中央。",
+          "position_description": "铲板内侧后部，靠近13号后加强板。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11524",
+              "bom_name": "后弹簧固定板 2",
+              "quantity": 2,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_016",
+                "mesh_017"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11525",
+              "bom_name": "支撑固定板 1",
+              "quantity": 1,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_011"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "检查8号板和7号板的安装高度和角度，确保与铲板的配合精度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度5mm",
+            "welding_position": "平焊",
+            "quality_requirements": "8号后弹簧固定板和7号支撑固定板与15号左铲板的连接处必须全焊。焊缝要连续，保证受力均匀。",
+            "safety_notes": "焊接前要清理干净焊接区域的油污和锈迹，避免产生气孔和夹渣。"
+          },
+          "safety_warnings": [
+            "清理焊渣时，要戴好防护眼镜，防止飞溅的焊渣伤到眼睛。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_001.png"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "焊接轴套加强板和反光片安装板",
+          "description": "将2块标注为6的轴套加强板（01.01.01.11526）和1块标注为5的反光片安装板（01.01.01.11527）焊接在铲板的侧面和后部指定位置。",
+          "position_description": "6号板位于铲板两侧边缘，5号板位于铲板后部侧面。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11526",
+              "bom_name": "轴套加强板 2",
+              "quantity": 2,
+              "drawing_number": "6",
+              "mesh_id": [
+                "mesh_009",
+                "mesh_010"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11527",
+              "bom_name": "反光片安装板 1",
+              "quantity": 1,
+              "drawing_number": "5",
+              "mesh_id": [
+                "mesh_008"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "反光片安装板（5号）的安装角度要准确，确保反光片朝向正确。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度4mm",
+            "welding_position": "立焊/平焊",
+            "quality_requirements": "6号轴套加强板和5号反光片安装板与15号左铲板的连接处必须全焊。特别是加强板，要保证焊透，为后续轴套安装提供坚固基础。",
+            "safety_notes": "立焊时注意控制熔池温度，防止焊瘤和焊穿。保持焊枪角度稳定。"
+          },
+          "safety_warnings": [
+            "进行立焊操作时，要特别注意防止熔融金属滴落烫伤脚部或身体，穿戴好防护鞋和防护服。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_002.png"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "焊接轴套",
+          "description": "将2个标注为4的轴套（01.01.02.1222）插入到6号轴套加强板的孔位中，并与铲板和加强板进行焊接。注意图纸上标注的“端面有配合，焊高不超过轴套”的要求。",
+          "position_description": "铲板两侧边缘，与6号加强板配合。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.02.1222",
+              "bom_name": "轴套 2",
+              "quantity": 2,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_006",
+                "mesh_007"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "塞尺"
+          ],
+          "warnings": [
+            "轴套焊接时，焊缝不能侵入轴套内孔，确保内孔光滑。检查轴套与铲板的同轴度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊/塞焊（如果设计有要求）",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度不超过轴套端面高度，确保配合面平整。",
+            "welding_position": "平焊/转角焊",
+            "quality_requirements": "轴套与6号加强板的连接处必须焊牢，焊缝要均匀，不能有任何焊渣或飞溅物进入轴套内孔。焊后需检查轴套内孔是否变形。",
+            "safety_notes": "轴套是精密配合件，焊接时要采用分段、对称焊接，控制热输入，防止轴套因受热不均而变形或椭圆。"
+          },
+          "safety_warnings": [
+            "轴套焊接需要精确控制热量，防止因热变形导致轴套内孔尺寸变化，影响后续装配。",
+            "焊接完成后，零件温度很高，搬动或检查时务必戴好隔热手套。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_002.png"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "焊接外部方形板",
+          "description": "将1块标注为3的方形板（01.01.01.11528）和1块标注为2的方形板（01.01.01.11529）焊接在铲板的外部边缘。3号板位于铲板右侧，2号板位于铲板左侧。",
+          "position_description": "铲板外侧边缘，作为侧面加强。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11528",
+              "bom_name": "方形板 1",
+              "quantity": 1,
+              "drawing_number": "3"
+            },
+            {
+              "bom_code": "01.01.01.11529",
+              "bom_name": "方形板 3",
+              "quantity": 1,
+              "drawing_number": "2",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_004",
+                "mesh_005"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "夹具"
+          ],
+          "warnings": [
+            "确保方形板与铲板边缘对齐，焊缝均匀。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度6mm",
+            "welding_position": "立焊/横焊",
+            "quality_requirements": "3号和2号方形板与15号左铲板的连接处必须全焊。焊缝外观要求平整美观，无明显凹陷或凸起。",
+            "safety_notes": "焊接大面积板材时，注意控制焊接顺序，采用跳焊或分段焊，减少焊接应力，防止铲板整体变形。"
+          },
+          "safety_warnings": [
+            "焊接大面积板材时，要特别注意控制焊接变形，如果变形严重，可能需要使用夹具或反变形措施，防止应力集中导致开裂。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_002.png"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "焊接左铲雪板加强板",
+          "description": "将2块标注为1的左铲雪板加强板（01.02.01.4983）焊接在铲板的顶部边缘，作为顶部加强筋。",
+          "position_description": "铲板顶部边缘。",
+          "parts_used": [
+            {
+              "bom_code": "01.02.01.4983",
+              "bom_name": "左铲雪板加强板 2",
+              "quantity": 2,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "加强板应与铲板顶部边缘完全贴合，确保焊接强度。"
+          ],
+          "welding": {
+            "required": true,
+            "welding_type": "角焊",
+            "welding_method": "CO2气保焊",
+            "weld_size": "焊脚高度5mm",
+            "welding_position": "平焊",
+            "quality_requirements": "1号加强板与15号左铲板的连接处必须全焊。焊缝要连续、密实，保证顶部边缘的刚度。",
+            "safety_notes": "焊接完成后，及时清理焊渣和飞溅物，并对焊缝进行外观检查，确保符合图纸要求。"
+          },
+          "safety_warnings": [
+            "焊接工作结束后，必须切断焊机电源，整理好电缆，防止绊倒或引发火灾。"
+          ],
+          "drawings": [
+            "/api/manual/{task_id}/pdf_images/3/page_002.png"
+          ]
+        }
+      ],
+      "3d_display_mode": "part_level_explosion"
+    }
+  ],
+  "product_assembly": {
+    "chapter_type": "product_assembly",
+    "product_name": "",
+    "glb_file": "product_total.glb",
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "安装后座连接架",
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件-漆后",
+        "drawing_number": "④",
+        "connection_type": "销轴连接",
+        "position_description": "将④号组件连接到①号组件的上方",
+        "components": [
+          {
+            "bom_code": "01.09.2550",
+            "bom_name": "后座连接架组件-漆后",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2561",
+            "bom_name": "销轴-镀锌",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0001",
+            "bom_name": "安全销DIN 11023",
+            "spec": "φ8*45",
+            "quantity": 1,
+            "torque": ""
+          }
+        ],
+        "operation": "将图纸上标注为④的后座连接架组件（01.09.2550）对准①号连接器后座组件（01.09.2549）的连接孔。使用销轴（01.09.2561）从侧面穿过连接孔，然后使用安全销（02.03.0001）固定销轴，防止脱落。",
+        "quality_check": "检查销轴是否完全插入，安全销是否可靠锁定。",
+        "estimated_time_minutes": 5,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "安装左右铲雪板",
+        "component_code": "01.09.2551",
+        "component_name": "左铲雪板组件-漆后",
+        "drawing_number": "②, ③",
+        "connection_type": "销轴连接",
+        "position_description": "将②号和③号组件连接到④号组件的前端",
+        "components": [
+          {
+            "bom_code": "01.09.2551",
+            "bom_name": "左铲雪板组件-漆后",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2552",
+            "bom_name": "右铲雪板组件-漆后",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2562",
+            "bom_name": "销轴-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0001",
+            "bom_name": "安全销DIN 11023",
+            "spec": "φ8*45",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将②号左铲雪板组件（01.09.2551）和③号右铲雪板组件（01.09.2552）分别对准④号后座连接架组件两侧的连接孔。使用两个销轴（01.09.2562）穿过连接孔，并用两个安全销（02.03.0001）固定。注意左右对称安装。",
+        "quality_check": "检查铲雪板是否能自由转动，销轴和安全销是否安装到位。",
+        "estimated_time_minutes": 8,
+        "safety_warnings": [
+          "铲雪板组件体积较大且重，搬运时请使用合适的吊具或两人协作，防止砸伤或扭伤。",
+          "安装时注意手指位置，避免被连接孔或销轴夹伤。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "安装液压油缸",
+        "component_code": "02.08.01.0338",
+        "component_name": "油缸",
+        "drawing_number": "37",
+        "connection_type": "销轴连接",
+        "position_description": "将油缸连接在①号组件和④号组件之间",
+        "components": [
+          {
+            "bom_code": "02.08.01.0338",
+            "bom_name": "油缸",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2563",
+            "bom_name": "销轴-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0001",
+            "bom_name": "安全销DIN 11023",
+            "spec": "φ8*45",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将油缸（02.08.01.0338）的缸体端连接到①号连接器后座组件上，活塞杆端连接到④号后座连接架组件上。两端均使用销轴（01.09.2563）连接，并用安全销（02.03.0001）固定。",
+        "quality_check": "检查油缸安装方向是否正确，销轴是否固定牢靠。",
+        "estimated_time_minutes": 10,
+        "safety_warnings": [
+          "液压油缸可能含有残余压力，搬运和安装时轻拿轻放，避免撞击。",
+          "安装时注意油缸重量，防止脱落伤人。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "安装推雪板弹簧导柱",
+        "component_code": "01.09.2559",
+        "component_name": "推雪板弹簧导柱组件-镀锌",
+        "drawing_number": "45",
+        "connection_type": "螺栓连接",
+        "position_description": "将45号组件安装在④号组件的上方",
+        "components": [
+          {
+            "bom_code": "01.09.2559",
+            "bom_name": "推雪板弹簧导柱组件-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0398",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*40",
+            "quantity": 4,
+            "torque": "25N·m"
+          },
+          {
+            "bom_code": "02.03.0028",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将两个45号推雪板弹簧导柱组件（01.09.2559）安装在④号后座连接架组件（01.09.2550）上方的预留孔位。使用4套M8*40螺栓（02.03.0398）和M8锁紧螺母（02.03.0028）固定。注意螺栓从下往上穿入，并拧紧至25N·m。",
+        "quality_check": "检查导柱是否垂直，螺栓是否拧紧到位。",
+        "estimated_time_minutes": 10,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "安装压缩弹簧",
+        "component_code": "02.09.0103",
+        "component_name": "压缩弹簧",
+        "drawing_number": "38",
+        "connection_type": "插入连接",
+        "position_description": "将38号弹簧安装在45号导柱上",
+        "components": [
+          {
+            "bom_code": "02.09.0103",
+            "bom_name": "压缩弹簧",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "01.09.2565",
+            "bom_name": "自制螺栓-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "02.03.0612",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M20",
+            "quantity": 2,
+            "torque": "120N·m"
+          }
+        ],
+        "operation": "将两个38号压缩弹簧（02.09.0103）套入已安装的45号推雪板弹簧导柱组件上。然后将自制螺栓（01.09.2565）穿过弹簧顶部的孔，并使用M20锁紧螺母（02.03.0612）拧紧，预压弹簧。拧紧力矩120N·m。",
+        "quality_check": "检查弹簧预压量是否一致，螺母是否锁紧。",
+        "estimated_time_minutes": 15,
+        "safety_warnings": [
+          "压缩弹簧在拧紧时会产生较大预紧力，操作时必须使用合适的工具，并保持身体远离弹簧轴线方向。",
+          "拧紧螺母时，确保导柱和螺栓稳定，防止弹簧突然释放或工具打滑伤人。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "安装后座支撑架",
+        "component_code": "01.09.2560",
+        "component_name": "后座支撑架组件-漆后",
+        "drawing_number": "44",
+        "connection_type": "螺栓连接",
+        "position_description": "将44号组件安装在①号组件的后部",
+        "components": [
+          {
+            "bom_code": "01.09.2560",
+            "bom_name": "后座支撑架组件-漆后",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0379",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*20",
+            "quantity": 4,
+            "torque": "25N·m"
+          },
+          {
+            "bom_code": "02.03.0028",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将44号后座支撑架组件（01.09.2560）安装在①号连接器后座组件（01.09.2549）的后部。使用4套M8*20螺栓（02.03.0379）和M8锁紧螺母（02.03.0028）固定。拧紧力矩25N·m。",
+        "quality_check": "检查支撑架是否牢固，螺栓是否拧紧。",
+        "estimated_time_minutes": 5,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "安装轮胎架外臂",
+        "component_code": "01.09.2557",
+        "component_name": "轮胎架外臂组件-漆后",
+        "drawing_number": "47",
+        "connection_type": "销轴连接",
+        "position_description": "将47号组件连接到44号组件上",
+        "components": [
+          {
+            "bom_code": "01.09.2557",
+            "bom_name": "轮胎架外臂组件-漆后",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.09.0995",
+            "bom_name": "V型推雪板销轴-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0001",
+            "bom_name": "安全销DIN 11023",
+            "spec": "φ8*45",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将两个47号轮胎架外臂组件（01.09.2557）通过V型推雪板销轴（01.09.0995）连接到44号后座支撑架组件（01.09.2560）的两侧。使用安全销（02.03.0001）固定销轴。",
+        "quality_check": "检查轮胎架外臂是否能自由转动，销轴是否固定。",
+        "estimated_time_minutes": 8,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "安装轮胎架内臂和轮胎",
+        "component_code": "01.09.2558",
+        "component_name": "轮胎架内臂组件-镀锌",
+        "drawing_number": "46",
+        "connection_type": "销轴连接/螺栓连接",
+        "position_description": "将46号组件连接到47号组件上，并安装轮胎",
+        "components": [
+          {
+            "bom_code": "01.09.2558",
+            "bom_name": "轮胎架内臂组件-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.09.0999",
+            "bom_name": "V型推雪板轴套-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "02.16.0142",
+            "bom_name": "实心橡胶轮",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0012",
+            "bom_name": "安全销DIN 11023",
+            "spec": "Φ4.5*40",
+            "quantity": 2,
+            "torque": ""
+          },
+          {
+            "bom_code": "02.03.0019",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M16",
+            "quantity": 2,
+            "torque": "120N·m"
+          },
+          {
+            "bom_code": "02.03.0072",
+            "bom_name": "平垫圈8.8级",
+            "spec": "16*3",
+            "quantity": 2,
+            "torque": ""
+          },
+          {
+            "bom_code": "02.03.1035",
+            "bom_name": "内六角平圆头螺钉8.8级",
+            "spec": "M16*85",
+            "quantity": 2,
+            "torque": "120N·m"
+          }
+        ],
+        "operation": "将两个46号轮胎架内臂组件（01.09.2558）通过销轴连接到47号轮胎架外臂组件上，并用安全销（02.03.0012）固定。然后，将V型推雪板轴套（01.09.0999）插入实心橡胶轮（02.16.0142）的轴孔中，再将轮胎组件安装到46号内臂上。使用M16*85内六角平圆头螺钉（02.03.1035）、平垫圈（02.03.0072）和M16锁紧螺母（02.03.0019）固定。拧紧力矩120N·m。",
+        "quality_check": "检查轮胎是否转动灵活，所有紧固件是否拧紧。",
+        "estimated_time_minutes": 15,
+        "safety_warnings": [
+          "实心橡胶轮较重，搬运时注意姿势，避免腰部受伤。",
+          "安装轮胎时，确保工作台稳固，防止轮胎滚动或掉落。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_001.png"
+        ]
+      },
+      {
+        "step_number": 9,
+        "title": "安装刀板后座",
+        "component_code": "01.09.2554",
+        "component_name": "左刀板后座组件-漆后",
+        "drawing_number": "49, 48",
+        "connection_type": "螺栓连接",
+        "position_description": "将49号和48号组件安装在②号和③号铲雪板上",
+        "components": [
+          {
+            "bom_code": "01.09.2554",
+            "bom_name": "左刀板后座组件-漆后",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2553",
+            "bom_name": "右刀板后座组件-漆后",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0458",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M30*60",
+            "quantity": 2,
+            "torque": "400N·m"
+          },
+          {
+            "bom_code": "01.09.0304",
+            "bom_name": "推雪板大垫圈-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "02.03.0006",
+            "bom_name": "平垫圈8.8级",
+            "spec": "30*4",
+            "quantity": 2,
+            "torque": ""
+          },
+          {
+            "bom_code": "02.03.0148",
+            "bom_name": "1型六角螺母8.8级",
+            "spec": "M30",
+            "quantity": 2,
+            "torque": "400N·m"
+          }
+        ],
+        "operation": "将49号左刀板后座组件（01.09.2554）和48号右刀板后座组件（01.09.2553）分别安装到②号和③号铲雪板组件的底部。使用M30*60螺栓（02.03.0458）、推雪板大垫圈（01.09.0304）、平垫圈（02.03.0006）和M30六角螺母（02.03.0148）固定。拧紧力矩400N·m。",
+        "quality_check": "检查刀板后座是否与铲雪板底部紧密贴合，螺栓是否达到规定扭矩。",
+        "estimated_time_minutes": 15,
+        "safety_warnings": [
+          "本步骤需要使用大扭矩（400N·m）工具，请使用经过校准的扭矩扳手或液压扳手。",
+          "操作大扭矩工具时，注意站位，防止工具或扳手反弹造成伤害。",
+          "确保工件（铲雪板）在拧紧过程中保持稳定，防止倾倒。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 10,
+        "title": "安装橡胶刀板和挡板",
+        "component_code": "01.02.07.0239",
+        "component_name": "橡胶刀板",
+        "drawing_number": "11, 12",
+        "connection_type": "螺栓连接",
+        "position_description": "将橡胶刀板和挡板安装在铲雪板底部",
+        "components": [
+          {
+            "bom_code": "01.02.07.0239",
+            "bom_name": "橡胶刀板",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.02.07.0071",
+            "bom_name": "橡胶挡板",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0088",
+            "bom_name": "六角头螺栓8.8级",
+            "spec": "M8*80",
+            "quantity": 12,
+            "torque": "25N·m"
+          },
+          {
+            "bom_code": "02.03.0028",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 12,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将两块橡胶刀板（01.02.07.0239）安装在铲雪板底部，并用6套M8*80螺栓（02.03.0088）和M8锁紧螺母（02.03.0028）固定。同时，将两块橡胶挡板（01.02.07.0071）安装在铲雪板顶部，使用6套M8*80螺栓和M8锁紧螺母固定。注意螺栓数量和位置。",
+        "quality_check": "检查橡胶刀板和挡板是否平整安装，螺栓是否均匀拧紧。",
+        "estimated_time_minutes": 20,
+        "safety_warnings": [
+          "橡胶刀板边缘可能锋利，操作时请佩戴防护手套，防止割伤。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 11,
+        "title": "安装方形板和圆钢",
+        "component_code": "01.09.2555",
+        "component_name": "方形板-机加-镀锌",
+        "drawing_number": "41, 50",
+        "connection_type": "螺栓连接",
+        "position_description": "将方形板安装在铲雪板上，圆钢安装在连接架上",
+        "components": [
+          {
+            "bom_code": "01.09.2555",
+            "bom_name": "方形板-机加-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.09.2549",
+            "bom_name": "连接器后座组件-漆后",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.2566",
+            "bom_name": "圆钢-机加-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0379",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*20",
+            "quantity": 4,
+            "torque": "25N·m"
+          },
+          {
+            "bom_code": "02.03.0028",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将两个方形板（01.09.2555）安装在铲雪板上，使用4套M8*20螺栓（02.03.0379）和M8锁紧螺母（02.03.0028）固定。同时，将两个圆钢（01.09.2566）安装在①号连接器后座组件（01.09.2549）上，使用4套M8*20螺栓和M8锁紧螺母固定。拧紧力矩25N·m。",
+        "quality_check": "检查所有螺栓是否拧紧。",
+        "estimated_time_minutes": 10,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 12,
+        "title": "安装电磁阀组和保护罩",
+        "component_code": "02.08.03.0236",
+        "component_name": "电磁阀组",
+        "drawing_number": "31, 51",
+        "connection_type": "螺栓连接",
+        "position_description": "将电磁阀组安装在①号组件的侧面，并安装保护罩",
+        "components": [
+          {
+            "bom_code": "02.08.03.0236",
+            "bom_name": "电磁阀组",
+            "quantity": 1
+          },
+          {
+            "bom_code": "01.09.1240",
+            "bom_name": "电磁阀保护罩组件-漆后",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0442",
+            "bom_name": "内六角圆柱头螺钉8.8级",
+            "spec": "M6*40",
+            "quantity": 4,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.03.0146",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.03.0383",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*16",
+            "quantity": 2,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.03.0381",
+            "bom_name": "平垫圈8.8级",
+            "spec": "6*1.6",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将电磁阀组（02.08.03.0236）安装在①号连接器后座组件的侧面。使用4套M6*40内六角螺钉（02.03.0442）和M6锁紧螺母（02.03.0146）固定。然后，将电磁阀保护罩组件（01.09.1240）盖在电磁阀组上，使用2套M6*16螺栓（02.03.0383）和平垫圈（02.03.0381）固定。所有M6紧固件拧紧力矩10N·m。",
+        "quality_check": "检查电磁阀组是否安装牢固，保护罩是否盖严。",
+        "estimated_time_minutes": 15,
+        "safety_warnings": [
+          "电磁阀组属于精密电气元件，操作时需佩戴防静电手套，避免损坏元件。",
+          "确保电磁阀组在安装过程中没有受到撞击或挤压。"
+        ],
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 13,
+        "title": "安装把手和油杯",
+        "component_code": "01.09.2564",
+        "component_name": "把手组件-镀锌",
+        "drawing_number": "35, 32",
+        "connection_type": "螺栓连接/旋入",
+        "position_description": "把手安装在④号组件上，油杯安装在销轴孔上",
+        "components": [
+          {
+            "bom_code": "01.09.2564",
+            "bom_name": "把手组件-镀锌",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0378",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*20",
+            "quantity": 2,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.03.0146",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 2,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.08.05.0004",
+            "bom_name": "直通式压注油杯",
+            "spec": "M8",
+            "quantity": 18,
+            "torque": ""
+          }
+        ],
+        "operation": "将把手组件（01.09.2564）安装在④号后座连接架组件（01.09.2550）的顶部，使用2套M6*20螺栓（02.03.0378）和M6锁紧螺母（02.03.0146）固定。拧紧力矩10N·m。然后，将18个M8直通式压注油杯（02.08.05.0004）旋入所有销轴孔和转动轴承座上的预留孔位。",
+        "quality_check": "检查把手是否牢固，油杯是否全部安装到位。",
+        "estimated_time_minutes": 10,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 14,
+        "title": "安装反光片和固定板",
+        "component_code": "02.04.0029",
+        "component_name": "推雪板反光片",
+        "drawing_number": "20, 22",
+        "connection_type": "螺栓连接",
+        "position_description": "将反光片安装在铲雪板组件的侧面",
+        "components": [
+          {
+            "bom_code": "02.04.0029",
+            "bom_name": "推雪板反光片",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.09.0308",
+            "bom_name": "推雪板反光片固定板-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0378",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*20",
+            "quantity": 4,
+            "torque": "10N·m"
+          },
+          {
+            "bom_code": "02.03.0146",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m"
+          }
+        ],
+        "operation": "将两个推雪板反光片（02.04.0029）安装在推雪板反光片固定板（01.09.0308）上，然后将固定板安装在②号和③号铲雪板组件的外侧。使用4套M6*20螺栓（02.03.0378）和M6锁紧螺母（02.03.0146）固定。拧紧力矩10N·m。",
+        "quality_check": "检查反光片方向是否正确，螺栓是否拧紧。",
+        "estimated_time_minutes": 8,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      },
+      {
+        "step_number": 15,
+        "title": "安装插销和方形板",
+        "component_code": "01.09.0503",
+        "component_name": "插销-镀锌",
+        "drawing_number": "21, 52",
+        "connection_type": "插入/螺栓连接",
+        "position_description": "插销安装在轮胎架上，方形板安装在连接器后座上",
+        "components": [
+          {
+            "bom_code": "01.09.0503",
+            "bom_name": "插销-镀锌",
+            "quantity": 2
+          },
+          {
+            "bom_code": "01.09.2556",
+            "bom_name": "方形板-机加-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_code": "02.03.0379",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*20",
+            "quantity": 4,
+            "torque": "25N·m"
+          },
+          {
+            "bom_code": "02.03.0028",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将两个插销（01.09.0503）插入轮胎架组件的调节孔中，用于锁定轮胎架高度。将两个方形板（01.09.2556）安装在①号连接器后座组件（01.09.2549）的侧面，使用4套M8*20螺栓（02.03.0379）和M8锁紧螺母（02.03.0028）固定。拧紧力矩25N·m。",
+        "quality_check": "检查插销是否能顺利插入和拔出，方形板是否安装牢固。",
+        "estimated_time_minutes": 10,
+        "drawings": [
+          "/api/manual/{task_id}/pdf_images/page_002.png"
+        ]
+      }
+    ],
+    "3d_display_mode": "component_level_explosion"
+  },
+  "welding_requirements": [],
+  "safety_and_faq": {
+    "safety_warnings": [],
+    "faq_items": []
+  },
+  "3d_resources": {
+    "bom_to_mesh": {
+      "02.03.1035": [
+        "mesh_001",
+        "mesh_004",
+        "mesh_005",
+        "mesh_006",
+        "mesh_007",
+        "mesh_008",
+        "mesh_020",
+        "mesh_023",
+        "mesh_024",
+        "mesh_025",
+        "mesh_026",
+        "mesh_027",
+        "mesh_139",
+        "mesh_142"
+      ],
+      "02.03.0072": [
+        "mesh_002",
+        "mesh_009",
+        "mesh_010",
+        "mesh_011",
+        "mesh_012",
+        "mesh_013",
+        "mesh_021",
+        "mesh_028",
+        "mesh_029",
+        "mesh_030",
+        "mesh_031",
+        "mesh_032",
+        "mesh_137",
+        "mesh_141"
+      ],
+      "02.03.0019": [
+        "mesh_003",
+        "mesh_014",
+        "mesh_015",
+        "mesh_016",
+        "mesh_017",
+        "mesh_018",
+        "mesh_022",
+        "mesh_033",
+        "mesh_034",
+        "mesh_035",
+        "mesh_036",
+        "mesh_037",
+        "mesh_138",
+        "mesh_140"
+      ],
+      "01.09.2556": [
+        "mesh_019"
+      ],
+      "02.03.0088": [
+        "mesh_038",
+        "mesh_039"
+      ],
+      "02.03.0381": [
+        "mesh_040",
+        "mesh_041",
+        "mesh_042",
+        "mesh_043",
+        "mesh_044",
+        "mesh_045",
+        "mesh_046",
+        "mesh_047",
+        "mesh_048",
+        "mesh_049",
+        "mesh_050",
+        "mesh_051",
+        "mesh_052",
+        "mesh_053",
+        "mesh_054",
+        "mesh_055",
+        "mesh_056",
+        "mesh_057",
+        "mesh_058",
+        "mesh_059",
+        "mesh_060",
+        "mesh_061",
+        "mesh_062",
+        "mesh_063",
+        "mesh_198",
+        "mesh_200"
+      ],
+      "01.09.1240": [
+        "mesh_065",
+        "mesh_066"
+      ],
+      "02.03.0610": [
+        "mesh_067",
+        "mesh_068",
+        "mesh_069",
+        "mesh_070"
+      ],
+      "01.09.0308": [
+        "mesh_073",
+        "mesh_074"
+      ],
+      "02.03.0146": [
+        "mesh_075",
+        "mesh_079",
+        "mesh_081",
+        "mesh_083",
+        "mesh_085",
+        "mesh_087",
+        "mesh_089",
+        "mesh_091",
+        "mesh_093",
+        "mesh_095",
+        "mesh_097",
+        "mesh_099",
+        "mesh_101",
+        "mesh_148",
+        "mesh_197",
+        "mesh_201"
+      ],
+      "02.03.0383": [
+        "mesh_076",
+        "mesh_149"
+      ],
+      "02.08.05.0004": [
+        "mesh_077",
+        "mesh_078",
+        "mesh_122",
+        "mesh_124",
+        "mesh_126",
+        "mesh_128",
+        "mesh_130",
+        "mesh_132",
+        "mesh_134",
+        "mesh_136",
+        "mesh_146",
+        "mesh_153",
+        "mesh_155",
+        "mesh_157",
+        "mesh_159",
+        "mesh_161",
+        "mesh_163",
+        "mesh_169",
+        "mesh_171",
+        "mesh_173",
+        "mesh_175",
+        "mesh_177",
+        "mesh_193"
+      ],
+      "02.03.0378": [
+        "mesh_080",
+        "mesh_082",
+        "mesh_084",
+        "mesh_086",
+        "mesh_088",
+        "mesh_090",
+        "mesh_092",
+        "mesh_094",
+        "mesh_096",
+        "mesh_098",
+        "mesh_100",
+        "mesh_102"
+      ],
+      "01.09.0304": [
+        "mesh_103",
+        "mesh_106",
+        "mesh_109",
+        "mesh_112",
+        "mesh_116",
+        "mesh_119"
+      ],
+      "02.03.0147": [
+        "mesh_104",
+        "mesh_107",
+        "mesh_110",
+        "mesh_113",
+        "mesh_117",
+        "mesh_118",
+        "mesh_223",
+        "mesh_224",
+        "mesh_225",
+        "mesh_226",
+        "mesh_227",
+        "mesh_228"
+      ],
+      "02.03.0458": [
+        "mesh_105",
+        "mesh_108",
+        "mesh_111",
+        "mesh_114",
+        "mesh_115",
+        "mesh_120"
+      ],
+      "02.03.0379": [
+        "mesh_121",
+        "mesh_123",
+        "mesh_125",
+        "mesh_127",
+        "mesh_129",
+        "mesh_131",
+        "mesh_133",
+        "mesh_135"
+      ],
+      "02.03.0102": [
+        "mesh_147"
+      ],
+      "02.04.0029": [
+        "mesh_150",
+        "mesh_151"
+      ],
+      "02.08.03.0236": [
+        "mesh_152"
+      ],
+      "02.03.0398": [
+        "mesh_154",
+        "mesh_156",
+        "mesh_158",
+        "mesh_160",
+        "mesh_162",
+        "mesh_164",
+        "mesh_170",
+        "mesh_172",
+        "mesh_174",
+        "mesh_176",
+        "mesh_178",
+        "mesh_194"
+      ],
+      "01.09.0995": [
+        "mesh_195",
+        "mesh_218",
+        "mesh_219",
+        "mesh_220",
+        "mesh_221",
+        "mesh_222"
+      ],
+      "01.09.2566": [
+        "mesh_196",
+        "mesh_203"
+      ],
+      "02.03.0442": [
+        "mesh_199",
+        "mesh_202"
+      ],
+      "02.03.0612": [
+        "mesh_204",
+        "mesh_207"
+      ],
+      "01.09.2565": [
+        "mesh_205",
+        "mesh_206"
+      ],
+      "01.09.0999": [
+        "mesh_210"
+      ],
+      "01.09.2564": [
+        "mesh_229",
+        "mesh_230",
+        "mesh_231",
+        "mesh_232"
+      ],
+      "02.09.0103": [
+        "mesh_237",
+        "mesh_238",
+        "mesh_239",
+        "mesh_240",
+        "mesh_241",
+        "mesh_242"
+      ],
+      "01.09.2562": [
+        "mesh_243",
+        "mesh_244",
+        "mesh_245",
+        "mesh_246",
+        "mesh_247",
+        "mesh_252"
+      ],
+      "01.09.2563": [
+        "mesh_248",
+        "mesh_249",
+        "mesh_250",
+        "mesh_251"
+      ],
+      "01.09.2561": [
+        "mesh_253"
+      ],
+      "01.09.2555": [
+        "mesh_254"
+      ],
+      "01.02.07.0071": [
+        "mesh_255"
+      ],
+      "01.02.07.0239": [
+        "mesh_256",
+        "mesh_257"
+      ],
+      "01.09.2560": [
+        "mesh_259"
+      ],
+      "01.09.2559": [
+        "mesh_260",
+        "mesh_263",
+        "mesh_266",
+        "mesh_269",
+        "mesh_272",
+        "mesh_275"
+      ],
+      "01.09.2557": [
+        "mesh_301",
+        "mesh_305"
+      ],
+      "01.09.2553": [
+        "mesh_315"
+      ],
+      "01.09.2554": [
+        "mesh_325"
+      ],
+      "01.09.2551": [
+        "mesh_349",
+        "mesh_350",
+        "mesh_374",
+        "mesh_376",
+        "mesh_377"
+      ],
+      "01.09.2552": [
+        "mesh_351"
+      ],
+      "02.03.0012": [
+        "mesh_145"
+      ],
+      "02.03.0001": [
+        "mesh_165",
+        "mesh_166",
+        "mesh_167",
+        "mesh_168"
+      ],
+      "02.16.0142": [
+        "mesh_208",
+        "mesh_209"
+      ],
+      "01.09.0503": [
+        "mesh_211"
+      ],
+      "02.03.0006": [
+        "mesh_212",
+        "mesh_213",
+        "mesh_214",
+        "mesh_215",
+        "mesh_216",
+        "mesh_217"
+      ],
+      "02.08.01.0338": [
+        "mesh_233",
+        "mesh_234",
+        "mesh_235",
+        "mesh_236"
+      ],
+      "01.09.2550": [
+        "mesh_404",
+        "mesh_407"
+      ],
+      "01.09.2549": [
+        "mesh_405",
+        "mesh_408"
+      ]
+    },
+    "component_to_glb": {
+      "01.09.2549": "component_01_09_2549.glb",
+      "01.09.2551": "component_01_09_2551.glb"
+    },
+    "product_glb": "product_total.glb"
+  }
+}

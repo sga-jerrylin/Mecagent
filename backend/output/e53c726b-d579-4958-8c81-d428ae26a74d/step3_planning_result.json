@@ -1,0 +1,199 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.03.6999",
+      "component_name": "连接器后座组件",
+      "drawing_number": "①",
+      "assembly_order": 1,
+      "reason": "图纸上①号组件位于底部中心，为整机基准。",
+      "base_part_code": "01.01.01.11509",
+      "base_part_name": "连接板 1",
+      "base_part_drawing_number": "1",
+      "base_part_weight_kg": 21.36,
+      "assembly_steps": [
+        "步骤1：将①号连接板作为基准放置",
+        "步骤2：安装②③号矩形管焊接于两侧",
+        "步骤3：固定⑤⑥号挂件组件于上部",
+        "步骤4：焊接⑦⑨号加强筋封板",
+        "步骤5：检查整体垂直度后矫正成型"
+      ]
+    },
+    {
+      "component_code": "01.03.7000",
+      "component_name": "后座连接架组件",
+      "drawing_number": "②",
+      "assembly_order": 2,
+      "reason": "②号组件位于中部支撑刀板，与①号对接。",
+      "base_part_code": "01.01.01.11511",
+      "base_part_name": "方板-机加",
+      "base_part_drawing_number": "1",
+      "base_part_weight_kg": 15.79,
+      "assembly_steps": [
+        "步骤1：以①号方板为基准垂直放置",
+        "步骤2：焊接②③号连接板定位",
+        "步骤3：安装④⑤号油缸固定板与加强板",
+        "步骤4：焊接⑨⑩号轴套并校正同轴度",
+        "步骤5：整体检查平面度并编号流转"
+      ]
+    },
+    {
+      "component_code": "01.03.7001",
+      "component_name": "左铲雪板组件",
+      "drawing_number": "③",
+      "assembly_order": 3,
+      "reason": "③号组件位于左侧，与右铲对称并最后与②号连接。",
+      "base_part_code": "01.01.01.18598",
+      "base_part_name": "左铲板 1",
+      "base_part_drawing_number": "1",
+      "base_part_weight_kg": 28.38,
+      "assembly_steps": [
+        "步骤1：将①号左铲板设为基准件",
+        "步骤2：焊接④⑭号底部连接板与支撑板",
+        "步骤3：安装⑦号反光片安装板及加强筋",
+        "步骤4：固定⑨⑩号轴套保证同轴",
+        "步骤5：焊接完成后校正整体弯角"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.03.6999",
+    "base_component_name": "连接器后座组件",
+    "base_component_drawing_number": "①",
+    "reason": "①号组件最重且位于底部中心，为装配基准。",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.03.6999",
+        "component_drawing_number": "①",
+        "action": "将①号组件固定于装配平台作为基准"
+      },
+      {
+        "step": 2,
+        "component_code": "01.03.7000",
+        "component_drawing_number": "②",
+        "action": "将②号组件与①号基准连接固定"
+      },
+      {
+        "step": 3,
+        "component_code": "01.03.7001",
+        "component_drawing_number": "③",
+        "action": "将③号左铲雪板连接②号组件左侧"
+      },
+      {
+        "step": 4,
+        "component_code": "01.09.2552",
+        "component_drawing_number": "④",
+        "action": "对称安装右铲雪板与③号对应成V形"
+      },
+      {
+        "step": 5,
+        "component_code": "02.08.01.0338",
+        "component_drawing_number": "⑤",
+        "action": "最后装配油缸与弹簧组件并调平角度"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "V型推雪板EURO连接器 T-SPV1830-EURO",
+    "total_components": 3,
+    "visual_analysis": {
+      "product_drawing_observation": "从产品总图可见①号连接器后座组件位于下方最中心，②号后座连接架组件在中部承接刀板，③号左铲雪板组件位于左侧，与右铲雪板对称。",
+      "component_drawings_observation": "组件图显示：①号组件以连接板为基准（最重）；②号组件以内外板焊接成型，主板最重；③号组件以铲板为基准，附加加强板与安装板。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.03.6999",
+        "component_name": "连接器后座组件",
+        "drawing_number": "①",
+        "assembly_order": 1,
+        "reason": "图纸上①号组件位于底部中心，为整机基准。",
+        "base_part_code": "01.01.01.11509",
+        "base_part_name": "连接板 1",
+        "base_part_drawing_number": "1",
+        "base_part_weight_kg": 21.36,
+        "assembly_steps": [
+          "步骤1：将①号连接板作为基准放置",
+          "步骤2：安装②③号矩形管焊接于两侧",
+          "步骤3：固定⑤⑥号挂件组件于上部",
+          "步骤4：焊接⑦⑨号加强筋封板",
+          "步骤5：检查整体垂直度后矫正成型"
+        ]
+      },
+      {
+        "component_code": "01.03.7000",
+        "component_name": "后座连接架组件",
+        "drawing_number": "②",
+        "assembly_order": 2,
+        "reason": "②号组件位于中部支撑刀板，与①号对接。",
+        "base_part_code": "01.01.01.11511",
+        "base_part_name": "方板-机加",
+        "base_part_drawing_number": "1",
+        "base_part_weight_kg": 15.79,
+        "assembly_steps": [
+          "步骤1：以①号方板为基准垂直放置",
+          "步骤2：焊接②③号连接板定位",
+          "步骤3：安装④⑤号油缸固定板与加强板",
+          "步骤4：焊接⑨⑩号轴套并校正同轴度",
+          "步骤5：整体检查平面度并编号流转"
+        ]
+      },
+      {
+        "component_code": "01.03.7001",
+        "component_name": "左铲雪板组件",
+        "drawing_number": "③",
+        "assembly_order": 3,
+        "reason": "③号组件位于左侧，与右铲对称并最后与②号连接。",
+        "base_part_code": "01.01.01.18598",
+        "base_part_name": "左铲板 1",
+        "base_part_drawing_number": "1",
+        "base_part_weight_kg": 28.38,
+        "assembly_steps": [
+          "步骤1：将①号左铲板设为基准件",
+          "步骤2：焊接④⑭号底部连接板与支撑板",
+          "步骤3：安装⑦号反光片安装板及加强筋",
+          "步骤4：固定⑨⑩号轴套保证同轴",
+          "步骤5：焊接完成后校正整体弯角"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.03.6999",
+      "base_component_name": "连接器后座组件",
+      "base_component_drawing_number": "①",
+      "reason": "①号组件最重且位于底部中心，为装配基准。",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.03.6999",
+          "component_drawing_number": "①",
+          "action": "将①号组件固定于装配平台作为基准"
+        },
+        {
+          "step": 2,
+          "component_code": "01.03.7000",
+          "component_drawing_number": "②",
+          "action": "将②号组件与①号基准连接固定"
+        },
+        {
+          "step": 3,
+          "component_code": "01.03.7001",
+          "component_drawing_number": "③",
+          "action": "将③号左铲雪板连接②号组件左侧"
+        },
+        {
+          "step": 4,
+          "component_code": "01.09.2552",
+          "component_drawing_number": "④",
+          "action": "对称安装右铲雪板与③号对应成V形"
+        },
+        {
+          "step": 5,
+          "component_code": "02.08.01.0338",
+          "component_drawing_number": "⑤",
+          "action": "最后装配油缸与弹簧组件并调平角度"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "seq": "10",
+    "code": "01.01.02.0337",
+    "product_code": "T-U2500-01-09-Q235",
+    "name": "后座轴套 1",
+    "quantity": 1,
+    "weight": 0.3,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "9",
+    "code": "01.02.02.0490",
+    "product_code": "T-U2500-01-05-Q235",
+    "name": "后座轴套 1",
+    "quantity": 1,
+    "weight": 2.29,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "8",
+    "code": "01.01.02.1221",
+    "product_code": "ZT-φ55/φ37-35-Q235",
+    "name": "轴套 1",
+    "quantity": 1,
+    "weight": 0.35,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "7",
+    "code": "01.01.04.0592",
+    "product_code": "T-SPV250-Z602-02-07-Q235",
+    "name": "角钢-机加 1",
+    "quantity": 1,
+    "weight": 0.63,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "6",
+    "code": "01.01.01.11516",
+    "product_code": "T-SPV250-Z602-02-06-Q355B",
+    "name": "加强板 4",
+    "quantity": 4,
+    "weight": 1.41,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "5",
+    "code": "01.01.01.11515",
+    "product_code": "T-SPV250-Z602-02-05-Q355B",
+    "name": "油缸固定板 4",
+    "quantity": 4,
+    "weight": 2.1,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "4",
+    "code": "01.01.01.11514",
+    "product_code": "T-SPV250-Z602-02-04-Q355B",
+    "name": "折弯板 1",
+    "quantity": 1,
+    "weight": 0.49,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "3",
+    "code": "01.01.01.11513",
+    "product_code": "T-SPV250-Z602-02-03-Q355B",
+    "name": "侧连接板 2",
+    "quantity": 2,
+    "weight": 24.97,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "2",
+    "code": "01.01.01.11512",
+    "product_code": "T-SPV250-Z602-02-02-Q355B",
+    "name": "上连接板 2",
+    "quantity": 2,
+    "weight": 11.35,
+    "source_pdf": "组件图2.pdf"
+  },
+  {
+    "seq": "1",
+    "code": "01.01.01.11511",
+    "product_code": "T-SPV250-Z602-02-01-Q355B",
+    "name": "方形板-机加 1",
+    "quantity": 1,
+    "weight": 15.79,
+    "source_pdf": "组件图2.pdf"
+  }
+]

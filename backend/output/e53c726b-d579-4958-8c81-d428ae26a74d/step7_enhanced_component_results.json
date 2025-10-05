@@ -1,0 +1,1906 @@
+[
+  {
+    "success": true,
+    "component_code": "01.03.6999",
+    "component_name": "连接器后座组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "取图纸上标注为①的连接板（BOM代号：01.01.01.11509），平放在装配工装上，调平作为装配基准。",
+        "position_description": "位于组件中心位置，作为整体装配基准。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11509",
+            "bom_name": "连接板",
+            "quantity": 1,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_018"
+            ]
+          }
+        ],
+        "tools": [
+          "水平仪",
+          "钢直尺"
+        ],
+        "warnings": [
+          "放置时注意防止刮伤表面",
+          "保证基准平面清洁无油污"
+        ],
+        "safety_warnings": [
+          "搬运连接板时注意防止夹手或砸脚，必要时两人协作",
+          "放置工件前检查工装是否稳固，防止滑落"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "安装左侧矩形管",
+        "description": "取②号矩形管（BOM代号：01.01.03.2718），对齐连接板①左侧的焊接位置，从内侧定位后与基准焊接定位点点焊固定。",
+        "position_description": "位于①号连接板左侧，与基准板成直角连接。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.03.2718",
+            "bom_name": "矩形管 1",
+            "quantity": 1,
+            "drawing_number": "2"
+          }
+        ],
+        "tools": [
+          "角尺",
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "焊前检查坡口",
+          "定位后先点焊防止变形"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "连接板①与矩形管②内角处平焊",
+          "quality_requirements": "点焊牢固，焊缝均匀无烧穿",
+          "safety_notes": "佩戴面罩、防护手套，保持通风防止烟气吸入"
+        },
+        "safety_warnings": [
+          "焊接前确保工件固定牢，防止移动烫伤",
+          "佩戴防护面罩、手套，防止弧光灼伤和飞溅烫伤",
+          "保持周围通风良好，避免吸入焊烟"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "安装右侧矩形管",
+        "description": "取⑨号矩形管（BOM代号：01.01.03.2719），放置在①号连接板右侧，对齐焊缝标线并点焊固定。",
+        "position_description": "与左侧对称，安装在①号连接板右侧。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.03.2719",
+            "bom_name": "矩形管 2",
+            "quantity": 1,
+            "drawing_number": "9"
+          }
+        ],
+        "tools": [
+          "角尺",
+          "焊机"
+        ],
+        "warnings": [
+          "保持左右对称",
+          "焊接时防止过热变形"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "连接板①与矩形管⑨内角处平焊",
+          "quality_requirements": "点焊牢固，焊缝平滑，无气孔夹渣",
+          "safety_notes": "焊接时注意保持手稳，防止弧光灼伤眼睛"
+        },
+        "safety_warnings": [
+          "焊机接地良好，防止触电",
+          "防止电弧光直射眼睛，佩戴防护面罩",
+          "工件烫热后勿立即触摸，防止烫伤"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装封板",
+        "description": "取③号封板（BOM代号：01.01.01.16608），将两块封板分别贴合在左右矩形管的外侧端面上，使用夹具固定后满焊。",
+        "position_description": "安装在矩形管②、⑨外端面，形成封闭结构。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.16608",
+            "bom_name": "封板",
+            "quantity": 2,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_004",
+              "mesh_005"
+            ]
+          }
+        ],
+        "tools": [
+          "夹具",
+          "焊机"
+        ],
+        "warnings": [
+          "焊接顺序要对称",
+          "防止两侧拉弯"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度8mm",
+          "welding_position": "封板③与矩形管外端面四周平焊",
+          "quality_requirements": "焊缝连续饱满，无未焊透",
+          "safety_notes": "焊接封口时注意防止飞溅烫伤，操作区保持清洁"
+        },
+        "safety_warnings": [
+          "焊接时保持防护面罩佩戴到位，防止飞溅烫伤",
+          "操作区周围不要堆放易燃物",
+          "夹具固定要牢靠，防止焊接时滑动"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "安装方形板",
+        "description": "取⑦号方形板-机加件（BOM代号：01.01.01.6589），对应连接板前表面四个安装孔位置，使用定位销临时固定，然后焊接四周止口。",
+        "position_description": "安装在组件前表面，居中位置。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.6589",
+            "bom_name": "方形板-机加",
+            "quantity": 4,
+            "drawing_number": "3",
+            "mesh_id": [
+              "mesh_014",
+              "mesh_015",
+              "mesh_016",
+              "mesh_017"
+            ]
+          }
+        ],
+        "tools": [
+          "夹具",
+          "焊机",
+          "定位销"
+        ],
+        "warnings": [
+          "对齐中心线",
+          "焊缝均匀，避免咬边"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度4mm",
+          "welding_position": "方形板⑦与连接板①前表面止口处平焊",
+          "quality_requirements": "焊缝平滑，外观整齐，无气孔",
+          "safety_notes": "焊接期间佩戴防护眼镜，避免弧光直射"
+        },
+        "safety_warnings": [
+          "焊接区域应干燥通风，防止气体聚集",
+          "焊后工件高温，禁止徒手触碰",
+          "检验焊缝时须待工件冷却"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "安装左挂件虚拟组件",
+        "description": "取⑤号左挂件虚拟组件（BOM代号：01.05.0019），将挂件底部法兰与左侧矩形管的前端面对齐，调整角度后点焊连接。",
+        "position_description": "位于组件左上方，矩形管②的前端上部位置。",
+        "parts_used": [
+          {
+            "bom_code": "01.05.0019",
+            "bom_name": "左挂件虚拟组件",
+            "quantity": 1,
+            "drawing_number": "5",
+            "mesh_id": [
+              "mesh_010",
+              "mesh_012",
+              "mesh_013"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "角尺"
+        ],
+        "warnings": [
+          "控制角度与水平一致",
+          "点焊后检查位置再满焊"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "左挂件⑤法兰与矩形管②前端角接处平焊",
+          "quality_requirements": "点焊位置准确，满焊后焊缝饱满整齐",
+          "safety_notes": "焊接时保持姿势稳，防止高处坠落或烫伤"
+        },
+        "safety_warnings": [
+          "若需登高操作，使用稳固脚手板或工作台，禁止站在工件上",
+          "焊接时防止飞溅物击中面部或衣物，穿防火工作服",
+          "焊后待冷却再测量角度，防止烫伤"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "安装右挂件虚拟组件",
+        "description": "取⑥号右挂件虚拟组件（BOM代号：01.05.0018），与左挂件对称安装在右侧矩形管⑨前端上方，同步调整角度后焊牢。",
+        "position_description": "位于组件右上方，对称于左挂件。",
+        "parts_used": [
+          {
+            "bom_code": "01.05.0018",
+            "bom_name": "右挂件虚拟组件",
+            "quantity": 1,
+            "drawing_number": "4",
+            "mesh_id": [
+              "mesh_008",
+              "mesh_009",
+              "mesh_011"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "角尺",
+          "水平仪"
+        ],
+        "warnings": [
+          "保持与左挂件对称",
+          "焊接前确认位置一致"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "右挂件⑥法兰与矩形管⑨前端角接处平焊",
+          "quality_requirements": "焊缝均匀饱满，对称一致",
+          "safety_notes": "施工面层远离易燃物，防止电弧火花引燃"
+        },
+        "safety_warnings": [
+          "焊接前清理周围易燃物，保持消防通道畅通",
+          "使用焊机前检查电缆绝缘是否良好，防止触电",
+          "登高作业需有防坠措施"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "焊接加强筋",
+        "description": "取⑨号加强筋（BOM代号：01.01.01.17678）两块，分别焊接在背面矩形管与连接板的三角位置处，起加固作用。",
+        "position_description": "安装在组件背面两侧的上下交角处。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.17678",
+            "bom_name": "加强筋",
+            "quantity": 2,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_002"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "角尺"
+        ],
+        "warnings": [
+          "焊缝饱满",
+          "注意对称，防止翘曲"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度8mm",
+          "welding_position": "加强筋⑨与矩形管及连接板交角处平焊",
+          "quality_requirements": "焊缝饱满，过渡圆滑，无裂纹气孔",
+          "safety_notes": "保持工件冷却间隔，防止变形和烫伤"
+        },
+        "safety_warnings": [
+          "焊接加强筋时注意焊枪角度，防止弧光反射灼伤眼睛",
+          "工件焊接区域温度高，等待冷却后再移动",
+          "保持通风，减少焊烟吸入"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.6999",
+      "component_name": "连接器后座组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "从图纸可见，①号连接板位于组件中部，是所有矩形管、挂件、封板和加强筋的连接基准。矩形管②、⑨分别在左右两侧，提供支撑；挂件⑤⑥在上部两端；封板③在两侧包边；方形板⑦在前表面起支撑；加强筋⑨在背面增强刚度。因此应从中心件开始逐步向外扩展装配。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "取图纸上标注为①的连接板（BOM代号：01.01.01.11509），平放在装配工装上，调平作为装配基准。",
+          "position_description": "位于组件中心位置，作为整体装配基准。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11509",
+              "bom_name": "连接板",
+              "quantity": 1,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            }
+          ],
+          "tools": [
+            "水平仪",
+            "钢直尺"
+          ],
+          "warnings": [
+            "放置时注意防止刮伤表面",
+            "保证基准平面清洁无油污"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装左侧矩形管",
+          "description": "取②号矩形管（BOM代号：01.01.03.2718），对齐连接板①左侧的焊接位置，从内侧定位后与基准焊接定位点点焊固定。",
+          "position_description": "位于①号连接板左侧，与基准板成直角连接。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.03.2718",
+              "bom_name": "矩形管 1",
+              "quantity": 1,
+              "drawing_number": "2"
+            }
+          ],
+          "tools": [
+            "角尺",
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "焊前检查坡口",
+            "定位后先点焊防止变形"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装右侧矩形管",
+          "description": "取⑨号矩形管（BOM代号：01.01.03.2719），放置在①号连接板右侧，对齐焊缝标线并点焊固定。",
+          "position_description": "与左侧对称，安装在①号连接板右侧。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.03.2719",
+              "bom_name": "矩形管 2",
+              "quantity": 1,
+              "drawing_number": "9"
+            }
+          ],
+          "tools": [
+            "角尺",
+            "焊机"
+          ],
+          "warnings": [
+            "保持左右对称",
+            "焊接时防止过热变形"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装封板",
+          "description": "取③号封板（BOM代号：01.01.01.16608），将两块封板分别贴合在左右矩形管的外侧端面上，使用夹具固定后满焊。",
+          "position_description": "安装在矩形管②、⑨外端面，形成封闭结构。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.16608",
+              "bom_name": "封板",
+              "quantity": 2,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_004",
+                "mesh_005"
+              ]
+            }
+          ],
+          "tools": [
+            "夹具",
+            "焊机"
+          ],
+          "warnings": [
+            "焊接顺序要对称",
+            "防止两侧拉弯"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装方形板",
+          "description": "取⑦号方形板-机加件（BOM代号：01.01.01.6589），对应连接板前表面四个安装孔位置，使用定位销临时固定，然后焊接四周止口。",
+          "position_description": "安装在组件前表面，居中位置。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.6589",
+              "bom_name": "方形板-机加",
+              "quantity": 4,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015",
+                "mesh_016",
+                "mesh_017"
+              ]
+            }
+          ],
+          "tools": [
+            "夹具",
+            "焊机",
+            "定位销"
+          ],
+          "warnings": [
+            "对齐中心线",
+            "焊缝均匀，避免咬边"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "安装左挂件虚拟组件",
+          "description": "取⑤号左挂件虚拟组件（BOM代号：01.05.0019），将挂件底部法兰与左侧矩形管的前端面对齐，调整角度后点焊连接。",
+          "position_description": "位于组件左上方，矩形管②的前端上部位置。",
+          "parts_used": [
+            {
+              "bom_code": "01.05.0019",
+              "bom_name": "左挂件虚拟组件",
+              "quantity": 1,
+              "drawing_number": "5",
+              "mesh_id": [
+                "mesh_010",
+                "mesh_012",
+                "mesh_013"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角尺"
+          ],
+          "warnings": [
+            "控制角度与水平一致",
+            "点焊后检查位置再满焊"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "安装右挂件虚拟组件",
+          "description": "取⑥号右挂件虚拟组件（BOM代号：01.05.0018），与左挂件对称安装在右侧矩形管⑨前端上方，同步调整角度后焊牢。",
+          "position_description": "位于组件右上方，对称于左挂件。",
+          "parts_used": [
+            {
+              "bom_code": "01.05.0018",
+              "bom_name": "右挂件虚拟组件",
+              "quantity": 1,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_008",
+                "mesh_009",
+                "mesh_011"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角尺",
+            "水平仪"
+          ],
+          "warnings": [
+            "保持与左挂件对称",
+            "焊接前确认位置一致"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "焊接加强筋",
+          "description": "取⑨号加强筋（BOM代号：01.01.01.17678）两块，分别焊接在背面矩形管与连接板的三角位置处，起加固作用。",
+          "position_description": "安装在组件背面两侧的上下交角处。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.17678",
+              "bom_name": "加强筋",
+              "quantity": 2,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角尺"
+          ],
+          "warnings": [
+            "焊缝饱满",
+            "注意对称，防止翘曲"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查①号连接板是否平整、无翘边，作为装配基准。",
+        "确认②号与⑨号矩形管焊接垂直度在2mm/m以内。",
+        "⑤⑥号挂件位置对称，距基准线误差不超过1mm。",
+        "⑦号方形板焊接无气孔、焊缝均匀。",
+        "⑨号加强筋整体对称且贴合紧密，角焊缝连续饱满。"
+      ],
+      "estimated_time_minutes": 65
+    },
+    "assembly_order": 1
+  },
+  {
+    "success": true,
+    "component_code": "01.03.7000",
+    "component_name": "后座连接架组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "定位基准件",
+        "description": "取图纸①号方形板-机加（BOM代号：01.01.01.11511）放平在工装平台上，作为整个组件的基准。确认板面清洁无毛刺，并在上面划出连接板的定位线。",
+        "position_description": "①号方板水平放置，作为其他部件的装配基准面。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11511",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "①",
+            "mesh_id": [
+              "mesh_018"
+            ]
+          }
+        ],
+        "tools": [
+          "划线尺",
+          "清洁布"
+        ],
+        "warnings": [
+          "放置时保持水平，避免变形",
+          "定位线要清晰，作为后续焊接参考"
+        ],
+        "safety_warnings": [
+          "搬运方形板时注意防止手被夹伤或划伤，戴好防割手套",
+          "放置工件时确认工装平台稳固，防止倾倒"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "安装侧连接板",
+        "description": "取图纸②号与③号的侧连接板（BOM代号：01.01.01.11513），与①号方形板的两侧孔位对齐。使用焊接夹具固定后点焊，保持垂直度。",
+        "position_description": "②③号侧连接板在方板左右两侧垂直布置，与底部边缘对齐。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11513",
+            "bom_name": "侧连接板",
+            "quantity": 2,
+            "drawing_number": "②③",
+            "mesh_id": [
+              "mesh_014",
+              "mesh_015"
+            ]
+          },
+          {
+            "bom_code": "01.01.01.11511",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "①",
+            "mesh_id": [
+              "mesh_018"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "焊接夹具",
+          "角尺"
+        ],
+        "warnings": [
+          "焊前检查贴合间隙≤1mm",
+          "点焊后检查垂直度小于1mm偏差"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "平焊，焊接在方形板与两侧连接板焊缝处",
+          "quality_requirements": "焊缝饱满，无夹渣、裂纹和气孔",
+          "safety_notes": "佩戴面罩，保持焊接区域通风良好，防止火花飞溅烫伤"
+        },
+        "safety_warnings": [
+          "焊接时佩戴防护手套和面罩，防止电弧光灼伤眼睛和皮肤",
+          "保持焊接区域通风，防止烟气积聚",
+          "焊接现场周围不得有易燃物"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "焊接折弯板",
+        "description": "将④号折弯板（BOM代号：01.01.01.11514）放置在两块侧连接板内侧靠后的连接口处，采用点焊定位后焊接固定。保证两侧对称。",
+        "position_description": "④号折弯板横向连接于侧板内测后部，使两侧板形成三角刚性结构。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11514",
+            "bom_name": "折弯板",
+            "quantity": 1,
+            "drawing_number": "④",
+            "mesh_id": [
+              "mesh_013"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "焊条E50",
+          "角尺"
+        ],
+        "warnings": [
+          "焊缝连续饱满无气孔",
+          "控热防止板件变形"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "手工电弧焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "平焊，与两侧连接板的内角焊缝",
+          "quality_requirements": "焊缝连续饱满，无咬边、气孔和烧穿",
+          "safety_notes": "注意防止电弧光灼伤，焊接时佩戴防护手套和面罩"
+        },
+        "safety_warnings": [
+          "焊接时确保接地线连接可靠，防止触电",
+          "防止焊渣飞溅烫伤皮肤或引燃衣物",
+          "焊后工件高温，禁止立即触摸"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装油缸固定板",
+        "description": "安装⑤号油缸固定板（BOM代号：01.01.01.11515）在两块侧板外侧焊缝位置，与图示孔位对齐，用工装保持水平后焊牢。",
+        "position_description": "⑤号油缸固定板位于侧连接板外侧中部，与需安装油缸处形成支架。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11515",
+            "bom_name": "油缸固定板",
+            "quantity": 4,
+            "drawing_number": "⑤",
+            "mesh_id": [
+              "mesh_002",
+              "mesh_003",
+              "mesh_011",
+              "mesh_012"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "夹具",
+          "水平仪"
+        ],
+        "warnings": [
+          "保证焊缝不压住安装孔",
+          "焊后自然冷却防止翘曲"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度5mm",
+          "welding_position": "平焊，油缸板与侧连接板焊接处",
+          "quality_requirements": "焊缝光滑美观，焊瘤不超过1mm",
+          "safety_notes": "防止焊渣飞溅到孔内，焊后检查通孔是否畅通"
+        },
+        "safety_warnings": [
+          "搬运固定板时注意拿稳，防止砸伤手脚",
+          "焊接区域需清除易燃物，防止火花引燃",
+          "焊接结束后保持散热时间，勿立即触碰焊件"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "焊接加强板",
+        "description": "取⑥号加强板（BOM代号：01.01.01.11516）分别焊接在侧连接板与折弯板之间的三角空间部位，加强整体刚度。",
+        "position_description": "⑥号加强板贴合在侧连接板和折弯板之间两对角处。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11516",
+            "bom_name": "加强板",
+            "quantity": 4,
+            "drawing_number": "⑥",
+            "mesh_id": [
+              "mesh_007",
+              "mesh_008",
+              "mesh_009",
+              "mesh_010"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "工装夹具"
+        ],
+        "warnings": [
+          "焊接顺序由中心向外扩散，防止翘曲",
+          "焊后打磨焊缝飞溅"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "平焊，位于侧板与折弯板连接处",
+          "quality_requirements": "焊缝饱满均匀，焊缝根部融合良好",
+          "safety_notes": "佩戴面屏防护眼睛，焊前确认接地线连接牢靠"
+        },
+        "safety_warnings": [
+          "打磨时要佩戴防护眼镜，防止金属屑飞溅伤眼",
+          "焊接时避免身体靠近焊缝，防止高温烫伤"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "焊接角钢",
+        "description": "取⑦号角钢-机加（BOM代号：01.01.04.0592），放在折弯板上方位置与两侧加强板连接处，定位后进行满焊，增强整体抗扭能力。",
+        "position_description": "⑦号角钢位于上部作为连接与加固结构板。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.04.0592",
+            "bom_name": "角钢-机加",
+            "quantity": 1,
+            "drawing_number": "⑦",
+            "mesh_id": [
+              "mesh_006"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "角尺",
+          "夹具"
+        ],
+        "warnings": [
+          "焊缝高度均匀，过渡平滑",
+          "焊接后检查角度对齐"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "平焊，角钢与加强板焊接处",
+          "quality_requirements": "焊缝饱满、过渡平顺，无漏焊、气孔",
+          "safety_notes": "焊接角部时避免长时间加热，防止角钢变形"
+        },
+        "safety_warnings": [
+          "焊接时注意角部火花飞溅，防止烧伤衣物",
+          "作业时保持工件稳定，防止滑落或压伤"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "焊接轴套",
+        "description": "将⑨⑩号后座轴套（BOM代号：01.01.02.0337 与 01.02.02.0490）焊接在侧连接板端部定位孔处，轴向与上方孔中心保持同轴。焊缝高度不超过轴套外缘。",
+        "position_description": "⑨号轴套在下方，⑩号轴套在上方，两者同轴排列。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.02.0337",
+            "bom_name": "后座轴套1",
+            "quantity": 1,
+            "drawing_number": "⑩",
+            "mesh_id": [
+              "mesh_001"
+            ]
+          },
+          {
+            "bom_code": "01.02.02.0490",
+            "bom_name": "后座轴套2",
+            "quantity": 1,
+            "drawing_number": "⑨",
+            "mesh_id": [
+              "mesh_004"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "轴向校正杆",
+          "卡尺"
+        ],
+        "warnings": [
+          "焊接前插入对中杆确保同轴度≤0.2mm",
+          "焊后清理通孔毛刺"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "塞焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度不超过轴套外缘2mm",
+          "welding_position": "环焊，位于轴套与侧连接板结合处",
+          "quality_requirements": "焊缝均匀圆滑，防止过焊影响配合面",
+          "safety_notes": "注意同轴度控制，严禁过热导致轴套变形"
+        },
+        "safety_warnings": [
+          "焊接轴套时固定牢固，防止滑动造成烫伤",
+          "控制加热时间，防止手部靠近高温部位"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "安装轴套连接件",
+        "description": "在轴套之间焊接⑧号轴套定位垫环（BOM代号：01.01.02.1221），保持两座间距符合图纸要求。",
+        "position_description": "⑧号垫环在上下轴套之间内侧，对中固定。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.02.1221",
+            "bom_name": "轴套",
+            "quantity": 1,
+            "drawing_number": "⑧",
+            "mesh_id": [
+              "mesh_005"
+            ]
+          }
+        ],
+        "tools": [
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "保持焊缝高度均匀",
+          "焊接后再用通棒检查同轴度"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度4mm",
+          "welding_position": "环焊，垫环与上、下轴套外侧接缝处",
+          "quality_requirements": "焊缝平滑，焊缝余高控制在1mm以内",
+          "safety_notes": "焊接时防止热集中，同轴度超差需校正"
+        },
+        "safety_warnings": [
+          "焊接时保持稳定姿势，避免身体靠近高温区域",
+          "焊机电缆摆放整齐，防止绊倒摔伤"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.7000",
+      "component_name": "后座连接架组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "①",
+        "assembly_sequence_reasoning": "从图纸可见①方形板-机加为整个组件的基准件，既是固定面的基础也是各焊接件的定位基准。侧连接板②③通过焊缝与方板形成骨架，加上折弯板④和油缸固定板⑤形成整体支撑，最后再装焊加强板⑥、角钢⑦和两侧轴套⑨⑩。焊后检查同轴度和平面度。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "定位基准件",
+          "description": "取图纸①号方形板-机加（BOM代号：01.01.01.11511）放平在工装平台上，作为整个组件的基准。确认板面清洁无毛刺，并在上面划出连接板的定位线。",
+          "position_description": "①号方板水平放置，作为其他部件的装配基准面。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11511",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "①",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            }
+          ],
+          "tools": [
+            "划线尺",
+            "清洁布"
+          ],
+          "warnings": [
+            "放置时保持水平，避免变形",
+            "定位线要清晰，作为后续焊接参考"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装侧连接板",
+          "description": "取图纸②号与③号的侧连接板（BOM代号：01.01.01.11513），与①号方形板的两侧孔位对齐。使用焊接夹具固定后点焊，保持垂直度。",
+          "position_description": "②③号侧连接板在方板左右两侧垂直布置，与底部边缘对齐。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11513",
+              "bom_name": "侧连接板",
+              "quantity": 2,
+              "drawing_number": "②③",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11511",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "①",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "焊接夹具",
+            "角尺"
+          ],
+          "warnings": [
+            "焊前检查贴合间隙≤1mm",
+            "点焊后检查垂直度小于1mm偏差"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "焊接折弯板",
+          "description": "将④号折弯板（BOM代号：01.01.01.11514）放置在两块侧连接板内侧靠后的连接口处，采用点焊定位后焊接固定。保证两侧对称。",
+          "position_description": "④号折弯板横向连接于侧板内测后部，使两侧板形成三角刚性结构。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11514",
+              "bom_name": "折弯板",
+              "quantity": 1,
+              "drawing_number": "④",
+              "mesh_id": [
+                "mesh_013"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "焊条E50",
+            "角尺"
+          ],
+          "warnings": [
+            "焊缝连续饱满无气孔",
+            "控热防止板件变形"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装油缸固定板",
+          "description": "安装⑤号油缸固定板（BOM代号：01.01.01.11515）在两块侧板外侧焊缝位置，与图示孔位对齐，用工装保持水平后焊牢。",
+          "position_description": "⑤号油缸固定板位于侧连接板外侧中部，与需安装油缸处形成支架。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11515",
+              "bom_name": "油缸固定板",
+              "quantity": 4,
+              "drawing_number": "⑤",
+              "mesh_id": [
+                "mesh_002",
+                "mesh_003",
+                "mesh_011",
+                "mesh_012"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "夹具",
+            "水平仪"
+          ],
+          "warnings": [
+            "保证焊缝不压住安装孔",
+            "焊后自然冷却防止翘曲"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "焊接加强板",
+          "description": "取⑥号加强板（BOM代号：01.01.01.11516）分别焊接在侧连接板与折弯板之间的三角空间部位，加强整体刚度。",
+          "position_description": "⑥号加强板贴合在侧连接板和折弯板之间两对角处。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11516",
+              "bom_name": "加强板",
+              "quantity": 4,
+              "drawing_number": "⑥",
+              "mesh_id": [
+                "mesh_007",
+                "mesh_008",
+                "mesh_009",
+                "mesh_010"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "工装夹具"
+          ],
+          "warnings": [
+            "焊接顺序由中心向外扩散，防止翘曲",
+            "焊后打磨焊缝飞溅"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "焊接角钢",
+          "description": "取⑦号角钢-机加（BOM代号：01.01.04.0592），放在折弯板上方位置与两侧加强板连接处，定位后进行满焊，增强整体抗扭能力。",
+          "position_description": "⑦号角钢位于上部作为连接与加固结构板。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.04.0592",
+              "bom_name": "角钢-机加",
+              "quantity": 1,
+              "drawing_number": "⑦",
+              "mesh_id": [
+                "mesh_006"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "角尺",
+            "夹具"
+          ],
+          "warnings": [
+            "焊缝高度均匀，过渡平滑",
+            "焊接后检查角度对齐"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "焊接轴套",
+          "description": "将⑨⑩号后座轴套（BOM代号：01.01.02.0337 与 01.02.02.0490）焊接在侧连接板端部定位孔处，轴向与上方孔中心保持同轴。焊缝高度不超过轴套外缘。",
+          "position_description": "⑨号轴套在下方，⑩号轴套在上方，两者同轴排列。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.02.0337",
+              "bom_name": "后座轴套1",
+              "quantity": 1,
+              "drawing_number": "⑩",
+              "mesh_id": [
+                "mesh_001"
+              ]
+            },
+            {
+              "bom_code": "01.02.02.0490",
+              "bom_name": "后座轴套2",
+              "quantity": 1,
+              "drawing_number": "⑨",
+              "mesh_id": [
+                "mesh_004"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "轴向校正杆",
+            "卡尺"
+          ],
+          "warnings": [
+            "焊接前插入对中杆确保同轴度≤0.2mm",
+            "焊后清理通孔毛刺"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "安装轴套连接件",
+          "description": "在轴套之间焊接⑧号轴套定位垫环（BOM代号：01.01.02.1221），保持两座间距符合图纸要求。",
+          "position_description": "⑧号垫环在上下轴套之间内侧，对中固定。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.02.1221",
+              "bom_name": "轴套",
+              "quantity": 1,
+              "drawing_number": "⑧",
+              "mesh_id": [
+                "mesh_005"
+              ]
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "保持焊缝高度均匀",
+            "焊接后再用通棒检查同轴度"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查①方板是否平整未变形",
+        "检查②③侧连接板垂直度，小于1mm偏差",
+        "检查轴套⑨⑩同轴度不超过0.2mm",
+        "所有焊缝饱满无气孔，尺寸和位置符合图纸要求",
+        "整体平面度误差不超过2mm/m"
+      ],
+      "estimated_time_minutes": 160
+    },
+    "assembly_order": 2
+  },
+  {
+    "success": true,
+    "component_code": "01.03.7001",
+    "component_name": "左铲雪板组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "取图纸上标注为①的左铲板（BOM代号01.01.01.18598），平放在焊接平台上，保持上沿水平，作为装配基准件。",
+        "position_description": "左铲板位于整个组件的最外层和主承力面，为所有焊接件提供基准平面。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.18598",
+            "bom_name": "左铲板",
+            "quantity": 1,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_026"
+            ]
+          }
+        ],
+        "tools": [
+          "钢直尺",
+          "水平仪"
+        ],
+        "warnings": [
+          "放置时注意板面平整",
+          "不得有毛刺及变形"
+        ],
+        "safety_warnings": [
+          "搬运板件时注意防止夹手或砸脚，必要时两人配合抬放",
+          "放置平台前确认平台稳固无杂物",
+          "佩戴防护手套防止金属边缘划伤"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "焊接底部连接板",
+        "description": "在①号左铲板下缘对应位置，依次放置图纸标注为⑧的底部连接板（01.01.01.11521）共6块。对齐孔位，用定位夹具固定，检查间距一致后焊接两侧角焊缝。",
+        "position_description": "底部连接板沿左铲板底部均匀排列，形成与支撑板连接的下缘骨架。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11521",
+            "bom_name": "底部连接板",
+            "quantity": 6,
+            "drawing_number": "8",
+            "mesh_id": [
+              "mesh_012",
+              "mesh_013",
+              "mesh_014",
+              "mesh_015",
+              "mesh_021",
+              "mesh_022"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "焊接夹具",
+          "塞尺"
+        ],
+        "warnings": [
+          "保持板间距一致±1mm以内",
+          "焊缝成型均匀"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊脚高度6mm",
+          "welding_position": "左铲板与底部连接板之间的平焊",
+          "quality_requirements": "焊缝饱满，无夹渣、无气孔",
+          "safety_notes": "佩戴防护面罩，保持良好通风，防止焊渣飞溅伤人"
+        },
+        "safety_warnings": [
+          "焊接时要戴防护面罩和手套，避免电弧光伤眼和烫伤",
+          "保持现场通风良好，防止焊接烟气吸入",
+          "焊接区域周围不得放易燃物"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "安装后加强板",
+        "description": "取图纸⑬号后加强板（01.01.01.11519），放置于①号左铲板背面上方，与原定位孔对齐，点焊固定后满焊连接。",
+        "position_description": "后加强板在左铲板后侧中央区域，起整体加固作用。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11519",
+            "bom_name": "后加强板",
+            "quantity": 1,
+            "drawing_number": "13",
+            "mesh_id": [
+              "mesh_024"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "磁性夹具"
+        ],
+        "warnings": [
+          "确保与左铲板平贴，焊后检查无翘曲"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "连续焊缝，焊缝高度5mm",
+          "welding_position": "左铲板背面与后加强板之间的平焊",
+          "quality_requirements": "焊缝均匀饱满，焊透无虚焊",
+          "safety_notes": "焊接时避免在封闭空间作业，保持面罩清洁"
+        },
+        "safety_warnings": [
+          "焊接操作前检查夹具是否牢固，防止滑落",
+          "佩戴焊接防护面罩和防火手套",
+          "保持焊接区域通风良好"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装前加强板",
+        "description": "安装图纸⑫号前加强板（01.01.01.18600），放置在左铲板上沿内侧，从中央向两端对齐并点焊定位，再进行连续焊接。",
+        "position_description": "位于左铲板上端内侧，与后加强板平行，加固上缘。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.18600",
+            "bom_name": "前加强板",
+            "quantity": 1,
+            "drawing_number": "12",
+            "mesh_id": [
+              "mesh_023"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "卡尺"
+        ],
+        "warnings": [
+          "控制焊缝高度不超过设计要求",
+          "注意防止热变形"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度5mm",
+          "welding_position": "左铲板上沿与前加强板连接处",
+          "quality_requirements": "焊缝平滑，连续无中断",
+          "safety_notes": "焊接时避免手部靠近焊枪，防止烫伤"
+        },
+        "safety_warnings": [
+          "操作时注意保持平衡，避免滑倒",
+          "焊接时佩戴护目镜、防火手套及长袖工作服",
+          "焊枪使用前检查气源连接是否牢靠"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "安装支撑固定板",
+        "description": "取⑦号支撑固定板（01.01.01.11525），紧贴①号板的中下部定位焊接。保持垂直方向与底部连接板相交。",
+        "position_description": "位于底部连接板上方中部位置，用作弹簧板固定支撑。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11525",
+            "bom_name": "支撑固定板",
+            "quantity": 1,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_011"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "角尺"
+        ],
+        "warnings": [
+          "垂直度误差不得大于1mm/100mm",
+          "焊点间距控制均匀"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm",
+          "welding_position": "左铲板中下部与支撑固定板连接处",
+          "quality_requirements": "焊透至根部，焊缝过渡圆滑",
+          "safety_notes": "焊接角位时注意姿势稳固，防止烫伤"
+        },
+        "safety_warnings": [
+          "焊接前固定牢靠，防止工件倒塌或滑动",
+          "防止身体靠近焊缝区域，防烫、防电弧灼伤",
+          "作业时穿戴防护鞋以防焊渣烫脚"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "固定前后弹簧固定板",
+        "description": "取⑨号前弹簧固定板（01.01.01.11523）1件，⑧号后弹簧固定板（01.01.01.11524）2件，对齐安装位置焊接。前板位于左铲板前侧略上位置，后板位于支撑固定板后侧。",
+        "position_description": "前后弹簧固定板形成铲面与支撑构件连接点，保持前后平行。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11523",
+            "bom_name": "前弹簧固定板",
+            "quantity": 1,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_018"
+            ]
+          },
+          {
+            "bom_code": "01.01.01.11524",
+            "bom_name": "后弹簧固定板",
+            "quantity": 2,
+            "drawing_number": "8",
+            "mesh_id": [
+              "mesh_016",
+              "mesh_017"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "夹具"
+        ],
+        "warnings": [
+          "控制间距±0.5mm",
+          "焊接顺序对称防止扭曲"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度5mm",
+          "welding_position": "前后弹簧固定板与左铲板连接处",
+          "quality_requirements": "焊缝饱满、平整，不得有烧穿",
+          "safety_notes": "对称焊接时防止电弧光伤眼，确保良好接地"
+        },
+        "safety_warnings": [
+          "焊接前检查两侧板件是否固定稳固，防止夹具松动飞出",
+          "焊接时不准用手直接扶持靠近焊区部位",
+          "调整间距时注意防止夹手"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "焊接轴套及加强板",
+        "description": "将④号轴套（01.01.02.1222）2只及⑤号轴套加强板（01.01.01.11526）2件安装在左铲板下部。轴套加强板包覆轴套两侧，用夹具夹住，焊接并确保同轴度。",
+        "position_description": "位于左铲板底部两侧，与转动轴连接。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.02.1222",
+            "bom_name": "轴套",
+            "quantity": 2,
+            "drawing_number": "4",
+            "mesh_id": [
+              "mesh_006",
+              "mesh_007"
+            ]
+          },
+          {
+            "bom_code": "01.01.01.11526",
+            "bom_name": "轴套加强板",
+            "quantity": 2,
+            "drawing_number": "5",
+            "mesh_id": [
+              "mesh_009",
+              "mesh_010"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "同轴夹具",
+          "量规"
+        ],
+        "warnings": [
+          "轴套与加强板需焊透不漏焊",
+          "保持同轴度误差≤0.3mm"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊+塞焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm，轴套周圈满焊",
+          "welding_position": "轴套与加强板、左铲板连接处",
+          "quality_requirements": "焊缝饱满，焊透到位，无未焊透缺陷",
+          "safety_notes": "焊接轴套时要分段对称焊，防止变形及飞溅"
+        },
+        "safety_warnings": [
+          "焊接时注意轴套高温，防止误碰烫伤",
+          "使用夹具要固定牢，防止轴件滚动砸脚",
+          "佩戴防护面罩、防火手套"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "焊接方形板组件",
+        "description": "取⑭号、③号、②号方形板（01.01.01.11529、01.01.01.11528、01.01.01.18599），依图纸顺序贴装于左铲板背部下方，与底部连接板相连。",
+        "position_description": "方形板位于底边与加强板之间，用于连接前后加强结构。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11529",
+            "bom_name": "方形板",
+            "quantity": 3,
+            "drawing_number": "14",
+            "mesh_id": [
+              "mesh_003",
+              "mesh_004",
+              "mesh_005"
+            ]
+          },
+          {
+            "bom_code": "01.01.01.11528",
+            "bom_name": "方形板",
+            "quantity": 1,
+            "drawing_number": "3"
+          },
+          {
+            "bom_code": "01.01.01.18599",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "2",
+            "mesh_id": [
+              "mesh_025"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "水平仪"
+        ],
+        "warnings": [
+          "保持焊接强度一致，防止翘边",
+          "焊缝连续无气孔"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度5mm",
+          "welding_position": "方形板与左铲板、底部连接板的结合处",
+          "quality_requirements": "焊缝连续，无气孔、无夹渣，焊道整齐",
+          "safety_notes": "焊接过程中防止板件翘曲，注意高温烫伤"
+        },
+        "safety_warnings": [
+          "焊后工件温度高，禁止立即用手触摸",
+          "确认地线接触良好防止电击",
+          "保持区域干燥防止滑倒"
+        ]
+      },
+      {
+        "step_number": 9,
+        "action": "安装反光片安装板",
+        "description": "取⑥号反光片安装板（01.01.01.11527），按图位置焊接于上部边缘，与前加强板齐平，保持垂直。",
+        "position_description": "位于左铲板顶部内侧，用于安装反光片支架。",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11527",
+            "bom_name": "反光片安装板",
+            "quantity": 1,
+            "drawing_number": "6",
+            "mesh_id": [
+              "mesh_008"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "角尺"
+        ],
+        "warnings": [
+          "安装角度垂直度误差控制在1°以内"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度4mm",
+          "welding_position": "反光片安装板与前加强板上缘接缝处",
+          "quality_requirements": "焊缝平滑、成型美观，无烧穿",
+          "safety_notes": "焊接狭小位置时保持通风并使用防火手套"
+        },
+        "safety_warnings": [
+          "焊接上沿位置要注意头顶飞溅物，戴好面罩和焊帽",
+          "防止在高处俯身作业时失去平衡",
+          "确认焊接电缆不绊脚"
+        ]
+      },
+      {
+        "step_number": 10,
+        "action": "安装左铲雪板加强板",
+        "description": "最后将⑮号左铲雪板加强板（01.02.01.4983）2件贴装于左铲板外侧两端边缘。使用点焊固定后满焊成型。",
+        "position_description": "加强板覆盖左铲板两侧边缘位置，增强侧向刚性。",
+        "parts_used": [
+          {
+            "bom_code": "01.02.01.4983",
+            "bom_name": "左铲雪板加强板",
+            "quantity": 2,
+            "drawing_number": "15",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_002"
+            ]
+          }
+        ],
+        "tools": [
+          "焊枪",
+          "卡尺"
+        ],
+        "warnings": [
+          "焊接完后检查两端形位一致",
+          "表面焊缝平滑不得高出板面3mm以上"
+        ],
+        "welding": {
+          "required": true,
+          "welding_type": "角焊+连续焊",
+          "welding_method": "CO2气保焊",
+          "weld_size": "焊缝高度6mm，沿边全焊",
+          "welding_position": "左铲板两侧边缘与加强板结合处",
+          "quality_requirements": "焊缝均匀饱满，表面平整光顺，无裂纹",
+          "safety_notes": "两侧焊接应交替进行，防止过热变形，佩戴防护眼镜"
+        },
+        "safety_warnings": [
+          "两侧焊接时注意人站位对称，防止烫伤和电弧光直射",
+          "加强板较大时搬运需两人协作",
+          "焊接完应待冷却后再测量，防止烫手"
+        ]
+      },
+      {
+        "step_number": 11,
+        "action": "整体校正",
+        "description": "焊接完成后整体检查垂直度和平整度，用校正锤轻微调整。必要时使用压机进行整形。",
+        "position_description": "整体组件外观校正，确保边线平直。",
+        "parts_used": [],
+        "tools": [
+          "校正锤",
+          "压机",
+          "直尺"
+        ],
+        "warnings": [
+          "注意校正时避免过度敲击变形"
+        ],
+        "safety_warnings": [
+          "使用校正锤时注意手部安全，防止误打",
+          "使用压机时注意手不要伸入模具内，严格遵守操作规程",
+          "佩戴护目镜防止飞溅铁屑入眼"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.7001",
+      "component_name": "左铲雪板组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "图纸显示1号左铲板为最大件，位于整个组件最外层，是所有零件的定位基准。内部的加强板、连接板需先焊接定位，再逐步装配弹簧固定板和轴套等配件，最后安装反光片安装板以确保精度。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "取图纸上标注为①的左铲板（BOM代号01.01.01.18598），平放在焊接平台上，保持上沿水平，作为装配基准件。",
+          "position_description": "左铲板位于整个组件的最外层和主承力面，为所有焊接件提供基准平面。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.18598",
+              "bom_name": "左铲板",
+              "quantity": 1,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_026"
+              ]
+            }
+          ],
+          "tools": [
+            "钢直尺",
+            "水平仪"
+          ],
+          "warnings": [
+            "放置时注意板面平整",
+            "不得有毛刺及变形"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "焊接底部连接板",
+          "description": "在①号左铲板下缘对应位置，依次放置图纸标注为⑧的底部连接板（01.01.01.11521）共6块。对齐孔位，用定位夹具固定，检查间距一致后焊接两侧角焊缝。",
+          "position_description": "底部连接板沿左铲板底部均匀排列，形成与支撑板连接的下缘骨架。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11521",
+              "bom_name": "底部连接板",
+              "quantity": 6,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_012",
+                "mesh_013",
+                "mesh_014",
+                "mesh_015",
+                "mesh_021",
+                "mesh_022"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "焊接夹具",
+            "塞尺"
+          ],
+          "warnings": [
+            "保持板间距一致±1mm以内",
+            "焊缝成型均匀"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装后加强板",
+          "description": "取图纸⑬号后加强板（01.01.01.11519），放置于①号左铲板背面上方，与原定位孔对齐，点焊固定后满焊连接。",
+          "position_description": "后加强板在左铲板后侧中央区域，起整体加固作用。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11519",
+              "bom_name": "后加强板",
+              "quantity": 1,
+              "drawing_number": "13",
+              "mesh_id": [
+                "mesh_024"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "磁性夹具"
+          ],
+          "warnings": [
+            "确保与左铲板平贴，焊后检查无翘曲"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装前加强板",
+          "description": "安装图纸⑫号前加强板（01.01.01.18600），放置在左铲板上沿内侧，从中央向两端对齐并点焊定位，再进行连续焊接。",
+          "position_description": "位于左铲板上端内侧，与后加强板平行，加固上缘。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.18600",
+              "bom_name": "前加强板",
+              "quantity": 1,
+              "drawing_number": "12",
+              "mesh_id": [
+                "mesh_023"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "卡尺"
+          ],
+          "warnings": [
+            "控制焊缝高度不超过设计要求",
+            "注意防止热变形"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装支撑固定板",
+          "description": "取⑦号支撑固定板（01.01.01.11525），紧贴①号板的中下部定位焊接。保持垂直方向与底部连接板相交。",
+          "position_description": "位于底部连接板上方中部位置，用作弹簧板固定支撑。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11525",
+              "bom_name": "支撑固定板",
+              "quantity": 1,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_011"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "角尺"
+          ],
+          "warnings": [
+            "垂直度误差不得大于1mm/100mm",
+            "焊点间距控制均匀"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "固定前后弹簧固定板",
+          "description": "取⑨号前弹簧固定板（01.01.01.11523）1件，⑧号后弹簧固定板（01.01.01.11524）2件，对齐安装位置焊接。前板位于左铲板前侧略上位置，后板位于支撑固定板后侧。",
+          "position_description": "前后弹簧固定板形成铲面与支撑构件连接点，保持前后平行。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11523",
+              "bom_name": "前弹簧固定板",
+              "quantity": 1,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_018"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11524",
+              "bom_name": "后弹簧固定板",
+              "quantity": 2,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_016",
+                "mesh_017"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "夹具"
+          ],
+          "warnings": [
+            "控制间距±0.5mm",
+            "焊接顺序对称防止扭曲"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "焊接轴套及加强板",
+          "description": "将④号轴套（01.01.02.1222）2只及⑤号轴套加强板（01.01.01.11526）2件安装在左铲板下部。轴套加强板包覆轴套两侧，用夹具夹住，焊接并确保同轴度。",
+          "position_description": "位于左铲板底部两侧，与转动轴连接。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.02.1222",
+              "bom_name": "轴套",
+              "quantity": 2,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_006",
+                "mesh_007"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11526",
+              "bom_name": "轴套加强板",
+              "quantity": 2,
+              "drawing_number": "5",
+              "mesh_id": [
+                "mesh_009",
+                "mesh_010"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "同轴夹具",
+            "量规"
+          ],
+          "warnings": [
+            "轴套与加强板需焊透不漏焊",
+            "保持同轴度误差≤0.3mm"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "焊接方形板组件",
+          "description": "取⑭号、③号、②号方形板（01.01.01.11529、01.01.01.11528、01.01.01.18599），依图纸顺序贴装于左铲板背部下方，与底部连接板相连。",
+          "position_description": "方形板位于底边与加强板之间，用于连接前后加强结构。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11529",
+              "bom_name": "方形板",
+              "quantity": 3,
+              "drawing_number": "14",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_004",
+                "mesh_005"
+              ]
+            },
+            {
+              "bom_code": "01.01.01.11528",
+              "bom_name": "方形板",
+              "quantity": 1,
+              "drawing_number": "3"
+            },
+            {
+              "bom_code": "01.01.01.18599",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "2",
+              "mesh_id": [
+                "mesh_025"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "水平仪"
+          ],
+          "warnings": [
+            "保持焊接强度一致，防止翘边",
+            "焊缝连续无气孔"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "安装反光片安装板",
+          "description": "取⑥号反光片安装板（01.01.01.11527），按图位置焊接于上部边缘，与前加强板齐平，保持垂直。",
+          "position_description": "位于左铲板顶部内侧，用于安装反光片支架。",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11527",
+              "bom_name": "反光片安装板",
+              "quantity": 1,
+              "drawing_number": "6",
+              "mesh_id": [
+                "mesh_008"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "角尺"
+          ],
+          "warnings": [
+            "安装角度垂直度误差控制在1°以内"
+          ]
+        },
+        {
+          "step_number": 10,
+          "action": "安装左铲雪板加强板",
+          "description": "最后将⑮号左铲雪板加强板（01.02.01.4983）2件贴装于左铲板外侧两端边缘。使用点焊固定后满焊成型。",
+          "position_description": "加强板覆盖左铲板两侧边缘位置，增强侧向刚性。",
+          "parts_used": [
+            {
+              "bom_code": "01.02.01.4983",
+              "bom_name": "左铲雪板加强板",
+              "quantity": 2,
+              "drawing_number": "15",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ]
+            }
+          ],
+          "tools": [
+            "焊枪",
+            "卡尺"
+          ],
+          "warnings": [
+            "焊接完后检查两端形位一致",
+            "表面焊缝平滑不得高出板面3mm以上"
+          ]
+        },
+        {
+          "step_number": 11,
+          "action": "整体校正",
+          "description": "焊接完成后整体检查垂直度和平整度，用校正锤轻微调整。必要时使用压机进行整形。",
+          "position_description": "整体组件外观校正，确保边线平直。",
+          "parts_used": [],
+          "tools": [
+            "校正锤",
+            "压机",
+            "直尺"
+          ],
+          "warnings": [
+            "注意校正时避免过度敲击变形"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查各焊接件位置尺寸与图纸符合，偏差不超过±1mm",
+        "轴套同轴度≤0.3mm，焊缝光滑无气孔裂纹",
+        "支撑固定板与底部连接板垂直度检查",
+        "加强板、反光片安装板平整无翘边",
+        "整体板件无歪扭、表面焊渣清理干净"
+      ],
+      "estimated_time_minutes": 125
+    },
+    "assembly_order": 3
+  }
+]

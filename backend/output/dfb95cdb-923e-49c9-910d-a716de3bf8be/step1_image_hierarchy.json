@@ -1,0 +1,19 @@
+{
+  "product_images": [
+    "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\page_001.png",
+    "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\page_002.png"
+  ],
+  "component_images": {
+    "1": [
+      "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\1\\page_001.png"
+    ],
+    "2": [
+      "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\2\\page_001.png",
+      "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\2\\page_002.png"
+    ],
+    "3": [
+      "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\3\\page_001.png",
+      "output\\dfb95cdb-923e-49c9-910d-a716de3bf8be\\pdf_images\\3\\page_002.png"
+    ]
+  }
+}

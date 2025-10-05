@@ -7,6 +7,7 @@ Gemini 2.5 FlashAgent
 import os
 import json
 import base64
+import time
 from typing import Dict, List, Optional, Union
 from openai import OpenAI
 import datetime
@@ -40,7 +41,7 @@ class BaseGeminiAgent:
             base_url="https://openrouter.ai/api/v1",
             api_key=self.api_key
         )
-        
+
         self.model_name = "google/gemini-2.5-flash-preview-09-2025"
     
     def encode_image_to_base64(self, image_path: str) -> str:
@@ -68,6 +69,62 @@ class BaseGeminiAgent:
             print(f"   : {str(e)}")
             raise
     
+    def call_gemini_with_retry(
+        self,
+        system_prompt: str,
+        user_query: str,
+        images: Optional[Union[str, List[str]]] = None,
+        max_retries: int = 3
+    ) -> Dict:
+        """
+        带重试机制的Gemini调用
+
+        Args:
+            system_prompt: 系统提示词
+            user_query: 用户查询
+            images: 图片路径
+            max_retries: 最大重试次数（默认3次）
+
+        Returns:
+            {
+                "success": bool,
+                "result": dict,
+                "raw_response": str
+            }
+        """
+        for attempt in range(max_retries):
+            print(f"\n{'='*60}")
+            if attempt > 0:
+                print(f"🔄 第{attempt + 1}次尝试（共{max_retries}次）")
+            print(f"{'='*60}")
+
+            result = self.call_gemini(system_prompt, user_query, images)
+
+            if result["success"]:
+                # 检查JSON是否有效
+                parsed = result["result"]
+                if parsed and not parsed.get("parse_error") and not parsed.get("raw_content"):
+                    print(f"✅ 调用成功，JSON解析正常")
+                    return result
+                else:
+                    print(f"⚠️ JSON解析失败，准备重试...")
+                    if attempt < max_retries - 1:
+                        print(f"⏳ 等待2秒后重试...")
+                        time.sleep(2)
+            else:
+                print(f"⚠️ API调用失败: {result.get('error')}")
+                if attempt < max_retries - 1:
+                    print(f"⏳ 等待2秒后重试...")
+                    time.sleep(2)
+
+        # 所有重试都失败
+        print(f"\n❌ 重试{max_retries}次后仍然失败")
+        return {
+            "success": False,
+            "error": f"重试{max_retries}次后仍然失败",
+            "result": None
+        }
+
     def call_gemini(
         self,
         system_prompt: str,
@@ -146,15 +203,26 @@ class BaseGeminiAgent:
                 temperature=self.temperature
             )
             
-            # 
+            #
             response_content = completion.choices[0].message.content
-            
+
             print(f"[{self.agent_name}] Success")
-            
-            # JSON
-            parsed_result = self._parse_json_response(response_content)
-            
-            # 
+
+            # ✅ 先保存原始响应，再解析JSON
+            try:
+                parsed_result = self._parse_json_response(response_content)
+            except Exception as parse_error:
+                # 即使解析失败，也保存原始响应用于调试
+                self._save_debug_output(
+                    system_prompt=system_prompt,
+                    user_query=user_query,
+                    image_count=len(image_paths),
+                    response=response_content,
+                    parsed={"parse_error": str(parse_error)}
+                )
+                raise parse_error
+
+            #
             self._save_debug_output(
                 system_prompt=system_prompt,
                 user_query=user_query,
@@ -162,15 +230,16 @@ class BaseGeminiAgent:
                 response=response_content,
                 parsed=parsed_result
             )
-            
+
             return {
                 "success": True,
                 "result": parsed_result,
                 "raw_response": response_content
             }
-            
+
         except Exception as e:
             print(f"[{self.agent_name}] Failed: {str(e)}")
+            print(f"\n⚠️ 提示：检查 debug_output 目录查看原始响应")
             return {
                 "success": False,
                 "error": str(e),

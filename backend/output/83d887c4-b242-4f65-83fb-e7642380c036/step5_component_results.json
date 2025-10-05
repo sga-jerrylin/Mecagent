@@ -1,0 +1,1936 @@
+[
+  {
+    "success": true,
+    "component_code": "01.03.6999",
+    "component_name": "连接器后座组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "将图纸1号连接板（BOM序号2）平放在装配平台上，作为整个组件的基准件，注意板面朝上，孔位朝外。",
+        "position_description": "基准件，所有零件以其为参照",
+        "parts_used": [
+          {
+            "bom_seq": "2",
+            "bom_name": "连接板",
+            "quantity": 1,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_018"
+            ],
+            "bom_code": "01.01.01.11509"
+          }
+        ],
+        "tools": [
+          "行车",
+          "吊带",
+          "卷尺"
+        ],
+        "warnings": [
+          "吊装时注意手指安全",
+          "放置时确保连接板水平"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "焊接矩形管",
+        "description": "将图纸8号矩形管（BOM序号8）和1号矩形管（BOM序号1）分别放置在连接板（1号）下方和上方定位线处，调整两根管子与连接板边缘对齐，点焊固定。",
+        "position_description": "8号管在连接板下方，1号管在连接板上方",
+        "parts_used": [
+          {
+            "bom_seq": "8",
+            "bom_name": "矩形管",
+            "quantity": 1,
+            "drawing_number": "8",
+            "mesh_id": [
+              "mesh_003",
+              "mesh_006",
+              "mesh_007",
+              "mesh_019"
+            ],
+            "bom_code": "01.01.03.2720"
+          },
+          {
+            "bom_seq": "1",
+            "bom_name": "矩形管",
+            "quantity": 1,
+            "drawing_number": "2"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "角尺",
+          "夹具"
+        ],
+        "warnings": [
+          "点焊前检查尺寸",
+          "焊接时佩戴防护面罩"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "焊接方形板",
+        "description": "将图纸3号方形板-机加（BOM序号3）分别放置在连接板（1号）两侧定位处，确保与连接板和矩形管贴合，点焊固定。",
+        "position_description": "3号方形板在连接板左右两侧",
+        "parts_used": [
+          {
+            "bom_seq": "3",
+            "bom_name": "方形板-机加",
+            "quantity": 4,
+            "drawing_number": "3",
+            "mesh_id": [
+              "mesh_014",
+              "mesh_015",
+              "mesh_016",
+              "mesh_017"
+            ],
+            "bom_code": "01.01.01.6589"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "夹具",
+          "角尺"
+        ],
+        "warnings": [
+          "点焊时注意板与管的贴合",
+          "防止焊接变形"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装挂件",
+        "description": "将图纸5号左挂件虚拟组件（BOM序号5）和4号右挂件虚拟组件（BOM序号4）分别放置在连接板（1号）两端，调整位置后点焊固定。",
+        "position_description": "5号挂件在左侧，4号挂件在右侧",
+        "parts_used": [
+          {
+            "bom_seq": "5",
+            "bom_name": "左挂件虚拟组件",
+            "quantity": 1,
+            "drawing_number": "5"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "右挂件虚拟组件",
+            "quantity": 1,
+            "drawing_number": "4"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "挂件定位要准确",
+          "焊接时防止错位"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "焊接加强筋",
+        "description": "将图纸9号加强筋（BOM序号9）分别放置在连接板（1号）后方两侧，贴合矩形管和连接板，点焊固定。",
+        "position_description": "9号加强筋在连接板后方两侧",
+        "parts_used": [
+          {
+            "bom_seq": "9",
+            "bom_name": "加强筋",
+            "quantity": 2,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_002"
+            ],
+            "bom_code": "01.01.01.17678"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "加强筋与板面贴合紧密",
+          "焊接顺序对称进行"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "焊接封板",
+        "description": "将图纸7号封板（BOM序号7）分别放置在连接板（1号）顶部两端，调整与矩形管和连接板贴合，点焊固定。",
+        "position_description": "7号封板在连接板顶部两端",
+        "parts_used": [
+          {
+            "bom_seq": "7",
+            "bom_name": "封板",
+            "quantity": 2,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_004",
+              "mesh_005"
+            ],
+            "bom_code": "01.01.01.16608"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "封板与管、板贴合紧密",
+          "焊接时注意防止烧穿"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "满焊所有点焊部位",
+        "description": "对所有已点焊的零件进行满焊，焊缝要连续饱满，焊接顺序应对称进行，防止变形。",
+        "position_description": "所有连接部位",
+        "parts_used": [
+          {
+            "bom_seq": "1",
+            "bom_name": "矩形管",
+            "quantity": 0,
+            "drawing_number": "2"
+          },
+          {
+            "bom_seq": "2",
+            "bom_name": "连接板",
+            "quantity": 0,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_018"
+            ],
+            "bom_code": "01.01.01.11509"
+          },
+          {
+            "bom_seq": "3",
+            "bom_name": "方形板-机加",
+            "quantity": 0,
+            "drawing_number": "3",
+            "mesh_id": [
+              "mesh_014",
+              "mesh_015",
+              "mesh_016",
+              "mesh_017"
+            ],
+            "bom_code": "01.01.01.6589"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "右挂件虚拟组件",
+            "quantity": 0,
+            "drawing_number": "4"
+          },
+          {
+            "bom_seq": "5",
+            "bom_name": "左挂件虚拟组件",
+            "quantity": 0,
+            "drawing_number": "5"
+          },
+          {
+            "bom_seq": "7",
+            "bom_name": "封板",
+            "quantity": 0,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_004",
+              "mesh_005"
+            ],
+            "bom_code": "01.01.01.16608"
+          },
+          {
+            "bom_seq": "8",
+            "bom_name": "矩形管",
+            "quantity": 0,
+            "drawing_number": "8",
+            "mesh_id": [
+              "mesh_003",
+              "mesh_006",
+              "mesh_007",
+              "mesh_019"
+            ],
+            "bom_code": "01.01.03.2720"
+          },
+          {
+            "bom_seq": "9",
+            "bom_name": "加强筋",
+            "quantity": 0,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_002"
+            ],
+            "bom_code": "01.01.01.17678"
+          }
+        ],
+        "tools": [
+          "电焊机",
+          "焊条",
+          "钢丝刷"
+        ],
+        "warnings": [
+          "焊缝要连续饱满",
+          "焊接顺序要对称，防止变形"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.6999",
+      "component_name": "连接器后座组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "基准件1号连接板体积最大，作为装配基准。矩形管（2、8）和方形板（3）需先焊接于连接板，形成主结构。挂件（4、5）在两侧，最后加强筋（9）和封板（7）补强整体结构。顺序由内到外、由主到次，确保装配可达性和焊接顺序合理。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "将图纸1号连接板（BOM序号2）平放在装配平台上，作为整个组件的基准件，注意板面朝上，孔位朝外。",
+          "position_description": "基准件，所有零件以其为参照",
+          "parts_used": [
+            {
+              "bom_seq": "2",
+              "bom_name": "连接板",
+              "quantity": 1,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_018"
+              ],
+              "bom_code": "01.01.01.11509"
+            }
+          ],
+          "tools": [
+            "行车",
+            "吊带",
+            "卷尺"
+          ],
+          "warnings": [
+            "吊装时注意手指安全",
+            "放置时确保连接板水平"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "焊接矩形管",
+          "description": "将图纸8号矩形管（BOM序号8）和1号矩形管（BOM序号1）分别放置在连接板（1号）下方和上方定位线处，调整两根管子与连接板边缘对齐，点焊固定。",
+          "position_description": "8号管在连接板下方，1号管在连接板上方",
+          "parts_used": [
+            {
+              "bom_seq": "8",
+              "bom_name": "矩形管",
+              "quantity": 1,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_006",
+                "mesh_007",
+                "mesh_019"
+              ],
+              "bom_code": "01.01.03.2720"
+            },
+            {
+              "bom_seq": "1",
+              "bom_name": "矩形管",
+              "quantity": 1,
+              "drawing_number": "2"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "角尺",
+            "夹具"
+          ],
+          "warnings": [
+            "点焊前检查尺寸",
+            "焊接时佩戴防护面罩"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "焊接方形板",
+          "description": "将图纸3号方形板-机加（BOM序号3）分别放置在连接板（1号）两侧定位处，确保与连接板和矩形管贴合，点焊固定。",
+          "position_description": "3号方形板在连接板左右两侧",
+          "parts_used": [
+            {
+              "bom_seq": "3",
+              "bom_name": "方形板-机加",
+              "quantity": 4,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015",
+                "mesh_016",
+                "mesh_017"
+              ],
+              "bom_code": "01.01.01.6589"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "夹具",
+            "角尺"
+          ],
+          "warnings": [
+            "点焊时注意板与管的贴合",
+            "防止焊接变形"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装挂件",
+          "description": "将图纸5号左挂件虚拟组件（BOM序号5）和4号右挂件虚拟组件（BOM序号4）分别放置在连接板（1号）两端，调整位置后点焊固定。",
+          "position_description": "5号挂件在左侧，4号挂件在右侧",
+          "parts_used": [
+            {
+              "bom_seq": "5",
+              "bom_name": "左挂件虚拟组件",
+              "quantity": 1,
+              "drawing_number": "5"
+            },
+            {
+              "bom_seq": "4",
+              "bom_name": "右挂件虚拟组件",
+              "quantity": 1,
+              "drawing_number": "4"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "挂件定位要准确",
+            "焊接时防止错位"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "焊接加强筋",
+          "description": "将图纸9号加强筋（BOM序号9）分别放置在连接板（1号）后方两侧，贴合矩形管和连接板，点焊固定。",
+          "position_description": "9号加强筋在连接板后方两侧",
+          "parts_used": [
+            {
+              "bom_seq": "9",
+              "bom_name": "加强筋",
+              "quantity": 2,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ],
+              "bom_code": "01.01.01.17678"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "加强筋与板面贴合紧密",
+            "焊接顺序对称进行"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "焊接封板",
+          "description": "将图纸7号封板（BOM序号7）分别放置在连接板（1号）顶部两端，调整与矩形管和连接板贴合，点焊固定。",
+          "position_description": "7号封板在连接板顶部两端",
+          "parts_used": [
+            {
+              "bom_seq": "7",
+              "bom_name": "封板",
+              "quantity": 2,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_004",
+                "mesh_005"
+              ],
+              "bom_code": "01.01.01.16608"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "封板与管、板贴合紧密",
+            "焊接时注意防止烧穿"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "满焊所有点焊部位",
+          "description": "对所有已点焊的零件进行满焊，焊缝要连续饱满，焊接顺序应对称进行，防止变形。",
+          "position_description": "所有连接部位",
+          "parts_used": [
+            {
+              "bom_seq": "1",
+              "bom_name": "矩形管",
+              "quantity": 0,
+              "drawing_number": "2"
+            },
+            {
+              "bom_seq": "2",
+              "bom_name": "连接板",
+              "quantity": 0,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_018"
+              ],
+              "bom_code": "01.01.01.11509"
+            },
+            {
+              "bom_seq": "3",
+              "bom_name": "方形板-机加",
+              "quantity": 0,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015",
+                "mesh_016",
+                "mesh_017"
+              ],
+              "bom_code": "01.01.01.6589"
+            },
+            {
+              "bom_seq": "4",
+              "bom_name": "右挂件虚拟组件",
+              "quantity": 0,
+              "drawing_number": "4"
+            },
+            {
+              "bom_seq": "5",
+              "bom_name": "左挂件虚拟组件",
+              "quantity": 0,
+              "drawing_number": "5"
+            },
+            {
+              "bom_seq": "7",
+              "bom_name": "封板",
+              "quantity": 0,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_004",
+                "mesh_005"
+              ],
+              "bom_code": "01.01.01.16608"
+            },
+            {
+              "bom_seq": "8",
+              "bom_name": "矩形管",
+              "quantity": 0,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_006",
+                "mesh_007",
+                "mesh_019"
+              ],
+              "bom_code": "01.01.03.2720"
+            },
+            {
+              "bom_seq": "9",
+              "bom_name": "加强筋",
+              "quantity": 0,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ],
+              "bom_code": "01.01.01.17678"
+            }
+          ],
+          "tools": [
+            "电焊机",
+            "焊条",
+            "钢丝刷"
+          ],
+          "warnings": [
+            "焊缝要连续饱满",
+            "焊接顺序要对称，防止变形"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查所有焊缝是否连续饱满，无夹渣、气孔（参见图纸各焊缝位置）",
+        "检查所有零件位置是否与图纸一致，尺寸公差符合要求",
+        "检查挂件、加强筋、封板等零件与基准件贴合紧密，无明显缝隙",
+        "检查整体组件是否变形，必要时用直尺和角尺校正"
+      ],
+      "estimated_time_minutes": 120
+    },
+    "assembly_order": 1
+  },
+  {
+    "success": true,
+    "component_code": "01.03.7000",
+    "component_name": "后座连接架组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "将图纸1号方形板-机加（BOM序号1）平放在装配平台上，作为整个组件的基准件，注意板面朝上，孔位朝外。",
+        "position_description": "作为底板，所有零件均以其为基准定位",
+        "parts_used": [
+          {
+            "bom_seq": "1",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_018"
+            ],
+            "bom_code": "01.01.01.11511"
+          }
+        ],
+        "tools": [
+          "行车",
+          "吊带",
+          "卷尺"
+        ],
+        "warnings": [
+          "吊装时注意手指安全",
+          "确保基准面无杂物"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "安装上连接板",
+        "description": "取图纸2号上连接板（BOM序号2），将两块分别放置在1号方形板-机加的上方两侧定位孔处，保证与基准件边缘对齐。",
+        "position_description": "在图纸1号零件的上方两侧",
+        "parts_used": [
+          {
+            "bom_seq": "2",
+            "bom_name": "上连接板",
+            "quantity": 2,
+            "drawing_number": "2",
+            "mesh_id": [
+              "mesh_016",
+              "mesh_017"
+            ],
+            "bom_code": "01.01.01.11512"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "卷尺",
+          "焊机"
+        ],
+        "warnings": [
+          "定位时防止错位",
+          "点焊前再次确认位置"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "安装侧连接板",
+        "description": "取图纸3号侧连接板（BOM序号3），将两块分别放置在1号方形板-机加的左右两侧定位孔处，紧贴基准件边缘。",
+        "position_description": "在图纸1号零件的左右两侧",
+        "parts_used": [
+          {
+            "bom_seq": "3",
+            "bom_name": "侧连接板",
+            "quantity": 2,
+            "drawing_number": "3",
+            "mesh_id": [
+              "mesh_014",
+              "mesh_015"
+            ],
+            "bom_code": "01.01.01.11513"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "卷尺",
+          "焊机"
+        ],
+        "warnings": [
+          "点焊前检查垂直度",
+          "防止夹具松动"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装折弯板",
+        "description": "取图纸4号折弯板（BOM序号4），将其放置在1号方形板-机加的右上方，紧贴2号上连接板和3号侧连接板的交界处，确保角度准确。",
+        "position_description": "在图纸1号零件的右上方，连接2号和3号零件",
+        "parts_used": [
+          {
+            "bom_seq": "4",
+            "bom_name": "折弯板",
+            "quantity": 1,
+            "drawing_number": "4",
+            "mesh_id": [
+              "mesh_013"
+            ],
+            "bom_code": "01.01.01.11514"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "角尺",
+          "焊机"
+        ],
+        "warnings": [
+          "焊接前检查角度",
+          "防止热变形"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "安装油缸固定板",
+        "description": "取图纸5号油缸固定板（BOM序号5），将四块分别放置在1号方形板-机加的左上方和右上方，按图纸孔位与2号、3号零件配合定位。",
+        "position_description": "在图纸1号零件的左上方和右上方",
+        "parts_used": [
+          {
+            "bom_seq": "5",
+            "bom_name": "油缸固定板",
+            "quantity": 4,
+            "drawing_number": "5",
+            "mesh_id": [
+              "mesh_002",
+              "mesh_003",
+              "mesh_011",
+              "mesh_012"
+            ],
+            "bom_code": "01.01.01.11515"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "卷尺",
+          "焊机"
+        ],
+        "warnings": [
+          "每块板都要与孔位对齐",
+          "点焊后检查位置"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "安装加强板",
+        "description": "取图纸6号加强板（BOM序号6），将四块加强板分别焊接在1号方形板-机加与2号、3号零件的连接处，起到加固作用。",
+        "position_description": "在图纸1号零件与2号、3号零件的连接处",
+        "parts_used": [
+          {
+            "bom_seq": "6",
+            "bom_name": "加强板",
+            "quantity": 4,
+            "drawing_number": "6",
+            "mesh_id": [
+              "mesh_007",
+              "mesh_008",
+              "mesh_009",
+              "mesh_010"
+            ],
+            "bom_code": "01.01.01.11516"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "焊机",
+          "角尺"
+        ],
+        "warnings": [
+          "加强板要贴合紧密",
+          "焊接顺序要对称防止变形"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "安装角钢-机加",
+        "description": "取图纸7号角钢-机加（BOM序号7），将其放置在1号方形板-机加的顶部中央，与2号上连接板和6号加强板配合定位。",
+        "position_description": "在图纸1号零件的顶部中央",
+        "parts_used": [
+          {
+            "bom_seq": "7",
+            "bom_name": "角钢-机加",
+            "quantity": 1,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_006"
+            ],
+            "bom_code": "01.01.04.0592"
+          }
+        ],
+        "tools": [
+          "夹具",
+          "焊机",
+          "卷尺"
+        ],
+        "warnings": [
+          "角钢要与基准面平齐",
+          "焊接前检查定位"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "安装轴套1",
+        "description": "取图纸8号轴套1（BOM序号8），将其插入1号方形板-机加左侧的定位孔内，端面与板面齐平，点焊固定。",
+        "position_description": "在图纸1号零件的左侧孔内",
+        "parts_used": [
+          {
+            "bom_seq": "8",
+            "bom_name": "轴套 1",
+            "quantity": 1,
+            "drawing_number": "8"
+          }
+        ],
+        "tools": [
+          "锤子",
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "轴套端面不得高出板面",
+          "焊接时防止轴套变形"
+        ]
+      },
+      {
+        "step_number": 9,
+        "action": "安装后座轴套1",
+        "description": "取图纸9号后座轴套1（BOM序号9），将其插入1号方形板-机加右侧的定位孔内，端面与板面齐平，点焊固定。",
+        "position_description": "在图纸1号零件的右侧孔内",
+        "parts_used": [
+          {
+            "bom_seq": "9",
+            "bom_name": "后座轴套 1",
+            "quantity": 1,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_004"
+            ],
+            "bom_code": "01.02.02.0490"
+          }
+        ],
+        "tools": [
+          "锤子",
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "轴套端面不得高出板面",
+          "焊接时防止轴套变形"
+        ]
+      },
+      {
+        "step_number": 10,
+        "action": "安装后座轴套2",
+        "description": "取图纸10号后座轴套2（BOM序号10），将其插入1号方形板-机加下方的定位孔内，端面与板面齐平，点焊固定。",
+        "position_description": "在图纸1号零件的下方孔内",
+        "parts_used": [
+          {
+            "bom_seq": "10",
+            "bom_name": "后座轴套 1",
+            "quantity": 1,
+            "drawing_number": "10",
+            "mesh_id": [
+              "mesh_001"
+            ],
+            "bom_code": "01.01.02.0337"
+          }
+        ],
+        "tools": [
+          "锤子",
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "轴套端面不得高出板面",
+          "焊接时防止轴套变形"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.7000",
+      "component_name": "后座连接架组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "基准件1号方形板-机加体积最大，作为装配基准。2号上连接板和3号侧连接板需先焊接于基准件上，形成主要结构框架。4号折弯板、5号油缸固定板、6号加强板、7号角钢-机加依次补强结构。最后8、9、10号轴套类零件需精确定位后焊接，保证配合精度。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "将图纸1号方形板-机加（BOM序号1）平放在装配平台上，作为整个组件的基准件，注意板面朝上，孔位朝外。",
+          "position_description": "作为底板，所有零件均以其为基准定位",
+          "parts_used": [
+            {
+              "bom_seq": "1",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_018"
+              ],
+              "bom_code": "01.01.01.11511"
+            }
+          ],
+          "tools": [
+            "行车",
+            "吊带",
+            "卷尺"
+          ],
+          "warnings": [
+            "吊装时注意手指安全",
+            "确保基准面无杂物"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装上连接板",
+          "description": "取图纸2号上连接板（BOM序号2），将两块分别放置在1号方形板-机加的上方两侧定位孔处，保证与基准件边缘对齐。",
+          "position_description": "在图纸1号零件的上方两侧",
+          "parts_used": [
+            {
+              "bom_seq": "2",
+              "bom_name": "上连接板",
+              "quantity": 2,
+              "drawing_number": "2",
+              "mesh_id": [
+                "mesh_016",
+                "mesh_017"
+              ],
+              "bom_code": "01.01.01.11512"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "卷尺",
+            "焊机"
+          ],
+          "warnings": [
+            "定位时防止错位",
+            "点焊前再次确认位置"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装侧连接板",
+          "description": "取图纸3号侧连接板（BOM序号3），将两块分别放置在1号方形板-机加的左右两侧定位孔处，紧贴基准件边缘。",
+          "position_description": "在图纸1号零件的左右两侧",
+          "parts_used": [
+            {
+              "bom_seq": "3",
+              "bom_name": "侧连接板",
+              "quantity": 2,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_014",
+                "mesh_015"
+              ],
+              "bom_code": "01.01.01.11513"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "卷尺",
+            "焊机"
+          ],
+          "warnings": [
+            "点焊前检查垂直度",
+            "防止夹具松动"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装折弯板",
+          "description": "取图纸4号折弯板（BOM序号4），将其放置在1号方形板-机加的右上方，紧贴2号上连接板和3号侧连接板的交界处，确保角度准确。",
+          "position_description": "在图纸1号零件的右上方，连接2号和3号零件",
+          "parts_used": [
+            {
+              "bom_seq": "4",
+              "bom_name": "折弯板",
+              "quantity": 1,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_013"
+              ],
+              "bom_code": "01.01.01.11514"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "角尺",
+            "焊机"
+          ],
+          "warnings": [
+            "焊接前检查角度",
+            "防止热变形"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装油缸固定板",
+          "description": "取图纸5号油缸固定板（BOM序号5），将四块分别放置在1号方形板-机加的左上方和右上方，按图纸孔位与2号、3号零件配合定位。",
+          "position_description": "在图纸1号零件的左上方和右上方",
+          "parts_used": [
+            {
+              "bom_seq": "5",
+              "bom_name": "油缸固定板",
+              "quantity": 4,
+              "drawing_number": "5",
+              "mesh_id": [
+                "mesh_002",
+                "mesh_003",
+                "mesh_011",
+                "mesh_012"
+              ],
+              "bom_code": "01.01.01.11515"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "卷尺",
+            "焊机"
+          ],
+          "warnings": [
+            "每块板都要与孔位对齐",
+            "点焊后检查位置"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "安装加强板",
+          "description": "取图纸6号加强板（BOM序号6），将四块加强板分别焊接在1号方形板-机加与2号、3号零件的连接处，起到加固作用。",
+          "position_description": "在图纸1号零件与2号、3号零件的连接处",
+          "parts_used": [
+            {
+              "bom_seq": "6",
+              "bom_name": "加强板",
+              "quantity": 4,
+              "drawing_number": "6",
+              "mesh_id": [
+                "mesh_007",
+                "mesh_008",
+                "mesh_009",
+                "mesh_010"
+              ],
+              "bom_code": "01.01.01.11516"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "焊机",
+            "角尺"
+          ],
+          "warnings": [
+            "加强板要贴合紧密",
+            "焊接顺序要对称防止变形"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "安装角钢-机加",
+          "description": "取图纸7号角钢-机加（BOM序号7），将其放置在1号方形板-机加的顶部中央，与2号上连接板和6号加强板配合定位。",
+          "position_description": "在图纸1号零件的顶部中央",
+          "parts_used": [
+            {
+              "bom_seq": "7",
+              "bom_name": "角钢-机加",
+              "quantity": 1,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_006"
+              ],
+              "bom_code": "01.01.04.0592"
+            }
+          ],
+          "tools": [
+            "夹具",
+            "焊机",
+            "卷尺"
+          ],
+          "warnings": [
+            "角钢要与基准面平齐",
+            "焊接前检查定位"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "安装轴套1",
+          "description": "取图纸8号轴套1（BOM序号8），将其插入1号方形板-机加左侧的定位孔内，端面与板面齐平，点焊固定。",
+          "position_description": "在图纸1号零件的左侧孔内",
+          "parts_used": [
+            {
+              "bom_seq": "8",
+              "bom_name": "轴套 1",
+              "quantity": 1,
+              "drawing_number": "8"
+            }
+          ],
+          "tools": [
+            "锤子",
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "轴套端面不得高出板面",
+            "焊接时防止轴套变形"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "安装后座轴套1",
+          "description": "取图纸9号后座轴套1（BOM序号9），将其插入1号方形板-机加右侧的定位孔内，端面与板面齐平，点焊固定。",
+          "position_description": "在图纸1号零件的右侧孔内",
+          "parts_used": [
+            {
+              "bom_seq": "9",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_004"
+              ],
+              "bom_code": "01.02.02.0490"
+            }
+          ],
+          "tools": [
+            "锤子",
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "轴套端面不得高出板面",
+            "焊接时防止轴套变形"
+          ]
+        },
+        {
+          "step_number": 10,
+          "action": "安装后座轴套2",
+          "description": "取图纸10号后座轴套2（BOM序号10），将其插入1号方形板-机加下方的定位孔内，端面与板面齐平，点焊固定。",
+          "position_description": "在图纸1号零件的下方孔内",
+          "parts_used": [
+            {
+              "bom_seq": "10",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "10",
+              "mesh_id": [
+                "mesh_001"
+              ],
+              "bom_code": "01.01.02.0337"
+            }
+          ],
+          "tools": [
+            "锤子",
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "轴套端面不得高出板面",
+            "焊接时防止轴套变形"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查所有零件焊缝是否连续、无夹渣、无虚焊（参考图纸各零件编号）",
+        "检查所有轴套端面不得高出方形板表面，配合间隙符合图纸要求",
+        "检查所有加强板、连接板位置是否与图纸一致，尺寸误差≤1mm",
+        "检查油缸固定板与孔位对齐，焊接牢固"
+      ],
+      "estimated_time_minutes": 120
+    },
+    "assembly_order": 2
+  },
+  {
+    "success": true,
+    "component_code": "01.03.7001",
+    "component_name": "左铲雪板组件",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "将图纸上标注为1的左铲板（BOM序号：1）平放在装配平台上，作为整个装配的基准件，注意板面朝上，便于后续焊接。",
+        "position_description": "左铲板为最底层基准件，其他零件均安装在其上或两侧。",
+        "parts_used": [
+          {
+            "bom_seq": "1",
+            "bom_name": "左铲板",
+            "quantity": 1,
+            "drawing_number": "1",
+            "mesh_id": [
+              "mesh_026"
+            ],
+            "bom_code": "01.01.01.18598"
+          }
+        ],
+        "tools": [
+          "行车",
+          "吊带",
+          "水平仪"
+        ],
+        "warnings": [
+          "吊装时注意人员安全",
+          "确保左铲板放置水平"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "焊接后加强板",
+        "description": "将图纸上标注为3的后加强板（BOM序号：3）贴合在1号左铲板的后侧定位槽内，点焊定位后满焊固定。",
+        "position_description": "后加强板在左铲板的后侧，与板体后缘对齐。",
+        "parts_used": [
+          {
+            "bom_seq": "3",
+            "bom_name": "后加强板",
+            "quantity": 1,
+            "drawing_number": "3",
+            "mesh_id": [
+              "mesh_024"
+            ],
+            "bom_code": "01.01.01.11519"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "点焊后检查位置再满焊"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "焊接前加强板",
+        "description": "将图纸上标注为4的前加强板（BOM序号：4）放置在1号左铲板的前侧定位槽内，点焊定位后满焊固定。",
+        "position_description": "前加强板在左铲板的前侧，与板体前缘对齐。",
+        "parts_used": [
+          {
+            "bom_seq": "4",
+            "bom_name": "前加强板",
+            "quantity": 1,
+            "drawing_number": "4",
+            "mesh_id": [
+              "mesh_023"
+            ],
+            "bom_code": "01.01.01.18600"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "点焊后检查位置再满焊"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "焊接底部连接板",
+        "description": "将图纸上标注为6的底部连接板（BOM序号：5）依次放置在1号左铲板底部的6个安装位置，点焊定位后满焊固定。",
+        "position_description": "底部连接板均匀分布在左铲板底部，沿长度方向排列。",
+        "parts_used": [
+          {
+            "bom_seq": "5",
+            "bom_name": "底部连接板",
+            "quantity": 6,
+            "drawing_number": "6",
+            "mesh_id": [
+              "mesh_012",
+              "mesh_013",
+              "mesh_014",
+              "mesh_015",
+              "mesh_021",
+              "mesh_022"
+            ],
+            "bom_code": "01.01.01.11521"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具",
+          "卷尺"
+        ],
+        "warnings": [
+          "注意板间间距一致",
+          "焊接时防止变形"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "焊接前弹簧固定板",
+        "description": "将图纸上标注为7的前弹簧固定板（BOM序号：7）放置在1号左铲板前部指定位置，点焊定位后满焊固定。",
+        "position_description": "前弹簧固定板位于左铲板前部中间位置。",
+        "parts_used": [
+          {
+            "bom_seq": "7",
+            "bom_name": "前弹簧固定板",
+            "quantity": 1,
+            "drawing_number": "7",
+            "mesh_id": [
+              "mesh_018"
+            ],
+            "bom_code": "01.01.01.11523"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "定位准确"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "焊接后弹簧固定板",
+        "description": "将图纸上标注为8的后弹簧固定板（BOM序号：8）分别放置在1号左铲板后部两侧指定位置，点焊定位后满焊固定。",
+        "position_description": "后弹簧固定板分布在左铲板后部两侧。",
+        "parts_used": [
+          {
+            "bom_seq": "8",
+            "bom_name": "后弹簧固定板",
+            "quantity": 2,
+            "drawing_number": "8",
+            "mesh_id": [
+              "mesh_016",
+              "mesh_017"
+            ],
+            "bom_code": "01.01.01.11524"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "两块板位置对称",
+          "焊接时注意防护"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "焊接支撑固定板",
+        "description": "将图纸上标注为9的支撑固定板（BOM序号：9）放置在1号左铲板中部指定位置，点焊定位后满焊固定。",
+        "position_description": "支撑固定板位于左铲板中部偏下位置。",
+        "parts_used": [
+          {
+            "bom_seq": "9",
+            "bom_name": "支撑固定板",
+            "quantity": 1,
+            "drawing_number": "9",
+            "mesh_id": [
+              "mesh_011"
+            ],
+            "bom_code": "01.01.01.11525"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "定位准确"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "焊接轴套加强板",
+        "description": "将图纸上标注为10的轴套加强板（BOM序号：10）分别放置在1号左铲板两端轴套安装位置，点焊定位后满焊固定。",
+        "position_description": "轴套加强板位于左铲板两端，作为轴套的加强支撑。",
+        "parts_used": [
+          {
+            "bom_seq": "10",
+            "bom_name": "轴套加强板",
+            "quantity": 2,
+            "drawing_number": "10",
+            "mesh_id": [
+              "mesh_009",
+              "mesh_010"
+            ],
+            "bom_code": "01.01.01.11526"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "两块板位置对称",
+          "焊接时注意防护"
+        ]
+      },
+      {
+        "step_number": 9,
+        "action": "焊接反光片安装板",
+        "description": "将图纸上标注为11的反光片安装板（BOM序号：11）放置在1号左铲板上部指定位置，点焊定位后满焊固定。",
+        "position_description": "反光片安装板位于左铲板上部偏右位置。",
+        "parts_used": [
+          {
+            "bom_seq": "11",
+            "bom_name": "反光片安装板",
+            "quantity": 1,
+            "drawing_number": "11",
+            "mesh_id": [
+              "mesh_008"
+            ],
+            "bom_code": "01.01.01.11527"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "定位准确"
+        ]
+      },
+      {
+        "step_number": 10,
+        "action": "焊接轴套",
+        "description": "将图纸上标注为12的轴套（BOM序号：12）分别插入左铲板两端轴孔内，调整同轴度后点焊定位，再满焊固定。",
+        "position_description": "轴套分别位于左铲板两端，与轴孔同轴。",
+        "parts_used": [
+          {
+            "bom_seq": "12",
+            "bom_name": "轴套",
+            "quantity": 2,
+            "drawing_number": "12"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "千分尺",
+          "夹具"
+        ],
+        "warnings": [
+          "保证轴套同轴度",
+          "焊接时防止变形"
+        ]
+      },
+      {
+        "step_number": 11,
+        "action": "焊接方形板-机加",
+        "description": "将图纸上标注为2的方形板-机加（BOM序号：2）放置在左铲板底部中间指定位置，点焊定位后满焊固定。",
+        "position_description": "方形板-机加位于左铲板底部中间。",
+        "parts_used": [
+          {
+            "bom_seq": "2",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "2",
+            "mesh_id": [
+              "mesh_025"
+            ],
+            "bom_code": "01.01.01.18599"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "定位准确"
+        ]
+      },
+      {
+        "step_number": 12,
+        "action": "焊接方形板1",
+        "description": "将图纸上标注为13的方形板1（BOM序号：13）放置在左铲板上部指定位置，点焊定位后满焊固定。",
+        "position_description": "方形板1位于左铲板上部靠近前侧。",
+        "parts_used": [
+          {
+            "bom_seq": "13",
+            "bom_name": "方形板 1",
+            "quantity": 1,
+            "drawing_number": "13"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "定位准确"
+        ]
+      },
+      {
+        "step_number": 13,
+        "action": "焊接方形板3",
+        "description": "将图纸上标注为14的方形板3（BOM序号：14）依次放置在左铲板上部剩余3个指定位置，点焊定位后满焊固定。",
+        "position_description": "方形板3均匀分布在左铲板上部。",
+        "parts_used": [
+          {
+            "bom_seq": "14",
+            "bom_name": "方形板 3",
+            "quantity": 3,
+            "drawing_number": "14",
+            "mesh_id": [
+              "mesh_003",
+              "mesh_004",
+              "mesh_005"
+            ],
+            "bom_code": "01.01.01.11529"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "焊接时注意防护",
+          "位置均匀"
+        ]
+      },
+      {
+        "step_number": 14,
+        "action": "焊接左铲雪板加强板",
+        "description": "将图纸上标注为15的左铲雪板加强板（BOM序号：15）分别放置在左铲板两侧加强位置，点焊定位后满焊固定。",
+        "position_description": "左铲雪板加强板位于左铲板两侧边缘。",
+        "parts_used": [
+          {
+            "bom_seq": "15",
+            "bom_name": "左铲雪板加强板 2",
+            "quantity": 2,
+            "drawing_number": "15",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_002"
+            ],
+            "bom_code": "01.02.01.4983"
+          }
+        ],
+        "tools": [
+          "CO2焊机",
+          "焊条",
+          "夹具"
+        ],
+        "warnings": [
+          "两块板位置对称",
+          "焊接时注意防护"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.03.7001",
+      "component_name": "左铲雪板组件",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "基准件1号左铲板体积最大，作为装配基础。其余零件均围绕左铲板分布，需先安装内部加强件和连接板，再依次焊接外部的固定板、加强板和轴套，最后安装小型附件，保证装配顺序由内到外、由下到上，便于操作和保证焊接质量。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "将图纸上标注为1的左铲板（BOM序号：1）平放在装配平台上，作为整个装配的基准件，注意板面朝上，便于后续焊接。",
+          "position_description": "左铲板为最底层基准件，其他零件均安装在其上或两侧。",
+          "parts_used": [
+            {
+              "bom_seq": "1",
+              "bom_name": "左铲板",
+              "quantity": 1,
+              "drawing_number": "1",
+              "mesh_id": [
+                "mesh_026"
+              ],
+              "bom_code": "01.01.01.18598"
+            }
+          ],
+          "tools": [
+            "行车",
+            "吊带",
+            "水平仪"
+          ],
+          "warnings": [
+            "吊装时注意人员安全",
+            "确保左铲板放置水平"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "焊接后加强板",
+          "description": "将图纸上标注为3的后加强板（BOM序号：3）贴合在1号左铲板的后侧定位槽内，点焊定位后满焊固定。",
+          "position_description": "后加强板在左铲板的后侧，与板体后缘对齐。",
+          "parts_used": [
+            {
+              "bom_seq": "3",
+              "bom_name": "后加强板",
+              "quantity": 1,
+              "drawing_number": "3",
+              "mesh_id": [
+                "mesh_024"
+              ],
+              "bom_code": "01.01.01.11519"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "点焊后检查位置再满焊"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "焊接前加强板",
+          "description": "将图纸上标注为4的前加强板（BOM序号：4）放置在1号左铲板的前侧定位槽内，点焊定位后满焊固定。",
+          "position_description": "前加强板在左铲板的前侧，与板体前缘对齐。",
+          "parts_used": [
+            {
+              "bom_seq": "4",
+              "bom_name": "前加强板",
+              "quantity": 1,
+              "drawing_number": "4",
+              "mesh_id": [
+                "mesh_023"
+              ],
+              "bom_code": "01.01.01.18600"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "点焊后检查位置再满焊"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "焊接底部连接板",
+          "description": "将图纸上标注为6的底部连接板（BOM序号：5）依次放置在1号左铲板底部的6个安装位置，点焊定位后满焊固定。",
+          "position_description": "底部连接板均匀分布在左铲板底部，沿长度方向排列。",
+          "parts_used": [
+            {
+              "bom_seq": "5",
+              "bom_name": "底部连接板",
+              "quantity": 6,
+              "drawing_number": "6",
+              "mesh_id": [
+                "mesh_012",
+                "mesh_013",
+                "mesh_014",
+                "mesh_015",
+                "mesh_021",
+                "mesh_022"
+              ],
+              "bom_code": "01.01.01.11521"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具",
+            "卷尺"
+          ],
+          "warnings": [
+            "注意板间间距一致",
+            "焊接时防止变形"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "焊接前弹簧固定板",
+          "description": "将图纸上标注为7的前弹簧固定板（BOM序号：7）放置在1号左铲板前部指定位置，点焊定位后满焊固定。",
+          "position_description": "前弹簧固定板位于左铲板前部中间位置。",
+          "parts_used": [
+            {
+              "bom_seq": "7",
+              "bom_name": "前弹簧固定板",
+              "quantity": 1,
+              "drawing_number": "7",
+              "mesh_id": [
+                "mesh_018"
+              ],
+              "bom_code": "01.01.01.11523"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "定位准确"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "焊接后弹簧固定板",
+          "description": "将图纸上标注为8的后弹簧固定板（BOM序号：8）分别放置在1号左铲板后部两侧指定位置，点焊定位后满焊固定。",
+          "position_description": "后弹簧固定板分布在左铲板后部两侧。",
+          "parts_used": [
+            {
+              "bom_seq": "8",
+              "bom_name": "后弹簧固定板",
+              "quantity": 2,
+              "drawing_number": "8",
+              "mesh_id": [
+                "mesh_016",
+                "mesh_017"
+              ],
+              "bom_code": "01.01.01.11524"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "两块板位置对称",
+            "焊接时注意防护"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "焊接支撑固定板",
+          "description": "将图纸上标注为9的支撑固定板（BOM序号：9）放置在1号左铲板中部指定位置，点焊定位后满焊固定。",
+          "position_description": "支撑固定板位于左铲板中部偏下位置。",
+          "parts_used": [
+            {
+              "bom_seq": "9",
+              "bom_name": "支撑固定板",
+              "quantity": 1,
+              "drawing_number": "9",
+              "mesh_id": [
+                "mesh_011"
+              ],
+              "bom_code": "01.01.01.11525"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "定位准确"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "焊接轴套加强板",
+          "description": "将图纸上标注为10的轴套加强板（BOM序号：10）分别放置在1号左铲板两端轴套安装位置，点焊定位后满焊固定。",
+          "position_description": "轴套加强板位于左铲板两端，作为轴套的加强支撑。",
+          "parts_used": [
+            {
+              "bom_seq": "10",
+              "bom_name": "轴套加强板",
+              "quantity": 2,
+              "drawing_number": "10",
+              "mesh_id": [
+                "mesh_009",
+                "mesh_010"
+              ],
+              "bom_code": "01.01.01.11526"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "两块板位置对称",
+            "焊接时注意防护"
+          ]
+        },
+        {
+          "step_number": 9,
+          "action": "焊接反光片安装板",
+          "description": "将图纸上标注为11的反光片安装板（BOM序号：11）放置在1号左铲板上部指定位置，点焊定位后满焊固定。",
+          "position_description": "反光片安装板位于左铲板上部偏右位置。",
+          "parts_used": [
+            {
+              "bom_seq": "11",
+              "bom_name": "反光片安装板",
+              "quantity": 1,
+              "drawing_number": "11",
+              "mesh_id": [
+                "mesh_008"
+              ],
+              "bom_code": "01.01.01.11527"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "定位准确"
+          ]
+        },
+        {
+          "step_number": 10,
+          "action": "焊接轴套",
+          "description": "将图纸上标注为12的轴套（BOM序号：12）分别插入左铲板两端轴孔内，调整同轴度后点焊定位，再满焊固定。",
+          "position_description": "轴套分别位于左铲板两端，与轴孔同轴。",
+          "parts_used": [
+            {
+              "bom_seq": "12",
+              "bom_name": "轴套",
+              "quantity": 2,
+              "drawing_number": "12"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "千分尺",
+            "夹具"
+          ],
+          "warnings": [
+            "保证轴套同轴度",
+            "焊接时防止变形"
+          ]
+        },
+        {
+          "step_number": 11,
+          "action": "焊接方形板-机加",
+          "description": "将图纸上标注为2的方形板-机加（BOM序号：2）放置在左铲板底部中间指定位置，点焊定位后满焊固定。",
+          "position_description": "方形板-机加位于左铲板底部中间。",
+          "parts_used": [
+            {
+              "bom_seq": "2",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "2",
+              "mesh_id": [
+                "mesh_025"
+              ],
+              "bom_code": "01.01.01.18599"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "定位准确"
+          ]
+        },
+        {
+          "step_number": 12,
+          "action": "焊接方形板1",
+          "description": "将图纸上标注为13的方形板1（BOM序号：13）放置在左铲板上部指定位置，点焊定位后满焊固定。",
+          "position_description": "方形板1位于左铲板上部靠近前侧。",
+          "parts_used": [
+            {
+              "bom_seq": "13",
+              "bom_name": "方形板 1",
+              "quantity": 1,
+              "drawing_number": "13"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "定位准确"
+          ]
+        },
+        {
+          "step_number": 13,
+          "action": "焊接方形板3",
+          "description": "将图纸上标注为14的方形板3（BOM序号：14）依次放置在左铲板上部剩余3个指定位置，点焊定位后满焊固定。",
+          "position_description": "方形板3均匀分布在左铲板上部。",
+          "parts_used": [
+            {
+              "bom_seq": "14",
+              "bom_name": "方形板 3",
+              "quantity": 3,
+              "drawing_number": "14",
+              "mesh_id": [
+                "mesh_003",
+                "mesh_004",
+                "mesh_005"
+              ],
+              "bom_code": "01.01.01.11529"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "焊接时注意防护",
+            "位置均匀"
+          ]
+        },
+        {
+          "step_number": 14,
+          "action": "焊接左铲雪板加强板",
+          "description": "将图纸上标注为15的左铲雪板加强板（BOM序号：15）分别放置在左铲板两侧加强位置，点焊定位后满焊固定。",
+          "position_description": "左铲雪板加强板位于左铲板两侧边缘。",
+          "parts_used": [
+            {
+              "bom_seq": "15",
+              "bom_name": "左铲雪板加强板 2",
+              "quantity": 2,
+              "drawing_number": "15",
+              "mesh_id": [
+                "mesh_001",
+                "mesh_002"
+              ],
+              "bom_code": "01.02.01.4983"
+            }
+          ],
+          "tools": [
+            "CO2焊机",
+            "焊条",
+            "夹具"
+          ],
+          "warnings": [
+            "两块板位置对称",
+            "焊接时注意防护"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查所有焊缝是否连续、无夹渣、无气孔，焊缝高度符合图纸要求",
+        "检查各零件安装位置与图纸一致，尺寸公差符合要求",
+        "检查轴套同轴度，误差不大于0.5mm",
+        "检查所有加强板、连接板与左铲板贴合紧密，无明显缝隙",
+        "检查所有零件数量与BOM一致，无遗漏"
+      ],
+      "estimated_time_minutes": 240
+    },
+    "assembly_order": 3
+  }
+]

@@ -42,10 +42,22 @@ export default defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'three': ['three'],
-          'element-plus': ['element-plus'],
-          'vue-vendor': ['vue', 'vue-router', 'pinia']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('three')) {
+              return 'three'
+            }
+            if (id.includes('element-plus')) {
+              return 'element-plus'
+            }
+            if (id.includes('@element-plus')) {
+              return 'element-plus'
+            }
+            if (id.includes('vue') || id.includes('pinia') || id.includes('@vue')) {
+              return 'vue-vendor'
+            }
+            return 'vendor'
+          }
         }
       }
     }
