@@ -1,0 +1,2592 @@
+{
+  "success": true,
+  "component_level_mappings": {
+    "01.09.2549": {
+      "component_name": "连接器后座组件-漆后",
+      "glb_file": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2549.glb",
+      "bom_to_mesh": {
+        "01.01.01.17678": [
+          "mesh_001",
+          "mesh_002"
+        ],
+        "01.01.03.2720": [
+          "mesh_003",
+          "mesh_006",
+          "mesh_007",
+          "mesh_019"
+        ],
+        "01.01.01.16608": [
+          "mesh_004",
+          "mesh_005"
+        ],
+        "01.01.01.6589": [
+          "mesh_014",
+          "mesh_015",
+          "mesh_016",
+          "mesh_017"
+        ],
+        "01.01.01.11509": [
+          "mesh_018"
+        ],
+        "01.05.0019": [
+          "mesh_009"
+        ],
+        "01.05.0018": [
+          "mesh_010"
+        ]
+      },
+      "bom_mapping_table": [
+        {
+          "seq": "9",
+          "code": "01.01.01.17678",
+          "product_code": "CS-ST1070(42IN)-MP910-LDY100D-01-03-Q355B",
+          "name": "加强筋 2",
+          "quantity": 2,
+          "geometry_names": [
+            "CS-ST1070(42IN)-MP910-LDY100D-01-03-Q355B¼ԇ¿½_1",
+            "CS-ST1070(42IN)-MP910-LDY100D-01-03-Q355B¼ԇ¿½"
+          ],
+          "mesh_ids": [
+            "mesh_001",
+            "mesh_002"
+          ],
+          "node_names": [
+            "NAUO15",
+            "NAUO14"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "8",
+          "code": "01.01.03.2720",
+          "product_code": "JXG-T6*100*50-970-Q355B",
+          "name": "矩形管 1",
+          "quantity": 1,
+          "geometry_names": [
+            "JXG-T6×100×50-970-Q355B矩形管",
+            "JXG-T6×100×50-335-Q355B矩形管_1",
+            "JXG-T6×100×50-335-Q355B矩形管",
+            "JXG-T6×100×50-1120-Q355B矩形管"
+          ],
+          "mesh_ids": [
+            "mesh_003",
+            "mesh_006",
+            "mesh_007",
+            "mesh_019"
+          ],
+          "node_names": [
+            "NAUO13",
+            "NAUO10",
+            "NAUO9",
+            "NAUO1"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "7",
+          "code": "01.01.01.16608",
+          "product_code": "S-SBE2130(84IN)-MP1220-01-01-Q355B",
+          "name": "封板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "S-SBE2130(84IN)-MP1220-01-01-Q355B·ⱥ_1",
+            "S-SBE2130(84IN)-MP1220-01-01-Q355B·ⱥ"
+          ],
+          "mesh_ids": [
+            "mesh_004",
+            "mesh_005"
+          ],
+          "node_names": [
+            "NAUO12",
+            "NAUO11"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "6",
+          "code": "01.01.03.2719",
+          "product_code": "JXG-T6*100*50-335-Q355B",
+          "name": "矩形管 2",
+          "quantity": 2,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "5",
+          "code": "01.05.0019",
+          "product_code": "T-EURO-00",
+          "name": "左挂件虚拟组件 1",
+          "quantity": 1,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "4",
+          "code": "01.05.0018",
+          "product_code": "T-EURO-00",
+          "name": "右挂件虚拟组件 1",
+          "quantity": 1,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "3",
+          "code": "01.01.01.6589",
+          "product_code": "T-SPE-FL-01-SMS-01-Q235",
+          "name": "方形板-机加 4",
+          "quantity": 4,
+          "geometry_names": [
+            "T-SPE-FL-01-SMS-01-Q235方形板-机加_3",
+            "T-SPE-FL-01-SMS-01-Q235方形板-机加_2",
+            "T-SPE-FL-01-SMS-01-Q235方形板-机加_1",
+            "T-SPE-FL-01-SMS-01-Q235方形板-机加"
+          ],
+          "mesh_ids": [
+            "mesh_014",
+            "mesh_015",
+            "mesh_016",
+            "mesh_017"
+          ],
+          "node_names": [
+            "NAUO6",
+            "NAUO5",
+            "NAUO4",
+            "NAUO3"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "2",
+          "code": "01.01.01.11509",
+          "product_code": "T-SPV250-Z602-01-01-Q355B",
+          "name": "连接板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-01-01-Q355Bl½Ӱ㥀휷"
+          ],
+          "mesh_ids": [
+            "mesh_018"
+          ],
+          "node_names": [
+            "NAUO2"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "1",
+          "code": "01.01.03.2718",
+          "product_code": "JXG-T6*100*50-1120-Q355B",
+          "name": "矩形管 1",
+          "quantity": 1,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        }
+      ],
+      "total_bom_count": 9,
+      "bom_matched_count": 7,
+      "bom_matching_rate": 0.7777777777777778,
+      "total_3d_parts": 19,
+      "matched_3d_count": 15,
+      "parts_matching_rate": 0.7894736842105263,
+      "code_matched": 5,
+      "ai_matched": 2,
+      "matching_rate": 0.7777777777777778
+    },
+    "01.09.2550": {
+      "component_name": "后座连接架组件-漆后",
+      "glb_file": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2550.glb",
+      "bom_to_mesh": {
+        "01.01.02.0337": [
+          "mesh_001"
+        ],
+        "01.01.01.11515": [
+          "mesh_002",
+          "mesh_003",
+          "mesh_011",
+          "mesh_012"
+        ],
+        "01.02.02.0490": [
+          "mesh_004"
+        ],
+        "01.01.04.0592": [
+          "mesh_006"
+        ],
+        "01.01.01.11516": [
+          "mesh_007",
+          "mesh_008",
+          "mesh_009",
+          "mesh_010"
+        ],
+        "01.01.01.11514": [
+          "mesh_013"
+        ],
+        "01.01.01.11513": [
+          "mesh_014",
+          "mesh_015"
+        ],
+        "01.01.01.11512": [
+          "mesh_016",
+          "mesh_017"
+        ],
+        "01.01.01.11511": [
+          "mesh_018"
+        ],
+        "01.01.02.1221": [
+          "mesh_005"
+        ]
+      },
+      "bom_mapping_table": [
+        {
+          "seq": "10",
+          "code": "01.01.02.0337",
+          "product_code": "T-U2500-01-09-Q235",
+          "name": "后座轴套 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-U2500-01-09-Q235后座轴套"
+          ],
+          "mesh_ids": [
+            "mesh_001"
+          ],
+          "node_names": [
+            "NAUO18"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "9",
+          "code": "01.02.02.0490",
+          "product_code": "T-U2500-01-05-Q235",
+          "name": "后座轴套 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-U2500-01-05-Q235后座轴套"
+          ],
+          "mesh_ids": [
+            "mesh_004"
+          ],
+          "node_names": [
+            "NAUO15"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "8",
+          "code": "01.01.02.1221",
+          "product_code": "ZT-φ55/φ37-35-Q235",
+          "name": "轴套 1",
+          "quantity": 1,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "7",
+          "code": "01.01.04.0592",
+          "product_code": "T-SPV250-Z602-02-07-Q235",
+          "name": "角钢-机加 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-02-07-Q235角钢-机加"
+          ],
+          "mesh_ids": [
+            "mesh_006"
+          ],
+          "node_names": [
+            "NAUO13"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "6",
+          "code": "01.01.01.11516",
+          "product_code": "T-SPV250-Z602-02-06-Q355B",
+          "name": "加强板 4",
+          "quantity": 4,
+          "geometry_names": [
+            "T-SPV250-Z602-02-06-Q355B¼ԇ¿°㥀_3",
+            "T-SPV250-Z602-02-06-Q355B¼ԇ¿°㥀_2",
+            "T-SPV250-Z602-02-06-Q355B¼ԇ¿°㥀_1",
+            "T-SPV250-Z602-02-06-Q355B¼ԇ¿°㥀"
+          ],
+          "mesh_ids": [
+            "mesh_007",
+            "mesh_008",
+            "mesh_009",
+            "mesh_010"
+          ],
+          "node_names": [
+            "NAUO12",
+            "NAUO11",
+            "NAUO10",
+            "NAUO9"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "5",
+          "code": "01.01.01.11515",
+          "product_code": "T-SPV250-Z602-02-05-Q355B",
+          "name": "油缸固定板 4",
+          "quantity": 4,
+          "geometry_names": [
+            "T-SPV250-Z602-02-05-Q355Bԍ¸׹̶¨°_3",
+            "T-SPV250-Z602-02-05-Q355Bԍ¸׹̶¨°_2",
+            "T-SPV250-Z602-02-05-Q355Bԍ¸׹̶¨°_1",
+            "T-SPV250-Z602-02-05-Q355Bԍ¸׹̶¨°"
+          ],
+          "mesh_ids": [
+            "mesh_002",
+            "mesh_003",
+            "mesh_011",
+            "mesh_012"
+          ],
+          "node_names": [
+            "NAUO17",
+            "NAUO16",
+            "NAUO8",
+            "NAUO7"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "4",
+          "code": "01.01.01.11514",
+          "product_code": "T-SPV250-Z602-02-04-Q355B",
+          "name": "折弯板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-02-04-Q355B֛Τ°㥀"
+          ],
+          "mesh_ids": [
+            "mesh_013"
+          ],
+          "node_names": [
+            "NAUO6"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "3",
+          "code": "01.01.01.11513",
+          "product_code": "T-SPV250-Z602-02-03-Q355B",
+          "name": "侧连接板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-SPV250-Z602-02-03-Q355B²ၬ½Ӱ㥀_1",
+            "T-SPV250-Z602-02-03-Q355B²ၬ½Ӱ㥀"
+          ],
+          "mesh_ids": [
+            "mesh_014",
+            "mesh_015"
+          ],
+          "node_names": [
+            "NAUO5",
+            "NAUO4"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "2",
+          "code": "01.01.01.11512",
+          "product_code": "T-SPV250-Z602-02-02-Q355B",
+          "name": "上连接板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-SPV250-Z602-02-02-Q355Bʏl½Ӱ_1",
+            "T-SPV250-Z602-02-02-Q355Bʏl½Ӱ"
+          ],
+          "mesh_ids": [
+            "mesh_016",
+            "mesh_017"
+          ],
+          "node_names": [
+            "NAUO3",
+            "NAUO2"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "1",
+          "code": "01.01.01.11511",
+          "product_code": "T-SPV250-Z602-02-01-Q355B",
+          "name": "方形板-机加 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-02-01-Q355B方形板-机加"
+          ],
+          "mesh_ids": [
+            "mesh_018"
+          ],
+          "node_names": [
+            "NAUO1"
+          ],
+          "matched": true
+        }
+      ],
+      "total_bom_count": 10,
+      "bom_matched_count": 10,
+      "bom_matching_rate": 1.0,
+      "total_3d_parts": 18,
+      "matched_3d_count": 18,
+      "parts_matching_rate": 1.0,
+      "code_matched": 9,
+      "ai_matched": 1,
+      "matching_rate": 1.0
+    },
+    "01.09.2551": {
+      "component_name": "左铲雪板组件-漆后",
+      "glb_file": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2551.glb",
+      "bom_to_mesh": {
+        "01.02.01.4983": [
+          "mesh_001",
+          "mesh_002"
+        ],
+        "01.01.01.11529": [
+          "mesh_003",
+          "mesh_004",
+          "mesh_005"
+        ],
+        "01.01.01.11527": [
+          "mesh_008"
+        ],
+        "01.01.01.11526": [
+          "mesh_009",
+          "mesh_010"
+        ],
+        "01.01.01.11525": [
+          "mesh_011"
+        ],
+        "01.01.01.11521": [
+          "mesh_012",
+          "mesh_013",
+          "mesh_014",
+          "mesh_015",
+          "mesh_021",
+          "mesh_022"
+        ],
+        "01.01.01.11524": [
+          "mesh_016",
+          "mesh_017"
+        ],
+        "01.01.01.11523": [
+          "mesh_018"
+        ],
+        "01.01.01.11522": [
+          "mesh_019",
+          "mesh_020"
+        ],
+        "01.01.01.18600": [
+          "mesh_023"
+        ],
+        "01.01.01.11519": [
+          "mesh_024"
+        ],
+        "01.01.01.18599": [
+          "mesh_025"
+        ],
+        "01.01.01.18598": [
+          "mesh_026"
+        ],
+        "01.01.02.1222": [
+          "mesh_006",
+          "mesh_007"
+        ]
+      },
+      "bom_mapping_table": [
+        {
+          "seq": "15",
+          "code": "01.02.01.4983",
+          "product_code": "T-U2500-02-12-Q345",
+          "name": "左铲雪板加强板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-U2500-02-12-Q345左铲雪板加强板_1",
+            "T-U2500-02-12-Q345左铲雪板加强板"
+          ],
+          "mesh_ids": [
+            "mesh_001",
+            "mesh_002"
+          ],
+          "node_names": [
+            "NAUO26",
+            "NAUO25"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "14",
+          "code": "01.01.01.11529",
+          "product_code": "FXB-T8*95*80-Q355B",
+          "name": "方形板 3",
+          "quantity": 3,
+          "geometry_names": [
+            "FXB-T8×95×80-Q355B方形板_2",
+            "FXB-T8×95×80-Q355B方形板_1",
+            "FXB-T8×95×80-Q355B方形板"
+          ],
+          "mesh_ids": [
+            "mesh_003",
+            "mesh_004",
+            "mesh_005"
+          ],
+          "node_names": [
+            "NAUO24",
+            "NAUO23",
+            "NAUO22"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "13",
+          "code": "01.01.01.11528",
+          "product_code": "FXB-T8*190*100-Q355B",
+          "name": "方形板 1",
+          "quantity": 1,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "12",
+          "code": "01.01.02.1222",
+          "product_code": "ZT-φ60/φ35-50-Q235",
+          "name": "轴套 2",
+          "quantity": 2,
+          "geometry_names": [],
+          "mesh_ids": [],
+          "node_names": [],
+          "matched": false
+        },
+        {
+          "seq": "11",
+          "code": "01.01.01.11527",
+          "product_code": "T-SPV250-Z602-03-11-Q235",
+          "name": "反光片安装板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-03-11-Q235·´¹ㆬ°²װ°"
+          ],
+          "mesh_ids": [
+            "mesh_008"
+          ],
+          "node_names": [
+            "NAUO19"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "10",
+          "code": "01.01.01.11526",
+          "product_code": "T-SPV250-Z602-03-10-Q235",
+          "name": "轴套加强板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-SPV250-Z602-03-10-Q235ס͗¼ԇ¿°㥀_1",
+            "T-SPV250-Z602-03-10-Q235ס͗¼ԇ¿°㥀"
+          ],
+          "mesh_ids": [
+            "mesh_009",
+            "mesh_010"
+          ],
+          "node_names": [
+            "NAUO18",
+            "NAUO17"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "9",
+          "code": "01.01.01.11525",
+          "product_code": "T-SPV250-Z602-03-09-Q235",
+          "name": "支撑固定板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-03-09-Q235֧³Ź̶¨°"
+          ],
+          "mesh_ids": [
+            "mesh_011"
+          ],
+          "node_names": [
+            "NAUO16"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "8",
+          "code": "01.01.01.11524",
+          "product_code": "T-SPV250-Z602-03-08-Q235",
+          "name": "后弹簧固定板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-SPV250-Z602-03-08-Q235º󵯻ɹ̶¨°_1",
+            "T-SPV250-Z602-03-08-Q235º󵯻ɹ̶¨°"
+          ],
+          "mesh_ids": [
+            "mesh_016",
+            "mesh_017"
+          ],
+          "node_names": [
+            "NAUO11",
+            "NAUO10"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "7",
+          "code": "01.01.01.11523",
+          "product_code": "T-SPV250-Z602-03-07-Q235",
+          "name": "前弹簧固定板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-03-07-Q235ǰµ¯»ɹ̶¨°"
+          ],
+          "mesh_ids": [
+            "mesh_018"
+          ],
+          "node_names": [
+            "NAUO9"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "6",
+          "code": "01.01.01.11522",
+          "product_code": "T-SPV250-Z602-03-06-Q355B",
+          "name": "前油缸固定板 2",
+          "quantity": 2,
+          "geometry_names": [
+            "T-SPV250-Z602-03-06-Q355Bǰԍ¸׹̶¨°㥀¯v\u0006鿄\u0005_1",
+            "T-SPV250-Z602-03-06-Q355Bǰԍ¸׹̶¨°㥀¯v\u0006鿄\u0005"
+          ],
+          "mesh_ids": [
+            "mesh_019",
+            "mesh_020"
+          ],
+          "node_names": [
+            "NAUO8",
+            "NAUO7"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "5",
+          "code": "01.01.01.11521",
+          "product_code": "T-SPV250-Z602-03-05-Q355B",
+          "name": "底部连接板 6",
+          "quantity": 6,
+          "geometry_names": [
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ_5",
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ_4",
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ_3",
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ_2",
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ_1",
+            "T-SPV250-Z602-03-05-Q355Bµײ¿l½Ӱ"
+          ],
+          "mesh_ids": [
+            "mesh_012",
+            "mesh_013",
+            "mesh_014",
+            "mesh_015",
+            "mesh_021",
+            "mesh_022"
+          ],
+          "node_names": [
+            "NAUO15",
+            "NAUO14",
+            "NAUO13",
+            "NAUO12",
+            "NAUO6",
+            "NAUO5"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "4",
+          "code": "01.01.01.18600",
+          "product_code": "T-SPV1830-EURO-03-03-Q355B",
+          "name": "前加强板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV1830-EURO-03-03-Q355Bǰ¼ԇ¿°"
+          ],
+          "mesh_ids": [
+            "mesh_023"
+          ],
+          "node_names": [
+            "NAUO4"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "3",
+          "code": "01.01.01.11519",
+          "product_code": "T-SPV250-Z602-03-03-Q355B",
+          "name": "后加强板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV250-Z602-03-03-Q355Bº󽔇¿°"
+          ],
+          "mesh_ids": [
+            "mesh_024"
+          ],
+          "node_names": [
+            "NAUO3"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "2",
+          "code": "01.01.01.18599",
+          "product_code": "T-SPV1830-EURO-03-02-Q235",
+          "name": "方形板-机加 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV1830-EURO-03-02-Q235方形板-机加"
+          ],
+          "mesh_ids": [
+            "mesh_025"
+          ],
+          "node_names": [
+            "NAUO2"
+          ],
+          "matched": true
+        },
+        {
+          "seq": "1",
+          "code": "01.01.01.18598",
+          "product_code": "T-SPV1830-EURO-03-01-Q235",
+          "name": "左铲板 1",
+          "quantity": 1,
+          "geometry_names": [
+            "T-SPV1830-EURO-03-01-Q235左铲板"
+          ],
+          "mesh_ids": [
+            "mesh_026"
+          ],
+          "node_names": [
+            "NAUO1"
+          ],
+          "matched": true
+        }
+      ],
+      "total_bom_count": 15,
+      "bom_matched_count": 14,
+      "bom_matching_rate": 0.9333333333333333,
+      "total_3d_parts": 26,
+      "matched_3d_count": 26,
+      "parts_matching_rate": 1.0,
+      "code_matched": 13,
+      "ai_matched": 1,
+      "matching_rate": 0.9333333333333333
+    }
+  },
+  "product_level_mapping": {
+    "glb_file": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\product_total.glb",
+    "bom_to_mesh": {
+      "02.03.1035": [
+        "mesh_001",
+        "mesh_004",
+        "mesh_005",
+        "mesh_006",
+        "mesh_007",
+        "mesh_008",
+        "mesh_020",
+        "mesh_023",
+        "mesh_024",
+        "mesh_025",
+        "mesh_026",
+        "mesh_027",
+        "mesh_139",
+        "mesh_142"
+      ],
+      "02.03.0072": [
+        "mesh_002",
+        "mesh_009",
+        "mesh_010",
+        "mesh_011",
+        "mesh_012",
+        "mesh_013",
+        "mesh_021",
+        "mesh_028",
+        "mesh_029",
+        "mesh_030",
+        "mesh_031",
+        "mesh_032",
+        "mesh_137",
+        "mesh_141"
+      ],
+      "02.03.0019": [
+        "mesh_003",
+        "mesh_014",
+        "mesh_015",
+        "mesh_016",
+        "mesh_017",
+        "mesh_018",
+        "mesh_022",
+        "mesh_033",
+        "mesh_034",
+        "mesh_035",
+        "mesh_036",
+        "mesh_037",
+        "mesh_138",
+        "mesh_140"
+      ],
+      "01.09.2556": [
+        "mesh_019"
+      ],
+      "02.03.0088": [
+        "mesh_038",
+        "mesh_039"
+      ],
+      "02.03.0381": [
+        "mesh_040",
+        "mesh_041",
+        "mesh_042",
+        "mesh_043",
+        "mesh_044",
+        "mesh_045",
+        "mesh_046",
+        "mesh_047",
+        "mesh_048",
+        "mesh_049",
+        "mesh_050",
+        "mesh_051",
+        "mesh_052",
+        "mesh_053",
+        "mesh_054",
+        "mesh_055",
+        "mesh_056",
+        "mesh_057",
+        "mesh_058",
+        "mesh_059",
+        "mesh_060",
+        "mesh_061",
+        "mesh_062",
+        "mesh_063",
+        "mesh_198",
+        "mesh_200"
+      ],
+      "01.09.1240": [
+        "mesh_065",
+        "mesh_066"
+      ],
+      "02.03.0610": [
+        "mesh_067",
+        "mesh_068",
+        "mesh_069",
+        "mesh_070"
+      ],
+      "01.09.0308": [
+        "mesh_073",
+        "mesh_074"
+      ],
+      "02.03.0146": [
+        "mesh_075",
+        "mesh_079",
+        "mesh_081",
+        "mesh_083",
+        "mesh_085",
+        "mesh_087",
+        "mesh_089",
+        "mesh_091",
+        "mesh_093",
+        "mesh_095",
+        "mesh_097",
+        "mesh_099",
+        "mesh_101",
+        "mesh_148",
+        "mesh_197",
+        "mesh_201"
+      ],
+      "02.03.0383": [
+        "mesh_076",
+        "mesh_149"
+      ],
+      "02.08.05.0004": [
+        "mesh_077",
+        "mesh_078",
+        "mesh_122",
+        "mesh_124",
+        "mesh_126",
+        "mesh_128",
+        "mesh_130",
+        "mesh_132",
+        "mesh_134",
+        "mesh_136",
+        "mesh_146",
+        "mesh_153",
+        "mesh_155",
+        "mesh_157",
+        "mesh_159",
+        "mesh_161",
+        "mesh_163",
+        "mesh_169",
+        "mesh_171",
+        "mesh_173",
+        "mesh_175",
+        "mesh_177",
+        "mesh_193"
+      ],
+      "02.03.0378": [
+        "mesh_080",
+        "mesh_082",
+        "mesh_084",
+        "mesh_086",
+        "mesh_088",
+        "mesh_090",
+        "mesh_092",
+        "mesh_094",
+        "mesh_096",
+        "mesh_098",
+        "mesh_100",
+        "mesh_102"
+      ],
+      "01.09.0304": [
+        "mesh_103",
+        "mesh_106",
+        "mesh_109",
+        "mesh_112",
+        "mesh_116",
+        "mesh_119"
+      ],
+      "02.03.0147": [
+        "mesh_104",
+        "mesh_107",
+        "mesh_110",
+        "mesh_113",
+        "mesh_117",
+        "mesh_118",
+        "mesh_223",
+        "mesh_224",
+        "mesh_225",
+        "mesh_226",
+        "mesh_227",
+        "mesh_228"
+      ],
+      "02.03.0458": [
+        "mesh_105",
+        "mesh_108",
+        "mesh_111",
+        "mesh_114",
+        "mesh_115",
+        "mesh_120"
+      ],
+      "02.03.0379": [
+        "mesh_121",
+        "mesh_123",
+        "mesh_125",
+        "mesh_127",
+        "mesh_129",
+        "mesh_131",
+        "mesh_133",
+        "mesh_135"
+      ],
+      "02.03.0102": [
+        "mesh_147"
+      ],
+      "02.04.0029": [
+        "mesh_150",
+        "mesh_151"
+      ],
+      "02.08.03.0236": [
+        "mesh_152"
+      ],
+      "02.03.0398": [
+        "mesh_154",
+        "mesh_156",
+        "mesh_158",
+        "mesh_160",
+        "mesh_162",
+        "mesh_164",
+        "mesh_170",
+        "mesh_172",
+        "mesh_174",
+        "mesh_176",
+        "mesh_178",
+        "mesh_194"
+      ],
+      "01.09.0995": [
+        "mesh_195",
+        "mesh_218",
+        "mesh_219",
+        "mesh_220",
+        "mesh_221",
+        "mesh_222"
+      ],
+      "01.09.2566": [
+        "mesh_196",
+        "mesh_203"
+      ],
+      "02.03.0442": [
+        "mesh_199",
+        "mesh_202"
+      ],
+      "02.03.0612": [
+        "mesh_204",
+        "mesh_207"
+      ],
+      "01.09.2565": [
+        "mesh_205",
+        "mesh_206"
+      ],
+      "01.09.0999": [
+        "mesh_210"
+      ],
+      "01.09.2564": [
+        "mesh_229",
+        "mesh_230",
+        "mesh_231",
+        "mesh_232"
+      ],
+      "02.09.0103": [
+        "mesh_237",
+        "mesh_238",
+        "mesh_239",
+        "mesh_240",
+        "mesh_241",
+        "mesh_242"
+      ],
+      "01.09.2562": [
+        "mesh_243",
+        "mesh_244",
+        "mesh_245",
+        "mesh_246",
+        "mesh_247",
+        "mesh_252"
+      ],
+      "01.09.2563": [
+        "mesh_248",
+        "mesh_249",
+        "mesh_250",
+        "mesh_251"
+      ],
+      "01.09.2561": [
+        "mesh_253"
+      ],
+      "01.09.2555": [
+        "mesh_254"
+      ],
+      "01.02.07.0071": [
+        "mesh_255"
+      ],
+      "01.02.07.0239": [
+        "mesh_256",
+        "mesh_257"
+      ],
+      "01.09.2560": [
+        "mesh_259"
+      ],
+      "01.09.2559": [
+        "mesh_260",
+        "mesh_263",
+        "mesh_266",
+        "mesh_269",
+        "mesh_272",
+        "mesh_275"
+      ],
+      "01.09.2557": [
+        "mesh_301",
+        "mesh_305"
+      ],
+      "01.09.2553": [
+        "mesh_315"
+      ],
+      "01.09.2554": [
+        "mesh_325"
+      ],
+      "01.09.2551": [
+        "mesh_349",
+        "mesh_350",
+        "mesh_374",
+        "mesh_376",
+        "mesh_377"
+      ],
+      "01.09.2552": [
+        "mesh_351"
+      ],
+      "02.03.0001": [
+        "mesh_165",
+        "mesh_166",
+        "mesh_167",
+        "mesh_168"
+      ],
+      "02.16.0142": [
+        "mesh_208",
+        "mesh_209"
+      ],
+      "01.09.0503": [
+        "mesh_211"
+      ],
+      "02.03.0006": [
+        "mesh_212",
+        "mesh_213",
+        "mesh_214",
+        "mesh_215",
+        "mesh_216",
+        "mesh_217"
+      ],
+      "02.08.01.0338": [
+        "mesh_233",
+        "mesh_234",
+        "mesh_235",
+        "mesh_236"
+      ],
+      "01.09.2550": [
+        "mesh_404",
+        "mesh_407"
+      ],
+      "01.09.2549": [
+        "mesh_405",
+        "mesh_408"
+      ]
+    },
+    "bom_mapping_table": [
+      {
+        "seq": "53",
+        "code": "01.09.2556",
+        "product_code": "T-SPV1830-EURO-09-Q235",
+        "name": "方形板-机加-镀锌",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-09-Q235方形板-机加"
+        ],
+        "mesh_ids": [
+          "mesh_019"
+        ],
+        "node_names": [
+          "NAUO269"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "52",
+        "code": "02.03.0088",
+        "product_code": "M8*80",
+        "name": "六角头螺栓8.8级GB/T5782-2016",
+        "quantity": 2,
+        "geometry_names": [
+          "GB／T 5780-2000六角头螺栓 C级M8×80(3．6级)_1",
+          "GB／T 5780-2000六角头螺栓 C级M8×80(3．6级)"
+        ],
+        "mesh_ids": [
+          "mesh_038",
+          "mesh_039"
+        ],
+        "node_names": [
+          "NAUO231",
+          "NAUO230"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "51",
+        "code": "01.09.1240",
+        "product_code": "T-SWB1400-SMS-C-LK-04",
+        "name": "电磁阀保护罩组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SWB1400-SMS-C-LK-04-02-Q235 方形板-机加",
+          "T-SWB1400-SMS-C-LK-04-01-Q235 ±£»¤֖׷°"
+        ],
+        "mesh_ids": [
+          "mesh_065",
+          "mesh_066"
+        ],
+        "node_names": [
+          "NAUO272",
+          "NAUO271"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "50",
+        "code": "02.03.0610",
+        "product_code": "20*3",
+        "name": "平垫圈 倒角型 A级(钢)GB／T 97．2-1985",
+        "quantity": 4,
+        "geometry_names": [
+          "GB／T 97．2-1985平垫圈 倒角型 A级20×3(钢)_3",
+          "GB／T 97．2-1985平垫圈 倒角型 A级20×3(钢)_2",
+          "GB／T 97．2-1985平垫圈 倒角型 A级20×3(钢)_1",
+          "GB／T 97．2-1985平垫圈 倒角型 A级20×3(钢)"
+        ],
+        "mesh_ids": [
+          "mesh_067",
+          "mesh_068",
+          "mesh_069",
+          "mesh_070"
+        ],
+        "node_names": [
+          "NAUO204",
+          "NAUO203",
+          "NAUO202",
+          "NAUO201"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "49",
+        "code": "01.09.0308",
+        "product_code": "SPE1.83-LD-10-Q235",
+        "name": "推雪板反光片固定板-镀锌",
+        "quantity": 2,
+        "geometry_names": [
+          "SPE1.83-LD-10-Q235Άѩ°巴¹ㆬ¹̶¨°_1",
+          "SPE1.83-LD-10-Q235Άѩ°巴¹ㆬ¹̶¨°"
+        ],
+        "mesh_ids": [
+          "mesh_073",
+          "mesh_074"
+        ],
+        "node_names": [
+          "NAUO274_1",
+          "NAUO274"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "48",
+        "code": "02.03.0378",
+        "product_code": "M6*20",
+        "name": "六角头螺栓全螺纹8.8级GB/T5783-2016",
+        "quantity": 12,
+        "geometry_names": [
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_11",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_10",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_9",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_8",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_7",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_6",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_5",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_4",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_3",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_2",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)_1",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×20(3．6级)"
+        ],
+        "mesh_ids": [
+          "mesh_080",
+          "mesh_082",
+          "mesh_084",
+          "mesh_086",
+          "mesh_088",
+          "mesh_090",
+          "mesh_092",
+          "mesh_094",
+          "mesh_096",
+          "mesh_098",
+          "mesh_100",
+          "mesh_102"
+        ],
+        "node_names": [
+          "NAUO191",
+          "NAUO189",
+          "NAUO187",
+          "NAUO185",
+          "NAUO183",
+          "NAUO181",
+          "NAUO179",
+          "NAUO177",
+          "NAUO175",
+          "NAUO173",
+          "NAUO171",
+          "NAUO169"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "47",
+        "code": "02.03.0147",
+        "product_code": "M30",
+        "name": "1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "quantity": 6,
+        "geometry_names": [
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30_5",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30_4",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30_3",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30_2",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30_1",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M30",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30_5",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30_4",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30_3",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30_2",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30_1",
+          "GB£¯T41-20001э¹½Ȃބ¸C¼¶M30"
+        ],
+        "mesh_ids": [
+          "mesh_104",
+          "mesh_107",
+          "mesh_110",
+          "mesh_113",
+          "mesh_117",
+          "mesh_118",
+          "mesh_223",
+          "mesh_224",
+          "mesh_225",
+          "mesh_226",
+          "mesh_227",
+          "mesh_228"
+        ],
+        "node_names": [
+          "NAUO167",
+          "NAUO164",
+          "NAUO161",
+          "NAUO158",
+          "NAUO154",
+          "NAUO153",
+          "NAUO48",
+          "NAUO47",
+          "NAUO46",
+          "NAUO45",
+          "NAUO44",
+          "NAUO43"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "46",
+        "code": "01.09.0304",
+        "product_code": "SPE1.83-LD-06-45#",
+        "name": "推雪板大垫圈-镀锌",
+        "quantity": 6,
+        "geometry_names": [
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦_5",
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦_4",
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦_3",
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦_2",
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦_1",
+          "SPE1.83-LD-06-45#Άѩ°嵳µ爦"
+        ],
+        "mesh_ids": [
+          "mesh_103",
+          "mesh_106",
+          "mesh_109",
+          "mesh_112",
+          "mesh_116",
+          "mesh_119"
+        ],
+        "node_names": [
+          "NAUO275_5",
+          "NAUO275_4",
+          "NAUO275_3",
+          "NAUO275_2",
+          "NAUO275_1",
+          "NAUO275"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "45",
+        "code": "02.03.0458",
+        "product_code": "M30*60",
+        "name": "六角头螺栓全螺纹8.8级GB/T5783-2016",
+        "quantity": 6,
+        "geometry_names": [
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60_5",
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60_4",
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60_3",
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60_2",
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60_1",
+          "GB／T5781-2000六角头螺栓全螺纹C级M30×60"
+        ],
+        "mesh_ids": [
+          "mesh_105",
+          "mesh_108",
+          "mesh_111",
+          "mesh_114",
+          "mesh_115",
+          "mesh_120"
+        ],
+        "node_names": [
+          "NAUO166",
+          "NAUO163",
+          "NAUO160",
+          "NAUO157",
+          "NAUO156",
+          "NAUO151"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "44",
+        "code": "02.03.0379",
+        "product_code": "M8*20",
+        "name": "六角头螺栓全螺纹8.8级GB/T5783-2016",
+        "quantity": 8,
+        "geometry_names": [
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_7",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_6",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_5",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_4",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_3",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_2",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20_1",
+          "GB／T5781-2000六角头螺栓全螺纹8.8级M8×20"
+        ],
+        "mesh_ids": [
+          "mesh_121",
+          "mesh_123",
+          "mesh_125",
+          "mesh_127",
+          "mesh_129",
+          "mesh_131",
+          "mesh_133",
+          "mesh_135"
+        ],
+        "node_names": [
+          "NAUO150",
+          "NAUO148",
+          "NAUO146",
+          "NAUO144",
+          "NAUO142",
+          "NAUO140",
+          "NAUO138",
+          "NAUO136"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "43",
+        "code": "02.03.0019",
+        "product_code": "M16",
+        "name": "1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "quantity": 14,
+        "geometry_names": [
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_13",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_12",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_11",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_10",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_9",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_8",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_7",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_6",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_5",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_4",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_3",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_2",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16_1",
+          "GB／T889.1-20001型非金属嵌件六角锁紧螺母M16"
+        ],
+        "mesh_ids": [
+          "mesh_003",
+          "mesh_014",
+          "mesh_015",
+          "mesh_016",
+          "mesh_017",
+          "mesh_018",
+          "mesh_022",
+          "mesh_033",
+          "mesh_034",
+          "mesh_035",
+          "mesh_036",
+          "mesh_037",
+          "mesh_138",
+          "mesh_140"
+        ],
+        "node_names": [
+          "NAUO266",
+          "NAUO255",
+          "NAUO254",
+          "NAUO253",
+          "NAUO252",
+          "NAUO251",
+          "NAUO247",
+          "NAUO236",
+          "NAUO235",
+          "NAUO234",
+          "NAUO233",
+          "NAUO232",
+          "NAUO133",
+          "NAUO131"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "42",
+        "code": "02.03.0072",
+        "product_code": "16*3",
+        "name": "平垫圈8.8级GB/T95-2002",
+        "quantity": 14,
+        "geometry_names": [
+          "GB／T95-2002平垫圈C级16×3_13",
+          "GB／T95-2002平垫圈C级16×3_12",
+          "GB／T95-2002平垫圈C级16×3_11",
+          "GB／T95-2002平垫圈C级16×3_10",
+          "GB／T95-2002平垫圈C级16×3_9",
+          "GB／T95-2002平垫圈C级16×3_8",
+          "GB／T95-2002平垫圈C级16×3_7",
+          "GB／T95-2002平垫圈C级16×3_6",
+          "GB／T95-2002平垫圈C级16×3_5",
+          "GB／T95-2002平垫圈C级16×3_4",
+          "GB／T95-2002平垫圈C级16×3_3",
+          "GB／T95-2002平垫圈C级16×3_2",
+          "GB／T95-2002平垫圈C级16×3_1",
+          "GB／T95-2002平垫圈C级16×3"
+        ],
+        "mesh_ids": [
+          "mesh_002",
+          "mesh_009",
+          "mesh_010",
+          "mesh_011",
+          "mesh_012",
+          "mesh_013",
+          "mesh_021",
+          "mesh_028",
+          "mesh_029",
+          "mesh_030",
+          "mesh_031",
+          "mesh_032",
+          "mesh_137",
+          "mesh_141"
+        ],
+        "node_names": [
+          "NAUO267",
+          "NAUO260",
+          "NAUO259",
+          "NAUO258",
+          "NAUO257",
+          "NAUO256",
+          "NAUO248",
+          "NAUO241",
+          "NAUO240",
+          "NAUO239",
+          "NAUO238",
+          "NAUO237",
+          "NAUO134",
+          "NAUO130"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "41",
+        "code": "02.03.1035",
+        "product_code": "M16*85",
+        "name": "内六角平圆头螺钉8.8级GB/T70.2-2015",
+        "quantity": 14,
+        "geometry_names": [
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_13",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_12",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_11",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_10",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_9",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_8",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_7",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_6",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_5",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_4",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_3",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_2",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)_1",
+          "GB／T 70．2-2000内六角平圆头螺钉M16×85(8．8级)"
+        ],
+        "mesh_ids": [
+          "mesh_001",
+          "mesh_004",
+          "mesh_005",
+          "mesh_006",
+          "mesh_007",
+          "mesh_008",
+          "mesh_020",
+          "mesh_023",
+          "mesh_024",
+          "mesh_025",
+          "mesh_026",
+          "mesh_027",
+          "mesh_139",
+          "mesh_142"
+        ],
+        "node_names": [
+          "NAUO268",
+          "NAUO265",
+          "NAUO264",
+          "NAUO263",
+          "NAUO262",
+          "NAUO261",
+          "NAUO249",
+          "NAUO246",
+          "NAUO245",
+          "NAUO244",
+          "NAUO243",
+          "NAUO242",
+          "NAUO132",
+          "NAUO129"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "40",
+        "code": "02.03.0012",
+        "product_code": "Φ4.5*40",
+        "name": "安全销DIN 11023",
+        "quantity": 1,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "39",
+        "code": "02.03.0102",
+        "product_code": "M8*65",
+        "name": "六角头螺栓8.8级GB/T 5782-2016",
+        "quantity": 1,
+        "geometry_names": [
+          "GB／T 5780-2000六角头螺栓 C级M8×65"
+        ],
+        "mesh_ids": [
+          "mesh_147"
+        ],
+        "node_names": [
+          "NAUO124"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "38",
+        "code": "02.03.0383",
+        "product_code": "M6*16",
+        "name": "六角头螺栓全螺纹8.8级GB/T5783-2016",
+        "quantity": 2,
+        "geometry_names": [
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×16(3．6级)_1",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M6×16(3．6级)"
+        ],
+        "mesh_ids": [
+          "mesh_076",
+          "mesh_149"
+        ],
+        "node_names": [
+          "NAUO195",
+          "NAUO122"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "37",
+        "code": "02.04.0029",
+        "product_code": "SPE1.83-LD-09",
+        "name": "推雪板反光片",
+        "quantity": 2,
+        "geometry_names": [
+          "SPE1.83-LD-09·´¹ㆬ_1",
+          "SPE1.83-LD-09·´¹ㆬ"
+        ],
+        "mesh_ids": [
+          "mesh_150",
+          "mesh_151"
+        ],
+        "node_names": [
+          "NAUO121",
+          "NAUO120"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "36",
+        "code": "02.08.03.0236",
+        "product_code": "A181-014",
+        "name": "电磁阀组",
+        "quantity": 1,
+        "geometry_names": [
+          "A181-014µ絅·§ة"
+        ],
+        "mesh_ids": [
+          "mesh_152"
+        ],
+        "node_names": [
+          "NAUO119"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "35",
+        "code": "02.03.0001",
+        "product_code": "φ8*45",
+        "name": "安全销DIN 11023",
+        "quantity": 4,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "34",
+        "code": "02.08.05.0004",
+        "product_code": "M8",
+        "name": "直通式压注油杯JB/T7940.1-1995",
+        "quantity": 18,
+        "geometry_names": [
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_22",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_21",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_20",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_19",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_18",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_17",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_16",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_15",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_14",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_13",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_12",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_11",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_10",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_9",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_8",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_7",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_6",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_5",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_4",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_3",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_2",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8_1",
+          "GB／T889．1-20001型非金属嵌件六角锁紧螺母M8"
+        ],
+        "mesh_ids": [
+          "mesh_077",
+          "mesh_078",
+          "mesh_122",
+          "mesh_124",
+          "mesh_126",
+          "mesh_128",
+          "mesh_130",
+          "mesh_132",
+          "mesh_134",
+          "mesh_136",
+          "mesh_146",
+          "mesh_153",
+          "mesh_155",
+          "mesh_157",
+          "mesh_159",
+          "mesh_161",
+          "mesh_163",
+          "mesh_169",
+          "mesh_171",
+          "mesh_173",
+          "mesh_175",
+          "mesh_177",
+          "mesh_193"
+        ],
+        "node_names": [
+          "NAUO194",
+          "NAUO193",
+          "NAUO149",
+          "NAUO147",
+          "NAUO145",
+          "NAUO143",
+          "NAUO141",
+          "NAUO139",
+          "NAUO137",
+          "NAUO135",
+          "NAUO125",
+          "NAUO118",
+          "NAUO116",
+          "NAUO114",
+          "NAUO112",
+          "NAUO110",
+          "NAUO108",
+          "NAUO102",
+          "NAUO100",
+          "NAUO98",
+          "NAUO96",
+          "NAUO94",
+          "NAUO78"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "33",
+        "code": "02.03.0028",
+        "product_code": "M8",
+        "name": "1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "quantity": 23,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "32",
+        "code": "02.03.0398",
+        "product_code": "M8*40",
+        "name": "六角头螺栓全螺纹8.8级GB/T5783-2016",
+        "quantity": 12,
+        "geometry_names": [
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_11",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_10",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_9",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_8",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_7",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_6",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_5",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_4",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_3",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_2",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40_1",
+          "GB／T 5781-2000六角头螺栓全螺纹 C级M8×40"
+        ],
+        "mesh_ids": [
+          "mesh_154",
+          "mesh_156",
+          "mesh_158",
+          "mesh_160",
+          "mesh_162",
+          "mesh_164",
+          "mesh_170",
+          "mesh_172",
+          "mesh_174",
+          "mesh_176",
+          "mesh_178",
+          "mesh_194"
+        ],
+        "node_names": [
+          "NAUO117",
+          "NAUO115",
+          "NAUO113",
+          "NAUO111",
+          "NAUO109",
+          "NAUO107",
+          "NAUO101",
+          "NAUO99",
+          "NAUO97",
+          "NAUO95",
+          "NAUO93",
+          "NAUO77"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "31",
+        "code": "02.03.0381",
+        "product_code": "6*1.6",
+        "name": "平垫圈8.8级GB/T95-2002",
+        "quantity": 26,
+        "geometry_names": [
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_25",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_24",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_23",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_22",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_21",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_20",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_19",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_18",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_17",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_16",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_15",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_14",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_13",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_12",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_11",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_10",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_9",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_8",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_7",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_6",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_5",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_4",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_3",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_2",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)_1",
+          "GB／T 97．2-1985平垫圈 倒角型 A级6×1．6(钢)"
+        ],
+        "mesh_ids": [
+          "mesh_040",
+          "mesh_041",
+          "mesh_042",
+          "mesh_043",
+          "mesh_044",
+          "mesh_045",
+          "mesh_046",
+          "mesh_047",
+          "mesh_048",
+          "mesh_049",
+          "mesh_050",
+          "mesh_051",
+          "mesh_052",
+          "mesh_053",
+          "mesh_054",
+          "mesh_055",
+          "mesh_056",
+          "mesh_057",
+          "mesh_058",
+          "mesh_059",
+          "mesh_060",
+          "mesh_061",
+          "mesh_062",
+          "mesh_063",
+          "mesh_198",
+          "mesh_200"
+        ],
+        "node_names": [
+          "NAUO229",
+          "NAUO228",
+          "NAUO227",
+          "NAUO226",
+          "NAUO225",
+          "NAUO224",
+          "NAUO223",
+          "NAUO222",
+          "NAUO221",
+          "NAUO220",
+          "NAUO219",
+          "NAUO218",
+          "NAUO217",
+          "NAUO216",
+          "NAUO215",
+          "NAUO214",
+          "NAUO213",
+          "NAUO212",
+          "NAUO211",
+          "NAUO210",
+          "NAUO209",
+          "NAUO208",
+          "NAUO207",
+          "NAUO206",
+          "NAUO73",
+          "NAUO71"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "30",
+        "code": "02.03.0146",
+        "product_code": "M6",
+        "name": "1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "quantity": 16,
+        "geometry_names": [
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_15",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_14",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_13",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_12",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_11",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_10",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_9",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_8",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_7",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_6",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_5",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_4",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_3",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_2",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)_1",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M6(钢)"
+        ],
+        "mesh_ids": [
+          "mesh_075",
+          "mesh_079",
+          "mesh_081",
+          "mesh_083",
+          "mesh_085",
+          "mesh_087",
+          "mesh_089",
+          "mesh_091",
+          "mesh_093",
+          "mesh_095",
+          "mesh_097",
+          "mesh_099",
+          "mesh_101",
+          "mesh_148",
+          "mesh_197",
+          "mesh_201"
+        ],
+        "node_names": [
+          "NAUO196",
+          "NAUO192",
+          "NAUO190",
+          "NAUO188",
+          "NAUO186",
+          "NAUO184",
+          "NAUO182",
+          "NAUO180",
+          "NAUO178",
+          "NAUO176",
+          "NAUO174",
+          "NAUO172",
+          "NAUO170",
+          "NAUO123",
+          "NAUO74",
+          "NAUO70"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "29",
+        "code": "02.03.0442",
+        "product_code": "M6*40",
+        "name": "内六角圆柱头螺钉8.8级GB/T70.1-2008",
+        "quantity": 2,
+        "geometry_names": [
+          "GB／T 70．1-2000内六角圆柱头螺钉M6×40(8．8级)_1",
+          "GB／T 70．1-2000内六角圆柱头螺钉M6×40(8．8级)"
+        ],
+        "mesh_ids": [
+          "mesh_199",
+          "mesh_202"
+        ],
+        "node_names": [
+          "NAUO72",
+          "NAUO69"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "28",
+        "code": "01.09.2566",
+        "product_code": "ML-CA1200-Avant300-500-11-Q235",
+        "name": "圆钢-机加-镀锌",
+        "quantity": 2,
+        "geometry_names": [
+          "ML-CA1200-Avant300-500-11-Q235圆钢-机加_1",
+          "ML-CA1200-Avant300-500-11-Q235圆钢-机加"
+        ],
+        "mesh_ids": [
+          "mesh_196",
+          "mesh_203"
+        ],
+        "node_names": [
+          "NAUO276_1",
+          "NAUO276"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "27",
+        "code": "01.09.2565",
+        "product_code": "ML-CA1200-Avant300-500-08-45#",
+        "name": "自制螺栓-镀锌",
+        "quantity": 2,
+        "geometry_names": [
+          "ML-CA1200-Avant300-500-08-45#ؔ׆Ý˨_1",
+          "ML-CA1200-Avant300-500-08-45#ؔ׆Ý˨"
+        ],
+        "mesh_ids": [
+          "mesh_205",
+          "mesh_206"
+        ],
+        "node_names": [
+          "NAUO277_1",
+          "NAUO277"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "26",
+        "code": "02.03.0612",
+        "product_code": "M20",
+        "name": "1型非金属嵌件六角锁紧螺母8.8级GB/T889.1-2015",
+        "quantity": 2,
+        "geometry_names": [
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M20(钢)_1",
+          "GB／T 889．1-20001型非金属嵌件六角锁紧螺母M20(钢)"
+        ],
+        "mesh_ids": [
+          "mesh_204",
+          "mesh_207"
+        ],
+        "node_names": [
+          "NAUO67",
+          "NAUO64"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "25",
+        "code": "02.16.0142",
+        "product_code": "轮胎外径φ200，轮胎面宽50，轴孔φ20，轴长50",
+        "name": "实心橡胶轮",
+        "quantity": 2,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "24",
+        "code": "01.09.0999",
+        "product_code": "T-U2500-16-45#",
+        "name": "V型推雪板轴套-镀锌",
+        "quantity": 1,
+        "geometry_names": [
+          "T-U2500-16-45#VэΆѩ°旡͗"
+        ],
+        "mesh_ids": [
+          "mesh_210"
+        ],
+        "node_names": [
+          "NAUO278"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "23",
+        "code": "01.09.0503",
+        "product_code": "CX-φ12-150-45#",
+        "name": "插销-镀锌",
+        "quantity": 1,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "22",
+        "code": "02.03.0006",
+        "product_code": "30*4",
+        "name": "平垫圈8.8级GB/T95-2002",
+        "quantity": 6,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "21",
+        "code": "01.09.0995",
+        "product_code": "T-U2500-11-45#",
+        "name": "V型推雪板销轴-镀锌",
+        "quantity": 6,
+        "geometry_names": [
+          "T-U2500-11-45#VэΆѩ°携ס_5",
+          "T-U2500-11-45#VэΆѩ°携ס_4",
+          "T-U2500-11-45#VэΆѩ°携ס_3",
+          "T-U2500-11-45#VэΆѩ°携ס_2",
+          "T-U2500-11-45#VэΆѩ°携ס_1",
+          "T-U2500-11-45#VэΆѩ°携ס"
+        ],
+        "mesh_ids": [
+          "mesh_195",
+          "mesh_218",
+          "mesh_219",
+          "mesh_220",
+          "mesh_221",
+          "mesh_222"
+        ],
+        "node_names": [
+          "NAUO280_5",
+          "NAUO280_4",
+          "NAUO280_3",
+          "NAUO280_2",
+          "NAUO280_1",
+          "NAUO280"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "20",
+        "code": "02.03.0148",
+        "product_code": "M30",
+        "name": "1型六角螺母8.8级GB/T 6170-2015",
+        "quantity": 6,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "19",
+        "code": "01.09.2564",
+        "product_code": "ML-CA1200-Avant300-500-07",
+        "name": "把手组件-镀锌",
+        "quantity": 2,
+        "geometry_names": [
+          "ML-CA1200-Avant300-500-07-01-Q235无缝管-机加_1",
+          "ML-CA1200-Avant300-500-07-02-45#圆钢-机加_1",
+          "ML-CA1200-Avant300-500-07-01-Q235无缝管-机加",
+          "ML-CA1200-Avant300-500-07-02-45#圆钢-机加"
+        ],
+        "mesh_ids": [
+          "mesh_229",
+          "mesh_230",
+          "mesh_231",
+          "mesh_232"
+        ],
+        "node_names": [
+          "NAUO283_1",
+          "NAUO282_1",
+          "NAUO283",
+          "NAUO282"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "18",
+        "code": "02.08.01.0338",
+        "product_code": "EHYG-φ63/φ35-428-251-Ⅱ",
+        "name": "油缸",
+        "quantity": 2,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "17",
+        "code": "02.09.0103",
+        "product_code": "TH-φ10*16*φ56*260-YS",
+        "name": "压缩弹簧",
+        "quantity": 6,
+        "geometry_names": [
+          "TH-φ10×16×φ56×260-YS弹簧_5",
+          "TH-φ10×16×φ56×260-YS弹簧_4",
+          "TH-φ10×16×φ56×260-YS弹簧_3",
+          "TH-φ10×16×φ56×260-YS弹簧_2",
+          "TH-φ10×16×φ56×260-YS弹簧_1",
+          "TH-φ10×16×φ56×260-YS弹簧"
+        ],
+        "mesh_ids": [
+          "mesh_237",
+          "mesh_238",
+          "mesh_239",
+          "mesh_240",
+          "mesh_241",
+          "mesh_242"
+        ],
+        "node_names": [
+          "NAUO38",
+          "NAUO37",
+          "NAUO36",
+          "NAUO35",
+          "NAUO34",
+          "NAUO33"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "16",
+        "code": "01.09.2563",
+        "product_code": "XZ-φ40*10-φ30*87-φ10*10-45#",
+        "name": "销轴-镀锌",
+        "quantity": 4,
+        "geometry_names": [
+          "XZ-φ40×10-φ30×87-φ10×10-45#销轴_3",
+          "XZ-φ40×10-φ30×87-φ10×10-45#销轴_2",
+          "XZ-φ40×10-φ30×87-φ10×10-45#销轴_1",
+          "XZ-φ40×10-φ30×87-φ10×10-45#销轴"
+        ],
+        "mesh_ids": [
+          "mesh_248",
+          "mesh_249",
+          "mesh_250",
+          "mesh_251"
+        ],
+        "node_names": [
+          "NAUO286_3",
+          "NAUO286_2",
+          "NAUO286_1",
+          "NAUO286"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "15",
+        "code": "01.09.2562",
+        "product_code": "XZ-φ35*10-φ25*145-φ10*10-45#",
+        "name": "销轴-镀锌",
+        "quantity": 6,
+        "geometry_names": [
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴_5",
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴_4",
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴_3",
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴_2",
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴_1",
+          "XZ-φ35×10-φ25×145-φ10×10-45#销轴"
+        ],
+        "mesh_ids": [
+          "mesh_243",
+          "mesh_244",
+          "mesh_245",
+          "mesh_246",
+          "mesh_247",
+          "mesh_252"
+        ],
+        "node_names": [
+          "NAUO287_5",
+          "NAUO287_4",
+          "NAUO287_3",
+          "NAUO287_2",
+          "NAUO287_1",
+          "NAUO287"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "14",
+        "code": "01.09.2561",
+        "product_code": "XZ-φ50*15-φ35*485-φ10*10-45#",
+        "name": "销轴-镀锌",
+        "quantity": 1,
+        "geometry_names": [
+          "XZ-φ50×15-φ35×485-φ10×10-45#销轴"
+        ],
+        "mesh_ids": [
+          "mesh_253"
+        ],
+        "node_names": [
+          "NAUO288"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "13",
+        "code": "01.09.2555",
+        "product_code": "T-SPV1830-EURO-08-Q235",
+        "name": "方形板-机加-镀锌",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-08-Q235方形板-机加"
+        ],
+        "mesh_ids": [
+          "mesh_254"
+        ],
+        "node_names": [
+          "NAUO289"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "12",
+        "code": "01.02.07.0071",
+        "product_code": "T-SPV250-Z602-12",
+        "name": "橡胶挡板",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV250-Z602-12а½ºµ²°"
+        ],
+        "mesh_ids": [
+          "mesh_255"
+        ],
+        "node_names": [
+          "NAUO20"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "11",
+        "code": "01.02.07.0239",
+        "product_code": "T-SPV1830-EURO-07",
+        "name": "橡胶刀板",
+        "quantity": 2,
+        "geometry_names": [
+          "T-SPV1830-EURO-07а½ºµ¶°_1",
+          "T-SPV1830-EURO-07а½ºµ¶°"
+        ],
+        "mesh_ids": [
+          "mesh_256",
+          "mesh_257"
+        ],
+        "node_names": [
+          "NAUO19",
+          "NAUO18"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "10",
+        "code": "01.09.2560",
+        "product_code": "T-SPV250-Z602-09",
+        "name": "后座支撑架组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV250-Z602-09-01-Q235l½ӹ"
+        ],
+        "mesh_ids": [
+          "mesh_259"
+        ],
+        "node_names": [
+          "NAUO291"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "9",
+        "code": "01.09.2559",
+        "product_code": "T-SPV250-Z602-08",
+        "name": "推雪板弹簧导柱组件-镀锌",
+        "quantity": 6,
+        "geometry_names": [
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹_5",
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹_4",
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹_3",
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹_2",
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹_1",
+          "T-SPV250-Z602-08-01-45#µ¯»ɵ¼׹"
+        ],
+        "mesh_ids": [
+          "mesh_260",
+          "mesh_263",
+          "mesh_266",
+          "mesh_269",
+          "mesh_272",
+          "mesh_275"
+        ],
+        "node_names": [
+          "NAUO296_5",
+          "NAUO296_4",
+          "NAUO296_3",
+          "NAUO296_2",
+          "NAUO296_1",
+          "NAUO296"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "8",
+        "code": "01.09.2558",
+        "product_code": "T-SPV250-Z602-07",
+        "name": "轮胎架内臂组件-镀锌",
+        "quantity": 2,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "7",
+        "code": "01.09.2557",
+        "product_code": "T-SPV250-Z602-06",
+        "name": "轮胎架外臂组件-漆后",
+        "quantity": 2,
+        "geometry_names": [
+          "T-SPV250-Z602-06-01-Q355B方管-机加_1",
+          "T-SPV250-Z602-06-01-Q355B方管-机加"
+        ],
+        "mesh_ids": [
+          "mesh_301",
+          "mesh_305"
+        ],
+        "node_names": [
+          "NAUO310_1",
+          "NAUO310"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "6",
+        "code": "01.09.2553",
+        "product_code": "T-SPV1830-EURO-05",
+        "name": "右刀板后座组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-05-01-Q235后座固定板"
+        ],
+        "mesh_ids": [
+          "mesh_315"
+        ],
+        "node_names": [
+          "NAUO315"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "5",
+        "code": "01.09.2554",
+        "product_code": "T-SPV1830-EURO-06",
+        "name": "左刀板后座组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-06-01-Q235后座固定板"
+        ],
+        "mesh_ids": [
+          "mesh_325"
+        ],
+        "node_names": [
+          "NAUO326"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "4",
+        "code": "01.09.2552",
+        "product_code": "T-SPV1830-EURO-04",
+        "name": "右铲雪板组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-04-01-Q235右铲板"
+        ],
+        "mesh_ids": [
+          "mesh_351"
+        ],
+        "node_names": [
+          "NAUO337"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "3",
+        "code": "01.09.2551",
+        "product_code": "T-SPV1830-EURO-03",
+        "name": "左铲雪板组件-漆后",
+        "quantity": 1,
+        "geometry_names": [
+          "T-SPV1830-EURO-03-03-Q355Bǰ¼ԇ¿°_1",
+          "T-SPV1830-EURO-03-02-Q235方形板-机加_1",
+          "T-SPV1830-EURO-03-03-Q355Bǰ¼ԇ¿°",
+          "T-SPV1830-EURO-03-02-Q235方形板-机加",
+          "T-SPV1830-EURO-03-01-Q235左铲板"
+        ],
+        "mesh_ids": [
+          "mesh_349",
+          "mesh_350",
+          "mesh_374",
+          "mesh_376",
+          "mesh_377"
+        ],
+        "node_names": [
+          "NAUO339",
+          "NAUO338",
+          "NAUO367",
+          "NAUO365",
+          "NAUO364"
+        ],
+        "matched": true
+      },
+      {
+        "seq": "2",
+        "code": "01.09.2550",
+        "product_code": "T-SPV1830-EURO-02",
+        "name": "后座连接架组件-漆后",
+        "quantity": 1,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      },
+      {
+        "seq": "1",
+        "code": "01.09.2549",
+        "product_code": "T-SPV1830-EURO-01",
+        "name": "连接器后座组件-漆后",
+        "quantity": 1,
+        "geometry_names": [],
+        "mesh_ids": [],
+        "node_names": [],
+        "matched": false
+      }
+    ],
+    "total_bom_count": 53,
+    "bom_matched_count": 49,
+    "bom_matching_rate": 0.9245283018867925,
+    "total_3d_parts": 414,
+    "matched_3d_count": 258,
+    "parts_matching_rate": 0.6231884057971014,
+    "code_matched": 42,
+    "ai_matched": 7,
+    "matching_rate": 0.9245283018867925
+  },
+  "glb_files": {
+    "component_1": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2549.glb",
+    "component_2": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2550.glb",
+    "component_3": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\component_01_09_2551.glb",
+    "product_total": "output\\ce7618b5-567c-4c44-8fb8-a1fa68f82c69\\glb_files\\product_total.glb"
+  }
+}

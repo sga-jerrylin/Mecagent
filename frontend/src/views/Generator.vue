@@ -878,7 +878,7 @@ const startGenerationTask = async () => {
 
 // 连接 EventSource (SSE)
 const connectEventSource = (taskId: string) => {
-  const sseUrl = `http://localhost:8000/api/stream/${taskId}`
+  const sseUrl = `http://localhost:8008/api/stream/${taskId}`
   eventSource = new EventSource(sseUrl)
 
   eventSource.onopen = () => {

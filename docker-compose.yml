@@ -27,11 +27,11 @@ services:
       - ./logs:/app/logs
       - ./temp:/app/temp
     ports:
-      - "8000:8000"
+      - "8008:8008"
     networks:
       - assembly-network
     healthcheck:
-      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/api/health')"]
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8008/api/health')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -45,7 +45,7 @@ services:
     container_name: assembly-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "3008:80"
     depends_on:
       backend:
         condition: service_healthy

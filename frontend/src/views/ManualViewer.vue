@@ -165,36 +165,6 @@
 
               <!-- ✅ 移除：安全警告已在下方"安全"标签页中统一显示 -->
 
-              <!-- ✅ 焊接要求（如果该步骤需要焊接） -->
-              <div class="welding-section" v-if="currentStepData.welding && currentStepData.welding.required">
-                <h3>⚡ 焊接要求</h3>
-                <div class="welding-details">
-                  <p v-if="currentStepData.welding.welding_type">
-                    <strong>焊接类型：</strong>{{ currentStepData.welding.welding_type }}
-                  </p>
-                  <p v-if="currentStepData.welding.welding_method">
-                    <strong>焊接方法：</strong>{{ currentStepData.welding.welding_method }}
-                  </p>
-                  <p v-if="currentStepData.welding.weld_size">
-                    <strong>焊缝尺寸：</strong>{{ currentStepData.welding.weld_size }}
-                  </p>
-                  <p v-if="currentStepData.welding.welding_position">
-                    <strong>焊接位置：</strong>{{ currentStepData.welding.welding_position }}
-                  </p>
-                  <p v-if="currentStepData.welding.quality_requirements">
-                    <strong>质量要求：</strong>{{ currentStepData.welding.quality_requirements }}
-                  </p>
-                  <el-alert
-                    v-if="currentStepData.welding.safety_notes"
-                    :title="currentStepData.welding.safety_notes"
-                    type="warning"
-                    :closable="false"
-                    show-icon
-                    style="margin-top: 8px"
-                  />
-                </div>
-              </div>
-
               <!-- 质检要求 -->
               <div class="operations-section" v-if="currentStepData.quality_check">
                 <h3>✅ 质检要求</h3>
@@ -382,8 +352,8 @@ const drawingImages = computed(() => {
   console.warn(`⚠️ 步骤${currentStepIndex.value + 1}未找到图纸数据，使用默认路径（临时方案）`)
   const taskId = props.taskId
   return [
-    `http://localhost:8000/api/manual/${taskId}/pdf_images/page_001.png`,
-    `http://localhost:8000/api/manual/${taskId}/pdf_images/page_002.png`
+    `http://localhost:8008/api/manual/${taskId}/pdf_images/page_001.png`,
+    `http://localhost:8008/api/manual/${taskId}/pdf_images/page_002.png`
   ]
 })
 
@@ -453,40 +423,114 @@ const currentStepHighlightMeshes = computed(() => {
   // ✅ 收集所有需要高亮的零件（主要组件 + 紧固件 + parts_used）
   // 1. 产品装配步骤：components + fasteners
   if (currentStepData.value?.components) {
-    allParts.push(...currentStepData.value.components)
+    // 过滤掉空值
+    allParts.push(...currentStepData.value.components.filter((c: any) => c))
   }
   if (currentStepData.value?.fasteners) {
-    allParts.push(...currentStepData.value.fasteners)
+    // 过滤掉空值
+    allParts.push(...currentStepData.value.fasteners.filter((f: any) => f))
   }
 
   // 2. 组件装配步骤：parts_used
   if (currentStepData.value?.parts_used) {
-    allParts.push(...currentStepData.value.parts_used)
+    // 过滤掉空值
+    allParts.push(...currentStepData.value.parts_used.filter((p: any) => p))
   }
 
-  // ✅ 优先使用零件中的mesh_id字段（直接指定）
+  // ✅ 3. 从描述中提取BOM序号（如"4、5号矩形管"中的4和5，或"⑨号加强筋"中的9）
+  const description: string = (currentStepData.value as any)?.description || ''
+  if (description) {
+    // 圆圈数字到普通数字的映射
+    const circleToNumber: { [key: string]: string } = {
+      '①': '1', '②': '2', '③': '3', '④': '4', '⑤': '5',
+      '⑥': '6', '⑦': '7', '⑧': '8', '⑨': '9', '⑩': '10'
+    }
+
+    // 匹配模式：普通数字+号 或 圆圈数字+号
+    // 例如："4号"、"4、5号"、"⑨号"、"⑥号"
+    const bomSeqPattern = /([①②③④⑤⑥⑦⑧⑨⑩\d]+)[、，号]/g
+    const matches = description.matchAll(bomSeqPattern)
+    const extractedSeqs = new Set<string>()
+
+    for (const match of matches) {
+      let seq = match[1]
+      // 如果是圆圈数字，转换为普通数字
+      if (circleToNumber[seq]) {
+        seq = circleToNumber[seq]
+      }
+      extractedSeqs.add(seq)
+    }
+
+    if (extractedSeqs.size > 0) {
+      console.log(`  📝 从描述中提取到BOM序号:`, Array.from(extractedSeqs))
+
+      // 从BOM映射表中查找这些序号对应的node_name
+      const componentCode = (currentStepData.value as any)?.component_code
+      console.log(`  🔑 当前组件代码:`, componentCode)
+
+      const resources3d = (manualData.value as any)?.['3d_resources']
+      console.log(`  📦 3D资源:`, resources3d ? '存在' : '不存在')
+
+      const componentMappings = resources3d?.component_level_mappings
+      console.log(`  📦 组件级别映射:`, componentMappings ? Object.keys(componentMappings) : '不存在')
+
+      const bomMappingTable = componentMappings?.[componentCode]?.bom_mapping_table
+      console.log(`  📋 BOM映射表:`, bomMappingTable ? `存在(${bomMappingTable.length}项)` : '不存在')
+
+      if (bomMappingTable) {
+        console.log(`  📋 BOM映射表中的所有seq:`, bomMappingTable.map((item: any) => `${item.seq}(${typeof item.seq})`))
+
+        extractedSeqs.forEach(seq => {
+          console.log(`  🔍 查找seq="${seq}"(${typeof seq})`)
+          const bomItem = bomMappingTable.find((item: any) => item.seq === seq)
+
+          if (bomItem) {
+            console.log(`  ✅ 找到BOM项:`, bomItem)
+            if (bomItem.node_names && bomItem.node_names.length > 0) {
+              allParts.push({
+                bom_code: bomItem.code,
+                bom_seq: seq,
+                node_name: bomItem.node_names,
+                from_description: true
+              })
+              console.log(`  📝 描述中的${seq}号 → ${bomItem.code} → ${bomItem.node_names.length}个node`)
+            } else {
+              console.warn(`  ⚠️  ${seq}号BOM项没有node_names字段或为空数组`)
+            }
+          } else {
+            console.warn(`  ❌ 未找到seq="${seq}"的BOM项`)
+          }
+        })
+      } else {
+        console.warn(`  ⚠️  无法获取BOM映射表，componentCode=${componentCode}`)
+      }
+    }
+  }
+
+  // ✅ 优先使用零件中的node_name字段（直接使用GLB中的node名称）
   allParts.forEach((part: any) => {
-    if (part.mesh_id) {
-      // mesh_id可能是数组或单个值
+    if (part.node_name) {
+      // node_name可能是数组或单个值
+      if (Array.isArray(part.node_name)) {
+        highlightMeshes.push(...part.node_name)
+        const source = part.from_description ? '(从描述提取)' : '(直接指定)'
+        console.log(`  ✅ ${part.bom_code || part.code} → ${part.node_name.length} 个node ${source}:`, part.node_name)
+      } else {
+        highlightMeshes.push(part.node_name)
+        const source = part.from_description ? '(从描述提取)' : '(直接指定)'
+        console.log(`  ✅ ${part.bom_code || part.code} → 1 个node ${source}:`, part.node_name)
+      }
+    } else if (part.mesh_id) {
+      // 兼容旧数据：如果有mesh_id，也支持
       if (Array.isArray(part.mesh_id)) {
         highlightMeshes.push(...part.mesh_id)
-        console.log(`  ✅ ${part.bom_code || part.code} → ${part.mesh_id.length} 个mesh (直接指定):`, part.mesh_id)
+        console.log(`  ⚠️  ${part.bom_code || part.code} → ${part.mesh_id.length} 个mesh (旧格式):`, part.mesh_id)
       } else {
         highlightMeshes.push(part.mesh_id)
-        console.log(`  ✅ ${part.bom_code || part.code} → 1 个mesh (直接指定):`, part.mesh_id)
+        console.log(`  ⚠️  ${part.bom_code || part.code} → 1 个mesh (旧格式):`, part.mesh_id)
       }
     } else {
-      // 如果没有mesh_id，尝试通过bom_to_mesh映射查找
-      const bomCode = part.bom_code || part.code
-      const bomToMesh = manualData.value?.['3d_resources']?.bom_to_mesh
-
-      if (bomCode && bomToMesh && bomToMesh[bomCode]) {
-        const meshes = bomToMesh[bomCode]
-        highlightMeshes.push(...meshes)
-        console.log(`  ✅ ${bomCode} → ${meshes.length} 个mesh (BOM映射):`, meshes)
-      } else if (bomCode) {
-        console.warn(`  ⚠️  ${bomCode} 没有mesh_id，也没有在bom_to_mesh中找到`)
-      }
+      console.warn(`  ❌ ${part.bom_code || part.code} 没有node_name或mesh_id`)
     }
   })
 
@@ -608,7 +652,7 @@ const loadLocalJSON = async () => {
     }
 
     // 2. 如果缓存没有，从后端 API 获取
-    const response = await axios.get(`http://localhost:8000/api/manual/${props.taskId}`)
+    const response = await axios.get(`http://localhost:8008/api/manual/${props.taskId}`)
     manualData.value = response.data
 
     // 保存到 localStorage
@@ -761,7 +805,7 @@ const load3DModel = async () => {
     const glbFile = currentStep?.glb_file || 'product_total.glb'
 
     // ✅ 构建完整的GLB文件路径
-    const glbPath = `http://localhost:8000/api/manual/${props.taskId}/glb/${glbFile}`
+    const glbPath = `http://localhost:8008/api/manual/${props.taskId}/glb/${glbFile}`
     console.log('📦 加载3D模型:', glbPath)
     console.log('📋 当前步骤:', currentStepIndex.value + 1, '/', allSteps.value.length)
     console.log('📋 GLB文件:', glbFile)
@@ -963,7 +1007,7 @@ const switchGLBModel = async (glbFile: string) => {
 
     // 3. 加载新模型
     const loader = new GLTFLoader()
-    const glbPath = `http://localhost:8000/api/manual/${props.taskId}/glb/${glbFile}`
+    const glbPath = `http://localhost:8008/api/manual/${props.taskId}/glb/${glbFile}`
     console.log('📦 加载新模型:', glbPath)
 
     const gltf = await loader.loadAsync(glbPath)
@@ -1060,19 +1104,18 @@ const highlightStepParts = () => {
   }
 
   // ✅ 优先使用步骤中的3d_highlight，否则使用自动生成的高亮列表
-  const highlightMeshes = currentStepData.value['3d_highlight'] || currentStepHighlightMeshes.value
-  console.log('🎯 步骤', currentStepIndex.value + 1, '高亮mesh列表:', highlightMeshes)
+  const highlightNodes: string[] = currentStepData.value['3d_highlight'] || currentStepHighlightMeshes.value
+  console.log('🎯 步骤', currentStepIndex.value + 1, '高亮node列表:', highlightNodes)
 
-  // 将JSON中的mesh ID转换为GLB中的实际mesh名称
-  // JSON格式: "mesh_145" -> GLB格式: "NAUO145"
-  const convertMeshId = (meshId: string): string => {
-    if (meshId.startsWith('mesh_')) {
-      const number = meshId.replace('mesh_', '')
-      // 移除前导零：mesh_003 -> NAUO3, mesh_014 -> NAUO14
+  // ✅ 不再需要转换！直接使用node_name（如NAUO2）
+  // 兼容旧数据：如果是mesh_xxx格式，转换为NAUOxxx
+  const normalizeNodeName = (nodeName: string): string => {
+    if (nodeName.startsWith('mesh_')) {
+      const number = nodeName.replace('mesh_', '')
       const numericValue = parseInt(number, 10)
       return `NAUO${numericValue}`
     }
-    return meshId
+    return nodeName
   }
 
   // 收集模型中所有mesh的名称（用于调试）
@@ -1097,17 +1140,17 @@ const highlightStepParts = () => {
   })
 
   // 高亮指定的mesh
-  if (highlightMeshes.length > 0) {
+  if (highlightNodes.length > 0) {
     let highlightedCount = 0
-    const convertedMeshIds = highlightMeshes.map(convertMeshId)
-    console.log('🔄 转换后的mesh ID:', convertedMeshIds)
+    const normalizedNodeNames = highlightNodes.map(normalizeNodeName)
+    console.log('🔄 标准化后的node名称:', normalizedNodeNames)
 
     const allMeshNames: string[] = []
     model.traverse((child: any) => {
       if (child.isMesh) {
         allMeshNames.push(child.name)
-        if (convertedMeshIds.includes(child.name)) {
-          console.log('✅ 找到并高亮mesh:', child.name)
+        if (normalizedNodeNames.includes(child.name)) {
+          console.log('✅ 找到并高亮node:', child.name)
           // 创建高亮材质（黄色发光）
           const highlightMaterial = new THREE.MeshStandardMaterial({
             color: 0xffff00,
@@ -1123,8 +1166,8 @@ const highlightStepParts = () => {
     })
 
     console.log('🔍 模型中所有mesh名称（前50个）:', allMeshNames.slice(0, 50))
-    console.log('🔍 需要匹配的mesh ID:', convertedMeshIds.slice(0, 10))
-    console.log(`💡 成功高亮 ${highlightedCount}/${highlightMeshes.length} 个零件`)
+    console.log('🔍 需要匹配的node名称:', normalizedNodeNames.slice(0, 10))
+    console.log(`💡 成功高亮 ${highlightedCount}/${highlightNodes.length} 个零件`)
   }
 }
 

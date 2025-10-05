@@ -213,7 +213,7 @@ class ProductAssemblyAgent(BaseGeminiAgent):
         bom_mapping_table: List[Dict]
     ) -> List[Dict]:
         """
-        ✅ 新方法：使用BOM映射宽表添加mesh_id（通过BOM序号查找）
+        ✅ 新方法：使用BOM映射宽表添加mesh_id（优先通过BOM代号查找，兼容seq查找）
 
         Args:
             assembly_steps: 装配步骤列表
@@ -222,44 +222,63 @@ class ProductAssemblyAgent(BaseGeminiAgent):
         Returns:
             添加了mesh_id的装配步骤
         """
-        # 构建seq到mesh_ids的映射
+        # 构建code到mesh_ids的映射（主要）
+        code_to_mesh = {}
+        code_to_seq = {}
+
+        # 构建seq到mesh_ids的映射（备用）
         seq_to_mesh = {}
         seq_to_code = {}
-        seq_to_name = {}
 
         for item in bom_mapping_table:
             seq = str(item.get("seq", ""))
-            mesh_ids = item.get("mesh_ids", [])
             code = item.get("code", "")
-            name = item.get("name", "")
+            mesh_ids = item.get("mesh_ids", [])
 
+            # 通过code映射（主要方式）
+            if code and mesh_ids:
+                code_to_mesh[code] = mesh_ids
+                code_to_seq[code] = seq
+
+            # 通过seq映射（备用方式）
             if seq and mesh_ids:
                 seq_to_mesh[seq] = mesh_ids
                 seq_to_code[seq] = code
-                seq_to_name[seq] = name
 
         # 遍历步骤，添加mesh_id
         for step in assembly_steps:
             # 处理主要组件（components）
             components = step.get("components", [])
             for comp in components:
+                bom_code = comp.get("bom_code", "")
                 bom_seq = str(comp.get("bom_seq", ""))
 
-                if bom_seq in seq_to_mesh:
+                # 优先通过bom_code查找
+                if bom_code and bom_code in code_to_mesh:
+                    comp["mesh_id"] = code_to_mesh[bom_code]
+                    if bom_code in code_to_seq:
+                        comp["bom_seq"] = code_to_seq[bom_code]
+                # 备用：通过bom_seq查找
+                elif bom_seq and bom_seq in seq_to_mesh:
                     comp["mesh_id"] = seq_to_mesh[bom_seq]
-                    # ✅ 同时填充bom_code字段（用于兼容前端）
-                    if "bom_code" not in comp:
+                    if "bom_code" not in comp or not comp["bom_code"]:
                         comp["bom_code"] = seq_to_code[bom_seq]
 
             # 处理紧固件（fasteners）
             fasteners = step.get("fasteners", [])
             for fastener in fasteners:
+                bom_code = fastener.get("bom_code", "")
                 bom_seq = str(fastener.get("bom_seq", ""))
 
-                if bom_seq in seq_to_mesh:
+                # 优先通过bom_code查找
+                if bom_code and bom_code in code_to_mesh:
+                    fastener["mesh_id"] = code_to_mesh[bom_code]
+                    if bom_code in code_to_seq:
+                        fastener["bom_seq"] = code_to_seq[bom_code]
+                # 备用：通过bom_seq查找
+                elif bom_seq and bom_seq in seq_to_mesh:
                     fastener["mesh_id"] = seq_to_mesh[bom_seq]
-                    # ✅ 同时填充bom_code字段（用于兼容前端）
-                    if "bom_code" not in fastener:
+                    if "bom_code" not in fastener or not fastener["bom_code"]:
                         fastener["bom_code"] = seq_to_code[bom_seq]
 
         return assembly_steps

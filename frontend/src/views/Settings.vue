@@ -64,7 +64,7 @@
         <el-form-item label="WebSocket地址">
           <el-input
             v-model="settings.websocketUrl"
-            placeholder="ws://localhost:8000"
+            placeholder="ws://localhost:8008"
             clearable
           >
             <template #prepend>
@@ -79,7 +79,7 @@
         <el-form-item label="API基础地址">
           <el-input
             v-model="settings.apiBaseUrl"
-            placeholder="http://localhost:8000/api"
+            placeholder="http://localhost:8008/api"
             clearable
           >
             <template #prepend>
@@ -177,8 +177,8 @@ interface Settings {
 const settings = ref<Settings>({
   dashscopeApiKey: '',
   deepseekApiKey: '',
-  websocketUrl: 'ws://localhost:8000',
-  apiBaseUrl: 'http://localhost:8000/api'
+  websocketUrl: 'ws://localhost:8008',
+  apiBaseUrl: 'http://localhost:8008/api'
 })
 
 const saving = ref(false)
@@ -233,8 +233,8 @@ const resetSettings = () => {
   settings.value = {
     dashscopeApiKey: '',
     deepseekApiKey: '',
-    websocketUrl: 'ws://localhost:8000',
-    apiBaseUrl: 'http://localhost:8000/api'
+    websocketUrl: 'ws://localhost:8008',
+    apiBaseUrl: 'http://localhost:8008/api'
   }
   localStorage.removeItem('app_settings')
   statusMessage.value = '已重置为默认设置'

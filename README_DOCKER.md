@@ -69,11 +69,30 @@ docker-compose ps
 docker-compose logs -f
 ```
 
-### 4. 访问应用
+### 4. 验证服务
 
-- **前端界面**: http://localhost
-- **后端API**: http://localhost:8000
-- **API文档**: http://localhost:8000/api/docs
+```bash
+# 等待服务启动（约30-60秒）
+# 检查后端健康状态
+curl http://localhost:8008/api/health
+
+# 应该返回：
+# {"status":"healthy","service":"assembly-manual-backend","version":"1.0.0","timestamp":"..."}
+
+# 检查前端是否可访问
+curl -I http://localhost:3008
+
+# 应该返回：HTTP/1.1 200 OK
+```
+
+### 5. 访问应用
+
+- **前端界面**: http://localhost:3008
+- **后端API**: http://localhost:8008
+- **API文档**: http://localhost:8008/api/docs
+- **健康检查**: http://localhost:8008/api/health
+
+**首次启动可能需要1-2分钟，请耐心等待服务完全就绪。**
 
 ---
 
@@ -103,8 +122,8 @@ docker-compose logs -f
 
 | 服务 | 容器端口 | 主机端口 | 说明 |
 |------|---------|---------|------|
-| Frontend | 80 | 80 | Web界面 |
-| Backend | 8000 | 8000 | API服务 |
+| Frontend | 80 | 3008 | Web界面 |
+| Backend | 8008 | 8008 | API服务 |
 
 ### 数据持久化
 
@@ -189,10 +208,10 @@ docker-compose exec -u root backend bash
 docker-compose ps
 
 # 查看后端健康检查
-curl http://localhost:8000/api/health
+curl http://localhost:8008/api/health
 
 # 查看前端健康检查
-curl http://localhost/
+curl http://localhost:3008/
 ```
 
 ---

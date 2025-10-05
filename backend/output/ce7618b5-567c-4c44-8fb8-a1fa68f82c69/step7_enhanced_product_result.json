@@ -1,0 +1,2114 @@
+{
+  "success": true,
+  "product_name": "",
+  "assembly_steps": [
+    {
+      "step_number": 1,
+      "title": "安装后座连接架",
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "drawing_number": "②",
+      "connection_type": "销轴连接",
+      "position_description": "将②号后座连接架组件安装在①号连接器后座组件的上方，通过销轴连接。",
+      "components": [
+        {
+          "bom_seq": "2",
+          "bom_name": "后座连接架组件-漆后",
+          "quantity": 1
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "14",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ50*15-φ35*485-φ10*10-45#",
+          "quantity": 1,
+          "torque": "",
+          "mesh_id": [
+            "mesh_253"
+          ],
+          "bom_code": "01.09.2561"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 1,
+          "torque": ""
+        }
+      ],
+      "operation": "将②号后座连接架组件对准①号连接器后座组件的销轴孔，插入销轴（BOM序号14）。在销轴的另一端插入安全销（BOM序号40）进行定位和防脱。",
+      "quality_check": "检查销轴是否完全插入，安全销是否可靠锁紧。",
+      "estimated_time_minutes": 10,
+      "safety_warnings": [
+        "佩戴安全帽和防护手套，防止组件移动或掉落造成砸伤或夹伤。",
+        "销轴较重，搬运时注意姿势，避免扭伤腰部。",
+        "插入销轴时，注意手部位置，防止被销轴和孔壁夹伤。"
+      ]
+    },
+    {
+      "step_number": 2,
+      "title": "安装左/右铲雪板",
+      "component_code": "01.09.2551/01.09.2552",
+      "component_name": "左/右铲雪板组件-漆后",
+      "drawing_number": "③, ④",
+      "connection_type": "销轴连接",
+      "position_description": "将③号左铲雪板组件和④号右铲雪板组件对称安装在②号后座连接架组件的两侧。",
+      "components": [
+        {
+          "bom_seq": "3",
+          "bom_name": "左铲雪板组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_349",
+            "mesh_350",
+            "mesh_374",
+            "mesh_376",
+            "mesh_377"
+          ],
+          "bom_code": "01.09.2551"
+        },
+        {
+          "bom_seq": "4",
+          "bom_name": "右铲雪板组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_351"
+          ],
+          "bom_code": "01.09.2552"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "15",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ35*10-φ25*145-φ10*10-45#",
+          "quantity": 2,
+          "torque": "",
+          "mesh_id": [
+            "mesh_243",
+            "mesh_244",
+            "mesh_245",
+            "mesh_246",
+            "mesh_247",
+            "mesh_252"
+          ],
+          "bom_code": "01.09.2562"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 2,
+          "torque": ""
+        }
+      ],
+      "operation": "将③号左铲雪板和④号右铲雪板分别对准②号连接架的销轴孔，插入销轴（BOM序号15，每侧1个）。在销轴的另一端插入安全销（BOM序号40）进行定位。",
+      "quality_check": "检查左右铲雪板是否能自由转动，无卡滞现象。安全销必须可靠锁紧。",
+      "estimated_time_minutes": 15,
+      "safety_warnings": [
+        "铲雪板组件体积大且重，必须使用合适的吊装工具或两人以上协同搬运，防止砸伤。",
+        "吊装时，确保吊索具捆绑牢固，吊装路径上不得站人。",
+        "安装时，注意铲雪板边缘，佩戴防护手套，防止割伤。"
+      ]
+    },
+    {
+      "step_number": 3,
+      "title": "安装油缸",
+      "component_code": "02.08.01.0338",
+      "component_name": "油缸",
+      "drawing_number": "⑲",
+      "connection_type": "销轴连接",
+      "position_description": "将⑲号油缸安装在①号连接器后座组件和②号后座连接架组件之间。",
+      "components": [
+        {
+          "bom_seq": "18",
+          "bom_name": "油缸",
+          "quantity": 1
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "16",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ40*10-φ30*87-φ10*10-45#",
+          "quantity": 1,
+          "torque": "",
+          "mesh_id": [
+            "mesh_248",
+            "mesh_249",
+            "mesh_250",
+            "mesh_251"
+          ],
+          "bom_code": "01.09.2563"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 2,
+          "torque": ""
+        }
+      ],
+      "operation": "使用吊装工具将油缸（BOM序号18）定位。先将油缸底部安装到①号连接器后座组件上，使用销轴（BOM序号16）固定，并插入安全销（BOM序号40）。然后将油缸活塞杆端安装到②号后座连接架组件上，使用销轴（BOM序号15，已在步骤2中使用，此处为复用）固定，并插入安全销（BOM序号40）。",
+      "quality_check": "检查油缸安装方向是否正确，销轴连接是否灵活，无轴向窜动。",
+      "estimated_time_minutes": 20,
+      "safety_warnings": [
+        "油缸属于重物，必须使用合适的吊装工具进行定位和安装，严禁徒手搬运。",
+        "吊装过程中，人员应站在安全位置，避免油缸摆动或意外坠落造成砸伤。",
+        "安装销轴时，注意防止手部被油缸和连接件夹伤。"
+      ]
+    },
+    {
+      "step_number": 4,
+      "title": "安装推雪板弹簧导柱",
+      "component_code": "01.09.2559",
+      "component_name": "推雪板弹簧导柱组件-镀锌",
+      "drawing_number": "⑦",
+      "connection_type": "螺栓连接",
+      "position_description": "将⑦号推雪板弹簧导柱组件安装在左/右铲雪板组件（③/④）的后部。",
+      "components": [
+        {
+          "bom_seq": "9",
+          "bom_name": "推雪板弹簧导柱组件-镀锌",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_260",
+            "mesh_263",
+            "mesh_266",
+            "mesh_269",
+            "mesh_272",
+            "mesh_275"
+          ],
+          "bom_code": "01.09.2559"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "41",
+          "bom_name": "内六角平圆头螺钉8.8级",
+          "spec": "M16*85",
+          "quantity": 4,
+          "torque": "150N·m",
+          "mesh_id": [
+            "mesh_001",
+            "mesh_004",
+            "mesh_005",
+            "mesh_006",
+            "mesh_007",
+            "mesh_008",
+            "mesh_020",
+            "mesh_023",
+            "mesh_024",
+            "mesh_025",
+            "mesh_026",
+            "mesh_027",
+            "mesh_139",
+            "mesh_142"
+          ],
+          "bom_code": "02.03.1035"
+        },
+        {
+          "bom_seq": "42",
+          "bom_name": "平垫圈8.8级",
+          "spec": "16*3",
+          "quantity": 4,
+          "torque": "",
+          "mesh_id": [
+            "mesh_002",
+            "mesh_009",
+            "mesh_010",
+            "mesh_011",
+            "mesh_012",
+            "mesh_013",
+            "mesh_021",
+            "mesh_028",
+            "mesh_029",
+            "mesh_030",
+            "mesh_031",
+            "mesh_032",
+            "mesh_137",
+            "mesh_141"
+          ],
+          "bom_code": "02.03.0072"
+        },
+        {
+          "bom_seq": "43",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M16",
+          "quantity": 4,
+          "torque": "150N·m",
+          "mesh_id": [
+            "mesh_003",
+            "mesh_014",
+            "mesh_015",
+            "mesh_016",
+            "mesh_017",
+            "mesh_018",
+            "mesh_022",
+            "mesh_033",
+            "mesh_034",
+            "mesh_035",
+            "mesh_036",
+            "mesh_037",
+            "mesh_138",
+            "mesh_140"
+          ],
+          "bom_code": "02.03.0019"
+        },
+        {
+          "bom_seq": "17",
+          "bom_name": "压缩弹簧",
+          "spec": "TH-φ10*16*φ56*260-YS",
+          "quantity": 2,
+          "torque": "",
+          "mesh_id": [
+            "mesh_237",
+            "mesh_238",
+            "mesh_239",
+            "mesh_240",
+            "mesh_241",
+            "mesh_242"
+          ],
+          "bom_code": "02.09.0103"
+        }
+      ],
+      "operation": "将压缩弹簧（BOM序号17）套入⑦号推雪板弹簧导柱组件。将导柱组件安装到左/右铲雪板组件（③/④）的安装孔上。使用M16*85内六角螺钉（BOM序号41）、平垫圈（BOM序号42）和M16锁紧螺母（BOM序号43）固定。拧紧力矩为150N·m。",
+      "quality_check": "检查弹簧导柱安装是否牢固，弹簧是否能正常压缩和回弹。",
+      "estimated_time_minutes": 25,
+      "safety_warnings": [
+        "压缩弹簧具有较大弹力，安装时需小心操作，防止弹簧意外弹出伤人。",
+        "使用扭力扳手紧固螺栓时，注意站稳，防止用力过猛导致身体失衡或扳手滑脱伤人。",
+        "佩戴防护眼镜，防止紧固过程中金属碎屑飞溅。"
+      ]
+    },
+    {
+      "step_number": 5,
+      "title": "安装橡胶刀板",
+      "component_code": "01.02.07.0239",
+      "component_name": "橡胶刀板",
+      "drawing_number": "⑧",
+      "connection_type": "螺栓连接",
+      "position_description": "将⑧号橡胶刀板安装在左/右铲雪板组件（③/④）的底部。",
+      "components": [
+        {
+          "bom_seq": "11",
+          "bom_name": "橡胶刀板",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_256",
+            "mesh_257"
+          ],
+          "bom_code": "01.02.07.0239"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "45",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M30*60",
+          "quantity": 6,
+          "torque": "500N·m",
+          "mesh_id": [
+            "mesh_105",
+            "mesh_108",
+            "mesh_111",
+            "mesh_114",
+            "mesh_115",
+            "mesh_120"
+          ],
+          "bom_code": "02.03.0458"
+        },
+        {
+          "bom_seq": "46",
+          "bom_name": "推雪板大垫圈-镀锌",
+          "quantity": 6,
+          "torque": "",
+          "mesh_id": [
+            "mesh_103",
+            "mesh_106",
+            "mesh_109",
+            "mesh_112",
+            "mesh_116",
+            "mesh_119"
+          ],
+          "bom_code": "01.09.0304"
+        },
+        {
+          "bom_seq": "47",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M30",
+          "quantity": 6,
+          "torque": "500N·m",
+          "mesh_id": [
+            "mesh_104",
+            "mesh_107",
+            "mesh_110",
+            "mesh_113",
+            "mesh_117",
+            "mesh_118",
+            "mesh_223",
+            "mesh_224",
+            "mesh_225",
+            "mesh_226",
+            "mesh_227",
+            "mesh_228"
+          ],
+          "bom_code": "02.03.0147"
+        },
+        {
+          "bom_seq": "22",
+          "bom_name": "平垫圈8.8级",
+          "spec": "30*4",
+          "quantity": 6,
+          "torque": ""
+        }
+      ],
+      "operation": "将橡胶刀板（BOM序号11，左右各1块）对准铲雪板底部的安装孔。使用M30*60螺栓（BOM序号45）、大垫圈（BOM序号46）、平垫圈（BOM序号22）和M30锁紧螺母（BOM序号47）固定。拧紧力矩为500N·m。",
+      "quality_check": "检查刀板与铲雪板底部贴合紧密，螺栓紧固到位，无松动。",
+      "estimated_time_minutes": 30,
+      "safety_warnings": [
+        "橡胶刀板边缘可能存在毛刺，搬运时需佩戴防护手套，防止割伤。",
+        "M30螺栓需要500N·m的大扭矩，操作电动或气动扳手时，务必双手握紧，防止反作用力扭伤手臂。",
+        "确保使用合格的扭力工具，并设置正确的扭矩，防止工具损坏或螺栓断裂飞出。"
+      ]
+    },
+    {
+      "step_number": 6,
+      "title": "安装左/右刀板后座",
+      "component_code": "01.09.2554/01.09.2553",
+      "component_name": "左/右刀板后座组件-漆后",
+      "drawing_number": "⑤, ⑥",
+      "connection_type": "螺栓连接",
+      "position_description": "将⑤号左刀板后座组件和⑥号右刀板后座组件安装在铲雪板组件（③/④）的后部。",
+      "components": [
+        {
+          "bom_seq": "5",
+          "bom_name": "左刀板后座组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_325"
+          ],
+          "bom_code": "01.09.2554"
+        },
+        {
+          "bom_seq": "6",
+          "bom_name": "右刀板后座组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_315"
+          ],
+          "bom_code": "01.09.2553"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "32",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M8*40",
+          "quantity": 12,
+          "torque": "25N·m",
+          "mesh_id": [
+            "mesh_154",
+            "mesh_156",
+            "mesh_158",
+            "mesh_160",
+            "mesh_162",
+            "mesh_164",
+            "mesh_170",
+            "mesh_172",
+            "mesh_174",
+            "mesh_176",
+            "mesh_178",
+            "mesh_194"
+          ],
+          "bom_code": "02.03.0398"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 12,
+          "torque": "25N·m"
+        }
+      ],
+      "operation": "将⑤号和⑥号刀板后座组件分别安装到对应的铲雪板组件上。使用M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+      "quality_check": "检查刀板后座组件与铲雪板的配合间隙，确保安装牢固。",
+      "estimated_time_minutes": 15
+    },
+    {
+      "step_number": 7,
+      "title": "安装后座支撑架",
+      "component_code": "01.09.2560",
+      "component_name": "后座支撑架组件-漆后",
+      "drawing_number": "无图纸序号，位于后部",
+      "connection_type": "螺栓连接",
+      "position_description": "将后座支撑架组件安装在①号连接器后座组件的后部。",
+      "components": [
+        {
+          "bom_seq": "10",
+          "bom_name": "后座支撑架组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_259"
+          ],
+          "bom_code": "01.09.2560"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "39",
+          "bom_name": "六角头螺栓8.8级",
+          "spec": "M8*65",
+          "quantity": 2,
+          "torque": "25N·m",
+          "mesh_id": [
+            "mesh_147"
+          ],
+          "bom_code": "02.03.0102"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 2,
+          "torque": "25N·m"
+        }
+      ],
+      "operation": "将后座支撑架组件（BOM序号10）安装到①号连接器后座组件的预留孔位上。使用M8*65螺栓（BOM序号39）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+      "quality_check": "检查支撑架是否垂直，安装是否牢固。",
+      "estimated_time_minutes": 10
+    },
+    {
+      "step_number": 8,
+      "title": "安装轮胎架内臂",
+      "component_code": "01.09.2558",
+      "component_name": "轮胎架内臂组件-镀锌",
+      "drawing_number": "⑨",
+      "connection_type": "螺栓连接",
+      "position_description": "将⑨号轮胎架内臂组件安装在后座支撑架组件（BOM序号10）上。",
+      "components": [
+        {
+          "bom_seq": "8",
+          "bom_name": "轮胎架内臂组件-镀锌",
+          "quantity": 2
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "32",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M8*40",
+          "quantity": 4,
+          "torque": "25N·m",
+          "mesh_id": [
+            "mesh_154",
+            "mesh_156",
+            "mesh_158",
+            "mesh_160",
+            "mesh_162",
+            "mesh_164",
+            "mesh_170",
+            "mesh_172",
+            "mesh_174",
+            "mesh_176",
+            "mesh_178",
+            "mesh_194"
+          ],
+          "bom_code": "02.03.0398"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 4,
+          "torque": "25N·m"
+        }
+      ],
+      "operation": "将两个⑨号轮胎架内臂组件安装到后座支撑架组件（BOM序号10）的侧面。使用M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+      "quality_check": "检查内臂组件是否对称安装，无晃动。",
+      "estimated_time_minutes": 10
+    },
+    {
+      "step_number": 9,
+      "title": "安装轮胎架外臂",
+      "component_code": "01.09.2557",
+      "component_name": "轮胎架外臂组件-漆后",
+      "drawing_number": "⑩",
+      "connection_type": "销轴连接",
+      "position_description": "将⑩号轮胎架外臂组件通过销轴连接到⑨号轮胎架内臂组件上。",
+      "components": [
+        {
+          "bom_seq": "7",
+          "bom_name": "轮胎架外臂组件-漆后",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_301",
+            "mesh_305"
+          ],
+          "bom_code": "01.09.2557"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "23",
+          "bom_name": "插销-镀锌",
+          "spec": "CX-φ12-150-45#",
+          "quantity": 2,
+          "torque": ""
+        }
+      ],
+      "operation": "将⑩号轮胎架外臂组件（左右各1个）与⑨号内臂组件对齐，插入插销（BOM序号23）进行连接。确保插销完全穿过，并可靠定位。",
+      "quality_check": "检查外臂组件是否能绕插销自由转动，插销是否可靠。",
+      "estimated_time_minutes": 8
+    },
+    {
+      "step_number": 10,
+      "title": "安装实心橡胶轮",
+      "component_code": "02.16.0142",
+      "component_name": "实心橡胶轮",
+      "drawing_number": "㉗",
+      "connection_type": "螺栓连接",
+      "position_description": "将㉗号实心橡胶轮安装在⑩号轮胎架外臂组件的末端。",
+      "components": [
+        {
+          "bom_seq": "25",
+          "bom_name": "实心橡胶轮",
+          "quantity": 2
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "27",
+          "bom_name": "自制螺栓-镀锌",
+          "quantity": 2,
+          "torque": "150N·m",
+          "mesh_id": [
+            "mesh_205",
+            "mesh_206"
+          ],
+          "bom_code": "01.09.2565"
+        },
+        {
+          "bom_seq": "26",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M20",
+          "quantity": 2,
+          "torque": "150N·m",
+          "mesh_id": [
+            "mesh_204",
+            "mesh_207"
+          ],
+          "bom_code": "02.03.0612"
+        }
+      ],
+      "operation": "将实心橡胶轮（BOM序号25）安装到⑩号轮胎架外臂组件的轴孔上。使用自制螺栓（BOM序号27）和M20锁紧螺母（BOM序号26）固定。拧紧力矩为150N·m。",
+      "quality_check": "检查轮胎转动是否灵活，轴向间隙是否合适，螺母是否锁紧。",
+      "estimated_time_minutes": 12,
+      "safety_warnings": [
+        "实心橡胶轮较重，搬运和安装时注意防砸伤脚部，必须穿戴安全鞋。",
+        "安装时，注意保持身体平衡，避免因部件重量导致摔倒或扭伤。",
+        "使用扭力扳手紧固螺栓时，注意反作用力，防止手臂受伤。"
+      ]
+    },
+    {
+      "step_number": 11,
+      "title": "安装V型推雪板轴套",
+      "component_code": "01.09.0999",
+      "component_name": "V型推雪板轴套-镀锌",
+      "drawing_number": "无图纸序号",
+      "connection_type": "螺栓连接",
+      "position_description": "将V型推雪板轴套安装在②号后座连接架组件的顶部。",
+      "components": [
+        {
+          "bom_seq": "24",
+          "bom_name": "V型推雪板轴套-镀锌",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_210"
+          ],
+          "bom_code": "01.09.0999"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "44",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M8*20",
+          "quantity": 4,
+          "torque": "25N·m",
+          "mesh_id": [
+            "mesh_121",
+            "mesh_123",
+            "mesh_125",
+            "mesh_127",
+            "mesh_129",
+            "mesh_131",
+            "mesh_133",
+            "mesh_135"
+          ],
+          "bom_code": "02.03.0379"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 4,
+          "torque": "25N·m"
+        }
+      ],
+      "operation": "将V型推雪板轴套（BOM序号24）安装到②号后座连接架组件的顶部。使用M8*20螺栓（BOM序号44）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+      "quality_check": "检查轴套安装位置是否居中，螺栓是否紧固。",
+      "estimated_time_minutes": 8
+    },
+    {
+      "step_number": 12,
+      "title": "安装电磁阀组和保护罩",
+      "component_code": "02.08.03.0236/01.09.1240",
+      "component_name": "电磁阀组/电磁阀保护罩组件",
+      "drawing_number": "无图纸序号",
+      "connection_type": "螺栓连接",
+      "position_description": "将电磁阀组安装在①号连接器后座组件的侧面，并安装保护罩。",
+      "components": [
+        {
+          "bom_seq": "36",
+          "bom_name": "电磁阀组",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_152"
+          ],
+          "bom_code": "02.08.03.0236"
+        },
+        {
+          "bom_seq": "51",
+          "bom_name": "电磁阀保护罩组件-漆后",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_065",
+            "mesh_066"
+          ],
+          "bom_code": "01.09.1240"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "48",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M6*20",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_080",
+            "mesh_082",
+            "mesh_084",
+            "mesh_086",
+            "mesh_088",
+            "mesh_090",
+            "mesh_092",
+            "mesh_094",
+            "mesh_096",
+            "mesh_098",
+            "mesh_100",
+            "mesh_102"
+          ],
+          "bom_code": "02.03.0378"
+        },
+        {
+          "bom_seq": "30",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M6",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_075",
+            "mesh_079",
+            "mesh_081",
+            "mesh_083",
+            "mesh_085",
+            "mesh_087",
+            "mesh_089",
+            "mesh_091",
+            "mesh_093",
+            "mesh_095",
+            "mesh_097",
+            "mesh_099",
+            "mesh_101",
+            "mesh_148",
+            "mesh_197",
+            "mesh_201"
+          ],
+          "bom_code": "02.03.0146"
+        }
+      ],
+      "operation": "将电磁阀组（BOM序号36）安装到预定位置，使用M6*20螺栓（BOM序号48）和M6锁紧螺母（BOM序号30）固定。然后安装电磁阀保护罩组件（BOM序号51），使用相同的紧固件固定。拧紧力矩为10N·m。",
+      "quality_check": "检查电磁阀组安装是否稳固，保护罩是否完全覆盖。",
+      "estimated_time_minutes": 15,
+      "safety_warnings": [
+        "电磁阀组属于电气元件，安装前确保电源已断开，避免触电风险。",
+        "搬运和安装时轻拿轻放，防止损坏阀组，导致液压油泄漏。",
+        "如果阀组带有接线端子，操作时佩戴绝缘手套，防止意外接触带电部件。"
+      ]
+    },
+    {
+      "step_number": 13,
+      "title": "安装反光片",
+      "component_code": "02.04.0029",
+      "component_name": "推雪板反光片",
+      "drawing_number": "无图纸序号",
+      "connection_type": "螺栓连接",
+      "position_description": "将反光片安装在铲雪板组件（③/④）的侧面。",
+      "components": [
+        {
+          "bom_seq": "37",
+          "bom_name": "推雪板反光片",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_150",
+            "mesh_151"
+          ],
+          "bom_code": "02.04.0029"
+        },
+        {
+          "bom_seq": "49",
+          "bom_name": "推雪板反光片固定板-镀锌",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_073",
+            "mesh_074"
+          ],
+          "bom_code": "01.09.0308"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "38",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M6*16",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_076",
+            "mesh_149"
+          ],
+          "bom_code": "02.03.0383"
+        },
+        {
+          "bom_seq": "30",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M6",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_075",
+            "mesh_079",
+            "mesh_081",
+            "mesh_083",
+            "mesh_085",
+            "mesh_087",
+            "mesh_089",
+            "mesh_091",
+            "mesh_093",
+            "mesh_095",
+            "mesh_097",
+            "mesh_099",
+            "mesh_101",
+            "mesh_148",
+            "mesh_197",
+            "mesh_201"
+          ],
+          "bom_code": "02.03.0146"
+        },
+        {
+          "bom_seq": "31",
+          "bom_name": "平垫圈8.8级",
+          "spec": "6*1.6",
+          "quantity": 4,
+          "torque": "",
+          "mesh_id": [
+            "mesh_040",
+            "mesh_041",
+            "mesh_042",
+            "mesh_043",
+            "mesh_044",
+            "mesh_045",
+            "mesh_046",
+            "mesh_047",
+            "mesh_048",
+            "mesh_049",
+            "mesh_050",
+            "mesh_051",
+            "mesh_052",
+            "mesh_053",
+            "mesh_054",
+            "mesh_055",
+            "mesh_056",
+            "mesh_057",
+            "mesh_058",
+            "mesh_059",
+            "mesh_060",
+            "mesh_061",
+            "mesh_062",
+            "mesh_063",
+            "mesh_198",
+            "mesh_200"
+          ],
+          "bom_code": "02.03.0381"
+        }
+      ],
+      "operation": "将反光片（BOM序号37）和反光片固定板（BOM序号49）安装到铲雪板侧面。使用M6*16螺栓（BOM序号38）、平垫圈（BOM序号31）和M6锁紧螺母（BOM序号30）固定。拧紧力矩为10N·m。",
+      "quality_check": "检查反光片安装方向和位置是否正确，螺栓是否紧固。",
+      "estimated_time_minutes": 10
+    },
+    {
+      "step_number": 14,
+      "title": "安装把手组件和橡胶挡板",
+      "component_code": "01.09.2564/01.02.07.0071",
+      "component_name": "把手组件/橡胶挡板",
+      "drawing_number": "无图纸序号",
+      "connection_type": "螺栓连接",
+      "position_description": "将把手组件安装在铲雪板顶部，橡胶挡板安装在铲雪板上沿。",
+      "components": [
+        {
+          "bom_seq": "19",
+          "bom_name": "把手组件-镀锌",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_229",
+            "mesh_230",
+            "mesh_231",
+            "mesh_232"
+          ],
+          "bom_code": "01.09.2564"
+        },
+        {
+          "bom_seq": "12",
+          "bom_name": "橡胶挡板",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_255"
+          ],
+          "bom_code": "01.02.07.0071"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "29",
+          "bom_name": "内六角圆柱头螺钉8.8级",
+          "spec": "M6*40",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_199",
+            "mesh_202"
+          ],
+          "bom_code": "02.03.0442"
+        },
+        {
+          "bom_seq": "30",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M6",
+          "quantity": 4,
+          "torque": "10N·m",
+          "mesh_id": [
+            "mesh_075",
+            "mesh_079",
+            "mesh_081",
+            "mesh_083",
+            "mesh_085",
+            "mesh_087",
+            "mesh_089",
+            "mesh_091",
+            "mesh_093",
+            "mesh_095",
+            "mesh_097",
+            "mesh_099",
+            "mesh_101",
+            "mesh_148",
+            "mesh_197",
+            "mesh_201"
+          ],
+          "bom_code": "02.03.0146"
+        },
+        {
+          "bom_seq": "52",
+          "bom_name": "六角头螺栓8.8级",
+          "spec": "M8*80",
+          "quantity": 2,
+          "torque": "25N·m",
+          "mesh_id": [
+            "mesh_038",
+            "mesh_039"
+          ],
+          "bom_code": "02.03.0088"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 2,
+          "torque": "25N·m"
+        }
+      ],
+      "operation": "将把手组件（BOM序号19）安装到铲雪板顶部，使用M6*40螺钉（BOM序号29）和M6锁紧螺母（BOM序号30）固定。将橡胶挡板（BOM序号12）安装到铲雪板上沿，使用M8*80螺栓（BOM序号52）和M8锁紧螺母（BOM序号33）固定。",
+      "quality_check": "检查把手和挡板安装是否牢固，挡板位置是否正确。",
+      "estimated_time_minutes": 15
+    },
+    {
+      "step_number": 15,
+      "title": "安装辅助零件和润滑",
+      "component_code": "01.09.2565/01.09.2566",
+      "component_name": "自制螺栓/圆钢/方形板",
+      "drawing_number": "无图纸序号",
+      "connection_type": "螺栓/润滑",
+      "position_description": "安装剩余的辅助零件，并对所有运动副进行润滑。",
+      "components": [
+        {
+          "bom_seq": "13",
+          "bom_name": "方形板-机加-镀锌",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_254"
+          ],
+          "bom_code": "01.09.2555"
+        },
+        {
+          "bom_seq": "53",
+          "bom_name": "方形板-机加-镀锌",
+          "quantity": 2,
+          "mesh_id": [
+            "mesh_019"
+          ],
+          "bom_code": "01.09.2556"
+        },
+        {
+          "bom_seq": "28",
+          "bom_name": "圆钢-机加-镀锌",
+          "quantity": 1,
+          "mesh_id": [
+            "mesh_196",
+            "mesh_203"
+          ],
+          "bom_code": "01.09.2566"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "20",
+          "bom_name": "1型六角螺母8.8级",
+          "spec": "M30",
+          "quantity": 1,
+          "torque": "500N·m"
+        },
+        {
+          "bom_seq": "21",
+          "bom_name": "V型推雪板销轴-镀锌",
+          "quantity": 1,
+          "torque": "",
+          "mesh_id": [
+            "mesh_195",
+            "mesh_218",
+            "mesh_219",
+            "mesh_220",
+            "mesh_221",
+            "mesh_222"
+          ],
+          "bom_code": "01.09.0995"
+        },
+        {
+          "bom_seq": "50",
+          "bom_name": "平垫圈 倒角型 A级(钢)",
+          "spec": "20*3",
+          "quantity": 1,
+          "torque": "",
+          "mesh_id": [
+            "mesh_067",
+            "mesh_068",
+            "mesh_069",
+            "mesh_070"
+          ],
+          "bom_code": "02.03.0610"
+        },
+        {
+          "bom_seq": "34",
+          "bom_name": "直通式压注油杯",
+          "spec": "M8",
+          "quantity": 4,
+          "torque": "",
+          "mesh_id": [
+            "mesh_077",
+            "mesh_078",
+            "mesh_122",
+            "mesh_124",
+            "mesh_126",
+            "mesh_128",
+            "mesh_130",
+            "mesh_132",
+            "mesh_134",
+            "mesh_136",
+            "mesh_146",
+            "mesh_153",
+            "mesh_155",
+            "mesh_157",
+            "mesh_159",
+            "mesh_161",
+            "mesh_163",
+            "mesh_169",
+            "mesh_171",
+            "mesh_173",
+            "mesh_175",
+            "mesh_177",
+            "mesh_193"
+          ],
+          "bom_code": "02.08.05.0004"
+        }
+      ],
+      "operation": "1. 安装V型推雪板销轴（BOM序号21）和M30六角螺母（BOM序号20）到指定位置，拧紧力矩500N·m。2. 安装方形板（BOM序号13, 53）和圆钢（BOM序号28）到相应位置，使用剩余的紧固件（如平垫圈BOM序号50）固定。3. 在所有运动副（如销轴连接处）安装直通式压注油杯（BOM序号34），并注入润滑脂。",
+      "quality_check": "检查所有辅助零件是否安装到位，所有油杯是否安装正确，并确保所有运动副润滑充分。",
+      "estimated_time_minutes": 20,
+      "safety_warnings": [
+        "M30螺母需要500N·m的大扭矩，操作高扭矩工具时，务必站稳，防止工具反作用力造成身体伤害。",
+        "注入润滑脂时，佩戴防护手套，避免润滑脂接触皮肤引起过敏或污染。",
+        "销轴较重，安装时注意手部防夹伤。"
+      ]
+    }
+  ],
+  "raw_result": {
+    "product_name": "V型推雪板EURO连接器",
+    "total_steps": 15,
+    "visual_analysis": {
+      "base_component_drawing_number": "①",
+      "assembly_sequence_reasoning": "基准组件是①号连接器后座组件，所有其他组件都安装在其上。装配顺序应遵循由内到外、由下到上的原则，先安装②号后座连接架，再安装左右铲雪板（③和④），最后安装油缸、弹簧导柱和轮胎架等附属机构。"
+    },
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "title": "安装后座连接架",
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件-漆后",
+        "drawing_number": "②",
+        "connection_type": "销轴连接",
+        "position_description": "将②号后座连接架组件安装在①号连接器后座组件的上方，通过销轴连接。",
+        "components": [
+          {
+            "bom_seq": "2",
+            "bom_name": "后座连接架组件-漆后",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "14",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ50*15-φ35*485-φ10*10-45#",
+            "quantity": 1,
+            "torque": "",
+            "mesh_id": [
+              "mesh_253"
+            ],
+            "bom_code": "01.09.2561"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 1,
+            "torque": ""
+          }
+        ],
+        "operation": "将②号后座连接架组件对准①号连接器后座组件的销轴孔，插入销轴（BOM序号14）。在销轴的另一端插入安全销（BOM序号40）进行定位和防脱。",
+        "quality_check": "检查销轴是否完全插入，安全销是否可靠锁紧。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "安装左/右铲雪板",
+        "component_code": "01.09.2551/01.09.2552",
+        "component_name": "左/右铲雪板组件-漆后",
+        "drawing_number": "③, ④",
+        "connection_type": "销轴连接",
+        "position_description": "将③号左铲雪板组件和④号右铲雪板组件对称安装在②号后座连接架组件的两侧。",
+        "components": [
+          {
+            "bom_seq": "3",
+            "bom_name": "左铲雪板组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_349",
+              "mesh_350",
+              "mesh_374",
+              "mesh_376",
+              "mesh_377"
+            ],
+            "bom_code": "01.09.2551"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "右铲雪板组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_351"
+            ],
+            "bom_code": "01.09.2552"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "15",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ35*10-φ25*145-φ10*10-45#",
+            "quantity": 2,
+            "torque": "",
+            "mesh_id": [
+              "mesh_243",
+              "mesh_244",
+              "mesh_245",
+              "mesh_246",
+              "mesh_247",
+              "mesh_252"
+            ],
+            "bom_code": "01.09.2562"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将③号左铲雪板和④号右铲雪板分别对准②号连接架的销轴孔，插入销轴（BOM序号15，每侧1个）。在销轴的另一端插入安全销（BOM序号40）进行定位。",
+        "quality_check": "检查左右铲雪板是否能自由转动，无卡滞现象。安全销必须可靠锁紧。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "安装油缸",
+        "component_code": "02.08.01.0338",
+        "component_name": "油缸",
+        "drawing_number": "⑲",
+        "connection_type": "销轴连接",
+        "position_description": "将⑲号油缸安装在①号连接器后座组件和②号后座连接架组件之间。",
+        "components": [
+          {
+            "bom_seq": "18",
+            "bom_name": "油缸",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "16",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ40*10-φ30*87-φ10*10-45#",
+            "quantity": 1,
+            "torque": "",
+            "mesh_id": [
+              "mesh_248",
+              "mesh_249",
+              "mesh_250",
+              "mesh_251"
+            ],
+            "bom_code": "01.09.2563"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "使用吊装工具将油缸（BOM序号18）定位。先将油缸底部安装到①号连接器后座组件上，使用销轴（BOM序号16）固定，并插入安全销（BOM序号40）。然后将油缸活塞杆端安装到②号后座连接架组件上，使用销轴（BOM序号15，已在步骤2中使用，此处为复用）固定，并插入安全销（BOM序号40）。",
+        "quality_check": "检查油缸安装方向是否正确，销轴连接是否灵活，无轴向窜动。",
+        "estimated_time_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "title": "安装推雪板弹簧导柱",
+        "component_code": "01.09.2559",
+        "component_name": "推雪板弹簧导柱组件-镀锌",
+        "drawing_number": "⑦",
+        "connection_type": "螺栓连接",
+        "position_description": "将⑦号推雪板弹簧导柱组件安装在左/右铲雪板组件（③/④）的后部。",
+        "components": [
+          {
+            "bom_seq": "9",
+            "bom_name": "推雪板弹簧导柱组件-镀锌",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_260",
+              "mesh_263",
+              "mesh_266",
+              "mesh_269",
+              "mesh_272",
+              "mesh_275"
+            ],
+            "bom_code": "01.09.2559"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "41",
+            "bom_name": "内六角平圆头螺钉8.8级",
+            "spec": "M16*85",
+            "quantity": 4,
+            "torque": "150N·m",
+            "mesh_id": [
+              "mesh_001",
+              "mesh_004",
+              "mesh_005",
+              "mesh_006",
+              "mesh_007",
+              "mesh_008",
+              "mesh_020",
+              "mesh_023",
+              "mesh_024",
+              "mesh_025",
+              "mesh_026",
+              "mesh_027",
+              "mesh_139",
+              "mesh_142"
+            ],
+            "bom_code": "02.03.1035"
+          },
+          {
+            "bom_seq": "42",
+            "bom_name": "平垫圈8.8级",
+            "spec": "16*3",
+            "quantity": 4,
+            "torque": "",
+            "mesh_id": [
+              "mesh_002",
+              "mesh_009",
+              "mesh_010",
+              "mesh_011",
+              "mesh_012",
+              "mesh_013",
+              "mesh_021",
+              "mesh_028",
+              "mesh_029",
+              "mesh_030",
+              "mesh_031",
+              "mesh_032",
+              "mesh_137",
+              "mesh_141"
+            ],
+            "bom_code": "02.03.0072"
+          },
+          {
+            "bom_seq": "43",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M16",
+            "quantity": 4,
+            "torque": "150N·m",
+            "mesh_id": [
+              "mesh_003",
+              "mesh_014",
+              "mesh_015",
+              "mesh_016",
+              "mesh_017",
+              "mesh_018",
+              "mesh_022",
+              "mesh_033",
+              "mesh_034",
+              "mesh_035",
+              "mesh_036",
+              "mesh_037",
+              "mesh_138",
+              "mesh_140"
+            ],
+            "bom_code": "02.03.0019"
+          },
+          {
+            "bom_seq": "17",
+            "bom_name": "压缩弹簧",
+            "spec": "TH-φ10*16*φ56*260-YS",
+            "quantity": 2,
+            "torque": "",
+            "mesh_id": [
+              "mesh_237",
+              "mesh_238",
+              "mesh_239",
+              "mesh_240",
+              "mesh_241",
+              "mesh_242"
+            ],
+            "bom_code": "02.09.0103"
+          }
+        ],
+        "operation": "将压缩弹簧（BOM序号17）套入⑦号推雪板弹簧导柱组件。将导柱组件安装到左/右铲雪板组件（③/④）的安装孔上。使用M16*85内六角螺钉（BOM序号41）、平垫圈（BOM序号42）和M16锁紧螺母（BOM序号43）固定。拧紧力矩为150N·m。",
+        "quality_check": "检查弹簧导柱安装是否牢固，弹簧是否能正常压缩和回弹。",
+        "estimated_time_minutes": 25
+      },
+      {
+        "step_number": 5,
+        "title": "安装橡胶刀板",
+        "component_code": "01.02.07.0239",
+        "component_name": "橡胶刀板",
+        "drawing_number": "⑧",
+        "connection_type": "螺栓连接",
+        "position_description": "将⑧号橡胶刀板安装在左/右铲雪板组件（③/④）的底部。",
+        "components": [
+          {
+            "bom_seq": "11",
+            "bom_name": "橡胶刀板",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_256",
+              "mesh_257"
+            ],
+            "bom_code": "01.02.07.0239"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "45",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M30*60",
+            "quantity": 6,
+            "torque": "500N·m",
+            "mesh_id": [
+              "mesh_105",
+              "mesh_108",
+              "mesh_111",
+              "mesh_114",
+              "mesh_115",
+              "mesh_120"
+            ],
+            "bom_code": "02.03.0458"
+          },
+          {
+            "bom_seq": "46",
+            "bom_name": "推雪板大垫圈-镀锌",
+            "quantity": 6,
+            "torque": "",
+            "mesh_id": [
+              "mesh_103",
+              "mesh_106",
+              "mesh_109",
+              "mesh_112",
+              "mesh_116",
+              "mesh_119"
+            ],
+            "bom_code": "01.09.0304"
+          },
+          {
+            "bom_seq": "47",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M30",
+            "quantity": 6,
+            "torque": "500N·m",
+            "mesh_id": [
+              "mesh_104",
+              "mesh_107",
+              "mesh_110",
+              "mesh_113",
+              "mesh_117",
+              "mesh_118",
+              "mesh_223",
+              "mesh_224",
+              "mesh_225",
+              "mesh_226",
+              "mesh_227",
+              "mesh_228"
+            ],
+            "bom_code": "02.03.0147"
+          },
+          {
+            "bom_seq": "22",
+            "bom_name": "平垫圈8.8级",
+            "spec": "30*4",
+            "quantity": 6,
+            "torque": ""
+          }
+        ],
+        "operation": "将橡胶刀板（BOM序号11，左右各1块）对准铲雪板底部的安装孔。使用M30*60螺栓（BOM序号45）、大垫圈（BOM序号46）、平垫圈（BOM序号22）和M30锁紧螺母（BOM序号47）固定。拧紧力矩为500N·m。",
+        "quality_check": "检查刀板与铲雪板底部贴合紧密，螺栓紧固到位，无松动。",
+        "estimated_time_minutes": 30
+      },
+      {
+        "step_number": 6,
+        "title": "安装左/右刀板后座",
+        "component_code": "01.09.2554/01.09.2553",
+        "component_name": "左/右刀板后座组件-漆后",
+        "drawing_number": "⑤, ⑥",
+        "connection_type": "螺栓连接",
+        "position_description": "将⑤号左刀板后座组件和⑥号右刀板后座组件安装在铲雪板组件（③/④）的后部。",
+        "components": [
+          {
+            "bom_seq": "5",
+            "bom_name": "左刀板后座组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_325"
+            ],
+            "bom_code": "01.09.2554"
+          },
+          {
+            "bom_seq": "6",
+            "bom_name": "右刀板后座组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_315"
+            ],
+            "bom_code": "01.09.2553"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "32",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*40",
+            "quantity": 12,
+            "torque": "25N·m",
+            "mesh_id": [
+              "mesh_154",
+              "mesh_156",
+              "mesh_158",
+              "mesh_160",
+              "mesh_162",
+              "mesh_164",
+              "mesh_170",
+              "mesh_172",
+              "mesh_174",
+              "mesh_176",
+              "mesh_178",
+              "mesh_194"
+            ],
+            "bom_code": "02.03.0398"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 12,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将⑤号和⑥号刀板后座组件分别安装到对应的铲雪板组件上。使用M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+        "quality_check": "检查刀板后座组件与铲雪板的配合间隙，确保安装牢固。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 7,
+        "title": "安装后座支撑架",
+        "component_code": "01.09.2560",
+        "component_name": "后座支撑架组件-漆后",
+        "drawing_number": "无图纸序号，位于后部",
+        "connection_type": "螺栓连接",
+        "position_description": "将后座支撑架组件安装在①号连接器后座组件的后部。",
+        "components": [
+          {
+            "bom_seq": "10",
+            "bom_name": "后座支撑架组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_259"
+            ],
+            "bom_code": "01.09.2560"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "39",
+            "bom_name": "六角头螺栓8.8级",
+            "spec": "M8*65",
+            "quantity": 2,
+            "torque": "25N·m",
+            "mesh_id": [
+              "mesh_147"
+            ],
+            "bom_code": "02.03.0102"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 2,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将后座支撑架组件（BOM序号10）安装到①号连接器后座组件的预留孔位上。使用M8*65螺栓（BOM序号39）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+        "quality_check": "检查支撑架是否垂直，安装是否牢固。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 8,
+        "title": "安装轮胎架内臂",
+        "component_code": "01.09.2558",
+        "component_name": "轮胎架内臂组件-镀锌",
+        "drawing_number": "⑨",
+        "connection_type": "螺栓连接",
+        "position_description": "将⑨号轮胎架内臂组件安装在后座支撑架组件（BOM序号10）上。",
+        "components": [
+          {
+            "bom_seq": "8",
+            "bom_name": "轮胎架内臂组件-镀锌",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "32",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*40",
+            "quantity": 4,
+            "torque": "25N·m",
+            "mesh_id": [
+              "mesh_154",
+              "mesh_156",
+              "mesh_158",
+              "mesh_160",
+              "mesh_162",
+              "mesh_164",
+              "mesh_170",
+              "mesh_172",
+              "mesh_174",
+              "mesh_176",
+              "mesh_178",
+              "mesh_194"
+            ],
+            "bom_code": "02.03.0398"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将两个⑨号轮胎架内臂组件安装到后座支撑架组件（BOM序号10）的侧面。使用M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+        "quality_check": "检查内臂组件是否对称安装，无晃动。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 9,
+        "title": "安装轮胎架外臂",
+        "component_code": "01.09.2557",
+        "component_name": "轮胎架外臂组件-漆后",
+        "drawing_number": "⑩",
+        "connection_type": "销轴连接",
+        "position_description": "将⑩号轮胎架外臂组件通过销轴连接到⑨号轮胎架内臂组件上。",
+        "components": [
+          {
+            "bom_seq": "7",
+            "bom_name": "轮胎架外臂组件-漆后",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_301",
+              "mesh_305"
+            ],
+            "bom_code": "01.09.2557"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "23",
+            "bom_name": "插销-镀锌",
+            "spec": "CX-φ12-150-45#",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将⑩号轮胎架外臂组件（左右各1个）与⑨号内臂组件对齐，插入插销（BOM序号23）进行连接。确保插销完全穿过，并可靠定位。",
+        "quality_check": "检查外臂组件是否能绕插销自由转动，插销是否可靠。",
+        "estimated_time_minutes": 8
+      },
+      {
+        "step_number": 10,
+        "title": "安装实心橡胶轮",
+        "component_code": "02.16.0142",
+        "component_name": "实心橡胶轮",
+        "drawing_number": "㉗",
+        "connection_type": "螺栓连接",
+        "position_description": "将㉗号实心橡胶轮安装在⑩号轮胎架外臂组件的末端。",
+        "components": [
+          {
+            "bom_seq": "25",
+            "bom_name": "实心橡胶轮",
+            "quantity": 2
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "27",
+            "bom_name": "自制螺栓-镀锌",
+            "quantity": 2,
+            "torque": "150N·m",
+            "mesh_id": [
+              "mesh_205",
+              "mesh_206"
+            ],
+            "bom_code": "01.09.2565"
+          },
+          {
+            "bom_seq": "26",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M20",
+            "quantity": 2,
+            "torque": "150N·m",
+            "mesh_id": [
+              "mesh_204",
+              "mesh_207"
+            ],
+            "bom_code": "02.03.0612"
+          }
+        ],
+        "operation": "将实心橡胶轮（BOM序号25）安装到⑩号轮胎架外臂组件的轴孔上。使用自制螺栓（BOM序号27）和M20锁紧螺母（BOM序号26）固定。拧紧力矩为150N·m。",
+        "quality_check": "检查轮胎转动是否灵活，轴向间隙是否合适，螺母是否锁紧。",
+        "estimated_time_minutes": 12
+      },
+      {
+        "step_number": 11,
+        "title": "安装V型推雪板轴套",
+        "component_code": "01.09.0999",
+        "component_name": "V型推雪板轴套-镀锌",
+        "drawing_number": "无图纸序号",
+        "connection_type": "螺栓连接",
+        "position_description": "将V型推雪板轴套安装在②号后座连接架组件的顶部。",
+        "components": [
+          {
+            "bom_seq": "24",
+            "bom_name": "V型推雪板轴套-镀锌",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_210"
+            ],
+            "bom_code": "01.09.0999"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "44",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*20",
+            "quantity": 4,
+            "torque": "25N·m",
+            "mesh_id": [
+              "mesh_121",
+              "mesh_123",
+              "mesh_125",
+              "mesh_127",
+              "mesh_129",
+              "mesh_131",
+              "mesh_133",
+              "mesh_135"
+            ],
+            "bom_code": "02.03.0379"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将V型推雪板轴套（BOM序号24）安装到②号后座连接架组件的顶部。使用M8*20螺栓（BOM序号44）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+        "quality_check": "检查轴套安装位置是否居中，螺栓是否紧固。",
+        "estimated_time_minutes": 8
+      },
+      {
+        "step_number": 12,
+        "title": "安装电磁阀组和保护罩",
+        "component_code": "02.08.03.0236/01.09.1240",
+        "component_name": "电磁阀组/电磁阀保护罩组件",
+        "drawing_number": "无图纸序号",
+        "connection_type": "螺栓连接",
+        "position_description": "将电磁阀组安装在①号连接器后座组件的侧面，并安装保护罩。",
+        "components": [
+          {
+            "bom_seq": "36",
+            "bom_name": "电磁阀组",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_152"
+            ],
+            "bom_code": "02.08.03.0236"
+          },
+          {
+            "bom_seq": "51",
+            "bom_name": "电磁阀保护罩组件-漆后",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_065",
+              "mesh_066"
+            ],
+            "bom_code": "01.09.1240"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "48",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*20",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_080",
+              "mesh_082",
+              "mesh_084",
+              "mesh_086",
+              "mesh_088",
+              "mesh_090",
+              "mesh_092",
+              "mesh_094",
+              "mesh_096",
+              "mesh_098",
+              "mesh_100",
+              "mesh_102"
+            ],
+            "bom_code": "02.03.0378"
+          },
+          {
+            "bom_seq": "30",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_075",
+              "mesh_079",
+              "mesh_081",
+              "mesh_083",
+              "mesh_085",
+              "mesh_087",
+              "mesh_089",
+              "mesh_091",
+              "mesh_093",
+              "mesh_095",
+              "mesh_097",
+              "mesh_099",
+              "mesh_101",
+              "mesh_148",
+              "mesh_197",
+              "mesh_201"
+            ],
+            "bom_code": "02.03.0146"
+          }
+        ],
+        "operation": "将电磁阀组（BOM序号36）安装到预定位置，使用M6*20螺栓（BOM序号48）和M6锁紧螺母（BOM序号30）固定。然后安装电磁阀保护罩组件（BOM序号51），使用相同的紧固件固定。拧紧力矩为10N·m。",
+        "quality_check": "检查电磁阀组安装是否稳固，保护罩是否完全覆盖。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 13,
+        "title": "安装反光片",
+        "component_code": "02.04.0029",
+        "component_name": "推雪板反光片",
+        "drawing_number": "无图纸序号",
+        "connection_type": "螺栓连接",
+        "position_description": "将反光片安装在铲雪板组件（③/④）的侧面。",
+        "components": [
+          {
+            "bom_seq": "37",
+            "bom_name": "推雪板反光片",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_150",
+              "mesh_151"
+            ],
+            "bom_code": "02.04.0029"
+          },
+          {
+            "bom_seq": "49",
+            "bom_name": "推雪板反光片固定板-镀锌",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_073",
+              "mesh_074"
+            ],
+            "bom_code": "01.09.0308"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "38",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*16",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_076",
+              "mesh_149"
+            ],
+            "bom_code": "02.03.0383"
+          },
+          {
+            "bom_seq": "30",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_075",
+              "mesh_079",
+              "mesh_081",
+              "mesh_083",
+              "mesh_085",
+              "mesh_087",
+              "mesh_089",
+              "mesh_091",
+              "mesh_093",
+              "mesh_095",
+              "mesh_097",
+              "mesh_099",
+              "mesh_101",
+              "mesh_148",
+              "mesh_197",
+              "mesh_201"
+            ],
+            "bom_code": "02.03.0146"
+          },
+          {
+            "bom_seq": "31",
+            "bom_name": "平垫圈8.8级",
+            "spec": "6*1.6",
+            "quantity": 4,
+            "torque": "",
+            "mesh_id": [
+              "mesh_040",
+              "mesh_041",
+              "mesh_042",
+              "mesh_043",
+              "mesh_044",
+              "mesh_045",
+              "mesh_046",
+              "mesh_047",
+              "mesh_048",
+              "mesh_049",
+              "mesh_050",
+              "mesh_051",
+              "mesh_052",
+              "mesh_053",
+              "mesh_054",
+              "mesh_055",
+              "mesh_056",
+              "mesh_057",
+              "mesh_058",
+              "mesh_059",
+              "mesh_060",
+              "mesh_061",
+              "mesh_062",
+              "mesh_063",
+              "mesh_198",
+              "mesh_200"
+            ],
+            "bom_code": "02.03.0381"
+          }
+        ],
+        "operation": "将反光片（BOM序号37）和反光片固定板（BOM序号49）安装到铲雪板侧面。使用M6*16螺栓（BOM序号38）、平垫圈（BOM序号31）和M6锁紧螺母（BOM序号30）固定。拧紧力矩为10N·m。",
+        "quality_check": "检查反光片安装方向和位置是否正确，螺栓是否紧固。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 14,
+        "title": "安装把手组件和橡胶挡板",
+        "component_code": "01.09.2564/01.02.07.0071",
+        "component_name": "把手组件/橡胶挡板",
+        "drawing_number": "无图纸序号",
+        "connection_type": "螺栓连接",
+        "position_description": "将把手组件安装在铲雪板顶部，橡胶挡板安装在铲雪板上沿。",
+        "components": [
+          {
+            "bom_seq": "19",
+            "bom_name": "把手组件-镀锌",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_229",
+              "mesh_230",
+              "mesh_231",
+              "mesh_232"
+            ],
+            "bom_code": "01.09.2564"
+          },
+          {
+            "bom_seq": "12",
+            "bom_name": "橡胶挡板",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_255"
+            ],
+            "bom_code": "01.02.07.0071"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "29",
+            "bom_name": "内六角圆柱头螺钉8.8级",
+            "spec": "M6*40",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_199",
+              "mesh_202"
+            ],
+            "bom_code": "02.03.0442"
+          },
+          {
+            "bom_seq": "30",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m",
+            "mesh_id": [
+              "mesh_075",
+              "mesh_079",
+              "mesh_081",
+              "mesh_083",
+              "mesh_085",
+              "mesh_087",
+              "mesh_089",
+              "mesh_091",
+              "mesh_093",
+              "mesh_095",
+              "mesh_097",
+              "mesh_099",
+              "mesh_101",
+              "mesh_148",
+              "mesh_197",
+              "mesh_201"
+            ],
+            "bom_code": "02.03.0146"
+          },
+          {
+            "bom_seq": "52",
+            "bom_name": "六角头螺栓8.8级",
+            "spec": "M8*80",
+            "quantity": 2,
+            "torque": "25N·m",
+            "mesh_id": [
+              "mesh_038",
+              "mesh_039"
+            ],
+            "bom_code": "02.03.0088"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 2,
+            "torque": "25N·m"
+          }
+        ],
+        "operation": "将把手组件（BOM序号19）安装到铲雪板顶部，使用M6*40螺钉（BOM序号29）和M6锁紧螺母（BOM序号30）固定。将橡胶挡板（BOM序号12）安装到铲雪板上沿，使用M8*80螺栓（BOM序号52）和M8锁紧螺母（BOM序号33）固定。",
+        "quality_check": "检查把手和挡板安装是否牢固，挡板位置是否正确。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 15,
+        "title": "安装辅助零件和润滑",
+        "component_code": "01.09.2565/01.09.2566",
+        "component_name": "自制螺栓/圆钢/方形板",
+        "drawing_number": "无图纸序号",
+        "connection_type": "螺栓/润滑",
+        "position_description": "安装剩余的辅助零件，并对所有运动副进行润滑。",
+        "components": [
+          {
+            "bom_seq": "13",
+            "bom_name": "方形板-机加-镀锌",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_254"
+            ],
+            "bom_code": "01.09.2555"
+          },
+          {
+            "bom_seq": "53",
+            "bom_name": "方形板-机加-镀锌",
+            "quantity": 2,
+            "mesh_id": [
+              "mesh_019"
+            ],
+            "bom_code": "01.09.2556"
+          },
+          {
+            "bom_seq": "28",
+            "bom_name": "圆钢-机加-镀锌",
+            "quantity": 1,
+            "mesh_id": [
+              "mesh_196",
+              "mesh_203"
+            ],
+            "bom_code": "01.09.2566"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "20",
+            "bom_name": "1型六角螺母8.8级",
+            "spec": "M30",
+            "quantity": 1,
+            "torque": "500N·m"
+          },
+          {
+            "bom_seq": "21",
+            "bom_name": "V型推雪板销轴-镀锌",
+            "quantity": 1,
+            "torque": "",
+            "mesh_id": [
+              "mesh_195",
+              "mesh_218",
+              "mesh_219",
+              "mesh_220",
+              "mesh_221",
+              "mesh_222"
+            ],
+            "bom_code": "01.09.0995"
+          },
+          {
+            "bom_seq": "50",
+            "bom_name": "平垫圈 倒角型 A级(钢)",
+            "spec": "20*3",
+            "quantity": 1,
+            "torque": "",
+            "mesh_id": [
+              "mesh_067",
+              "mesh_068",
+              "mesh_069",
+              "mesh_070"
+            ],
+            "bom_code": "02.03.0610"
+          },
+          {
+            "bom_seq": "34",
+            "bom_name": "直通式压注油杯",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "",
+            "mesh_id": [
+              "mesh_077",
+              "mesh_078",
+              "mesh_122",
+              "mesh_124",
+              "mesh_126",
+              "mesh_128",
+              "mesh_130",
+              "mesh_132",
+              "mesh_134",
+              "mesh_136",
+              "mesh_146",
+              "mesh_153",
+              "mesh_155",
+              "mesh_157",
+              "mesh_159",
+              "mesh_161",
+              "mesh_163",
+              "mesh_169",
+              "mesh_171",
+              "mesh_173",
+              "mesh_175",
+              "mesh_177",
+              "mesh_193"
+            ],
+            "bom_code": "02.08.05.0004"
+          }
+        ],
+        "operation": "1. 安装V型推雪板销轴（BOM序号21）和M30六角螺母（BOM序号20）到指定位置，拧紧力矩500N·m。2. 安装方形板（BOM序号13, 53）和圆钢（BOM序号28）到相应位置，使用剩余的紧固件（如平垫圈BOM序号50）固定。3. 在所有运动副（如销轴连接处）安装直通式压注油杯（BOM序号34），并注入润滑脂。",
+        "quality_check": "检查所有辅助零件是否安装到位，所有油杯是否安装正确，并确保所有运动副润滑充分。",
+        "estimated_time_minutes": 20
+      }
+    ]
+  }
+}
