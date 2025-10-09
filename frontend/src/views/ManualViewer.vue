@@ -223,7 +223,7 @@
               <el-tab-pane label="安全" name="safety">
                 <div class="tab-content-scroll">
                   <el-alert
-                    v-for="(warning, index) in (manualData.safety_and_faq?.safety_warnings || manualData.safety_warnings || []).slice(0, 3)"
+                    v-for="(warning, index) in currentStepSafetyWarnings"
                     :key="index"
                     :title="`步骤${warning.step_number} - ${warning.component}`"
                     type="warning"
@@ -232,7 +232,7 @@
                     :closable="false"
                     style="margin-bottom: 8px"
                   />
-                  <el-empty v-if="!(manualData.safety_and_faq?.safety_warnings || manualData.safety_warnings || []).length" description="暂无安全警告" />
+                  <el-empty v-if="!currentStepSafetyWarnings.length" description="当前步骤无安全警告" />
                 </div>
               </el-tab-pane>
 
@@ -352,8 +352,8 @@ const drawingImages = computed(() => {
   console.warn(`⚠️ 步骤${currentStepIndex.value + 1}未找到图纸数据，使用默认路径（临时方案）`)
   const taskId = props.taskId
   return [
-    `http://localhost:8008/api/manual/${taskId}/pdf_images/page_001.png`,
-    `http://localhost:8008/api/manual/${taskId}/pdf_images/page_002.png`
+    `/api/manual/${taskId}/pdf_images/page_001.png`,
+    `/api/manual/${taskId}/pdf_images/page_002.png`
   ]
 })
 
@@ -562,6 +562,20 @@ const currentStepWeldingRequirements = computed(() => {
   return allWelding.filter(req => req.step_number === currentStepNumber)
 })
 
+// ✅ 过滤当前步骤的安全警告
+const currentStepSafetyWarnings = computed(() => {
+  const allSafetyWarnings = manualData.value?.safety_and_faq?.safety_warnings || manualData.value?.safety_warnings || []
+  const currentStep = currentStepData.value
+
+  if (!currentStep) return []
+
+  // 获取当前步骤的步骤号
+  const currentStepNumber = currentStep.step_number
+
+  // 过滤出当前步骤的安全警告
+  return allSafetyWarnings.filter(warning => warning.step_number === currentStepNumber)
+})
+
 // ✅ 从所有步骤中提取质检要求
 const qualityCheckpoints = computed(() => {
   const checkpoints: any[] = []
@@ -652,7 +666,7 @@ const loadLocalJSON = async () => {
     }
 
     // 2. 如果缓存没有，从后端 API 获取
-    const response = await axios.get(`http://localhost:8008/api/manual/${props.taskId}`)
+    const response = await axios.get(`/api/manual/${props.taskId}`)
     manualData.value = response.data
 
     // 保存到 localStorage
@@ -804,8 +818,8 @@ const load3DModel = async () => {
     const currentStep = allSteps.value[currentStepIndex.value]
     const glbFile = currentStep?.glb_file || 'product_total.glb'
 
-    // ✅ 构建完整的GLB文件路径
-    const glbPath = `http://localhost:8008/api/manual/${props.taskId}/glb/${glbFile}`
+    // ✅ 构建完整的GLB文件路径（使用相对路径，支持远程访问）
+    const glbPath = `/api/manual/${props.taskId}/glb/${glbFile}`
     console.log('📦 加载3D模型:', glbPath)
     console.log('📋 当前步骤:', currentStepIndex.value + 1, '/', allSteps.value.length)
     console.log('📋 GLB文件:', glbFile)
@@ -1007,7 +1021,7 @@ const switchGLBModel = async (glbFile: string) => {
 
     // 3. 加载新模型
     const loader = new GLTFLoader()
-    const glbPath = `http://localhost:8008/api/manual/${props.taskId}/glb/${glbFile}`
+    const glbPath = `/api/manual/${props.taskId}/glb/${glbFile}`
     console.log('📦 加载新模型:', glbPath)
 
     const gltf = await loader.loadAsync(glbPath)
