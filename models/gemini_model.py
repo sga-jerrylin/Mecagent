@@ -13,24 +13,33 @@ from openai import OpenAI
 
 class GeminiVisionModel:
     """Gemini 2.5 Flash 视觉模型封装类"""
-    
-    def __init__(self, api_key: Optional[str] = None):
+
+    def __init__(self, api_key: Optional[str] = None, model_name: Optional[str] = None):
         """
         初始化Gemini模型
-        
+
         Args:
             api_key: OpenRouter API Key
+            model_name: 模型名称（可选，默认从config.py读取）
         """
         self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
         if not self.api_key:
             raise ValueError("请设置OPENROUTER_API_KEY环境变量或传入api_key参数")
-        
+
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=self.api_key
         )
-        
-        self.model_name = "google/gemini-2.5-flash-preview-09-2025"
+
+        # ✅ Bug修复：从config.py读取模型名称
+        if model_name:
+            self.model_name = model_name
+        else:
+            try:
+                from config import MODEL_CONFIG
+                self.model_name = MODEL_CONFIG["gemini"]
+            except ImportError:
+                self.model_name = os.getenv("GEMINI_MODEL", "google/gemini-2.5-flash-preview-09-2025")
     
     def encode_image_to_base64(self, image_path: str) -> str:
         """

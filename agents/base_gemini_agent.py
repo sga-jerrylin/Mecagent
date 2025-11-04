@@ -20,29 +20,37 @@ class BaseGeminiAgent:
         self,
         agent_name: str,
         api_key: Optional[str] = None,
-        temperature: float = 0.1
+        temperature: float = 0.1,
+        model_name: Optional[str] = None
     ):
         """
         Gemini Agent
-        
+
         Args:
             agent_name: Agent
             api_key: OpenRouter API Key
             temperature: 0-1
+            model_name: 模型名称（可选，默认从环境变量OPENROUTER_MODEL读取）
         """
         self.agent_name = agent_name
         self.temperature = temperature
-        
+
         self.api_key = api_key or os.getenv("OPENROUTER_API_KEY")
         if not self.api_key:
             raise ValueError("OPENROUTER_API_KEYapi_key")
-        
+
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=self.api_key
         )
 
-        self.model_name = "google/gemini-2.5-flash-preview-09-2025"
+        # 保存传入的model_name（如果有的话），否则每次调用时从环境变量读取
+        self._model_name_override = model_name
+
+    @property
+    def model_name(self) -> str:
+        """动态获取模型名称，优先使用传入的值，其次使用环境变量，最后使用默认值"""
+        return self._model_name_override or os.getenv("OPENROUTER_MODEL") or "google/gemini-2.5-flash-preview-09-2025"
     
     def encode_image_to_base64(self, image_path: str) -> str:
         """
@@ -188,7 +196,8 @@ class BaseGeminiAgent:
         ]
         
         try:
-            print(f"\n[{self.agent_name}] Calling Gemini 2.5 Flash")
+            print(f"\n[{self.agent_name}] Calling AI Model")
+            print(f"   Model: {self.model_name}")
             print(f"   Images: {len(image_paths)}")
             print(f"   Temperature: {self.temperature}")
 

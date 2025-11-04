@@ -46,6 +46,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ============ 健康检查端点 ============
+@app.get("/api/health")
+async def health_check():
+    """
+    健康检查端点
+    用于Docker健康检查和负载均衡器探测
+    """
+    return {
+        "status": "healthy",
+        "service": "assembly-manual-backend",
+        "version": "1.0.0",
+        "timestamp": datetime.now().isoformat()
+    }
+
+@app.get("/")
+async def root():
+    """根路径重定向到API文档"""
+    return {
+        "message": "智能装配说明书生成系统 API",
+        "docs": "/api/docs",
+        "health": "/api/health"
+    }
+
 # 数据模型
 class GenerationConfig(BaseModel):
     projectName: str
@@ -70,6 +93,23 @@ async def upload_files(
     model_files: List[UploadFile] = File(default=[])
 ):
     """上传文件接口 - 支持PDF和3D模型文件"""
+
+    # ✅ Bug修复：上传前清空uploads目录，防止旧文件累积
+    import shutil
+    try:
+        if upload_dir.exists():
+            # 先删除目录中的所有文件
+            for item in upload_dir.iterdir():
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    shutil.rmtree(item)
+            print(f"🗑️  已清空uploads目录")
+    except Exception as e:
+        print(f"⚠️  清空uploads目录时出错: {e}")
+
+    upload_dir.mkdir(exist_ok=True)
+
     uploaded_files = {
         "pdf_files": [],
         "model_files": []
@@ -117,25 +157,32 @@ async def generate_manual(request: GenerationRequest):
     try:
         # 创建任务目录
         task_dir = Path("output") / task_id
+        task_dir.mkdir(parents=True, exist_ok=True)
+
+        # ✅ Bug修复：优化文件复制逻辑
+        # 方案：直接使用uploads目录，避免大文件复制
+        # 注意：由于uploads目录在每次上传时会清空，所以这里仍需复制以保留历史任务数据
+        import shutil
+
         pdf_dir = task_dir / "pdf_files"
         step_dir = task_dir / "step_files"
-
         pdf_dir.mkdir(parents=True, exist_ok=True)
         step_dir.mkdir(parents=True, exist_ok=True)
 
-        # 复制文件到任务目录
-        import shutil
+        # 复制文件（保留历史任务数据）
         for pdf_file in request.pdf_files:
             src = upload_dir / pdf_file
             dst = pdf_dir / pdf_file
             if src.exists():
                 shutil.copy2(src, dst)
+                print(f"📄 已复制PDF: {pdf_file}")
 
         for step_file in request.model_files:
             src = upload_dir / step_file
             dst = step_dir / step_file
             if src.exists():
                 shutil.copy2(src, dst)
+                print(f"🎯 已复制STEP: {step_file}")
 
         # 创建任务记录
         tasks[task_id] = {
@@ -164,10 +211,15 @@ async def generate_manual(request: GenerationRequest):
                 # ✅ 设置当前任务ID，让logger知道日志应该路由到哪个任务
                 set_current_task(task_id)
 
-                # 从环境变量读取API密钥
-                api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+                # 从保存的设置中读取API密钥和模型，如果没有则从环境变量读取
+                api_key = app_settings.get("openrouter_api_key") or os.getenv("OPENROUTER_API_KEY")
                 if not api_key:
-                    raise ValueError("未设置 GEMINI_API_KEY 或 GOOGLE_API_KEY 环境变量")
+                    raise ValueError("未设置 OpenRouter API Key，请在设置页面配置")
+
+                # 获取模型名称
+                model_name = app_settings.get("default_model") or "google/gemini-2.0-flash-exp:free"
+
+                print(f"✅ Backend 使用模型: {model_name}")
 
                 # ✅ 获取用户输入的产品名称
                 product_name = request.config.projectName
@@ -175,7 +227,8 @@ async def generate_manual(request: GenerationRequest):
                 pipeline = GeminiAssemblyPipeline(
                     api_key=api_key,
                     output_dir=str(task_dir),
-                    product_name=product_name  # ✅ 传入产品名称
+                    product_name=product_name,  # ✅ 传入产品名称
+                    model_name=model_name  # ✅ 传入模型名称
                 )
 
                 # 运行pipeline
@@ -437,25 +490,21 @@ async def get_glb_file(task_id: str, glb_filename: str):
 @app.get("/api/manual/{task_id}/pdf_images/{image_path:path}")
 async def get_pdf_image(task_id: str, image_path: str):
     """
-    获取任务的PDF图片文件（支持子目录）
+    获取任务的PDF图片文件（统一目录结构）
 
+    ✅ 新版本路径: /api/manual/{task_id}/pdf_images/{pdf_name}/page_001.png
     例如：
-    - /api/manual/{task_id}/pdf_images/page_001.png
-    - /api/manual/{task_id}/pdf_images/1/page_001.png
+    - /api/manual/{task_id}/pdf_images/产品总图/page_001.png
+    - /api/manual/{task_id}/pdf_images/组件1/page_001.png
     """
     try:
         output_dir = Path("output") / task_id
 
-        # 构建完整路径（image_path可能包含子目录，如 "1/page_001.png"）
+        # ✅ Bug修复：统一使用 pdf_images/{pdf_name}/page_xxx.png 结构
         full_image_path = output_dir / "pdf_images" / image_path
 
         if not full_image_path.exists():
-            # 尝试旧版本路径（直接在任务目录）
-            fallback_path = output_dir / image_path
-            if fallback_path.exists():
-                full_image_path = fallback_path
-            else:
-                raise HTTPException(status_code=404, detail=f"PDF图片不存在: {image_path}")
+            raise HTTPException(status_code=404, detail=f"PDF图片不存在: {image_path}")
 
         print(f"✅ 找到PDF图片: {full_image_path}")
 
@@ -525,6 +574,85 @@ async def get_manual(task_id: str):
         print(f"❌ 获取说明书失败: {e}")
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"获取说明书失败: {str(e)}")
+
+# ============ 设置管理端点 ============
+class SettingsModel(BaseModel):
+    openrouter_api_key: str
+    default_model: str = "google/gemini-2.5-flash-preview-09-2025"
+
+# 全局设置存储（内存中）
+app_settings = {
+    "openrouter_api_key": os.getenv("OPENROUTER_API_KEY", ""),
+    "default_model": "google/gemini-2.5-flash-preview-09-2025"
+}
+
+@app.post("/api/settings")
+async def save_settings(settings: SettingsModel):
+    """保存系统设置"""
+    try:
+        app_settings["openrouter_api_key"] = settings.openrouter_api_key
+        app_settings["default_model"] = settings.default_model
+
+        # 更新环境变量
+        os.environ["OPENROUTER_API_KEY"] = settings.openrouter_api_key
+
+        return {
+            "success": True,
+            "message": "设置保存成功"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"保存设置失败: {str(e)}")
+
+@app.get("/api/settings")
+async def get_settings():
+    """获取当前设置（脱敏）"""
+    return {
+        "openrouter_api_key": app_settings["openrouter_api_key"][:10] + "..." if app_settings["openrouter_api_key"] else "",
+        "default_model": app_settings["default_model"],
+        "has_openrouter_key": bool(app_settings["openrouter_api_key"])
+    }
+
+class TestModelRequest(BaseModel):
+    openrouter_api_key: str
+    model: str
+
+@app.post("/api/test-model")
+async def test_model(request: TestModelRequest):
+    """测试模型连接"""
+    try:
+        from openai import OpenAI
+
+        # 创建OpenAI客户端（OpenRouter兼容）
+        client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=request.openrouter_api_key
+        )
+
+        # 发送测试请求
+        completion = client.chat.completions.create(
+            extra_headers={
+                "HTTP-Referer": "https://mecagent.com",
+                "X-Title": "MecAgent Model Test"
+            },
+            model=request.model,
+            messages=[
+                {"role": "user", "content": "Hello, this is a test message. Please respond with 'OK'."}
+            ],
+            max_tokens=10
+        )
+
+        response_text = completion.choices[0].message.content
+
+        return {
+            "success": True,
+            "message": response_text,
+            "model": request.model
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e)
+        }
 
 if __name__ == "__main__":
     print("🚀 启动简化版智能装配说明书生成系统...")

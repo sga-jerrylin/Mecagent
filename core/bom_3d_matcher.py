@@ -121,20 +121,9 @@ class BOM3DMatcher:
         Returns:
             匹配结果
         """
-        print(f"\n🔧 开始BOM-3D匹配（代码实现）...")
+        print(f"\n🔧 开始BOM-3D匹配...")
         print(f"📊 BOM项数: {len(bom_data)}")
         print(f"📊 3D零件数: {len(parts_list)}")
-
-        # ✅ 调试：打印前3个BOM和3D零件的数据
-        if bom_data:
-            print(f"\n📝 BOM数据示例（前3个）:")
-            for i, bom in enumerate(bom_data[:3]):
-                print(f"   {i+1}. code: {bom.get('code')}, name: {bom.get('name')}, product_code: {bom.get('product_code')}")
-
-        if parts_list:
-            print(f"\n📝 3D零件示例（前3个）:")
-            for i, part in enumerate(parts_list[:3]):
-                print(f"   {i+1}. node_name: {part.get('node_name')}, geometry_name: {part.get('geometry_name')}")
 
         # 构建BOM索引（按代号、产品代号和规格）
         bom_by_code = {}
@@ -162,12 +151,9 @@ class BOM3DMatcher:
                     bom_by_spec[spec] = []
                 bom_by_spec[spec].append(bom_item)
 
-        print(f"✅ BOM索引构建完成: {len(bom_by_code)} 个代号, {len(bom_by_product_code)} 个产品代号, {len(bom_by_spec)} 个规格")
-        
-        # 匹配3D零件
+        # 准备清洗后的零件列表
         cleaned_parts = []
-        matched_count = 0
-        
+
         for idx, part in enumerate(parts_list):
             node_name = part.get("node_name", "")
             geometry_name = part.get("geometry_name", "")
@@ -178,54 +164,14 @@ class BOM3DMatcher:
             # 生成mesh_id
             mesh_id = f"mesh_{idx+1:03d}"
             
-            # 尝试匹配
+            # ❌ 禁用所有代码匹配，完全让AI接手
+            # 原因：
+            # 1. STEP文件中的geometry_name包含的是产品代号（如JXG-T6×100×50-970-Q355B），不是BOM代号
+            # 2. 代码的模糊匹配会把相似的零件混淆（如970和335长度的矩形管）
+            # 3. AI能理解语义差异，精确匹配产品代号
             matched_bom = None
             match_method = None
             confidence = 0.0
-            
-            # 方法1: 通过BOM代号匹配（01.09.2549格式）
-            code = self.extract_code_from_name(fixed_name)
-            if code and code in bom_by_code:
-                matched_bom = bom_by_code[code]
-                match_method = "代号匹配"
-                confidence = 0.95
-                matched_count += 1
-
-            # ✅ 方法2: 通过产品代号匹配（T-SPV250-Z602-01-01-Q355B格式）
-            if not matched_bom:
-                # 尝试从geometry_name中提取产品代号
-                # 策略：检查geometry_name是否包含BOM的product_code
-                # 或者BOM的product_code是否包含在geometry_name中
-                best_match = None
-                best_match_length = 0
-
-                for product_code, bom_item in bom_by_product_code.items():
-                    # 跳过太短的product_code（如M8*80）
-                    if len(product_code) < 5:
-                        continue
-
-                    # 检查是否匹配（不区分大小写）
-                    if product_code.upper() in geometry_name.upper() or product_code.upper() in fixed_name.upper():
-                        # 选择最长的匹配（更精确）
-                        if len(product_code) > best_match_length:
-                            best_match = bom_item
-                            best_match_length = len(product_code)
-
-                if best_match:
-                    matched_bom = best_match
-                    match_method = "产品代号匹配"
-                    confidence = 0.90
-                    matched_count += 1
-
-            # 方法3: 通过规格匹配（标准件，如M8*20）
-            if not matched_bom:
-                spec = self.extract_spec_from_name(fixed_name)
-                if spec and spec in bom_by_spec:
-                    # 如果有多个BOM项匹配同一规格，选择第一个
-                    matched_bom = bom_by_spec[spec][0]
-                    match_method = "规格匹配"
-                    confidence = 0.85
-                    matched_count += 1
             
             # 构建清洗后的零件记录
             cleaned_part = {
@@ -260,34 +206,7 @@ class BOM3DMatcher:
         bom_matched_count = len(bom_to_mesh_mapping)  # 匹配成功的BOM数
         bom_matching_rate = bom_matched_count / total_bom_count if total_bom_count else 0
 
-        # ✅ 显示两个匹配率
-        print(f"\n📊 匹配结果统计:")
-        print(f"   (1) BOM匹配率: {bom_matched_count}/{total_bom_count} ({bom_matching_rate*100:.1f}%)")
-        print(f"   (2) 3D零件匹配率: {matched_3d_count}/{total_3d_parts} ({parts_matching_rate*100:.1f}%)")
 
-        # ✅ 显示一对多映射统计
-        one_to_many_count = sum(1 for meshes in bom_to_mesh_mapping.values() if len(meshes) > 1)
-        total_mapped_parts = sum(len(meshes) for meshes in bom_to_mesh_mapping.values())
-        avg_parts_per_bom = total_mapped_parts / bom_matched_count if bom_matched_count else 0
-
-        print(f"\n📋 一对多映射统计:")
-        print(f"   - 一对多BOM数: {one_to_many_count}/{bom_matched_count}")
-        print(f"   - 平均每个BOM对应: {avg_parts_per_bom:.1f} 个3D零件")
-
-        # ✅ 显示数量验证（检查BOM qty与实际匹配的3D零件数是否一致）
-        qty_mismatch_count = 0
-        for bom_code, mesh_ids in bom_to_mesh_mapping.items():
-            bom_item = bom_by_code.get(bom_code)
-            if bom_item:
-                expected_qty = bom_item.get('quantity', 1)
-                actual_qty = len(mesh_ids)
-                if expected_qty != actual_qty:
-                    qty_mismatch_count += 1
-
-        if qty_mismatch_count > 0:
-            print(f"   ⚠️  数量不一致的BOM: {qty_mismatch_count}/{bom_matched_count}")
-        else:
-            print(f"   ✅ 所有BOM数量验证通过")
 
         # ✅ 新增：生成BOM映射宽表（包含完整的映射链条）
         bom_mapping_table = self.generate_bom_mapping_table(bom_data, cleaned_parts)
@@ -295,26 +214,21 @@ class BOM3DMatcher:
         return {
             "summary": {
                 "total_3d_parts": total_3d_parts,
-                "matched_3d_count": matched_3d_count,  # ✅ 匹配成功的3D零件数
+                "matched_3d_count": matched_3d_count,
                 "unmatched_3d_count": total_3d_parts - matched_3d_count,
-                "parts_matching_rate": parts_matching_rate,  # ✅ 3D零件匹配率
-                # ✅ BOM匹配统计
+                "parts_matching_rate": parts_matching_rate,
                 "total_bom_count": total_bom_count,
-                "bom_matched_count": bom_matched_count,  # ✅ 匹配成功的BOM数
-                "bom_matching_rate": bom_matching_rate,  # ✅ BOM匹配率
-                # ✅ 一对多映射统计
-                "one_to_many_count": one_to_many_count,
-                "avg_parts_per_bom": avg_parts_per_bom,
-                "qty_mismatch_count": qty_mismatch_count,
-                # ✅ 兼容旧代码的字段
+                "bom_matched_count": bom_matched_count,
+                "bom_matching_rate": bom_matching_rate,
+                # 兼容旧代码的字段
                 "matched_count": matched_3d_count,
                 "matching_rate": parts_matching_rate
             },
             "cleaned_parts": cleaned_parts,
-            "matched_parts": matched_parts,  # ✅ 已匹配的零件
-            "unmatched_parts": unmatched_parts,  # ✅ 未匹配的零件
+            "matched_parts": matched_parts,
+            "unmatched_parts": unmatched_parts,
             "bom_to_mesh_mapping": bom_to_mesh_mapping,
-            "bom_mapping_table": bom_mapping_table  # ✅ 新增：BOM映射宽表
+            "bom_mapping_table": bom_mapping_table
         }
     
     def generate_bom_to_mesh_mapping(self, cleaned_parts: List[Dict]) -> Dict[str, List[str]]:
@@ -378,9 +292,8 @@ class BOM3DMatcher:
             matched_parts = parts_by_bom_code.get(code, [])
 
             if matched_parts:
-                # 提取几何体名称和mesh_id
+                # 提取几何体名称和node_name
                 geometry_names = [p.get("fixed_name", p.get("geometry_name", "")) for p in matched_parts]
-                mesh_ids = [p.get("mesh_id") for p in matched_parts]
                 node_names = [p.get("node_name") for p in matched_parts]
 
                 mapping_table.append({
@@ -390,7 +303,6 @@ class BOM3DMatcher:
                     "name": name,
                     "quantity": quantity,
                     "geometry_names": geometry_names,
-                    "mesh_ids": mesh_ids,
                     "node_names": node_names,
                     "matched": True
                 })
@@ -403,7 +315,6 @@ class BOM3DMatcher:
                     "name": name,
                     "quantity": quantity,
                     "geometry_names": [],
-                    "mesh_ids": [],
                     "node_names": [],
                     "matched": False
                 })

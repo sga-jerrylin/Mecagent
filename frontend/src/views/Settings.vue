@@ -15,12 +15,12 @@
           <span style="margin-left: 8px;">API密钥配置</span>
         </el-divider>
 
-        <el-form-item label="DashScope API Key">
+        <el-form-item label="OpenRouter API Key">
           <el-input
-            v-model="settings.dashscopeApiKey"
+            v-model="settings.openrouterApiKey"
             type="password"
             show-password
-            placeholder="请输入阿里云DashScope API Key"
+            placeholder="请输入OpenRouter API Key"
             clearable
           >
             <template #prepend>
@@ -28,29 +28,33 @@
             </template>
           </el-input>
           <div class="form-item-tip">
-            用于Qwen-VL视觉模型，
-            <el-link type="primary" href="https://dashscope.console.aliyun.com/" target="_blank">
+            统一使用OpenRouter调用所有AI模型，
+            <el-link type="primary" href="https://openrouter.ai/keys" target="_blank">
               获取API Key
             </el-link>
           </div>
         </el-form-item>
 
-        <el-form-item label="DeepSeek API Key">
+        <!-- 模型配置 -->
+        <el-divider content-position="left">
+          <el-icon><Cpu /></el-icon>
+          <span style="margin-left: 8px;">模型配置</span>
+        </el-divider>
+
+        <el-form-item label="默认模型">
           <el-input
-            v-model="settings.deepseekApiKey"
-            type="password"
-            show-password
-            placeholder="请输入DeepSeek API Key"
+            v-model="settings.defaultModel"
+            placeholder="google/gemini-2.0-flash-exp:free"
             clearable
           >
             <template #prepend>
-              <el-icon><Lock /></el-icon>
+              <el-icon><Cpu /></el-icon>
             </template>
           </el-input>
           <div class="form-item-tip">
-            用于装配专家推理模型，
-            <el-link type="primary" href="https://platform.deepseek.com/" target="_blank">
-              获取API Key
+            OpenRouter模型ID，例如: google/gemini-2.0-flash-exp:free, anthropic/claude-3.5-sonnet
+            <el-link type="primary" href="https://openrouter.ai/models" target="_blank">
+              查看可用模型
             </el-link>
           </div>
         </el-form-item>
@@ -103,7 +107,11 @@
           </el-button>
           <el-button @click="testConnection" :loading="testing">
             <el-icon><Connection /></el-icon>
-            <span>测试连接</span>
+            <span>测试后端连接</span>
+          </el-button>
+          <el-button @click="testModel" :loading="testingModel" type="success">
+            <el-icon><Cpu /></el-icon>
+            <span>测试模型连接</span>
           </el-button>
         </el-form-item>
 
@@ -129,30 +137,33 @@
       </template>
 
       <el-steps direction="vertical" :active="3">
-        <el-step title="获取DashScope API Key">
+        <el-step title="获取OpenRouter API Key">
           <template #description>
             <div>
-              1. 访问 <el-link type="primary" href="https://dashscope.console.aliyun.com/" target="_blank">阿里云DashScope控制台</el-link><br>
-              2. 登录/注册账号<br>
-              3. 创建API Key并复制
+              1. 访问 <el-link type="primary" href="https://openrouter.ai/keys" target="_blank">OpenRouter API Keys</el-link><br>
+              2. 登录/注册账号（支持Google登录）<br>
+              3. 创建API Key并复制<br>
+              4. 充值余额（支持信用卡）
             </div>
           </template>
         </el-step>
-        <el-step title="获取DeepSeek API Key">
+        <el-step title="选择模型">
           <template #description>
             <div>
-              1. 访问 <el-link type="primary" href="https://platform.deepseek.com/" target="_blank">DeepSeek开放平台</el-link><br>
-              2. 登录/注册账号<br>
-              3. 创建API Key并复制
+              1. 访问 <el-link type="primary" href="https://openrouter.ai/models" target="_blank">OpenRouter模型列表</el-link><br>
+              2. 选择合适的模型（推荐Gemini 2.0 Flash免费版）<br>
+              3. 复制模型ID（例如: google/gemini-2.0-flash-exp:free）<br>
+              4. 粘贴到"默认模型"输入框
             </div>
           </template>
         </el-step>
-        <el-step title="配置并保存">
+        <el-step title="配置并测试">
           <template #description>
             <div>
-              1. 将API Key粘贴到上方输入框<br>
+              1. 将API Key和模型ID粘贴到上方输入框<br>
               2. 点击"保存设置"按钮<br>
-              3. 点击"测试连接"验证配置是否正确
+              3. 点击"测试后端连接"验证后端服务<br>
+              4. 点击"测试模型连接"验证模型配置是否正确
             </div>
           </template>
         </el-step>
@@ -164,25 +175,26 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { Setting, Key, Lock, Tools, Connection, Link, Select, RefreshLeft, QuestionFilled } from '@element-plus/icons-vue'
+import { Setting, Key, Lock, Tools, Connection, Link, Select, RefreshLeft, QuestionFilled, Cpu } from '@element-plus/icons-vue'
 import axios from 'axios'
 
 interface Settings {
-  dashscopeApiKey: string
-  deepseekApiKey: string
+  openrouterApiKey: string
+  defaultModel: string
   websocketUrl: string
   apiBaseUrl: string
 }
 
 const settings = ref<Settings>({
-  dashscopeApiKey: '',
-  deepseekApiKey: '',
+  openrouterApiKey: '',
+  defaultModel: 'google/gemini-2.0-flash-exp:free',
   websocketUrl: 'ws://localhost:8008',
-  apiBaseUrl: 'http://localhost:8008/api'
+  apiBaseUrl: '/api'
 })
 
 const saving = ref(false)
 const testing = ref(false)
+const testingModel = ref(false)
 const statusMessage = ref('')
 const statusType = ref<'success' | 'warning' | 'error' | 'info'>('info')
 
@@ -206,17 +218,17 @@ const loadSettings = () => {
 const saveSettings = async () => {
   saving.value = true
   statusMessage.value = ''
-  
+
   try {
     // 保存到localStorage
     localStorage.setItem('app_settings', JSON.stringify(settings.value))
-    
+
     // 发送到后端
     await axios.post(`${settings.value.apiBaseUrl}/settings`, {
-      dashscope_api_key: settings.value.dashscopeApiKey,
-      deepseek_api_key: settings.value.deepseekApiKey
+      openrouter_api_key: settings.value.openrouterApiKey,
+      default_model: settings.value.defaultModel
     })
-    
+
     statusMessage.value = '设置保存成功！'
     statusType.value = 'success'
     ElMessage.success('设置已保存')
@@ -231,10 +243,10 @@ const saveSettings = async () => {
 
 const resetSettings = () => {
   settings.value = {
-    dashscopeApiKey: '',
-    deepseekApiKey: '',
+    openrouterApiKey: '',
+    defaultModel: 'google/gemini-2.0-flash-exp:free',
     websocketUrl: 'ws://localhost:8008',
-    apiBaseUrl: 'http://localhost:8008/api'
+    apiBaseUrl: '/api'
   }
   localStorage.removeItem('app_settings')
   statusMessage.value = '已重置为默认设置'
@@ -245,24 +257,57 @@ const resetSettings = () => {
 const testConnection = async () => {
   testing.value = true
   statusMessage.value = ''
-  
+
   try {
     const response = await axios.get(`${settings.value.apiBaseUrl}/health`)
-    
+
     if (response.data.status === 'healthy') {
-      statusMessage.value = '✅ 连接成功！后端服务运行正常'
+      statusMessage.value = '✅ 后端连接成功！服务运行正常'
       statusType.value = 'success'
-      ElMessage.success('连接测试成功')
+      ElMessage.success('后端连接测试成功')
     } else {
       statusMessage.value = '⚠️ 后端服务状态异常'
       statusType.value = 'warning'
     }
   } catch (error: any) {
-    statusMessage.value = `❌ 连接失败: ${error.message}`
+    statusMessage.value = `❌ 后端连接失败: ${error.message}`
     statusType.value = 'error'
-    ElMessage.error('连接测试失败')
+    ElMessage.error('后端连接测试失败')
   } finally {
     testing.value = false
+  }
+}
+
+const testModel = async () => {
+  testingModel.value = true
+  statusMessage.value = ''
+
+  try {
+    // 先保存设置
+    localStorage.setItem('app_settings', JSON.stringify(settings.value))
+
+    // 测试模型连接
+    const response = await axios.post(`${settings.value.apiBaseUrl}/test-model`, {
+      openrouter_api_key: settings.value.openrouterApiKey,
+      model: settings.value.defaultModel
+    })
+
+    if (response.data.success) {
+      statusMessage.value = `✅ 模型连接成功！\n模型: ${settings.value.defaultModel}\n响应: ${response.data.message || '测试通过'}`
+      statusType.value = 'success'
+      ElMessage.success('模型连接测试成功')
+    } else {
+      statusMessage.value = `❌ 模型连接失败: ${response.data.error || '未知错误'}`
+      statusType.value = 'error'
+      ElMessage.error('模型连接测试失败')
+    }
+  } catch (error: any) {
+    const errorMsg = error.response?.data?.detail || error.message
+    statusMessage.value = `❌ 模型连接失败: ${errorMsg}`
+    statusType.value = 'error'
+    ElMessage.error('模型连接测试失败')
+  } finally {
+    testingModel.value = false
   }
 }
 </script>

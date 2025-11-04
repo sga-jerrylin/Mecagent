@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // 创建axios实例
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8008/api',
   timeout: 300000, // 5分钟超时
   headers: {
     'Content-Type': 'application/json'
@@ -264,7 +264,7 @@ export class TaskWebSocket {
   }
 
   connect() {
-    const wsUrl = `ws://localhost:8000/ws/task/${this.taskId}`
+    const wsUrl = `ws://localhost:8008/ws/task/${this.taskId}`
     this.ws = new WebSocket(wsUrl)
 
     this.ws.onopen = () => {

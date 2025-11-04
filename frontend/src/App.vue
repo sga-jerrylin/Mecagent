@@ -26,6 +26,10 @@
             <el-icon><View /></el-icon>
             <span>查看器</span>
           </router-link>
+          <router-link to="/settings" class="nav-item" active-class="active">
+            <el-icon><Setting /></el-icon>
+            <span>设置</span>
+          </router-link>
         </div>
         
         <div class="nav-actions">
@@ -67,7 +71,7 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
-import { Sunny, Moon } from '@element-plus/icons-vue'
+import { Sunny, Moon, House, DocumentAdd, View, Setting, QuestionFilled } from '@element-plus/icons-vue'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)

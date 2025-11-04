@@ -20,24 +20,33 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class Qwen3VLModel:
     """Qwen3-VL视觉模型封装类"""
-    
-    def __init__(self, api_key: Optional[str] = None):
+
+    def __init__(self, api_key: Optional[str] = None, model_name: Optional[str] = None):
         """
         初始化Qwen3-VL模型
-        
+
         Args:
             api_key: DashScope API Key，如果不提供则从环境变量获取
+            model_name: 模型名称（可选，默认从config.py读取）
         """
         self.api_key = api_key or os.getenv("DASHSCOPE_API_KEY")
         if not self.api_key:
             raise ValueError("请设置DASHSCOPE_API_KEY环境变量或传入api_key参数")
-        
+
         self.client = OpenAI(
             api_key=self.api_key,
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
         )
-        
-        self.model_name = "qwen-vl-plus"
+
+        # ✅ Bug修复：从config.py读取模型名称
+        if model_name:
+            self.model_name = model_name
+        else:
+            try:
+                from config import MODEL_CONFIG
+                self.model_name = MODEL_CONFIG["qwen"]
+            except ImportError:
+                self.model_name = os.getenv("QWEN_MODEL", "qwen-vl-plus")
     
     def encode_image_to_base64(self, image_path: str) -> str:
         """

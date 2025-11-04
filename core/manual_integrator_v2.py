@@ -28,6 +28,7 @@ class ManualIntegratorV2:
         safety_faq_result: Dict = None,
         bom_to_mesh_mapping: Dict = None,
         component_to_glb_mapping: Dict = None,
+        component_level_mappings: Dict = None,  # ✅ 新增：组件级别映射（包含BOM映射表）
         image_hierarchy: Dict = None,  # ✅ 新增：图片层级结构
         task_id: str = None  # ✅ 新增：任务ID（用于生成API路径）
     ) -> Dict:
@@ -68,7 +69,8 @@ class ManualIntegratorV2:
             "safety_and_faq": self._build_safety_faq(safety_faq_result, component_assembly_results, product_assembly_result),
             "3d_resources": self._build_3d_resources(
                 bom_to_mesh_mapping,
-                component_to_glb_mapping
+                component_to_glb_mapping,
+                component_level_mappings  # ✅ 传递组件级别映射
             )
         }
         
@@ -319,21 +321,24 @@ class ManualIntegratorV2:
     def _build_3d_resources(
         self,
         bom_to_mesh_mapping: Dict = None,
-        component_to_glb_mapping: Dict = None
+        component_to_glb_mapping: Dict = None,
+        component_level_mappings: Dict = None
     ) -> Dict:
         """
-        3D
-        
+        3D资源构建
+
         Args:
-            bom_to_mesh_mapping: BOMmesh_id
-            component_to_glb_mapping: GLB
-            
+            bom_to_mesh_mapping: BOM到mesh_id的映射
+            component_to_glb_mapping: 组件到GLB文件的映射
+            component_level_mappings: 组件级别映射（包含BOM映射表）
+
         Returns:
-            3D
+            3D资源字典
         """
         return {
             "bom_to_mesh": bom_to_mesh_mapping or {},
             "component_to_glb": component_to_glb_mapping or {},
+            "component_level_mappings": component_level_mappings or {},  # ✅ 添加组件级别映射
             "product_glb": "product_total.glb"
         }
     

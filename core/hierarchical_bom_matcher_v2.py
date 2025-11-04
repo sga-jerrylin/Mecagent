@@ -67,19 +67,31 @@ class HierarchicalBOMMatcher:
             
             print_info(f"\n处理组件{comp_order}: {comp_name}")
             
-            # 查找对应的STEP文件
-            step_file = step_path / f"组件图{comp_order}.STEP"
-            if not step_file.exists():
-                step_file = step_path / f"组件图{comp_order}.step"
-            
-            if not step_file.exists():
-                print_warning(f"组件{comp_order}的STEP文件不存在", indent=1)
+            # 查找对应的STEP文件（支持多种命名方式）
+            step_file = None
+            possible_names = [
+                f"组件图{comp_order}.STEP",
+                f"组件图{comp_order}.step",
+                f"组件{comp_order}.STEP",
+                f"组件{comp_order}.step",
+                f"组件图{comp_order}.stp",
+                f"组件{comp_order}.stp"
+            ]
+
+            for name in possible_names:
+                candidate = step_path / name
+                if candidate.exists():
+                    step_file = candidate
+                    break
+
+            if not step_file:
+                print_warning(f"组件{comp_order}的STEP文件不存在（尝试了: {', '.join(possible_names)}）", indent=1)
                 continue
             
             print_info(f"STEP文件: {step_file.name}", indent=1)
 
-            # 转换为GLB
-            glb_file = glb_output / f"component_{comp_code.replace('.', '_')}.glb"
+            # 转换为GLB（使用序号而不是BOM代号，确保前端能通过序号找到对应的GLB）
+            glb_file = glb_output / f"component_{comp_order}.glb"
             print_info(f"开始转换STEP -> GLB: {glb_file.name}", indent=1)
 
             import sys
@@ -115,22 +127,14 @@ class HierarchicalBOMMatcher:
 
                 code_bom_matched = code_summary.get('bom_matched_count', 0)
                 total_bom = code_summary.get('total_bom_count', 0)
-                bom_rate = code_summary.get('bom_matching_rate', 0)
-
-                code_parts_matched = code_summary.get('matched_3d_count', 0)
                 total_parts = code_summary.get('total_3d_parts', 0)
-                parts_rate = code_summary.get('parts_matching_rate', 0)
 
-                print_success(f"代码匹配完成:", indent=1)
-                print_info(f"  (1) BOM匹配率: {code_bom_matched}/{total_bom} ({bom_rate*100:.1f}%)", indent=1)
-                print_info(f"  (2) 3D零件匹配率: {code_parts_matched}/{total_parts} ({parts_rate*100:.1f}%)", indent=1)
-
-                # 步骤2：AI跟进匹配未匹配的零件
+                # ✅ AI匹配所有零件
+                print_info(f"🤖 AI匹配员工开始工作，分析 {len(component_bom)} 个BOM和 {len(parts_list)} 个3D零件", indent=1)
                 ai_bom_to_mesh = {}
                 ai_bom_matched_count = 0
 
                 if unmatched_parts:
-                    print_info(f"👷 AI匹配员工加入工作，他开始智能分析 {len(unmatched_parts)} 个未匹配的3D零件...", indent=1)
                     import sys
                     sys.stdout.flush()
 
@@ -142,37 +146,54 @@ class HierarchicalBOMMatcher:
                     ai_matcher = AIBOMMatcher()
                     ai_results = ai_matcher.match_unmatched_parts(unmatched_parts, unmatched_bom)
 
-                    # 合并AI匹配结果到bom_to_mesh映射
+                    # ✅ 将AI匹配结果应用到cleaned_parts（更新bom_code）
+                    cleaned_parts = code_matching_result.get("cleaned_parts", [])
                     for ai_result in ai_results:
                         bom_code = ai_result.get("matched_bom_code")
-                        mesh_id = ai_result.get("mesh_id")
-                        if bom_code and mesh_id:
+                        node_name = ai_result.get("node_name")
+
+                        if bom_code and node_name:
+                            # 找到对应的零件并更新bom_code
+                            for part in cleaned_parts:
+                                if part.get("node_name") == node_name and not part.get("bom_code"):
+                                    part["bom_code"] = bom_code
+                                    part["match_method"] = "AI匹配"
+                                    part["confidence"] = ai_result.get("confidence", 0.0)
+                                    break
+
+                            # 同时更新ai_bom_to_mesh映射（用于统计）
                             if bom_code not in ai_bom_to_mesh:
                                 ai_bom_to_mesh[bom_code] = []
-                            ai_bom_to_mesh[bom_code].append(mesh_id)
+                            ai_bom_to_mesh[bom_code].append(node_name)
 
                     # 计算AI新增匹配的BOM数量（不在代码匹配中的）
                     ai_bom_matched_count = len([k for k in ai_bom_to_mesh.keys() if k not in code_bom_to_mesh])
 
-                    print_success(f"✅ AI匹配员工完成了工作，他新增匹配了 {ai_bom_matched_count} 个BOM", indent=1)
-                    import sys
-                    sys.stdout.flush()
-
-                # 合并代码匹配和AI匹配的结果
+                # ✅ 合并匹配结果
                 final_bom_to_mesh = {**code_bom_to_mesh, **ai_bom_to_mesh}
-                total_bom_matched = len(final_bom_to_mesh)  # 最终匹配的BOM数量
+                total_bom_matched = len(final_bom_to_mesh)
                 final_bom_rate = total_bom_matched / total_bom if total_bom else 0
 
                 # 计算最终的3D零件匹配数
                 final_parts_matched = sum(len(meshes) for meshes in final_bom_to_mesh.values())
                 final_parts_rate = final_parts_matched / total_parts if total_parts else 0
 
-                print_success(f"✅ 总匹配结果:", indent=1)
-                print_info(f"  (1) BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
-                print_info(f"  (2) 3D零件匹配率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
+                print_success(f"✅ AI匹配完成:", indent=1)
+                print_info(f"  📋 BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%)", indent=1)
+                print_info(f"  🎨 3D零件覆盖率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
 
-                # ✅ 获取BOM映射宽表（从代码匹配结果中获取）
-                bom_mapping_table = code_matching_result.get("bom_mapping_table", [])
+                # ✅ 列出未匹配的BOM
+                if total_bom_matched < total_bom:
+                    unmatched_bom_codes = [bom.get('code') for bom in component_bom if bom.get('code') not in final_bom_to_mesh]
+                    print_warning(f"  ⚠️  未匹配的BOM ({len(unmatched_bom_codes)}个): {', '.join(unmatched_bom_codes[:5])}", indent=1)
+
+                import sys
+                sys.stdout.flush()
+
+                # ✅ 重新生成BOM映射宽表（使用更新后的cleaned_parts）
+                from core.bom_3d_matcher import BOM3DMatcher
+                matcher = BOM3DMatcher()
+                bom_mapping_table = matcher.generate_bom_mapping_table(component_bom, cleaned_parts)
 
                 # 保存组件级别的映射
                 component_level_mappings[comp_code] = {
@@ -204,15 +225,27 @@ class HierarchicalBOMMatcher:
         print_substep("步骤2：处理产品级别的STEP文件")
         
         # 查找产品总图的STEP文件
-        product_step = step_path / "产品测试.STEP"
-        if not product_step.exists():
-            product_step = step_path / "产品总图.STEP"
-        if not product_step.exists():
-            product_step = step_path / "产品测试.step"
-        if not product_step.exists():
-            product_step = step_path / "产品总图.step"
-        
-        if product_step.exists():
+        # 尝试多种可能的产品STEP文件名
+        possible_product_names = [
+            "产品测试.STEP",
+            "产品总图.STEP",
+            "产品主图.STEP",  # ✅ 新增
+            "产品测试.step",
+            "产品总图.step",
+            "产品主图.step",  # ✅ 新增
+            "产品测试.stp",
+            "产品总图.stp",
+            "产品主图.stp",   # ✅ 新增
+        ]
+
+        product_step = None
+        for name in possible_product_names:
+            candidate = step_path / name
+            if candidate.exists():
+                product_step = candidate
+                break
+
+        if product_step and product_step.exists():
             print_info(f"处理产品总图: {product_step.name}")
             
             # 转换为GLB
@@ -250,22 +283,14 @@ class HierarchicalBOMMatcher:
 
                 code_bom_matched = code_summary.get('bom_matched_count', 0)
                 total_bom = code_summary.get('total_bom_count', 0)
-                bom_rate = code_summary.get('bom_matching_rate', 0)
-
-                code_parts_matched = code_summary.get('matched_3d_count', 0)
                 total_parts = code_summary.get('total_3d_parts', 0)
-                parts_rate = code_summary.get('parts_matching_rate', 0)
 
-                print_success(f"代码匹配完成:", indent=1)
-                print_info(f"  (1) BOM匹配率: {code_bom_matched}/{total_bom} ({bom_rate*100:.1f}%)", indent=1)
-                print_info(f"  (2) 3D零件匹配率: {code_parts_matched}/{total_parts} ({parts_rate*100:.1f}%)", indent=1)
-
-                # 步骤2：AI跟进匹配未匹配的零件
+                # ✅ AI匹配所有零件
+                print_info(f"🤖 AI匹配员工开始工作，分析 {len(product_bom)} 个BOM和 {len(parts_list)} 个3D零件", indent=1)
                 ai_bom_to_mesh = {}
                 ai_bom_matched_count = 0
 
                 if unmatched_parts:
-                    print_info(f"👷 AI匹配员工加入工作，他开始智能分析 {len(unmatched_parts)} 个未匹配的3D零件...", indent=1)
                     import sys
                     sys.stdout.flush()
 
@@ -277,37 +302,54 @@ class HierarchicalBOMMatcher:
                     ai_matcher = AIBOMMatcher()
                     ai_results = ai_matcher.match_unmatched_parts(unmatched_parts, unmatched_bom)
 
-                    # 合并AI匹配结果到bom_to_mesh映射
+                    # ✅ 将AI匹配结果应用到cleaned_parts（更新bom_code）
+                    cleaned_parts = code_matching_result.get("cleaned_parts", [])
                     for ai_result in ai_results:
                         bom_code = ai_result.get("matched_bom_code")
-                        mesh_id = ai_result.get("mesh_id")
-                        if bom_code and mesh_id:
+                        node_name = ai_result.get("node_name")
+
+                        if bom_code and node_name:
+                            # 找到对应的零件并更新bom_code
+                            for part in cleaned_parts:
+                                if part.get("node_name") == node_name and not part.get("bom_code"):
+                                    part["bom_code"] = bom_code
+                                    part["match_method"] = "AI匹配"
+                                    part["confidence"] = ai_result.get("confidence", 0.0)
+                                    break
+
+                            # 同时更新ai_bom_to_mesh映射（用于统计）
                             if bom_code not in ai_bom_to_mesh:
                                 ai_bom_to_mesh[bom_code] = []
-                            ai_bom_to_mesh[bom_code].append(mesh_id)
+                            ai_bom_to_mesh[bom_code].append(node_name)
 
                     # 计算AI新增匹配的BOM数量（不在代码匹配中的）
                     ai_bom_matched_count = len([k for k in ai_bom_to_mesh.keys() if k not in code_bom_to_mesh])
 
-                    print_success(f"✅ AI匹配员工完成了工作，他新增匹配了 {ai_bom_matched_count} 个BOM", indent=1)
-                    import sys
-                    sys.stdout.flush()
-
-                # 合并代码匹配和AI匹配的结果
+                # ✅ 合并匹配结果
                 final_bom_to_mesh = {**code_bom_to_mesh, **ai_bom_to_mesh}
-                total_bom_matched = len(final_bom_to_mesh)  # 最终匹配的BOM数量
+                total_bom_matched = len(final_bom_to_mesh)
                 final_bom_rate = total_bom_matched / total_bom if total_bom else 0
 
                 # 计算最终的3D零件匹配数
                 final_parts_matched = sum(len(meshes) for meshes in final_bom_to_mesh.values())
                 final_parts_rate = final_parts_matched / total_parts if total_parts else 0
 
-                print_success(f"✅ 总匹配结果:", indent=1)
-                print_info(f"  (1) BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%) [代码: {code_bom_matched}, AI: {ai_bom_matched_count}]", indent=1)
-                print_info(f"  (2) 3D零件匹配率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
+                print_success(f"✅ AI匹配完成:", indent=1)
+                print_info(f"  📋 BOM匹配率: {total_bom_matched}/{total_bom} ({final_bom_rate*100:.1f}%)", indent=1)
+                print_info(f"  🎨 3D零件覆盖率: {final_parts_matched}/{total_parts} ({final_parts_rate*100:.1f}%)", indent=1)
 
-                # ✅ 获取BOM映射宽表（从代码匹配结果中获取）
-                product_bom_mapping_table = code_matching_result.get("bom_mapping_table", [])
+                # ✅ 列出未匹配的BOM
+                if total_bom_matched < total_bom:
+                    unmatched_bom_codes = [bom.get('code') for bom in product_bom if bom.get('code') not in final_bom_to_mesh]
+                    print_warning(f"  ⚠️  未匹配的BOM ({len(unmatched_bom_codes)}个): {', '.join(unmatched_bom_codes[:5])}", indent=1)
+
+                import sys
+                sys.stdout.flush()
+
+                # ✅ 重新生成BOM映射宽表（使用更新后的cleaned_parts）
+                from core.bom_3d_matcher import BOM3DMatcher
+                matcher = BOM3DMatcher()
+                product_bom_mapping_table = matcher.generate_bom_mapping_table(product_bom, cleaned_parts)
 
                 product_level_mapping = {
                     "glb_file": str(product_glb),
@@ -364,15 +406,34 @@ class HierarchicalBOMMatcher:
         """
         # 获取组件序号
         comp_order = comp_plan.get("assembly_order", 0)
+        comp_name = comp_plan.get("component_name", "")
 
-        # 根据source_pdf过滤BOM数据
+        # 根据source_pdf过滤BOM数据（支持多种命名方式）
         component_bom = []
-        target_pdf = f"组件图{comp_order}.pdf"
 
+        # 可能的文件名格式（不区分大小写）
+        possible_names = [
+            f"组件图{comp_order}.pdf",
+            f"组件图{comp_order}.PDF",
+            f"组件{comp_order}.pdf",
+            f"组件{comp_order}.PDF"
+        ]
+
+        # ✅ 调试日志：打印查找信息
+        print_info(f"🔍 查找组件{comp_order}({comp_name})的BOM数据", indent=1)
+        print_info(f"   可能的文件名: {', '.join(possible_names)}", indent=1)
+
+        # 统计所有source_pdf
+        all_source_pdfs = set()
         for bom_item in bom_data:
             source_pdf = bom_item.get("source_pdf", "")
-            if source_pdf == target_pdf:
+            all_source_pdfs.add(source_pdf)
+            # 不区分大小写匹配
+            if source_pdf in possible_names:
                 component_bom.append(bom_item)
+
+        print_info(f"   BOM数据中的所有source_pdf: {', '.join(sorted(all_source_pdfs))}", indent=1)
+        print_info(f"   匹配到的BOM数量: {len(component_bom)}", indent=1)
 
         return component_bom
 

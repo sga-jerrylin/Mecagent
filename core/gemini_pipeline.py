@@ -59,7 +59,7 @@ from utils.logger import (
 class GeminiAssemblyPipeline:
     """基于Gemini 2.5 Flash的6-Agent装配说明书生成工作流"""
 
-    def __init__(self, api_key: str, output_dir: str = "pipeline_output", product_name: str = ""):
+    def __init__(self, api_key: str, output_dir: str = "pipeline_output", product_name: str = "", model_name: str = None):
         """
         初始化工作流
 
@@ -67,21 +67,26 @@ class GeminiAssemblyPipeline:
             api_key: OpenRouter API密钥
             output_dir: 输出目录
             product_name: 产品名称（用户输入）
+            model_name: AI模型名称（可选，如果不提供则从环境变量读取）
         """
         self.api_key = api_key
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.product_name = product_name  # ✅ 保存产品名称
+        self.model_name = model_name or os.getenv("OPENROUTER_MODEL") or "google/gemini-2.0-flash-exp:free"
 
-        # 设置API密钥
+        # 设置API密钥和模型名称到环境变量
         os.environ["OPENROUTER_API_KEY"] = api_key
-        
+        os.environ["OPENROUTER_MODEL"] = self.model_name
+
+        print(f"🤖 Pipeline 初始化 - 使用模型: {self.model_name}")
+
         # 初始化复用的Core组件
         self.file_classifier = FileClassifier()
         self.bom_matcher = HierarchicalBOMMatcher()
         self.integrator = ManualIntegratorV2(product_name=product_name)  # ✅ 传入产品名称
-        
-        # 初始化6个Agent
+
+        # 初始化6个Agent - 传入model_name确保使用正确的模型
         self.vision_agent = VisionPlanningAgent()
         self.component_agent = ComponentAssemblyAgent()
         self.product_agent = ProductAssemblyAgent()
@@ -132,7 +137,7 @@ class GeminiAssemblyPipeline:
             # ========== 支路1: PDF处理 ==========
             # 步骤1: 文件分类 + PDF转图片
             self.current_step = 1
-            file_hierarchy, image_hierarchy = self._step1_classify_and_convert(pdf_dir)
+            file_hierarchy, image_hierarchy = self._step1_classify_and_convert(pdf_dir, step_dir)
 
             # 步骤2: 从PDF提取BOM数据
             self.current_step = 2
@@ -198,21 +203,29 @@ class GeminiAssemblyPipeline:
                 "error": str(e)
             }
     
-    def _step1_classify_and_convert(self, pdf_dir: str) -> tuple:
+    def _step1_classify_and_convert(self, pdf_dir: str, step_dir: str = None) -> tuple:
         """步骤1: 文件分类 + PDF转图片"""
         print_substep(f"[{self.current_step}/{self.total_steps}] 📂 文件管理员")
 
         self.log_agent_call("文件管理", "查看文件夹里有哪些图纸", "running")
 
         pdf_path = Path(pdf_dir)
-        pdf_files = [str(f) for f in pdf_path.glob("*.pdf")]
+        # ✅ Bug修复：同时扫描大写和小写的PDF文件
+        pdf_files = [str(f) for f in pdf_path.glob("*.pdf")] + [str(f) for f in pdf_path.glob("*.PDF")]
 
         print_info(f"📄 他发现了 {len(pdf_files)} 个PDF图纸", indent=1)
         import sys
         sys.stdout.flush()
 
         self.log_agent_call("文件管理", "分辨哪些是产品总图，哪些是组件图", "running")
-        file_hierarchy = self.file_classifier.classify_files(pdf_files)
+
+        # 获取STEP文件列表
+        step_files = []
+        if step_dir:
+            step_path = Path(step_dir)
+            step_files = [str(f) for f in step_path.glob("*.STEP")] + [str(f) for f in step_path.glob("*.step")] + [str(f) for f in step_path.glob("*.stp")]
+
+        file_hierarchy = self.file_classifier.classify_files(pdf_files, step_files)
 
         product_name = Path(file_hierarchy['product']['pdf']).name if file_hierarchy['product'] else 'N/A'
         print_success(f"📋 他找到了产品总图: {product_name}", indent=1)
@@ -252,16 +265,12 @@ class GeminiAssemblyPipeline:
         return file_hierarchy, image_hierarchy
     
     def _step2_extract_bom_from_pdfs(self, file_hierarchy: Dict) -> List[Dict]:
-        """步骤2: 从PDF提取BOM数据"""
+        """步骤2: 从PDF提取BOM数据（使用Gemini Vision API）"""
         print_substep(f"[{self.current_step}/{self.total_steps}] 📊 BOM数据分析员")
 
         self.log_agent_call("BOM分析", "从图纸中读取零件清单", "running")
 
-        from pypdf import PdfReader
-        import re
-
         all_bom_items = []
-        seen_codes = set()
 
         # 收集所有PDF文件
         all_pdfs = []
@@ -277,95 +286,29 @@ class GeminiAssemblyPipeline:
         # 统计每个PDF的BOM数量
         pdf_bom_counts = {}
 
-        # 从每个PDF提取BOM
+        # 从每个PDF提取BOM（使用Gemini Vision API）
         for pdf_path in all_pdfs:
             pdf_name = Path(pdf_path).name
             print_info(f"   📖 正在阅读: {pdf_name}", indent=1)
             sys.stdout.flush()
 
-            pdf_bom_count = 0
-
             try:
-                reader = PdfReader(pdf_path)
-                all_text = ""
-                for page in reader.pages:
-                    all_text += page.extract_text() + "\n"
+                # 使用Gemini Vision API提取BOM
+                bom_items = self._extract_bom_with_vision(pdf_path, pdf_name)
 
-                lines = all_text.split('\n')
+                if bom_items:
+                    all_bom_items.extend(bom_items)
+                    pdf_bom_counts[pdf_name] = len(bom_items)
+                    print_success(f"      提取到 {len(bom_items)} 个零件", indent=1)
+                else:
+                    pdf_bom_counts[pdf_name] = 0
+                    print_warning(f"      未提取到零件", indent=1)
 
-                for line in lines:
-                    if not line.strip() or '序号' in line or '物料代码' in line:
-                        continue
-
-                    parts = line.split()
-                    if len(parts) < 4:
-                        continue
-
-                    # 第一个应该是序号
-                    try:
-                        seq = int(parts[0])
-                        if not (1 <= seq <= 200):
-                            continue
-                    except:
-                        continue
-
-                    # 查找BOM代号
-                    code = None
-                    code_idx = -1
-                    for j, part in enumerate(parts[1:], 1):
-                        if re.match(r'^\d{2}\.\d{2}\.', part):
-                            code = part
-                            code_idx = j
-                            break
-
-                    if not code or code in seen_codes:
-                        continue
-                    seen_codes.add(code)
-
-                    # 提取产品代号
-                    product_code = ""
-                    if code_idx + 1 < len(parts):
-                        next_part = parts[code_idx + 1]
-                        if any(c in next_part for c in ['-', '*', 'φ', 'Φ', 'M', 'T-']):
-                            product_code = next_part
-
-                    # 提取名称
-                    name_start_idx = code_idx + 2 if product_code else code_idx + 1
-                    name_parts = []
-                    for j in range(name_start_idx, len(parts) - 2):
-                        name_parts.append(parts[j])
-                    name = ' '.join(name_parts) if name_parts else "未知"
-
-                    # 提取数量和重量
-                    try:
-                        qty = int(parts[-2])
-                        weight = float(parts[-1])
-                    except:
-                        try:
-                            qty = int(parts[-3])
-                            weight = float(parts[-1])
-                        except:
-                            continue
-
-                    all_bom_items.append({
-                        "seq": str(seq),
-                        "code": code,
-                        "product_code": product_code,
-                        "name": name,
-                        "quantity": qty,
-                        "weight": weight,
-                        "source_pdf": pdf_name
-                    })
-
-                    pdf_bom_count += 1
-
-                # 记录这个PDF的BOM数量
-                pdf_bom_counts[pdf_name] = pdf_bom_count
-                print_success(f"      提取到 {pdf_bom_count} 个零件", indent=1)
                 sys.stdout.flush()
 
             except Exception as e:
                 print_warning(f"   ⚠️  {pdf_name} 读取失败: {e}", indent=1)
+                pdf_bom_counts[pdf_name] = 0
                 sys.stdout.flush()
 
         # 显示详细统计
@@ -382,6 +325,277 @@ class GeminiAssemblyPipeline:
             json.dump(all_bom_items, f, ensure_ascii=False, indent=2)
 
         return all_bom_items
+
+    def _extract_bom_with_vision(self, pdf_path: str, pdf_name: str) -> List[Dict]:
+        """使用Gemini Vision API从PDF中提取BOM表"""
+        import fitz
+        import base64
+        import io
+        from PIL import Image
+
+        # 将PDF转换为图片
+        doc = fitz.open(pdf_path)
+        images = []
+
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))  # 2x缩放
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+
+            # 转换为base64
+            buffered = io.BytesIO()
+            img.save(buffered, format="PNG")
+            img_base64 = base64.b64encode(buffered.getvalue()).decode()
+            images.append(img_base64)
+
+        doc.close()
+
+        # 调用Gemini Vision API
+        prompt = """# 任务：从工程图纸中提取BOM表（零件清单/明细表）
+
+## 1. 如何识别BOM表
+
+### ⚠️ 关键识别特征（必须同时满足）：
+
+1. **必须有"代号"列**，格式为 `XX.XX.XXXX` 或 `XX.XX.XX.XXXXX`
+   - 示例：`01.09.0410`, `02.03.0008`, `02.08.02.0263`
+   - **如果表格中没有这种格式的代号，那就不是BOM表！**
+
+2. **必须有"序号"列**，数字从1开始（1, 2, 3...）
+   - 序号可能从上到下排列（1在上，38在下）
+   - 序号也可能从下到上排列（1在下，38在上）
+
+3. **必须有"名称"列**，包含零件名称
+
+### ❌ 不是BOM表的例子：
+
+**工艺路线表**（不要提取）：
+```
+| 序号 | 工序号 | 名称 | 设备 |
+|  1   | 08.04  | 焊丸  |      |
+|  2   | 01.13  | 喷漆  |      |
+```
+- ❌ 这个表格的"工序号"列（08.04, 01.13）**不是BOM代号**
+- ❌ 工序号只有2段（XX.XX），而BOM代号至少有3段（XX.XX.XXXX）
+- ❌ 这是工艺流程表，不是零件清单
+
+**BOM表**（需要提取）：
+```
+| 序号 | 代号 | 产品代号 | 名称 | 数量 | 重量 |
+|  1   | 01.09.0410 | T-AB1830(72IN)-EURO-01 | 挂架组件-漆后 | 1 | 4.71 |
+|  2   | 01.09.0408 | ... | 主框架组件-漆后 | 1 | 3.01 |
+```
+- ✅ "代号"列是 `01.09.0410`（至少3段，XX.XX.XXXX格式）
+- ✅ 这是零件清单
+
+## 2. BOM表的详细特征
+
+**表格位置**：通常在图纸的右下角、右侧或下方
+
+**表格结构**（从左到右的列）：
+```
+| 序号 | 代号 | 产品代号/规格 | 名称 | 数量 | 单重 | 总重 |
+```
+
+**字段说明**：
+1. **序号**：1, 2, 3, 4...（可能从下往上排列）
+2. **代号**（BOM号）：
+   - 标准格式：`01.09.0410`, `02.03.0008`, `01.04.0145`
+   - 4段格式：`02.08.02.0263`
+   - **至少3段**（XX.XX.XXXX），必须以数字开头，包含点号分隔
+3. **产品代号**：可能包含：
+   - 英文字母和数字：`T-AB1830(72IN)-EURO-01`, `S-RB1830-07`
+   - 规格型号：`M8*60`, `M12*35`, `10*2`, `φ4.5*10`
+   - 中文描述：`标准型性能8级8.8GB/T5781-2016`
+4. **名称**：零件名称（可能是中文或英文），如：
+   - 中文：`挂架组件-漆后`, `六角头螺栓全螺纹8.8级GB/T5781-2016`, `销轴-镀锌`
+   - 英文：`WARNING-FLYING OBJECTS AND PINCH POINTS`, `WARNING-HIGH PRESSURE FLUID HAZARD`, `DANGER-PINCH POINTS`
+   - ⚠️ **重要**：以`WARNING`或`DANGER`开头的也是**有效的产品名称**，必须提取！
+5. **数量**：整数（1, 2, 4, 12, 38等）
+6. **重量**：浮点数，单位kg（76.42, 0.29, 3.65, 0.00等）
+
+**需要跳过的行**：
+- 表头行（如：`序号`, `代号`, `名称`, `数量`, `重量`等）
+- 没有代号的行（代号列为空的行）
+- 没有序号的行（序号列为空的行）
+- 代号格式不对的行（如：只有2段的工序号 `08.04`, `01.13`）
+
+## 3. 提取规则
+
+### 3.1 第一步：识别BOM表
+1. **在所有页面中查找表格**（BOM表可能在任何一页）
+2. **检查表格是否有"代号"列**：
+   - 代号必须是 `XX.XX.XXXX` 格式（至少3段）
+   - 如果只有2段（如 `08.04`, `01.13`），那是工序号，不是BOM代号
+3. **确认是BOM表后，再提取数据**
+
+### 3.2 第二步：逐行提取
+1. **提取所有有效行**：
+   - 必须有序号（1-200之间的数字）
+   - 必须有代号（XX.XX.XXXX或XX.XX.XX.XXXXX格式，至少3段）
+   - **不要跳过任何有序号和代号的行**，即使名称是英文的WARNING或DANGER
+
+2. **字段提取**：
+   - `seq`：序号（字符串）
+   - `code`：代号（必须是XX.XX.XXXX格式，至少3段）
+   - `product_code`：产品代号/规格（可能为空，使用空字符串""）
+   - `name`：名称（中文或英文零件名称，可能为空，使用空字符串""）
+   - `quantity`：数量（整数）
+   - `weight`：总重（浮点数，如果有单重和总重两列，取总重；如果只有一列重量，就取那一列）
+
+3. **完整性要求**：
+   - ⚠️ **提取所有行**：如果BOM表有38行，必须提取所有38行
+   - ⚠️ **不要遗漏**：即使某些字段难以识别，也要提取该行
+   - ⚠️ **按序号排序**：最终结果按序号从小到大排列（1, 2, 3...）
+
+## 4. 输出格式
+
+直接返回JSON数组，**不要添加任何解释性文字**：
+
+```json
+[
+  {
+    "seq": "1",
+    "code": "01.09.2154",
+    "product_code": "S-AB1830(72IN)-MP1140-01",
+    "name": "挂架组件-漆后",
+    "quantity": 1,
+    "weight": 76.42
+  },
+  {
+    "seq": "31",
+    "code": "02.21.0112",
+    "product_code": "",
+    "name": "WARNING-FLYING OBJECTS AND PINCH POINTS",
+    "quantity": 2,
+    "weight": 0.00
+  },
+  {
+    "seq": "32",
+    "code": "02.21.0109",
+    "product_code": "",
+    "name": "DANGER-PINCH POINTS",
+    "quantity": 1,
+    "weight": 0.00
+  }
+]
+```
+
+## 5. 关键提示
+
+- ✅ **查看所有页面**，BOM表可能在任何一页（通常在右下角）
+- ✅ **先识别BOM表**：必须有"代号"列（XX.XX.XXXX格式，至少3段）
+- ✅ **不要提取工艺路线表**：工序号只有2段（XX.XX），不是BOM代号
+- ✅ **注意序号可能从下往上排列**（序号1在最下面）
+- ✅ **提取所有有效行**，不要遗漏任何零件
+- ✅ **WARNING和DANGER开头的也是有效的产品名称**，必须提取
+- ✅ **只跳过表头**，不要跳过任何有序号和代号的数据行
+- ✅ **确保JSON格式正确**，可以被直接解析
+- ✅ **如果图纸中没有BOM表，返回空数组** `[]`
+"""
+
+        try:
+            # ✅ 将所有页面一起发送给模型（而不是逐页发送）
+            print_info(f"      正在分析 {len(images)} 页图纸...", indent=1)
+
+            # 构建包含所有页面的消息
+            content = [{"type": "text", "text": prompt}]
+            for img_base64 in images:
+                content.append({
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/png;base64,{img_base64}"
+                    }
+                })
+
+            response = self.vision_agent.client.chat.completions.create(
+                model=self.vision_agent.model_name,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": content
+                    }
+                ],
+                temperature=0.1,
+                max_tokens=8000  # 增加token限制以处理多页
+            )
+
+            result_text = response.choices[0].message.content.strip()
+
+            # 提取JSON部分
+            import json
+            import re
+
+            # 尝试提取JSON数组
+            json_match = re.search(r'\[.*\]', result_text, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+
+                try:
+                    bom_items = json.loads(json_str)
+
+                    if bom_items:
+                        print_info(f"         找到 {len(bom_items)} 个零件", indent=1)
+                    else:
+                        print_info(f"         未找到BOM表", indent=1)
+
+                    # 添加source_pdf字段
+                    for item in bom_items:
+                        item["source_pdf"] = pdf_name
+
+                    return bom_items
+
+                except json.JSONDecodeError as json_err:
+                    # JSON解析失败，尝试修复常见问题
+                    print_warning(f"      JSON解析失败: {json_err}", indent=1)
+                    print_warning(f"      尝试修复JSON格式...", indent=1)
+
+                    # 保存原始响应用于调试
+                    debug_file = self.output_dir / f"debug_bom_response_{pdf_name}.txt"
+                    with open(debug_file, "w", encoding="utf-8") as f:
+                        f.write(f"原始响应:\n{result_text}\n\n")
+                        f.write(f"提取的JSON:\n{json_str}\n\n")
+                        f.write(f"错误信息:\n{json_err}\n")
+
+                    print_info(f"      调试信息已保存到: {debug_file.name}", indent=1)
+
+                    # 尝试修复JSON（移除尾部逗号、修复引号等）
+                    try:
+                        fixed_json = json_str
+
+                        # 修复1：移除对象末尾的逗号（如：{"key": "value",}）
+                        fixed_json = re.sub(r',\s*}', '}', fixed_json)
+
+                        # 修复2：移除数组末尾的逗号（如：[1, 2, 3,]）
+                        fixed_json = re.sub(r',\s*\]', ']', fixed_json)
+
+                        # 修复3：修复数字后多余的引号（如："quantity": 1"）
+                        # 匹配模式：数字后面跟着引号和逗号或换行
+                        fixed_json = re.sub(r':\s*(\d+)"\s*([,\n])', r': \1\2', fixed_json)
+
+                        # 修复4：修复浮点数后多余的引号（如："weight": 32.12"）
+                        fixed_json = re.sub(r':\s*(\d+\.\d+)"\s*([,\n}])', r': \1\2', fixed_json)
+
+                        bom_items = json.loads(fixed_json)
+                        print_success(f"      JSON修复成功！找到 {len(bom_items)} 个零件", indent=1)
+
+                        # 添加source_pdf字段
+                        for item in bom_items:
+                            item["source_pdf"] = pdf_name
+
+                        return bom_items
+                    except Exception as fix_err:
+                        print_warning(f"      JSON修复失败: {fix_err}", indent=1)
+                        return []
+            else:
+                print_info(f"         未找到BOM表", indent=1)
+                return []
+
+        except Exception as e:
+            print_warning(f"      Vision API调用失败: {e}", indent=1)
+            import traceback
+            traceback.print_exc()
+            return []
 
     def _step3_vision_planning(self, image_hierarchy: Dict, bom_data: List[Dict]) -> Dict:
         """步骤3: Agent 1 - 视觉规划"""
@@ -548,26 +762,7 @@ class GeminiAssemblyPipeline:
 
             if result["success"]:
                 step_count = len(result.get("assembly_steps", []))
-
-                # ✅ 验证BOM覆盖率
-                assembly_steps = result.get("assembly_steps", [])
-                used_bom_codes = set()
-                for step in assembly_steps:
-                    parts_used = step.get("parts_used", [])
-                    for part in parts_used:
-                        if isinstance(part, dict):
-                            bom_code = part.get("bom_code")
-                            if bom_code:
-                                used_bom_codes.add(bom_code)
-
-                bom_coverage = len(used_bom_codes) / len(component_bom) * 100 if component_bom else 0
-
                 print_success(f"   ✅ 生成了 {step_count} 个装配步骤", indent=1)
-                print_info(f"   📋 BOM覆盖率: {len(used_bom_codes)}/{len(component_bom)} ({bom_coverage:.1f}%)", indent=1)
-
-                if bom_coverage < 100:
-                    print_warning(f"   ⚠️  有 {len(component_bom) - len(used_bom_codes)} 个BOM未覆盖", indent=1)
-
                 sys.stdout.flush()
                 self.log_agent_call(f"组件装配工 #{i}", f"完成了【{comp_name}】的装配说明", "success")
             else:
@@ -651,26 +846,7 @@ class GeminiAssemblyPipeline:
 
         if result["success"]:
             step_count = len(result.get("assembly_steps", []))
-
-            # ✅ 验证产品级BOM覆盖率（从fasteners字段）
-            assembly_steps = result.get("assembly_steps", [])
-            used_bom_codes = set()
-            for step in assembly_steps:
-                fasteners = step.get("fasteners", [])
-                for fastener in fasteners:
-                    if isinstance(fastener, dict):
-                        bom_code = fastener.get("bom_code")
-                        if bom_code:
-                            used_bom_codes.add(bom_code)
-
-            bom_coverage = len(used_bom_codes) / len(product_bom) * 100 if product_bom else 0
-
             print_success(f"✅ 生成了 {step_count} 个总装步骤", indent=1)
-            print_info(f"📋 产品级BOM覆盖率: {len(used_bom_codes)}/{len(product_bom)} ({bom_coverage:.1f}%)", indent=1)
-
-            if bom_coverage < 100:
-                print_warning(f"⚠️  有 {len(product_bom) - len(used_bom_codes)} 个产品级BOM未覆盖", indent=1)
-
             sys.stdout.flush()
             self.log_agent_call("产品总装", "完成了产品总装说明", "success")
         else:
@@ -820,14 +996,29 @@ class GeminiAssemblyPipeline:
         import sys
         sys.stdout.flush()
 
-        # 构建组件到GLB的映射
+        # 构建组件到GLB的映射（使用glb_files字段，它使用序号作为key）
         component_to_glb_mapping = {}
         component_level_mappings = matching_result.get("component_level_mappings", {})
+        glb_files = matching_result.get("glb_files", {})
 
+        # ✅ 方法1：从glb_files构建映射（推荐，因为它使用序号）
+        # glb_files格式：{"component_1": "path/to/component_1.glb", "component_2": ...}
+        # 但是我们需要的是 {comp_code: "component_1.glb"}
+
+        # ✅ 方法2：从component_level_mappings构建映射，但使用新的GLB文件名
+        # 我们需要通过assembly_order找到对应的GLB文件
         for comp_code, mapping in component_level_mappings.items():
-            glb_file = mapping.get("glb_file", "")
-            if glb_file:
-                component_to_glb_mapping[comp_code] = Path(glb_file).name
+            # 从component_results中找到对应的assembly_order
+            comp_order = None
+            for comp_result in component_results:
+                if comp_result.get("component_code") == comp_code:
+                    comp_order = comp_result.get("assembly_order")
+                    break
+
+            if comp_order:
+                # 使用序号构建GLB文件名
+                glb_filename = f"component_{comp_order}.glb"
+                component_to_glb_mapping[comp_code] = glb_filename
 
         print_info("📝 他正在整理所有内容...", indent=1)
         sys.stdout.flush()
@@ -842,6 +1033,7 @@ class GeminiAssemblyPipeline:
             welding_result={},  # 焊接信息已经在步骤中了
             safety_faq_result={},  # 安全信息已经在步骤中了
             component_to_glb_mapping=component_to_glb_mapping,
+            component_level_mappings=component_level_mappings,  # ✅ 传入组件级别映射（包含BOM映射表）
             bom_to_mesh_mapping=matching_result.get("product_level_mapping", {}).get("bom_to_mesh", {}),
             image_hierarchy=image_hierarchy,  # ✅ 传入图片层级结构
             task_id=task_id  # ✅ 使用输出目录名作为task_id

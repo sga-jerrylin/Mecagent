@@ -269,9 +269,39 @@ const startUpload = async () => {
 }
 
 const uploadFiles = async (type) => {
-  const uploadRef = type === 'pdf' ? 'pdfUpload' : 'modelUpload'
-  // 这里应该调用实际的上传方法
-  // 由于使用了 auto-upload="false"，需要手动触发上传
+  // ✅ Bug修复：实现实际的上传逻辑
+  const uploadRef = type === 'pdf' ? pdfUpload : modelUpload
+
+  if (!uploadRef.value) {
+    throw new Error(`Upload component not found: ${type}`)
+  }
+
+  // 手动触发Element Plus的upload组件提交
+  uploadRef.value.submit()
+
+  // 等待上传完成（通过监听success/error事件）
+  return new Promise((resolve, reject) => {
+    const checkInterval = setInterval(() => {
+      const fileList = type === 'pdf' ? pdfFileList.value : modelFileList.value
+      const allUploaded = fileList.every(f => f.status === 'success' || f.status === 'fail')
+
+      if (allUploaded) {
+        clearInterval(checkInterval)
+        const hasFailed = fileList.some(f => f.status === 'fail')
+        if (hasFailed) {
+          reject(new Error('部分文件上传失败'))
+        } else {
+          resolve()
+        }
+      }
+    }, 100)
+
+    // 30秒超时
+    setTimeout(() => {
+      clearInterval(checkInterval)
+      reject(new Error('上传超时'))
+    }, 30000)
+  })
 }
 
 const removeFile = (file) => {

@@ -12,24 +12,82 @@ PROJECT_ROOT = Path(__file__).parent
 
 # API配置
 API_CONFIG = {
-    # 阿里云DashScope配置 (Qwen3-VL)
-    "dashscope": {
-        "api_key": os.getenv("DASHSCOPE_API_KEY"),
-        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        "model": "qwen3-vl-plus",
+    # OpenRouter配置 (统一使用OpenRouter调用所有模型)
+    "openrouter": {
+        "api_key": os.getenv("OPENROUTER_API_KEY"),
+        "base_url": "https://openrouter.ai/api/v1",
+        "default_model": "google/gemini-2.5-flash-preview-09-2025",  # 默认模型
         "timeout": 300,  # 5分钟超时
-    },
-    
-    # DeepSeek配置 (装配专家)
-    "deepseek": {
-        "api_key": os.getenv("DEEPSEEK_API_KEY"),
-        "base_url": "https://api.deepseek.com",
-        "model": "deepseek-chat",
-        "timeout": 180,  # 3分钟超时
         "temperature": 0.1,  # 降低随机性
         "max_tokens": 8000,
     }
 }
+
+# ✅ Bug修复：模型名称配置（支持环境变量覆盖）
+MODEL_CONFIG = {
+    "gemini": os.getenv("GEMINI_MODEL", "google/gemini-2.5-flash-preview-09-2025"),
+    "qwen": os.getenv("QWEN_MODEL", "qwen-vl-plus"),
+    "deepseek": os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+    "openrouter_default": os.getenv("OPENROUTER_MODEL", "google/gemini-2.5-flash-preview-09-2025"),
+}
+
+# ✅ Bug修复：API密钥统一管理
+class APIKeyManager:
+    """统一管理所有API密钥的读取和验证"""
+
+    _KEY_MAP = {
+        "openrouter": "OPENROUTER_API_KEY",
+        "dashscope": "DASHSCOPE_API_KEY",
+        "deepseek": "DEEPSEEK_API_KEY",
+        "qwen": "DASHSCOPE_API_KEY",  # Qwen使用DashScope
+        "gemini": "OPENROUTER_API_KEY",  # Gemini使用OpenRouter
+    }
+
+    @classmethod
+    def get_key(cls, service: str, required: bool = True) -> str:
+        """
+        获取指定服务的API密钥
+
+        Args:
+            service: 服务名称 (openrouter, dashscope, deepseek, qwen, gemini)
+            required: 是否必需（如果为True且密钥不存在则抛出异常）
+
+        Returns:
+            API密钥字符串
+
+        Raises:
+            ValueError: 如果required=True且密钥不存在
+        """
+        env_var = cls._KEY_MAP.get(service)
+        if not env_var:
+            raise ValueError(f"未知的服务名称: {service}，支持的服务: {list(cls._KEY_MAP.keys())}")
+
+        key = os.getenv(env_var)
+
+        if required and not key:
+            raise ValueError(
+                f"{service} API密钥未配置。请设置环境变量 {env_var}\n"
+                f"提示：复制 .env.example 为 .env 并填入实际的API密钥"
+            )
+
+        return key or ""
+
+    @classmethod
+    def validate_all(cls) -> dict:
+        """
+        验证所有API密钥的配置状态
+
+        Returns:
+            配置状态字典 {service: bool}
+        """
+        status = {}
+        for service in cls._KEY_MAP.keys():
+            try:
+                key = cls.get_key(service, required=False)
+                status[service] = bool(key)
+            except Exception:
+                status[service] = False
+        return status
 
 # 文件处理配置
 FILE_CONFIG = {
@@ -181,27 +239,24 @@ def get_config(section: str = None):
 def validate_config():
     """验证配置的有效性"""
     errors = []
-    
+
     # 检查API密钥
-    if not API_CONFIG["dashscope"]["api_key"]:
-        errors.append("DASHSCOPE_API_KEY 未设置")
-    
-    if not API_CONFIG["deepseek"]["api_key"]:
-        errors.append("DEEPSEEK_API_KEY 未设置")
-    
+    if not API_CONFIG["openrouter"]["api_key"]:
+        errors.append("OPENROUTER_API_KEY 未设置")
+
     # 检查Blender路径
     blender_path = BLENDER_CONFIG["executable"]
     if blender_path != "blender":  # 如果不是默认路径
         if not Path(blender_path).exists():
             errors.append(f"Blender可执行文件不存在: {blender_path}")
-    
+
     # 检查缓存目录
     cache_dir = CACHE_CONFIG["directory"]
     try:
         cache_dir.mkdir(parents=True, exist_ok=True)
     except Exception as e:
         errors.append(f"无法创建缓存目录: {e}")
-    
+
     return errors
 
 

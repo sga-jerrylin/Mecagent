@@ -213,39 +213,39 @@ class ProductAssemblyAgent(BaseGeminiAgent):
         bom_mapping_table: List[Dict]
     ) -> List[Dict]:
         """
-        ✅ 新方法：使用BOM映射宽表添加mesh_id（优先通过BOM代号查找，兼容seq查找）
+        ✅ 使用BOM映射宽表添加node_name（直接使用node_name，不再使用mesh_id）
 
         Args:
             assembly_steps: 装配步骤列表
             bom_mapping_table: BOM映射宽表
 
         Returns:
-            添加了mesh_id的装配步骤
+            添加了node_name的装配步骤
         """
-        # 构建code到mesh_ids的映射（主要）
-        code_to_mesh = {}
+        # 构建code到node_names的映射（主要）
+        code_to_nodes = {}
         code_to_seq = {}
 
-        # 构建seq到mesh_ids的映射（备用）
-        seq_to_mesh = {}
+        # 构建seq到node_names的映射（备用）
+        seq_to_nodes = {}
         seq_to_code = {}
 
         for item in bom_mapping_table:
             seq = str(item.get("seq", ""))
             code = item.get("code", "")
-            mesh_ids = item.get("mesh_ids", [])
+            node_names = item.get("node_names", [])
 
             # 通过code映射（主要方式）
-            if code and mesh_ids:
-                code_to_mesh[code] = mesh_ids
+            if code and node_names:
+                code_to_nodes[code] = node_names
                 code_to_seq[code] = seq
 
             # 通过seq映射（备用方式）
-            if seq and mesh_ids:
-                seq_to_mesh[seq] = mesh_ids
+            if seq and node_names:
+                seq_to_nodes[seq] = node_names
                 seq_to_code[seq] = code
 
-        # 遍历步骤，添加mesh_id
+        # 遍历步骤，添加node_name
         for step in assembly_steps:
             # 处理主要组件（components）
             components = step.get("components", [])
@@ -254,13 +254,13 @@ class ProductAssemblyAgent(BaseGeminiAgent):
                 bom_seq = str(comp.get("bom_seq", ""))
 
                 # 优先通过bom_code查找
-                if bom_code and bom_code in code_to_mesh:
-                    comp["mesh_id"] = code_to_mesh[bom_code]
+                if bom_code and bom_code in code_to_nodes:
+                    comp["node_name"] = code_to_nodes[bom_code]
                     if bom_code in code_to_seq:
                         comp["bom_seq"] = code_to_seq[bom_code]
                 # 备用：通过bom_seq查找
-                elif bom_seq and bom_seq in seq_to_mesh:
-                    comp["mesh_id"] = seq_to_mesh[bom_seq]
+                elif bom_seq and bom_seq in seq_to_nodes:
+                    comp["node_name"] = seq_to_nodes[bom_seq]
                     if "bom_code" not in comp or not comp["bom_code"]:
                         comp["bom_code"] = seq_to_code[bom_seq]
 
@@ -271,13 +271,13 @@ class ProductAssemblyAgent(BaseGeminiAgent):
                 bom_seq = str(fastener.get("bom_seq", ""))
 
                 # 优先通过bom_code查找
-                if bom_code and bom_code in code_to_mesh:
-                    fastener["mesh_id"] = code_to_mesh[bom_code]
+                if bom_code and bom_code in code_to_nodes:
+                    fastener["node_name"] = code_to_nodes[bom_code]
                     if bom_code in code_to_seq:
                         fastener["bom_seq"] = code_to_seq[bom_code]
                 # 备用：通过bom_seq查找
-                elif bom_seq and bom_seq in seq_to_mesh:
-                    fastener["mesh_id"] = seq_to_mesh[bom_seq]
+                elif bom_seq and bom_seq in seq_to_nodes:
+                    fastener["node_name"] = seq_to_nodes[bom_seq]
                     if "bom_code" not in fastener or not fastener["bom_code"]:
                         fastener["bom_code"] = seq_to_code[bom_seq]
 

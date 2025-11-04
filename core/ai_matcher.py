@@ -60,13 +60,35 @@ class AIBOMMatcher:
         # 一次性处理所有零件
         all_results = self._match_all_at_once(unmatched_parts, bom_data)
 
-        # 统计（降低阈值到0.6，追求100%匹配率）
+        # 统计AI匹配结果
         matched_count = sum(1 for r in all_results if r.get('matched_bom_code'))
-        high_confidence_count = sum(1 for r in all_results if r.get('confidence', 0) >= 0.6)
+        unmatched_count = len(all_results) - matched_count
+        match_rate = (matched_count / len(all_results) * 100) if all_results else 0
 
-        print(f"\n      ✅ AI员工分析完成:")
-        print(f"         成功匹配: {matched_count}/{len(all_results)}")
-        print(f"         高置信度(≥0.6): {high_confidence_count}/{len(all_results)}")
+        # 置信度统计
+        high_confidence_count = sum(1 for r in all_results if r.get('confidence', 0) >= 0.85)
+        medium_confidence_count = sum(1 for r in all_results if 0.6 <= r.get('confidence', 0) < 0.85)
+        low_confidence_count = sum(1 for r in all_results if 0 < r.get('confidence', 0) < 0.6)
+
+        print(f"\n" + "="*80)
+        print(f"🤖 AI匹配结果统计")
+        print(f"="*80)
+        print(f"📊 总零件数: {len(all_results)}")
+        print(f"✅ 成功匹配: {matched_count} ({match_rate:.1f}%)")
+        print(f"❌ 未匹配: {unmatched_count}")
+        print(f"\n📈 置信度分布:")
+        print(f"   🟢 高置信度 (≥0.85): {high_confidence_count}")
+        print(f"   🟡 中置信度 (0.6-0.85): {medium_confidence_count}")
+        print(f"   🔴 低置信度 (<0.6): {low_confidence_count}")
+
+        if match_rate >= 95:
+            print(f"\n🎉 AI匹配率达到 {match_rate:.1f}%，表现优秀！")
+        elif match_rate >= 80:
+            print(f"\n👍 AI匹配率 {match_rate:.1f}%，表现良好")
+        else:
+            print(f"\n⚠️  AI匹配率 {match_rate:.1f}%，需要优化提示词")
+        print(f"="*80)
+
         import sys
         sys.stdout.flush()
 
@@ -137,27 +159,26 @@ class AIBOMMatcher:
                 return self._create_empty_results(parts)
 
             # 将AI结果映射回原始零件
-            # AI返回格式：{"mesh_id": "...", "geometry_name": "...", "bom_code": "...", "confidence": 0.85, "reasoning": "..."}
+            # AI返回格式：{"node_name": "...", "geometry_name": "...", "bom_code": "...", "confidence": 0.85, "reasoning": "..."}
             results = []
             for part in parts:
-                # 查找对应的AI结果（通过mesh_id或geometry_name匹配）
+                # 查找对应的AI结果（通过node_name或geometry_name匹配）
                 ai_result = None
-                part_mesh_id = part.get('mesh_id', '')
+                part_node_name = part.get('node_name', '')
                 part_geometry = part.get('geometry_name', '')
 
                 for ar in ai_results:
-                    # 尝试通过mesh_id匹配
-                    if ar.get('mesh_id') == part_mesh_id:
+                    # 优先通过node_name匹配
+                    if ar.get('node_name') == part_node_name:
                         ai_result = ar
                         break
-                    # 尝试通过geometry_name匹配
+                    # 备用：通过geometry_name匹配
                     elif ar.get('geometry_name') == part_geometry:
                         ai_result = ar
                         break
 
                 if ai_result:
                     results.append({
-                        'mesh_id': part.get('mesh_id'),
                         'geometry_name': part.get('geometry_name'),
                         'node_name': part.get('node_name'),
                         'matched_bom_code': ai_result.get('bom_code'),  # AI返回的是bom_code
@@ -167,7 +188,6 @@ class AIBOMMatcher:
                 else:
                     # 如果没找到对应结果，返回空匹配
                     results.append({
-                        'mesh_id': part.get('mesh_id'),
                         'geometry_name': part.get('geometry_name'),
                         'node_name': part.get('node_name'),
                         'matched_bom_code': None,
@@ -187,7 +207,6 @@ class AIBOMMatcher:
         """创建空的匹配结果"""
         return [
             {
-                "mesh_id": p.get('mesh_id'),
                 "geometry_name": p.get('geometry_name'),
                 "node_name": p.get('node_name'),
                 "matched_bom_code": None,

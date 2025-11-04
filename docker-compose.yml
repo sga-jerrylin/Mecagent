@@ -10,9 +10,7 @@ services:
     restart: unless-stopped
     environment:
       # API密钥 - 从.env文件读取
-      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
-      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       # 可选配置
       - BLENDER_EXE=${BLENDER_EXE:-blender}
       - DEBUG=${DEBUG:-false}
