@@ -346,8 +346,16 @@ class ModelProcessor:
             # ✅ 计算装配体的特征尺寸（用于爆炸距离的基准）
             assembly_size = np.linalg.norm(bounds[1] - bounds[0])
 
+            # 🔍 调试日志：打印装配体尺寸信息
+            print(f"      📏 装配体边界框: min={bounds[0]}, max={bounds[1]}")
+            print(f"      📏 装配体特征尺寸: {assembly_size:.6f} 米")
+            print(f"      📏 装配体中心: {center}")
+
             # ✅ 爆炸系数：控制整体爆炸程度（可调整，1.5表示爆炸距离是装配体尺寸的1.5倍）
             explosion_factor = 1.5
+            print(f"      🎯 爆炸系数: {explosion_factor}")
+            print(f"      🎯 基础爆炸距离: {assembly_size * explosion_factor:.6f} 米")
+            print(f"      🎯 最小爆炸距离: {assembly_size * 0.3:.6f} 米")
 
             # 生成爆炸向量
             explosion_vectors = {}
