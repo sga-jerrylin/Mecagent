@@ -24,17 +24,19 @@ class HierarchicalBOMMatcher:
         step_dir: str,
         bom_data: List[Dict],
         component_plans: List[Dict],
-        output_dir: str
+        output_dir: str,
+        file_hierarchy: Dict = None
     ) -> Dict:
         """
         分层级处理STEP文件和BOM匹配
-        
+
         Args:
             step_dir: STEP文件目录
             bom_data: 完整的BOM数据
             component_plans: 组件规划列表（来自Agent 1）
             output_dir: GLB输出目录
-            
+            file_hierarchy: 文件层级结构（包含组件图的实际序号）
+
         Returns:
             {
                 "component_level_mappings": {...},  # 组件级别的映射
@@ -43,39 +45,67 @@ class HierarchicalBOMMatcher:
             }
         """
         print_step("分层级BOM-3D匹配")
-        
+
         step_path = Path(step_dir)
         glb_output = Path(output_dir)
         glb_output.mkdir(parents=True, exist_ok=True)
-        
+
         print_info(f"STEP文件目录: {step_dir}")
         print_info(f"GLB输出目录: {output_dir}")
         print_info(f"组件数量: {len(component_plans)}")
-        
+
+        # ✅ 创建组件代号到组件图序号的映射
+        # 策略：通过BOM数据的source_pdf字段来匹配
+        component_code_to_drawing_index = {}
+        if file_hierarchy and file_hierarchy.get("components"):
+            for comp in file_hierarchy["components"]:
+                comp_name = comp.get("name", "")  # 如"组件图1", "组件图2"
+                comp_index = comp.get("index", 0)  # 实际的组件图序号
+
+                # 从BOM数据中找到属于这个组件图的BOM项
+                # source_pdf格式：组件图1_page_1, 组件图2_page_1等
+                for bom_item in bom_data:
+                    source_pdf = bom_item.get("source_pdf", "")
+                    if source_pdf.startswith(comp_name):
+                        # 这个BOM项属于当前组件图
+                        # 从组件规划中找到包含这个BOM代号的组件
+                        bom_code = bom_item.get("code", "")
+                        for plan in component_plans:
+                            # 检查这个BOM代号是否属于这个组件
+                            # 通过检查组件的BOM数据来判断
+                            comp_bom = self._get_component_bom(bom_data, plan)
+                            if any(item.get("code") == bom_code for item in comp_bom):
+                                component_code_to_drawing_index[plan.get("component_code", "")] = comp_index
+                                break
+                        break
+
         # 结果容器
         component_level_mappings = {}
         product_level_mapping = {}
         glb_files = {}
-        
+
         # ========== 1. 处理组件级别 ==========
         print_substep("步骤1：处理组件级别的STEP文件")
-        
+
         for comp_plan in component_plans:
             comp_code = comp_plan.get("component_code", "")
             comp_name = comp_plan.get("component_name", "")
             comp_order = comp_plan.get("assembly_order", 0)
-            
-            print_info(f"\n处理组件{comp_order}: {comp_name}")
-            
-            # 查找对应的STEP文件（支持多种命名方式）
+
+            # ✅ 获取实际的组件图序号（而不是装配顺序）
+            drawing_index = component_code_to_drawing_index.get(comp_code, comp_order)
+
+            print_info(f"\n处理组件: {comp_name} (装配顺序={comp_order}, 图纸序号={drawing_index})")
+
+            # ✅ 使用实际的组件图序号查找STEP文件
             step_file = None
             possible_names = [
-                f"组件图{comp_order}.STEP",
-                f"组件图{comp_order}.step",
-                f"组件{comp_order}.STEP",
-                f"组件{comp_order}.step",
-                f"组件图{comp_order}.stp",
-                f"组件{comp_order}.stp"
+                f"组件图{drawing_index}.STEP",
+                f"组件图{drawing_index}.step",
+                f"组件{drawing_index}.STEP",
+                f"组件{drawing_index}.step",
+                f"组件图{drawing_index}.stp",
+                f"组件{drawing_index}.stp"
             ]
 
             for name in possible_names:
@@ -85,13 +115,13 @@ class HierarchicalBOMMatcher:
                     break
 
             if not step_file:
-                print_warning(f"组件{comp_order}的STEP文件不存在（尝试了: {', '.join(possible_names)}）", indent=1)
+                print_warning(f"组件图{drawing_index}的STEP文件不存在（尝试了: {', '.join(possible_names)}）", indent=1)
                 continue
-            
+
             print_info(f"STEP文件: {step_file.name}", indent=1)
 
-            # 转换为GLB（使用序号而不是BOM代号，确保前端能通过序号找到对应的GLB）
-            glb_file = glb_output / f"component_{comp_order}.glb"
+            # ✅ 使用实际的组件图序号命名GLB文件
+            glb_file = glb_output / f"component_{drawing_index}.glb"
             print_info(f"开始转换STEP -> GLB: {glb_file.name}", indent=1)
 
             import sys
@@ -199,6 +229,8 @@ class HierarchicalBOMMatcher:
                 component_level_mappings[comp_code] = {
                     "component_name": comp_name,
                     "glb_file": str(glb_file),
+                    "drawing_index": drawing_index,  # ✅ 新增：保存实际的组件图序号
+                    "assembly_order": comp_order,  # ✅ 保留装配顺序信息
                     "bom_to_mesh": final_bom_to_mesh,
                     "bom_mapping_table": bom_mapping_table,  # ✅ 新增：保存BOM映射宽表
                     "total_bom_count": total_bom,
@@ -212,7 +244,8 @@ class HierarchicalBOMMatcher:
                     "matching_rate": final_bom_rate  # ✅ 兼容旧代码
                 }
 
-                glb_files[f"component_{comp_order}"] = str(glb_file)
+                # ✅ 使用实际的组件图序号作为key
+                glb_files[f"component_{drawing_index}"] = str(glb_file)
             else:
                 if not parts_list:
                     print_warning("没有提取到零件信息", indent=1)

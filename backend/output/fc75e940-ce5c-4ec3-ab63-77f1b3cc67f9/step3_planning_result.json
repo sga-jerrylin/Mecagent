@@ -1,0 +1,493 @@
+{
+  "success": true,
+  "component_assembly_plan": [
+    {
+      "component_code": "01.09.2549",
+      "component_name": "连接器后座组件",
+      "drawing_number": "①",
+      "assembly_order": 1,
+      "reason": "该组件（①）重量最大（77.27kg），且位于整个产品的中心底部，作为产品装配的基准。",
+      "base_part_code": "01.01.01.11509",
+      "base_part_name": "连接板 1",
+      "base_part_drawing_number": "④",
+      "base_part_weight_kg": 21.36,
+      "assembly_steps": [
+        "步骤1：将④号连接板放置在工作台上作为基准件。",
+        "步骤2：将⑨号加强筋焊接到④号连接板的上方。",
+        "步骤3：将⑧号矩形管1和⑦号矩形管2焊接到④号连接板两侧。",
+        "步骤4：将⑤号左挂件虚拟组件和⑥号右挂件虚拟组件焊接到主体结构上。",
+        "步骤5：将②号矩形管1和③号封板焊接到主体结构上，完成焊接和校正。"
+      ]
+    },
+    {
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件",
+      "drawing_number": "④",
+      "assembly_order": 2,
+      "reason": "该组件（④）是连接器后座组件（①）和铲雪板组件（②/③）之间的关键连接件，需预先装配。",
+      "base_part_code": "01.01.01.11511",
+      "base_part_name": "方形板-机加 1",
+      "base_part_drawing_number": "①",
+      "base_part_weight_kg": 15.79,
+      "assembly_steps": [
+        "步骤1：将①号方形板-机加放置在工作台上作为基准件。",
+        "步骤2：将②号上连接板焊接到①号方形板的上方。",
+        "步骤3：将③号侧连接板焊接到①号方形板的两侧。",
+        "步骤4：将⑤号折弯板、⑥号油缸固定板和⑦号加强板焊接到主体结构上。",
+        "步骤5：将⑧号角钢-机加、⑨号后座轴套和⑩号后座轴套焊接到指定位置。"
+      ]
+    },
+    {
+      "component_code": "01.09.2551",
+      "component_name": "左铲雪板组件",
+      "drawing_number": "②",
+      "assembly_order": 3,
+      "reason": "该组件（②）是主要工作部件，重量大，需预先装配，以便后续与基准组件（①）连接。",
+      "base_part_code": "01.01.01.18598",
+      "base_part_name": "左铲板 1",
+      "base_part_drawing_number": "①",
+      "base_part_weight_kg": 28.38,
+      "assembly_steps": [
+        "步骤1：将①号左铲板放置在工作台上作为基准件。",
+        "步骤2：将②号方形板-机加焊接到①号左铲板的后部。",
+        "步骤3：将③号后加强板和④号前加强板焊接到①号左铲板的内侧。",
+        "步骤4：将⑤号底部连接板、⑥号前油缸固定板和⑦号前弹簧固定板焊接到指定位置。",
+        "步骤5：将⑧号后弹簧固定板、⑨号支撑固定板和⑩号轴套加强板焊接到主体结构上。"
+      ]
+    },
+    {
+      "component_code": "01.09.2552",
+      "component_name": "右铲雪板组件",
+      "drawing_number": "③",
+      "assembly_order": 4,
+      "reason": "该组件（③）与左铲雪板组件（②）对称，需预先装配，以便后续与基准组件（①）连接。",
+      "base_part_code": "01.09.2552",
+      "base_part_name": "右铲雪板组件-漆后",
+      "base_part_drawing_number": "③",
+      "base_part_weight_kg": 60.68,
+      "assembly_steps": [
+        "步骤1：参照左铲雪板组件（②）的工艺，将右铲板作为基准件。",
+        "步骤2：依次将加强板、固定板和连接板焊接到右铲板上。",
+        "步骤3：安装轴套、轴套加强板和反光片安装板。",
+        "步骤4：进行焊接和校正，确保与左铲雪板组件（②）的对称性。"
+      ]
+    },
+    {
+      "component_code": "02.08.01.0338",
+      "component_name": "油缸",
+      "drawing_number": "⑧",
+      "assembly_order": 5,
+      "reason": "油缸（⑧）是驱动件，需在主要结构件（①、②、③、④）装配完成后安装。",
+      "base_part_code": "02.08.01.0338",
+      "base_part_name": "油缸",
+      "base_part_drawing_number": "⑧",
+      "base_part_weight_kg": 17.1,
+      "assembly_steps": [
+        "步骤1：检查油缸（⑧）外观和性能。",
+        "步骤2：将油缸（⑧）的尾部通过销轴（17）连接到后座连接架组件（④）上。",
+        "步骤3：将油缸（⑧）的活塞杆端通过销轴（16）连接到铲雪板组件（②/③）上。",
+        "步骤4：安装安全销（35）和压注油杯（34）。"
+      ]
+    },
+    {
+      "component_code": "01.09.2559",
+      "component_name": "推雪板弹簧导柱组件-镀锌",
+      "drawing_number": "⑦",
+      "assembly_order": 6,
+      "reason": "弹簧导柱组件（⑦）用于缓冲和支撑，需在铲雪板组件（②/③）安装完成后安装。",
+      "base_part_code": "01.09.2559",
+      "base_part_name": "推雪板弹簧导柱组件-镀锌",
+      "base_part_drawing_number": "⑦",
+      "base_part_weight_kg": 15.85,
+      "assembly_steps": [
+        "步骤1：将压缩弹簧（39）安装到导柱上。",
+        "步骤2：将弹簧导柱组件（⑦）安装到铲雪板组件（②/③）的固定板上。",
+        "步骤3：使用螺栓（43）和螺母（46）进行紧固连接。",
+        "步骤4：检查弹簧的压缩行程和自由度。"
+      ]
+    },
+    {
+      "component_code": "01.09.2557",
+      "component_name": "轮胎架外臂组件-漆后",
+      "drawing_number": "⑥",
+      "assembly_order": 7,
+      "reason": "轮胎架外臂组件（⑥）和内臂组件（⑤）是支撑结构，应在主要结构件装配完成后安装。",
+      "base_part_code": "01.09.2557",
+      "base_part_name": "轮胎架外臂组件-漆后",
+      "base_part_drawing_number": "⑥",
+      "base_part_weight_kg": 11.34,
+      "assembly_steps": [
+        "步骤1：将⑥号轮胎架外臂组件通过销轴（21）连接到后座连接架组件（④）上。",
+        "步骤2：安装安全销（36）进行定位。",
+        "步骤3：将实心橡胶轮（29）安装到轮胎架外臂组件（⑥）的末端。",
+        "步骤4：使用螺栓（40）和螺母（41）紧固连接。"
+      ]
+    },
+    {
+      "component_code": "01.09.2558",
+      "component_name": "轮胎架内臂组件-镀锌",
+      "drawing_number": "⑤",
+      "assembly_order": 8,
+      "reason": "轮胎架内臂组件（⑤）与外臂组件（⑥）配合，用于调节支撑高度，需在⑥号组件安装后连接。",
+      "base_part_code": "01.09.2558",
+      "base_part_name": "轮胎架内臂组件-镀锌",
+      "base_part_drawing_number": "⑤",
+      "base_part_weight_kg": 9.38,
+      "assembly_steps": [
+        "步骤1：将⑤号轮胎架内臂组件插入⑥号轮胎架外臂组件的内部。",
+        "步骤2：通过插销（31）和安全销（35）进行高度定位和锁定。",
+        "步骤3：检查内臂和外臂的滑动顺畅性。"
+      ]
+    },
+    {
+      "component_code": "02.08.03.0236",
+      "component_name": "电磁阀组",
+      "drawing_number": "33",
+      "assembly_order": 9,
+      "reason": "电磁阀组（33）是液压控制单元，应在主要结构件和油缸（⑧）安装完成后，最后安装。",
+      "base_part_code": "02.08.03.0236",
+      "base_part_name": "电磁阀组",
+      "base_part_drawing_number": "33",
+      "base_part_weight_kg": 3.33,
+      "assembly_steps": [
+        "步骤1：将电磁阀组（33）安装到后座连接架组件（④）的上方。",
+        "步骤2：使用螺栓（44）和螺母（45）紧固连接。",
+        "步骤3：安装电磁阀保护罩组件（50）进行保护。",
+        "步骤4：连接液压管路（图纸未显示）。"
+      ]
+    },
+    {
+      "component_code": "01.09.2564",
+      "component_name": "把手组件-镀锌",
+      "drawing_number": "26",
+      "assembly_order": 10,
+      "reason": "把手组件（26）用于人工操作，应在所有主要功能部件安装完成后，最后安装。",
+      "base_part_code": "01.09.2564",
+      "base_part_name": "把手组件-镀锌",
+      "base_part_drawing_number": "26",
+      "base_part_weight_kg": 1.58,
+      "assembly_steps": [
+        "步骤1：将把手组件（26）安装到后座连接架组件（④）的顶部。",
+        "步骤2：使用螺栓（27）和螺母（28）进行紧固连接。",
+        "步骤3：检查把手安装的牢固性。"
+      ]
+    }
+  ],
+  "product_assembly_plan": {
+    "base_component_code": "01.09.2549",
+    "base_component_name": "连接器后座组件",
+    "base_component_drawing_number": "①",
+    "reason": "图纸上①号组件重量最大（77.27kg），位于底部中心，作为装配基准。",
+    "assembly_sequence": [
+      {
+        "step": 1,
+        "component_code": "01.09.2549",
+        "component_drawing_number": "①",
+        "action": "将①号连接器后座组件放置在工作台上作为基准。"
+      },
+      {
+        "step": 2,
+        "component_code": "01.09.2550",
+        "component_drawing_number": "④",
+        "action": "将④号后座连接架组件安装到①号组件的上方，并紧固。"
+      },
+      {
+        "step": 3,
+        "component_code": "01.09.2551",
+        "component_drawing_number": "②",
+        "action": "将②号左铲雪板组件通过销轴（18）连接到④号组件的左侧。"
+      },
+      {
+        "step": 4,
+        "component_code": "01.09.2552",
+        "component_drawing_number": "③",
+        "action": "将③号右铲雪板组件通过销轴（19）连接到④号组件的右侧。"
+      },
+      {
+        "step": 5,
+        "component_code": "02.08.01.0338",
+        "component_drawing_number": "⑧",
+        "action": "将⑧号油缸安装到④号组件和②/③号组件之间。"
+      },
+      {
+        "step": 6,
+        "component_code": "01.09.2559",
+        "component_drawing_number": "⑦",
+        "action": "将⑦号推雪板弹簧导柱组件安装到②/③号组件上。"
+      },
+      {
+        "step": 7,
+        "component_code": "01.09.2557",
+        "component_drawing_number": "⑥",
+        "action": "将⑥号轮胎架外臂组件安装到④号组件的下方。"
+      },
+      {
+        "step": 8,
+        "component_code": "01.09.2558",
+        "component_drawing_number": "⑤",
+        "action": "将⑤号轮胎架内臂组件插入⑥号组件并定位。"
+      },
+      {
+        "step": 9,
+        "component_code": "02.08.03.0236",
+        "component_drawing_number": "33",
+        "action": "将33号电磁阀组安装到④号组件的上方，并安装保护罩（50）。"
+      },
+      {
+        "step": 10,
+        "component_code": "01.09.2564",
+        "component_drawing_number": "26",
+        "action": "将26号把手组件安装到④号组件的顶部。"
+      }
+    ]
+  },
+  "raw_result": {
+    "product_name": "V型推雪板滑板注油器",
+    "total_components": 10,
+    "visual_analysis": {
+      "product_drawing_observation": "产品总图显示，整个产品由序号1（连接器后座组件）作为基准，左右两侧对称安装了序号2（左铲雪板组件）和序号3（右铲雪板组件）。序号8（油缸）是主要的驱动件。",
+      "component_drawings_observation": "组件图1（连接器后座组件）中，序号4（连接板）是最大零件。组件图2（后座连接架组件）中，序号1（方形板-机加）是最大零件。组件图3（左铲雪板组件）中，序号1（左铲板）是最大零件。"
+    },
+    "component_assembly_plan": [
+      {
+        "component_code": "01.09.2549",
+        "component_name": "连接器后座组件",
+        "drawing_number": "①",
+        "assembly_order": 1,
+        "reason": "该组件（①）重量最大（77.27kg），且位于整个产品的中心底部，作为产品装配的基准。",
+        "base_part_code": "01.01.01.11509",
+        "base_part_name": "连接板 1",
+        "base_part_drawing_number": "④",
+        "base_part_weight_kg": 21.36,
+        "assembly_steps": [
+          "步骤1：将④号连接板放置在工作台上作为基准件。",
+          "步骤2：将⑨号加强筋焊接到④号连接板的上方。",
+          "步骤3：将⑧号矩形管1和⑦号矩形管2焊接到④号连接板两侧。",
+          "步骤4：将⑤号左挂件虚拟组件和⑥号右挂件虚拟组件焊接到主体结构上。",
+          "步骤5：将②号矩形管1和③号封板焊接到主体结构上，完成焊接和校正。"
+        ]
+      },
+      {
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件",
+        "drawing_number": "④",
+        "assembly_order": 2,
+        "reason": "该组件（④）是连接器后座组件（①）和铲雪板组件（②/③）之间的关键连接件，需预先装配。",
+        "base_part_code": "01.01.01.11511",
+        "base_part_name": "方形板-机加 1",
+        "base_part_drawing_number": "①",
+        "base_part_weight_kg": 15.79,
+        "assembly_steps": [
+          "步骤1：将①号方形板-机加放置在工作台上作为基准件。",
+          "步骤2：将②号上连接板焊接到①号方形板的上方。",
+          "步骤3：将③号侧连接板焊接到①号方形板的两侧。",
+          "步骤4：将⑤号折弯板、⑥号油缸固定板和⑦号加强板焊接到主体结构上。",
+          "步骤5：将⑧号角钢-机加、⑨号后座轴套和⑩号后座轴套焊接到指定位置。"
+        ]
+      },
+      {
+        "component_code": "01.09.2551",
+        "component_name": "左铲雪板组件",
+        "drawing_number": "②",
+        "assembly_order": 3,
+        "reason": "该组件（②）是主要工作部件，重量大，需预先装配，以便后续与基准组件（①）连接。",
+        "base_part_code": "01.01.01.18598",
+        "base_part_name": "左铲板 1",
+        "base_part_drawing_number": "①",
+        "base_part_weight_kg": 28.38,
+        "assembly_steps": [
+          "步骤1：将①号左铲板放置在工作台上作为基准件。",
+          "步骤2：将②号方形板-机加焊接到①号左铲板的后部。",
+          "步骤3：将③号后加强板和④号前加强板焊接到①号左铲板的内侧。",
+          "步骤4：将⑤号底部连接板、⑥号前油缸固定板和⑦号前弹簧固定板焊接到指定位置。",
+          "步骤5：将⑧号后弹簧固定板、⑨号支撑固定板和⑩号轴套加强板焊接到主体结构上。"
+        ]
+      },
+      {
+        "component_code": "01.09.2552",
+        "component_name": "右铲雪板组件",
+        "drawing_number": "③",
+        "assembly_order": 4,
+        "reason": "该组件（③）与左铲雪板组件（②）对称，需预先装配，以便后续与基准组件（①）连接。",
+        "base_part_code": "01.09.2552",
+        "base_part_name": "右铲雪板组件-漆后",
+        "base_part_drawing_number": "③",
+        "base_part_weight_kg": 60.68,
+        "assembly_steps": [
+          "步骤1：参照左铲雪板组件（②）的工艺，将右铲板作为基准件。",
+          "步骤2：依次将加强板、固定板和连接板焊接到右铲板上。",
+          "步骤3：安装轴套、轴套加强板和反光片安装板。",
+          "步骤4：进行焊接和校正，确保与左铲雪板组件（②）的对称性。"
+        ]
+      },
+      {
+        "component_code": "02.08.01.0338",
+        "component_name": "油缸",
+        "drawing_number": "⑧",
+        "assembly_order": 5,
+        "reason": "油缸（⑧）是驱动件，需在主要结构件（①、②、③、④）装配完成后安装。",
+        "base_part_code": "02.08.01.0338",
+        "base_part_name": "油缸",
+        "base_part_drawing_number": "⑧",
+        "base_part_weight_kg": 17.1,
+        "assembly_steps": [
+          "步骤1：检查油缸（⑧）外观和性能。",
+          "步骤2：将油缸（⑧）的尾部通过销轴（17）连接到后座连接架组件（④）上。",
+          "步骤3：将油缸（⑧）的活塞杆端通过销轴（16）连接到铲雪板组件（②/③）上。",
+          "步骤4：安装安全销（35）和压注油杯（34）。"
+        ]
+      },
+      {
+        "component_code": "01.09.2559",
+        "component_name": "推雪板弹簧导柱组件-镀锌",
+        "drawing_number": "⑦",
+        "assembly_order": 6,
+        "reason": "弹簧导柱组件（⑦）用于缓冲和支撑，需在铲雪板组件（②/③）安装完成后安装。",
+        "base_part_code": "01.09.2559",
+        "base_part_name": "推雪板弹簧导柱组件-镀锌",
+        "base_part_drawing_number": "⑦",
+        "base_part_weight_kg": 15.85,
+        "assembly_steps": [
+          "步骤1：将压缩弹簧（39）安装到导柱上。",
+          "步骤2：将弹簧导柱组件（⑦）安装到铲雪板组件（②/③）的固定板上。",
+          "步骤3：使用螺栓（43）和螺母（46）进行紧固连接。",
+          "步骤4：检查弹簧的压缩行程和自由度。"
+        ]
+      },
+      {
+        "component_code": "01.09.2557",
+        "component_name": "轮胎架外臂组件-漆后",
+        "drawing_number": "⑥",
+        "assembly_order": 7,
+        "reason": "轮胎架外臂组件（⑥）和内臂组件（⑤）是支撑结构，应在主要结构件装配完成后安装。",
+        "base_part_code": "01.09.2557",
+        "base_part_name": "轮胎架外臂组件-漆后",
+        "base_part_drawing_number": "⑥",
+        "base_part_weight_kg": 11.34,
+        "assembly_steps": [
+          "步骤1：将⑥号轮胎架外臂组件通过销轴（21）连接到后座连接架组件（④）上。",
+          "步骤2：安装安全销（36）进行定位。",
+          "步骤3：将实心橡胶轮（29）安装到轮胎架外臂组件（⑥）的末端。",
+          "步骤4：使用螺栓（40）和螺母（41）紧固连接。"
+        ]
+      },
+      {
+        "component_code": "01.09.2558",
+        "component_name": "轮胎架内臂组件-镀锌",
+        "drawing_number": "⑤",
+        "assembly_order": 8,
+        "reason": "轮胎架内臂组件（⑤）与外臂组件（⑥）配合，用于调节支撑高度，需在⑥号组件安装后连接。",
+        "base_part_code": "01.09.2558",
+        "base_part_name": "轮胎架内臂组件-镀锌",
+        "base_part_drawing_number": "⑤",
+        "base_part_weight_kg": 9.38,
+        "assembly_steps": [
+          "步骤1：将⑤号轮胎架内臂组件插入⑥号轮胎架外臂组件的内部。",
+          "步骤2：通过插销（31）和安全销（35）进行高度定位和锁定。",
+          "步骤3：检查内臂和外臂的滑动顺畅性。"
+        ]
+      },
+      {
+        "component_code": "02.08.03.0236",
+        "component_name": "电磁阀组",
+        "drawing_number": "33",
+        "assembly_order": 9,
+        "reason": "电磁阀组（33）是液压控制单元，应在主要结构件和油缸（⑧）安装完成后，最后安装。",
+        "base_part_code": "02.08.03.0236",
+        "base_part_name": "电磁阀组",
+        "base_part_drawing_number": "33",
+        "base_part_weight_kg": 3.33,
+        "assembly_steps": [
+          "步骤1：将电磁阀组（33）安装到后座连接架组件（④）的上方。",
+          "步骤2：使用螺栓（44）和螺母（45）紧固连接。",
+          "步骤3：安装电磁阀保护罩组件（50）进行保护。",
+          "步骤4：连接液压管路（图纸未显示）。"
+        ]
+      },
+      {
+        "component_code": "01.09.2564",
+        "component_name": "把手组件-镀锌",
+        "drawing_number": "26",
+        "assembly_order": 10,
+        "reason": "把手组件（26）用于人工操作，应在所有主要功能部件安装完成后，最后安装。",
+        "base_part_code": "01.09.2564",
+        "base_part_name": "把手组件-镀锌",
+        "base_part_drawing_number": "26",
+        "base_part_weight_kg": 1.58,
+        "assembly_steps": [
+          "步骤1：将把手组件（26）安装到后座连接架组件（④）的顶部。",
+          "步骤2：使用螺栓（27）和螺母（28）进行紧固连接。",
+          "步骤3：检查把手安装的牢固性。"
+        ]
+      }
+    ],
+    "product_assembly_plan": {
+      "base_component_code": "01.09.2549",
+      "base_component_name": "连接器后座组件",
+      "base_component_drawing_number": "①",
+      "reason": "图纸上①号组件重量最大（77.27kg），位于底部中心，作为装配基准。",
+      "assembly_sequence": [
+        {
+          "step": 1,
+          "component_code": "01.09.2549",
+          "component_drawing_number": "①",
+          "action": "将①号连接器后座组件放置在工作台上作为基准。"
+        },
+        {
+          "step": 2,
+          "component_code": "01.09.2550",
+          "component_drawing_number": "④",
+          "action": "将④号后座连接架组件安装到①号组件的上方，并紧固。"
+        },
+        {
+          "step": 3,
+          "component_code": "01.09.2551",
+          "component_drawing_number": "②",
+          "action": "将②号左铲雪板组件通过销轴（18）连接到④号组件的左侧。"
+        },
+        {
+          "step": 4,
+          "component_code": "01.09.2552",
+          "component_drawing_number": "③",
+          "action": "将③号右铲雪板组件通过销轴（19）连接到④号组件的右侧。"
+        },
+        {
+          "step": 5,
+          "component_code": "02.08.01.0338",
+          "component_drawing_number": "⑧",
+          "action": "将⑧号油缸安装到④号组件和②/③号组件之间。"
+        },
+        {
+          "step": 6,
+          "component_code": "01.09.2559",
+          "component_drawing_number": "⑦",
+          "action": "将⑦号推雪板弹簧导柱组件安装到②/③号组件上。"
+        },
+        {
+          "step": 7,
+          "component_code": "01.09.2557",
+          "component_drawing_number": "⑥",
+          "action": "将⑥号轮胎架外臂组件安装到④号组件的下方。"
+        },
+        {
+          "step": 8,
+          "component_code": "01.09.2558",
+          "component_drawing_number": "⑤",
+          "action": "将⑤号轮胎架内臂组件插入⑥号组件并定位。"
+        },
+        {
+          "step": 9,
+          "component_code": "02.08.03.0236",
+          "component_drawing_number": "33",
+          "action": "将33号电磁阀组安装到④号组件的上方，并安装保护罩（50）。"
+        },
+        {
+          "step": 10,
+          "component_code": "01.09.2564",
+          "component_drawing_number": "26",
+          "action": "将26号把手组件安装到④号组件的顶部。"
+        }
+      ]
+    }
+  }
+}

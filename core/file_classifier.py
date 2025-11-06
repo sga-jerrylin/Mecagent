@@ -63,8 +63,6 @@ class FileClassifier:
                 step_name = Path(step_file).stem
                 step_name_map[step_name] = step_file
 
-        component_index = 1  # 组件索引计数器
-
         # 处理PDF文件
         for pdf_file in pdf_files:
             pdf_name = Path(pdf_file).stem  # 不含扩展名的文件名
@@ -82,12 +80,13 @@ class FileClassifier:
             else:
                 # 其他都视为组件图
                 component_info = self._parse_component_filename(pdf_name)
-                component_info["index"] = component_index
+                # ✅ 从文件名中提取实际的序号（如"组件图1" -> 1, "组件图2" -> 2）
+                component_number = self._extract_component_number(pdf_name)
+                component_info["index"] = component_number if component_number else len(result["components"]) + 1
                 component_info["name"] = pdf_name  # 使用文件名作为组件名
                 component_info["pdf"] = pdf_file
                 component_info["step"] = corresponding_step
                 result["components"].append(component_info)
-                component_index += 1
 
         # 处理没有对应PDF的STEP文件
         used_step_files = set()
@@ -113,12 +112,13 @@ class FileClassifier:
                     else:
                         # 作为组件处理
                         component_info = self._parse_component_filename(step_name)
-                        component_info["index"] = component_index
+                        # ✅ 从文件名中提取实际的序号
+                        component_number = self._extract_component_number(step_name)
+                        component_info["index"] = component_number if component_number else len(result["components"]) + 1
                         component_info["name"] = step_name
                         component_info["pdf"] = None
                         component_info["step"] = step_file
                         result["components"].append(component_info)
-                        component_index += 1
 
         # 按索引排序
         result["components"].sort(key=lambda x: x["index"])
@@ -142,31 +142,47 @@ class FileClassifier:
             return match.group(0)
         return ""
     
+    def _extract_component_number(self, filename: str) -> int:
+        """
+        从文件名中提取组件序号
+
+        Args:
+            filename: 文件名（如"组件图1", "组件图2", "component_3"）
+
+        Returns:
+            组件序号（如1, 2, 3），如果提取失败返回None
+        """
+        # 匹配"组件图1"、"组件1"、"component_1"等模式
+        match = self.component_pattern.search(filename)
+        if match:
+            return int(match.group(2))
+        return None
+
     def _parse_component_filename(self, filename: str) -> Dict:
         """
-        
-        
+
+
         Args:
             filename: 1__01.09.2549
-            
+
         Returns:
             {
                 "name": "",
                 "bom_code": "01.09.2549"
             }
         """
-        # 
+        #
         parts = filename.split('_')
-        
+
         result = {
             "name": "",
             "bom_code": ""
         }
-        
-        # 
+
+        #
         if len(parts) >= 2:
             result["name"] = parts[1]
-        
+
         # BOM01.09.xxxx
         bom_pattern = re.compile(r'\d{2}\.\d{2}\.\d+')
         for part in parts:
@@ -174,7 +190,7 @@ class FileClassifier:
             if match:
                 result["bom_code"] = match.group(0)
                 break
-        
+
         return result
     
     def convert_pdfs_to_images(

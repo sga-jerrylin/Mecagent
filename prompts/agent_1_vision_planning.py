@@ -279,12 +279,13 @@ ASSEMBLY_PLANNING_USER_QUERY = """我提供了这个产品的工程图纸（产�
 """
 
 
-def build_simple_assembly_planning_prompt(bom_data):
+def build_simple_assembly_planning_prompt(bom_data, expected_component_count=None):
     """
     构建装配规划提示词
 
     Args:
         bom_data: BOM数据列表（全量）
+        expected_component_count: 期望的组件数量（从文件系统识别出的组件图数量）
 
     Returns:
         (system_prompt, user_query) 元组
@@ -306,6 +307,10 @@ def build_simple_assembly_planning_prompt(bom_data):
 
     system_prompt = ASSEMBLY_PLANNING_SYSTEM_PROMPT
     user_query = ASSEMBLY_PLANNING_USER_QUERY.format(bom_data=bom_json)
+
+    # ✅ 如果提供了期望的组件数量，添加到用户查询中
+    if expected_component_count:
+        user_query += f"\n\n## ⚠️ 重要提示\n\n系统识别出了 **{expected_component_count} 个组件图文件**，请确保你的规划中包含 **{expected_component_count} 个组件**。\n每个组件图都对应一个需要预装配的组件，不要遗漏任何组件。"
 
     return system_prompt, user_query
 

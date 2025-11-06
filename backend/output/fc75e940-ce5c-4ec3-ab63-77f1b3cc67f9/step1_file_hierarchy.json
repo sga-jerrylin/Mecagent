@@ -1,0 +1,30 @@
+{
+  "product": {
+    "pdf": "output\\fc75e940-ce5c-4ec3-ab63-77f1b3cc67f9\\pdf_files\\产品总图.pdf",
+    "step": null,
+    "product_code": ""
+  },
+  "components": [
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 1,
+      "pdf": "output\\fc75e940-ce5c-4ec3-ab63-77f1b3cc67f9\\pdf_files\\组件图1.pdf",
+      "step": null
+    },
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 2,
+      "pdf": "output\\fc75e940-ce5c-4ec3-ab63-77f1b3cc67f9\\pdf_files\\组件图2.pdf",
+      "step": null
+    },
+    {
+      "name": "",
+      "bom_code": "",
+      "index": 3,
+      "pdf": "output\\fc75e940-ce5c-4ec3-ab63-77f1b3cc67f9\\pdf_files\\组件图3.pdf",
+      "step": null
+    }
+  ]
+}

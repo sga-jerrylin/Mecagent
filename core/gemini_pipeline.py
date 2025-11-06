@@ -145,13 +145,13 @@ class GeminiAssemblyPipeline:
 
             # 步骤3: Agent 1 - 视觉规划
             self.current_step = 3
-            planning_result = self._step3_vision_planning(image_hierarchy, bom_data)
+            planning_result = self._step3_vision_planning(image_hierarchy, bom_data, file_hierarchy)
             
             # ========== 支路2: 3D处理 ==========
             # 步骤4: Agent 2 - BOM-3D匹配
             self.current_step = 4
             matching_result = self._step4_bom_3d_matching(
-                step_dir, bom_data, planning_result
+                step_dir, bom_data, planning_result, file_hierarchy
             )
             
             # ========== 主线路: Agent 3-6 ==========
@@ -597,7 +597,7 @@ class GeminiAssemblyPipeline:
             traceback.print_exc()
             return []
 
-    def _step3_vision_planning(self, image_hierarchy: Dict, bom_data: List[Dict]) -> Dict:
+    def _step3_vision_planning(self, image_hierarchy: Dict, bom_data: List[Dict], file_hierarchy: Dict) -> Dict:
         """步骤3: Agent 1 - 视觉规划"""
         print_substep(f"[{self.current_step}/{self.total_steps}] 🔍 装配规划师")
 
@@ -609,18 +609,28 @@ class GeminiAssemblyPipeline:
         for comp_images in image_hierarchy.get("component_images", {}).values():
             all_images.extend(comp_images)
 
+        # ✅ 获取实际的组件数量（从file_hierarchy中获取）
+        actual_component_count = len(file_hierarchy.get("components", []))
+
         print_info(f"🖼️  他拿到了 {len(all_images)} 张图片", indent=1)
         print_info(f"📊 他参考了 {len(bom_data)} 个零件的信息", indent=1)
+        print_info(f"📁 系统识别出 {actual_component_count} 个组件图文件", indent=1)
         import sys
         sys.stdout.flush()
 
         self.log_agent_call("装配规划", "使用AI视觉分析图纸", "running")
 
-        planning_result = self.vision_agent.process(all_images, bom_data)
+        # ✅ 传入实际组件数量，确保AI为每个组件生成规划
+        planning_result = self.vision_agent.process(all_images, bom_data, actual_component_count)
 
         if planning_result["success"]:
             component_count = len(planning_result.get("component_assembly_plan", []))
             print_success(f"🎯 他识别出了 {component_count} 个组件", indent=1)
+
+            # ✅ 检查是否所有组件都被规划
+            if component_count < actual_component_count:
+                print_warning(f"⚠️  警告：只规划了 {component_count}/{actual_component_count} 个组件", indent=1)
+
             print_success(f"📋 他制定了装配顺序方案", indent=1)
             sys.stdout.flush()
             self.log_agent_call("装配规划", "完成了装配规划方案", "success")
@@ -635,7 +645,7 @@ class GeminiAssemblyPipeline:
         return planning_result
 
     def _step4_bom_3d_matching(
-        self, step_dir: str, bom_data: List[Dict], planning_result: Dict
+        self, step_dir: str, bom_data: List[Dict], planning_result: Dict, file_hierarchy: Dict
     ) -> Dict:
         """步骤4: Agent 2 - BOM-3D匹配"""
         print_substep(f"[{self.current_step}/{self.total_steps}] 🎨 3D模型工程师")
@@ -653,7 +663,8 @@ class GeminiAssemblyPipeline:
             step_dir=step_dir,
             bom_data=bom_data,
             component_plans=component_plans,
-            output_dir=str(self.output_dir / "glb_files")
+            output_dir=str(self.output_dir / "glb_files"),
+            file_hierarchy=file_hierarchy  # ✅ 传入文件层级结构
         )
 
         if matching_result["success"]:
@@ -698,20 +709,25 @@ class GeminiAssemblyPipeline:
         for i, comp_plan in enumerate(component_plans, 1):
             comp_code = comp_plan.get("component_code", "")
             comp_name = comp_plan.get("component_name", "")
+            comp_order = comp_plan.get("assembly_order", 0)
+
+            # ✅ 获取实际的组件图序号（从matching_result中获取）
+            drawing_index = comp_order  # 默认值
+            if comp_code in component_level_mappings:
+                drawing_index = component_level_mappings[comp_code].get("drawing_index", comp_order)
 
             self.log_agent_call(
                 f"组件装配工 #{i}",
-                f"编写【{comp_name}】的装配步骤",
+                f"编写【{comp_name}】的装配步骤 (图纸序号={drawing_index})",
                 "running"
             )
             sys.stdout.flush()
 
-            # ✅ 获取组件的图纸（通过assembly_order匹配）
-            comp_order = comp_plan.get("assembly_order", 0)
-            component_images = image_hierarchy.get('component_images', {}).get(str(comp_order), [])
+            # ✅ 使用实际的组件图序号获取图纸
+            component_images = image_hierarchy.get('component_images', {}).get(str(drawing_index), [])
 
             if not component_images:
-                print_warning(f"未找到组件{comp_code}的图片", indent=1)
+                print_warning(f"未找到组件图{drawing_index}的图片", indent=1)
                 # ✅ 标记为跳过状态，确保前端卡片能收到完成信号
                 self.log_agent_call(
                     f"组件装配工 #{i}",
@@ -727,16 +743,25 @@ class GeminiAssemblyPipeline:
                     "component_code": comp_code,
                     "component_name": comp_name,
                     "assembly_order": comp_order,
+                    "drawing_index": drawing_index,
                     "reason": "缺少组件图片"
                 })
                 continue
 
-            # ✅ 获取组件的BOM列表（从BOM数据中筛选）
-            # 通过source_pdf匹配（如"组件图1.pdf"）
-            comp_pdf_name = f"组件图{comp_order}.pdf"
+            # ✅ 使用实际的组件图序号获取BOM列表
+            # 从file_hierarchy中找到对应的组件图名称
+            comp_pdf_name = None
+            for comp in file_hierarchy.get("components", []):
+                if comp.get("index") == drawing_index:
+                    comp_pdf_name = comp.get("name", "")
+                    break
+
+            if not comp_pdf_name:
+                comp_pdf_name = f"组件图{drawing_index}"
+
             component_bom = [
                 item for item in bom_data
-                if item.get("source_pdf", "").startswith(comp_pdf_name.replace(".pdf", ""))
+                if item.get("source_pdf", "").startswith(comp_pdf_name)
             ]
 
             # ✅ 获取组件的BOM-3D映射（宽表和旧格式都获取）
@@ -768,10 +793,11 @@ class GeminiAssemblyPipeline:
             else:
                 self.log_agent_call(f"组件装配工 #{i}", "装配步骤编写", "error")
 
-            # ✅ 添加组件代号和装配顺序到结果中（供Agent 5和Agent 6使用）
+            # ✅ 添加组件代号、装配顺序和图纸序号到结果中（供后续步骤使用）
             result["component_code"] = comp_code
             result["component_name"] = comp_name
             result["assembly_order"] = comp_order
+            result["drawing_index"] = drawing_index  # ✅ 新增：保存实际的组件图序号
 
             component_results.append(result)
 
@@ -996,28 +1022,26 @@ class GeminiAssemblyPipeline:
         import sys
         sys.stdout.flush()
 
-        # 构建组件到GLB的映射（使用glb_files字段，它使用序号作为key）
+        # ✅ 构建组件到GLB的映射（使用drawing_index而不是assembly_order）
         component_to_glb_mapping = {}
         component_level_mappings = matching_result.get("component_level_mappings", {})
         glb_files = matching_result.get("glb_files", {})
 
-        # ✅ 方法1：从glb_files构建映射（推荐，因为它使用序号）
-        # glb_files格式：{"component_1": "path/to/component_1.glb", "component_2": ...}
-        # 但是我们需要的是 {comp_code: "component_1.glb"}
-
-        # ✅ 方法2：从component_level_mappings构建映射，但使用新的GLB文件名
-        # 我们需要通过assembly_order找到对应的GLB文件
+        # 从component_level_mappings构建映射，使用drawing_index
         for comp_code, mapping in component_level_mappings.items():
-            # 从component_results中找到对应的assembly_order
-            comp_order = None
-            for comp_result in component_results:
-                if comp_result.get("component_code") == comp_code:
-                    comp_order = comp_result.get("assembly_order")
-                    break
+            # 从mapping中获取drawing_index
+            drawing_index = mapping.get("drawing_index")
 
-            if comp_order:
-                # 使用序号构建GLB文件名
-                glb_filename = f"component_{comp_order}.glb"
+            if not drawing_index:
+                # 如果没有drawing_index，尝试从component_results中获取
+                for comp_result in component_results:
+                    if comp_result.get("component_code") == comp_code:
+                        drawing_index = comp_result.get("drawing_index")
+                        break
+
+            if drawing_index:
+                # ✅ 使用实际的组件图序号构建GLB文件名
+                glb_filename = f"component_{drawing_index}.glb"
                 component_to_glb_mapping[comp_code] = glb_filename
 
         print_info("📝 他正在整理所有内容...", indent=1)

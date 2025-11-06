@@ -1,0 +1,1578 @@
+{
+  "success": true,
+  "product_name": "",
+  "assembly_steps": [
+    {
+      "step_number": 1,
+      "title": "安装后座连接架",
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "drawing_number": "②",
+      "connection_type": "销轴连接",
+      "position_description": "将后座连接架组件②安装到连接器后座组件①的上方连接耳处。",
+      "components": [
+        {
+          "bom_seq": "2",
+          "bom_name": "后座连接架组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO429"
+          ],
+          "bom_code": "01.09.2550"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "14",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ50*15-φ35*485-φ10*10-45#",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO288"
+          ],
+          "bom_code": "01.09.2561"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 1,
+          "torque": ""
+        }
+      ],
+      "operation": "将销轴（BOM序号14）从一侧穿过连接器后座组件①和后座连接架组件②的连接孔。在销轴的另一端孔中插入安全销（BOM序号40）进行固定。",
+      "quality_check": "检查销轴是否完全穿过，安全销是否牢固可靠。",
+      "estimated_time_minutes": 5,
+      "safety_warnings": [
+        "佩戴安全帽和防护手套，防止零件边缘割伤或碰撞",
+        "销轴较重，搬运时注意姿势，防止扭伤腰部",
+        "对准销轴孔时，避免手指被夹伤"
+      ]
+    },
+    {
+      "step_number": 2,
+      "title": "安装左右铲雪板",
+      "component_code": "01.09.2551/01.09.2552",
+      "component_name": "左右铲雪板组件",
+      "drawing_number": "③, ④",
+      "connection_type": "销轴连接",
+      "position_description": "将左铲雪板组件③和右铲雪板组件④分别安装到连接器后座组件①的左右两侧下部连接耳处。",
+      "components": [
+        {
+          "bom_seq": "3",
+          "bom_name": "左铲雪板组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO364"
+          ],
+          "bom_code": "01.09.2551"
+        },
+        {
+          "bom_seq": "4",
+          "bom_name": "右铲雪板组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO337"
+          ],
+          "bom_code": "01.09.2552"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "15",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ35*10-φ25*145-φ10*10-45#",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO287"
+          ],
+          "bom_code": "01.09.2562"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 2,
+          "torque": ""
+        }
+      ],
+      "operation": "将左铲雪板组件③和右铲雪板组件④分别对准连接器后座组件①的下部连接孔。使用2根销轴（BOM序号15）穿过连接孔，并用2个安全销（BOM序号40）固定。",
+      "quality_check": "检查铲雪板是否能自由转动，销轴固定可靠。",
+      "estimated_time_minutes": 10,
+      "safety_warnings": [
+        "铲雪板组件体积较大，搬运时应两人配合或使用辅助工具，防止砸伤或扭伤",
+        "佩戴安全帽和防砸安全鞋，防止重物坠落砸伤脚部",
+        "安装时注意铲雪板的锋利边缘和毛刺，佩戴防割手套"
+      ]
+    },
+    {
+      "step_number": 3,
+      "title": "安装左右刀板后座",
+      "component_code": "01.09.2554/01.09.2553",
+      "component_name": "左右刀板后座组件",
+      "drawing_number": "无（安装在③和④上）",
+      "connection_type": "螺栓连接",
+      "position_description": "将左刀板后座组件⑤和右刀板后座组件⑥分别安装到左铲雪板组件③和右铲雪板组件④的内侧。",
+      "components": [
+        {
+          "bom_seq": "5",
+          "bom_name": "左刀板后座组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO326"
+          ],
+          "bom_code": "01.09.2554"
+        },
+        {
+          "bom_seq": "6",
+          "bom_name": "右刀板后座组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO315"
+          ],
+          "bom_code": "01.09.2553"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "41",
+          "bom_name": "内六角平圆头螺钉8.8级",
+          "spec": "M16*85",
+          "quantity": 4,
+          "torque": "150N·m",
+          "node_name": [
+            "NAUO129"
+          ],
+          "bom_code": "02.03.1035"
+        },
+        {
+          "bom_seq": "42",
+          "bom_name": "平垫圈8.8级",
+          "spec": "16*3",
+          "quantity": 4,
+          "torque": "",
+          "node_name": [
+            "NAUO130"
+          ],
+          "bom_code": "02.03.0072"
+        },
+        {
+          "bom_seq": "43",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M16",
+          "quantity": 4,
+          "torque": "150N·m",
+          "node_name": [
+            "NAUO131"
+          ],
+          "bom_code": "02.03.0019"
+        }
+      ],
+      "operation": "将左刀板后座组件⑤和右刀板后座组件⑥分别对准铲雪板组件③和④上的安装孔。使用4套M16*85内六角螺钉（BOM序号41）、平垫圈（BOM序号42）和M16锁紧螺母（BOM序号43）进行固定。拧紧力矩为150N·m。",
+      "quality_check": "检查刀板后座与铲雪板贴合紧密，螺栓拧紧到位。",
+      "estimated_time_minutes": 15,
+      "safety_warnings": [
+        "使用电动工具拧紧螺栓时，佩戴防护眼镜，防止螺栓或工具部件飞出伤人",
+        "确保电动扳手扭矩设置正确，防止反作用力伤到手臂",
+        "注意零件边缘，佩戴防护手套，防止割伤"
+      ]
+    },
+    {
+      "step_number": 4,
+      "title": "安装推雪板弹簧导柱",
+      "component_code": "01.09.2559",
+      "component_name": "推雪板弹簧导柱组件-镀锌",
+      "drawing_number": "⑨",
+      "connection_type": "螺栓连接",
+      "position_description": "将推雪板弹簧导柱组件⑨安装到连接器后座组件①的顶部。",
+      "components": [
+        {
+          "bom_seq": "9",
+          "bom_name": "推雪板弹簧导柱组件-镀锌",
+          "quantity": 1,
+          "node_name": [
+            "NAUO296"
+          ],
+          "bom_code": "01.09.2559"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "44",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M8*20",
+          "quantity": 4,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO136"
+          ],
+          "bom_code": "02.03.0379"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 4,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO78"
+          ],
+          "bom_code": "02.03.0028"
+        }
+      ],
+      "operation": "将导柱组件⑨放置在连接器后座组件①顶部的安装位置。使用4套M8*20螺栓（BOM序号44）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+      "quality_check": "检查导柱安装方向正确，螺栓紧固可靠。",
+      "estimated_time_minutes": 5
+    },
+    {
+      "step_number": 5,
+      "title": "安装油缸和弹簧",
+      "component_code": "02.08.01.0338",
+      "component_name": "油缸",
+      "drawing_number": "⑱",
+      "connection_type": "销轴连接",
+      "position_description": "安装油缸⑱和压缩弹簧⑰，连接铲雪板组件③/④与后座连接架组件②。",
+      "components": [
+        {
+          "bom_seq": "18",
+          "bom_name": "油缸",
+          "quantity": 1,
+          "node_name": [
+            "NAUO285"
+          ],
+          "bom_code": "02.08.01.0338"
+        },
+        {
+          "bom_seq": "17",
+          "bom_name": "压缩弹簧",
+          "quantity": 2,
+          "node_name": [
+            "NAUO33"
+          ],
+          "bom_code": "02.09.0103"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "16",
+          "bom_name": "销轴-镀锌",
+          "spec": "XZ-φ40*10-φ30*87-φ10*10-45#",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO286"
+          ],
+          "bom_code": "01.09.2563"
+        },
+        {
+          "bom_seq": "40",
+          "bom_name": "安全销",
+          "spec": "Φ4.5*40",
+          "quantity": 1,
+          "torque": ""
+        },
+        {
+          "bom_seq": "39",
+          "bom_name": "六角头螺栓8.8级",
+          "spec": "M8*65",
+          "quantity": 2,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO124"
+          ],
+          "bom_code": "02.03.0102"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 2,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO78"
+          ],
+          "bom_code": "02.03.0028"
+        }
+      ],
+      "operation": "1. 将油缸⑱底部连接耳对准后座连接架组件②的安装孔，使用销轴（BOM序号16）连接，并用安全销（BOM序号40）固定。\n2. 将2个压缩弹簧（BOM序号17）分别安装在左右铲雪板组件③和④的弹簧座上。\n3. 使用2套M8*65螺栓（BOM序号39）和M8锁紧螺母（BOM序号33）将弹簧的另一端固定在后座连接架组件②上。拧紧力矩25N·m。",
+      "quality_check": "检查油缸安装灵活，弹簧安装到位，螺栓紧固可靠。",
+      "estimated_time_minutes": 20,
+      "safety_warnings": [
+        "油缸和弹簧安装时，注意防止重物砸伤，必要时使用吊具辅助定位",
+        "安装压缩弹簧时，必须小心操作，防止弹簧突然弹出伤人",
+        "确保油缸连接销轴完全穿过并用安全销固定，防止油缸脱落"
+      ]
+    },
+    {
+      "step_number": 6,
+      "title": "安装后座支撑架",
+      "component_code": "01.09.2560",
+      "component_name": "后座支撑架组件-漆后",
+      "drawing_number": "⑩",
+      "connection_type": "螺栓连接",
+      "position_description": "将后座支撑架组件⑩安装到连接器后座组件①的后部。",
+      "components": [
+        {
+          "bom_seq": "10",
+          "bom_name": "后座支撑架组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO291"
+          ],
+          "bom_code": "01.09.2560"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "45",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M30*60",
+          "quantity": 2,
+          "torque": "800N·m",
+          "node_name": [
+            "NAUO151"
+          ],
+          "bom_code": "02.03.0458"
+        },
+        {
+          "bom_seq": "46",
+          "bom_name": "推雪板大垫圈-镀锌",
+          "spec": "SPE1.83-LD-06-45#",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO275"
+          ],
+          "bom_code": "01.09.0304"
+        },
+        {
+          "bom_seq": "47",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M30",
+          "quantity": 2,
+          "torque": "800N·m",
+          "node_name": [
+            "NAUO153"
+          ],
+          "bom_code": "02.03.0147"
+        }
+      ],
+      "operation": "将后座支撑架组件⑩对准连接器后座组件①的安装孔。使用2套M30*60螺栓（BOM序号45）、大垫圈（BOM序号46）和M30锁紧螺母（BOM序号47）固定。拧紧力矩为800N·m。",
+      "quality_check": "检查支撑架安装牢固，M30螺栓达到高扭矩要求。",
+      "estimated_time_minutes": 10,
+      "safety_warnings": [
+        "支撑架组件较重，搬运和定位时注意防止砸伤",
+        "使用高扭矩扳手（800N·m）时，必须使用反作用力支撑臂，防止扳手反弹伤人",
+        "佩戴安全帽和防护手套，防止零件碰撞和割伤"
+      ]
+    },
+    {
+      "step_number": 7,
+      "title": "安装轮胎架外臂和内臂",
+      "component_code": "01.09.2557/01.09.2558",
+      "component_name": "轮胎架外臂/内臂组件",
+      "drawing_number": "⑦, ⑧",
+      "connection_type": "销轴连接",
+      "position_description": "将轮胎架外臂组件⑦和内臂组件⑧安装到后座支撑架组件⑩上。",
+      "components": [
+        {
+          "bom_seq": "7",
+          "bom_name": "轮胎架外臂组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO310"
+          ],
+          "bom_code": "01.09.2557"
+        },
+        {
+          "bom_seq": "8",
+          "bom_name": "轮胎架内臂组件-镀锌",
+          "quantity": 1
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "27",
+          "bom_name": "自制螺栓-镀锌",
+          "spec": "ML-CA1200-Avant300-500-11-Q235",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO277"
+          ],
+          "bom_code": "01.09.2565"
+        },
+        {
+          "bom_seq": "26",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M20",
+          "quantity": 1,
+          "torque": "250N·m",
+          "node_name": [
+            "NAUO64"
+          ],
+          "bom_code": "02.03.0612"
+        },
+        {
+          "bom_seq": "28",
+          "bom_name": "圆钢-机加-镀锌",
+          "spec": "ML-CA1200-Avant300-500-08-45#",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO276"
+          ],
+          "bom_code": "01.09.2566"
+        }
+      ],
+      "operation": "1. 将轮胎架外臂组件⑦和内臂组件⑧通过自制螺栓（BOM序号27）连接，并用M20锁紧螺母（BOM序号26）固定，拧紧力矩250N·m。\n2. 将圆钢（BOM序号28）作为销轴，连接轮胎架内臂组件⑧与后座支撑架组件⑩。",
+      "quality_check": "检查轮胎架臂连接紧密，转动灵活。",
+      "estimated_time_minutes": 10,
+      "safety_warnings": [
+        "拧紧M20螺栓时（250N·m），注意使用合适的工具和姿势，防止扭伤",
+        "安装臂组件时，注意防止夹伤手指"
+      ]
+    },
+    {
+      "step_number": 8,
+      "title": "安装轮胎",
+      "component_code": "02.16.0142",
+      "component_name": "实心橡胶轮",
+      "drawing_number": "无（安装在⑦上）",
+      "connection_type": "销轴连接",
+      "position_description": "将实心橡胶轮（轮胎）安装到轮胎架外臂组件⑦的末端。",
+      "components": [
+        {
+          "bom_seq": "25",
+          "bom_name": "实心橡胶轮",
+          "quantity": 2,
+          "node_name": [
+            "NAUO62"
+          ],
+          "bom_code": "02.16.0142"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "23",
+          "bom_name": "插销-镀锌",
+          "spec": "CX-φ12-150-45#",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO279"
+          ],
+          "bom_code": "01.09.0503"
+        }
+      ],
+      "operation": "将2个实心橡胶轮（BOM序号25）安装到轮胎架外臂组件⑦的轴上。使用2个插销（BOM序号23）穿过轴孔进行固定。",
+      "quality_check": "检查轮胎转动顺畅，插销固定可靠。",
+      "estimated_time_minutes": 5,
+      "safety_warnings": [
+        "实心橡胶轮较重，搬运时注意防止砸伤脚部，佩戴安全鞋",
+        "安装时确保轮胎放置平稳，防止滚动伤人"
+      ]
+    },
+    {
+      "step_number": 9,
+      "title": "安装橡胶刀板和挡板",
+      "component_code": "01.02.07.0239",
+      "component_name": "橡胶刀板",
+      "drawing_number": "⑪, ⑫",
+      "connection_type": "螺栓连接",
+      "position_description": "将橡胶刀板⑪和橡胶挡板⑫安装到铲雪板组件③和④的底部。",
+      "components": [
+        {
+          "bom_seq": "11",
+          "bom_name": "橡胶刀板",
+          "quantity": 1,
+          "node_name": [
+            "NAUO18"
+          ],
+          "bom_code": "01.02.07.0239"
+        },
+        {
+          "bom_seq": "12",
+          "bom_name": "橡胶挡板",
+          "quantity": 1,
+          "node_name": [
+            "NAUO20"
+          ],
+          "bom_code": "01.02.07.0071"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "32",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M8*40",
+          "quantity": 12,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO77"
+          ],
+          "bom_code": "02.03.0398"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 12,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO78"
+          ],
+          "bom_code": "02.03.0028"
+        }
+      ],
+      "operation": "将橡胶刀板（BOM序号11）和橡胶挡板（BOM序号12）对准铲雪板底部的安装孔。使用12套M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩25N·m。",
+      "quality_check": "检查刀板和挡板安装平整，螺栓均匀紧固。",
+      "estimated_time_minutes": 15
+    },
+    {
+      "step_number": 10,
+      "title": "安装电磁阀组和保护罩",
+      "component_code": "02.08.03.0236",
+      "component_name": "电磁阀组",
+      "drawing_number": "无（安装在①上）",
+      "connection_type": "螺栓连接",
+      "position_description": "将电磁阀组安装到连接器后座组件①的预留位置，并安装保护罩。",
+      "components": [
+        {
+          "bom_seq": "36",
+          "bom_name": "电磁阀组",
+          "quantity": 1,
+          "node_name": [
+            "NAUO119"
+          ],
+          "bom_code": "02.08.03.0236"
+        },
+        {
+          "bom_seq": "51",
+          "bom_name": "电磁阀保护罩组件-漆后",
+          "quantity": 1,
+          "node_name": [
+            "NAUO271"
+          ],
+          "bom_code": "01.09.1240"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "29",
+          "bom_name": "内六角圆柱头螺钉8.8级",
+          "spec": "M6*40",
+          "quantity": 4,
+          "torque": "10N·m",
+          "node_name": [
+            "NAUO69"
+          ],
+          "bom_code": "02.03.0442"
+        },
+        {
+          "bom_seq": "30",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M6",
+          "quantity": 4,
+          "torque": "10N·m",
+          "node_name": [
+            "NAUO70"
+          ],
+          "bom_code": "02.03.0146"
+        },
+        {
+          "bom_seq": "31",
+          "bom_name": "平垫圈8.8级",
+          "spec": "6*1.6",
+          "quantity": 4,
+          "torque": "",
+          "node_name": [
+            "NAUO71"
+          ],
+          "bom_code": "02.03.0381"
+        },
+        {
+          "bom_seq": "38",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M6*16",
+          "quantity": 2,
+          "torque": "10N·m",
+          "node_name": [
+            "NAUO122"
+          ],
+          "bom_code": "02.03.0383"
+        }
+      ],
+      "operation": "1. 将电磁阀组（BOM序号36）安装到连接器后座组件①上，使用2套M6*16螺栓（BOM序号38）固定。\n2. 将电磁阀保护罩组件（BOM序号51）盖在电磁阀组上方，使用4套M6*40内六角螺钉（BOM序号29）、平垫圈（BOM序号31）和M6锁紧螺母（BOM序号30）固定。拧紧力矩10N·m。",
+      "quality_check": "检查电磁阀组安装方向正确，保护罩安装到位。",
+      "estimated_time_minutes": 15,
+      "safety_warnings": [
+        "操作电磁阀组时，确保设备电源已断开，防止触电",
+        "轻拿轻放电磁阀组，避免摔落损坏或砸伤"
+      ]
+    },
+    {
+      "step_number": 11,
+      "title": "安装反光片和固定板",
+      "component_code": "02.04.0029",
+      "component_name": "推雪板反光片",
+      "drawing_number": "无（安装在铲雪板上）",
+      "connection_type": "螺栓连接",
+      "position_description": "将反光片和固定板安装到铲雪板组件③和④的顶部。",
+      "components": [
+        {
+          "bom_seq": "37",
+          "bom_name": "推雪板反光片",
+          "quantity": 2,
+          "node_name": [
+            "NAUO120"
+          ],
+          "bom_code": "02.04.0029"
+        },
+        {
+          "bom_seq": "49",
+          "bom_name": "推雪板反光片固定板-镀锌",
+          "quantity": 2,
+          "node_name": [
+            "NAUO274"
+          ],
+          "bom_code": "01.09.0308"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "48",
+          "bom_name": "六角头螺栓全螺纹8.8级",
+          "spec": "M6*20",
+          "quantity": 4,
+          "torque": "10N·m",
+          "node_name": [
+            "NAUO191"
+          ],
+          "bom_code": "02.03.0378"
+        },
+        {
+          "bom_seq": "30",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M6",
+          "quantity": 4,
+          "torque": "10N·m",
+          "node_name": [
+            "NAUO70"
+          ],
+          "bom_code": "02.03.0146"
+        }
+      ],
+      "operation": "将2个反光片（BOM序号37）和2个固定板（BOM序号49）安装到左右铲雪板组件③和④的顶部。使用4套M6*20螺栓（BOM序号48）和M6锁紧螺母（BOM序号30）固定。拧紧力矩10N·m。",
+      "quality_check": "检查反光片安装牢固，方向朝外。",
+      "estimated_time_minutes": 5
+    },
+    {
+      "step_number": 12,
+      "title": "安装把手、油杯和V型销轴",
+      "component_code": "01.09.2564",
+      "component_name": "把手组件",
+      "drawing_number": "无",
+      "connection_type": "螺栓/销轴连接",
+      "position_description": "安装把手、油杯和V型推雪板销轴。",
+      "components": [
+        {
+          "bom_seq": "19",
+          "bom_name": "把手组件-镀锌",
+          "quantity": 1,
+          "node_name": [
+            "NAUO283"
+          ],
+          "bom_code": "01.09.2564"
+        },
+        {
+          "bom_seq": "21",
+          "bom_name": "V型推雪板销轴-镀锌",
+          "quantity": 1,
+          "node_name": [
+            "NAUO280"
+          ],
+          "bom_code": "01.09.0995"
+        },
+        {
+          "bom_seq": "24",
+          "bom_name": "V型推雪板轴套-镀锌",
+          "quantity": 2,
+          "node_name": [
+            "NAUO278"
+          ],
+          "bom_code": "01.09.0999"
+        }
+      ],
+      "fasteners": [
+        {
+          "bom_seq": "34",
+          "bom_name": "直通式压注油杯",
+          "spec": "M8",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO79"
+          ],
+          "bom_code": "02.08.05.0004"
+        },
+        {
+          "bom_seq": "35",
+          "bom_name": "安全销",
+          "spec": "φ8*45",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO103"
+          ],
+          "bom_code": "02.03.0001"
+        },
+        {
+          "bom_seq": "20",
+          "bom_name": "1型六角螺母8.8级",
+          "spec": "M30",
+          "quantity": 1,
+          "torque": "800N·m",
+          "node_name": [
+            "NAUO43"
+          ],
+          "bom_code": "02.03.0148"
+        },
+        {
+          "bom_seq": "22",
+          "bom_name": "平垫圈8.8级",
+          "spec": "30*4",
+          "quantity": 1,
+          "torque": "",
+          "node_name": [
+            "NAUO54"
+          ],
+          "bom_code": "02.03.0006"
+        },
+        {
+          "bom_seq": "52",
+          "bom_name": "六角头螺栓8.8级",
+          "spec": "M8*80",
+          "quantity": 1,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO231"
+          ],
+          "bom_code": "02.03.0088"
+        },
+        {
+          "bom_seq": "33",
+          "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+          "spec": "M8",
+          "quantity": 1,
+          "torque": "25N·m",
+          "node_name": [
+            "NAUO78"
+          ],
+          "bom_code": "02.03.0028"
+        },
+        {
+          "bom_seq": "53",
+          "bom_name": "方形板-机加-镀锌",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO269"
+          ],
+          "bom_code": "01.09.2556"
+        },
+        {
+          "bom_seq": "50",
+          "bom_name": "平垫圈 倒角型 A级(钢)",
+          "spec": "20*3",
+          "quantity": 2,
+          "torque": "",
+          "node_name": [
+            "NAUO204"
+          ],
+          "bom_code": "02.03.0610"
+        }
+      ],
+      "operation": "1. 将2个直通式压注油杯（BOM序号34）拧入连接器后座组件①的预留孔中。\n2. 将V型推雪板销轴（BOM序号21）穿过连接器后座组件①的中心孔，并在销轴上安装2个轴套（BOM序号24）。使用平垫圈（BOM序号22）和M30六角螺母（BOM序号20）固定，拧紧力矩800N·m。\n3. 将把手组件（BOM序号19）安装到后座连接架组件②上，使用M8*80螺栓（BOM序号52）和M8锁紧螺母（BOM序号33）固定。\n4. 将2个方形板（BOM序号53）和2个平垫圈（BOM序号50）作为限位块，安装在铲雪板组件③和④的连接处，并用安全销（BOM序号35）固定。",
+      "quality_check": "检查所有紧固件是否到位，油杯安装牢固，销轴转动灵活。",
+      "estimated_time_minutes": 20,
+      "safety_warnings": [
+        "拧紧M30螺母时（800N·m），必须使用反作用力支撑臂，防止扳手反弹造成严重伤害",
+        "安装销轴时，注意防止夹伤手指",
+        "油杯安装时，注意不要用力过猛导致滑丝或油杯断裂"
+      ]
+    }
+  ],
+  "raw_result": {
+    "product_name": "V型推雪板雪板连接器",
+    "total_steps": 12,
+    "visual_analysis": {
+      "base_component_drawing_number": "①",
+      "assembly_sequence_reasoning": "基准组件是连接器后座组件①，所有其他组件都安装在它上面。首先应安装后座连接架②，然后安装左右铲雪板③和④，最后安装油缸、弹簧、轮胎架和电磁阀等功能性组件。"
+    },
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "title": "安装后座连接架",
+        "component_code": "01.09.2550",
+        "component_name": "后座连接架组件-漆后",
+        "drawing_number": "②",
+        "connection_type": "销轴连接",
+        "position_description": "将后座连接架组件②安装到连接器后座组件①的上方连接耳处。",
+        "components": [
+          {
+            "bom_seq": "2",
+            "bom_name": "后座连接架组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO429"
+            ],
+            "bom_code": "01.09.2550"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "14",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ50*15-φ35*485-φ10*10-45#",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO288"
+            ],
+            "bom_code": "01.09.2561"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 1,
+            "torque": ""
+          }
+        ],
+        "operation": "将销轴（BOM序号14）从一侧穿过连接器后座组件①和后座连接架组件②的连接孔。在销轴的另一端孔中插入安全销（BOM序号40）进行固定。",
+        "quality_check": "检查销轴是否完全穿过，安全销是否牢固可靠。",
+        "estimated_time_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "安装左右铲雪板",
+        "component_code": "01.09.2551/01.09.2552",
+        "component_name": "左右铲雪板组件",
+        "drawing_number": "③, ④",
+        "connection_type": "销轴连接",
+        "position_description": "将左铲雪板组件③和右铲雪板组件④分别安装到连接器后座组件①的左右两侧下部连接耳处。",
+        "components": [
+          {
+            "bom_seq": "3",
+            "bom_name": "左铲雪板组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO364"
+            ],
+            "bom_code": "01.09.2551"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "右铲雪板组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO337"
+            ],
+            "bom_code": "01.09.2552"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "15",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ35*10-φ25*145-φ10*10-45#",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO287"
+            ],
+            "bom_code": "01.09.2562"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 2,
+            "torque": ""
+          }
+        ],
+        "operation": "将左铲雪板组件③和右铲雪板组件④分别对准连接器后座组件①的下部连接孔。使用2根销轴（BOM序号15）穿过连接孔，并用2个安全销（BOM序号40）固定。",
+        "quality_check": "检查铲雪板是否能自由转动，销轴固定可靠。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "安装左右刀板后座",
+        "component_code": "01.09.2554/01.09.2553",
+        "component_name": "左右刀板后座组件",
+        "drawing_number": "无（安装在③和④上）",
+        "connection_type": "螺栓连接",
+        "position_description": "将左刀板后座组件⑤和右刀板后座组件⑥分别安装到左铲雪板组件③和右铲雪板组件④的内侧。",
+        "components": [
+          {
+            "bom_seq": "5",
+            "bom_name": "左刀板后座组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO326"
+            ],
+            "bom_code": "01.09.2554"
+          },
+          {
+            "bom_seq": "6",
+            "bom_name": "右刀板后座组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO315"
+            ],
+            "bom_code": "01.09.2553"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "41",
+            "bom_name": "内六角平圆头螺钉8.8级",
+            "spec": "M16*85",
+            "quantity": 4,
+            "torque": "150N·m",
+            "node_name": [
+              "NAUO129"
+            ],
+            "bom_code": "02.03.1035"
+          },
+          {
+            "bom_seq": "42",
+            "bom_name": "平垫圈8.8级",
+            "spec": "16*3",
+            "quantity": 4,
+            "torque": "",
+            "node_name": [
+              "NAUO130"
+            ],
+            "bom_code": "02.03.0072"
+          },
+          {
+            "bom_seq": "43",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M16",
+            "quantity": 4,
+            "torque": "150N·m",
+            "node_name": [
+              "NAUO131"
+            ],
+            "bom_code": "02.03.0019"
+          }
+        ],
+        "operation": "将左刀板后座组件⑤和右刀板后座组件⑥分别对准铲雪板组件③和④上的安装孔。使用4套M16*85内六角螺钉（BOM序号41）、平垫圈（BOM序号42）和M16锁紧螺母（BOM序号43）进行固定。拧紧力矩为150N·m。",
+        "quality_check": "检查刀板后座与铲雪板贴合紧密，螺栓拧紧到位。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "安装推雪板弹簧导柱",
+        "component_code": "01.09.2559",
+        "component_name": "推雪板弹簧导柱组件-镀锌",
+        "drawing_number": "⑨",
+        "connection_type": "螺栓连接",
+        "position_description": "将推雪板弹簧导柱组件⑨安装到连接器后座组件①的顶部。",
+        "components": [
+          {
+            "bom_seq": "9",
+            "bom_name": "推雪板弹簧导柱组件-镀锌",
+            "quantity": 1,
+            "node_name": [
+              "NAUO296"
+            ],
+            "bom_code": "01.09.2559"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "44",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*20",
+            "quantity": 4,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO136"
+            ],
+            "bom_code": "02.03.0379"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 4,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO78"
+            ],
+            "bom_code": "02.03.0028"
+          }
+        ],
+        "operation": "将导柱组件⑨放置在连接器后座组件①顶部的安装位置。使用4套M8*20螺栓（BOM序号44）和M8锁紧螺母（BOM序号33）固定。拧紧力矩为25N·m。",
+        "quality_check": "检查导柱安装方向正确，螺栓紧固可靠。",
+        "estimated_time_minutes": 5
+      },
+      {
+        "step_number": 5,
+        "title": "安装油缸和弹簧",
+        "component_code": "02.08.01.0338",
+        "component_name": "油缸",
+        "drawing_number": "⑱",
+        "connection_type": "销轴连接",
+        "position_description": "安装油缸⑱和压缩弹簧⑰，连接铲雪板组件③/④与后座连接架组件②。",
+        "components": [
+          {
+            "bom_seq": "18",
+            "bom_name": "油缸",
+            "quantity": 1,
+            "node_name": [
+              "NAUO285"
+            ],
+            "bom_code": "02.08.01.0338"
+          },
+          {
+            "bom_seq": "17",
+            "bom_name": "压缩弹簧",
+            "quantity": 2,
+            "node_name": [
+              "NAUO33"
+            ],
+            "bom_code": "02.09.0103"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "16",
+            "bom_name": "销轴-镀锌",
+            "spec": "XZ-φ40*10-φ30*87-φ10*10-45#",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO286"
+            ],
+            "bom_code": "01.09.2563"
+          },
+          {
+            "bom_seq": "40",
+            "bom_name": "安全销",
+            "spec": "Φ4.5*40",
+            "quantity": 1,
+            "torque": ""
+          },
+          {
+            "bom_seq": "39",
+            "bom_name": "六角头螺栓8.8级",
+            "spec": "M8*65",
+            "quantity": 2,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO124"
+            ],
+            "bom_code": "02.03.0102"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 2,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO78"
+            ],
+            "bom_code": "02.03.0028"
+          }
+        ],
+        "operation": "1. 将油缸⑱底部连接耳对准后座连接架组件②的安装孔，使用销轴（BOM序号16）连接，并用安全销（BOM序号40）固定。\n2. 将2个压缩弹簧（BOM序号17）分别安装在左右铲雪板组件③和④的弹簧座上。\n3. 使用2套M8*65螺栓（BOM序号39）和M8锁紧螺母（BOM序号33）将弹簧的另一端固定在后座连接架组件②上。拧紧力矩25N·m。",
+        "quality_check": "检查油缸安装灵活，弹簧安装到位，螺栓紧固可靠。",
+        "estimated_time_minutes": 20
+      },
+      {
+        "step_number": 6,
+        "title": "安装后座支撑架",
+        "component_code": "01.09.2560",
+        "component_name": "后座支撑架组件-漆后",
+        "drawing_number": "⑩",
+        "connection_type": "螺栓连接",
+        "position_description": "将后座支撑架组件⑩安装到连接器后座组件①的后部。",
+        "components": [
+          {
+            "bom_seq": "10",
+            "bom_name": "后座支撑架组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO291"
+            ],
+            "bom_code": "01.09.2560"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "45",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M30*60",
+            "quantity": 2,
+            "torque": "800N·m",
+            "node_name": [
+              "NAUO151"
+            ],
+            "bom_code": "02.03.0458"
+          },
+          {
+            "bom_seq": "46",
+            "bom_name": "推雪板大垫圈-镀锌",
+            "spec": "SPE1.83-LD-06-45#",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO275"
+            ],
+            "bom_code": "01.09.0304"
+          },
+          {
+            "bom_seq": "47",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M30",
+            "quantity": 2,
+            "torque": "800N·m",
+            "node_name": [
+              "NAUO153"
+            ],
+            "bom_code": "02.03.0147"
+          }
+        ],
+        "operation": "将后座支撑架组件⑩对准连接器后座组件①的安装孔。使用2套M30*60螺栓（BOM序号45）、大垫圈（BOM序号46）和M30锁紧螺母（BOM序号47）固定。拧紧力矩为800N·m。",
+        "quality_check": "检查支撑架安装牢固，M30螺栓达到高扭矩要求。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 7,
+        "title": "安装轮胎架外臂和内臂",
+        "component_code": "01.09.2557/01.09.2558",
+        "component_name": "轮胎架外臂/内臂组件",
+        "drawing_number": "⑦, ⑧",
+        "connection_type": "销轴连接",
+        "position_description": "将轮胎架外臂组件⑦和内臂组件⑧安装到后座支撑架组件⑩上。",
+        "components": [
+          {
+            "bom_seq": "7",
+            "bom_name": "轮胎架外臂组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO310"
+            ],
+            "bom_code": "01.09.2557"
+          },
+          {
+            "bom_seq": "8",
+            "bom_name": "轮胎架内臂组件-镀锌",
+            "quantity": 1
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "27",
+            "bom_name": "自制螺栓-镀锌",
+            "spec": "ML-CA1200-Avant300-500-08-45#",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO277"
+            ],
+            "bom_code": "01.09.2565"
+          },
+          {
+            "bom_seq": "26",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M20",
+            "quantity": 1,
+            "torque": "250N·m",
+            "node_name": [
+              "NAUO64"
+            ],
+            "bom_code": "02.03.0612"
+          },
+          {
+            "bom_seq": "28",
+            "bom_name": "圆钢-机加-镀锌",
+            "spec": "ML-CA1200-Avant300-500-11-Q235",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO276"
+            ],
+            "bom_code": "01.09.2566"
+          }
+        ],
+        "operation": "1. 将轮胎架外臂组件⑦和内臂组件⑧通过自制螺栓（BOM序号27）连接，并用M20锁紧螺母（BOM序号26）固定，拧紧力矩250N·m。\n2. 将圆钢（BOM序号28）作为销轴，连接轮胎架内臂组件⑧与后座支撑架组件⑩。",
+        "quality_check": "检查轮胎架臂连接紧密，转动灵活。",
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 8,
+        "title": "安装轮胎",
+        "component_code": "02.16.0142",
+        "component_name": "实心橡胶轮",
+        "drawing_number": "无（安装在⑦上）",
+        "connection_type": "销轴连接",
+        "position_description": "将实心橡胶轮（轮胎）安装到轮胎架外臂组件⑦的末端。",
+        "components": [
+          {
+            "bom_seq": "25",
+            "bom_name": "实心橡胶轮",
+            "quantity": 2,
+            "node_name": [
+              "NAUO62"
+            ],
+            "bom_code": "02.16.0142"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "23",
+            "bom_name": "插销-镀锌",
+            "spec": "CX-φ12-150-45#",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO279"
+            ],
+            "bom_code": "01.09.0503"
+          }
+        ],
+        "operation": "将2个实心橡胶轮（BOM序号25）安装到轮胎架外臂组件⑦的轴上。使用2个插销（BOM序号23）穿过轴孔进行固定。",
+        "quality_check": "检查轮胎转动顺畅，插销固定可靠。",
+        "estimated_time_minutes": 5
+      },
+      {
+        "step_number": 9,
+        "title": "安装橡胶刀板和挡板",
+        "component_code": "01.02.07.0239",
+        "component_name": "橡胶刀板",
+        "drawing_number": "⑪, ⑫",
+        "connection_type": "螺栓连接",
+        "position_description": "将橡胶刀板⑪和橡胶挡板⑫安装到铲雪板组件③和④的底部。",
+        "components": [
+          {
+            "bom_seq": "11",
+            "bom_name": "橡胶刀板",
+            "quantity": 1,
+            "node_name": [
+              "NAUO18"
+            ],
+            "bom_code": "01.02.07.0239"
+          },
+          {
+            "bom_seq": "12",
+            "bom_name": "橡胶挡板",
+            "quantity": 1,
+            "node_name": [
+              "NAUO20"
+            ],
+            "bom_code": "01.02.07.0071"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "32",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M8*40",
+            "quantity": 12,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO77"
+            ],
+            "bom_code": "02.03.0398"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 12,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO78"
+            ],
+            "bom_code": "02.03.0028"
+          }
+        ],
+        "operation": "将橡胶刀板（BOM序号11）和橡胶挡板（BOM序号12）对准铲雪板底部的安装孔。使用12套M8*40螺栓（BOM序号32）和M8锁紧螺母（BOM序号33）固定。拧紧力矩25N·m。",
+        "quality_check": "检查刀板和挡板安装平整，螺栓均匀紧固。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 10,
+        "title": "安装电磁阀组和保护罩",
+        "component_code": "02.08.03.0236",
+        "component_name": "电磁阀组",
+        "drawing_number": "无（安装在①上）",
+        "connection_type": "螺栓连接",
+        "position_description": "将电磁阀组安装到连接器后座组件①的预留位置，并安装保护罩。",
+        "components": [
+          {
+            "bom_seq": "36",
+            "bom_name": "电磁阀组",
+            "quantity": 1,
+            "node_name": [
+              "NAUO119"
+            ],
+            "bom_code": "02.08.03.0236"
+          },
+          {
+            "bom_seq": "51",
+            "bom_name": "电磁阀保护罩组件-漆后",
+            "quantity": 1,
+            "node_name": [
+              "NAUO271"
+            ],
+            "bom_code": "01.09.1240"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "29",
+            "bom_name": "内六角圆柱头螺钉8.8级",
+            "spec": "M6*40",
+            "quantity": 4,
+            "torque": "10N·m",
+            "node_name": [
+              "NAUO69"
+            ],
+            "bom_code": "02.03.0442"
+          },
+          {
+            "bom_seq": "30",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m",
+            "node_name": [
+              "NAUO70"
+            ],
+            "bom_code": "02.03.0146"
+          },
+          {
+            "bom_seq": "31",
+            "bom_name": "平垫圈8.8级",
+            "spec": "6*1.6",
+            "quantity": 4,
+            "torque": "",
+            "node_name": [
+              "NAUO71"
+            ],
+            "bom_code": "02.03.0381"
+          },
+          {
+            "bom_seq": "38",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*16",
+            "quantity": 2,
+            "torque": "10N·m",
+            "node_name": [
+              "NAUO122"
+            ],
+            "bom_code": "02.03.0383"
+          }
+        ],
+        "operation": "1. 将电磁阀组（BOM序号36）安装到连接器后座组件①上，使用2套M6*16螺栓（BOM序号38）固定。\n2. 将电磁阀保护罩组件（BOM序号51）盖在电磁阀组上方，使用4套M6*40内六角螺钉（BOM序号29）、平垫圈（BOM序号31）和M6锁紧螺母（BOM序号30）固定。拧紧力矩10N·m。",
+        "quality_check": "检查电磁阀组安装方向正确，保护罩安装到位。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 11,
+        "title": "安装反光片和固定板",
+        "component_code": "02.04.0029",
+        "component_name": "推雪板反光片",
+        "drawing_number": "无（安装在铲雪板上）",
+        "connection_type": "螺栓连接",
+        "position_description": "将反光片和固定板安装到铲雪板组件③和④的顶部。",
+        "components": [
+          {
+            "bom_seq": "37",
+            "bom_name": "推雪板反光片",
+            "quantity": 2,
+            "node_name": [
+              "NAUO120"
+            ],
+            "bom_code": "02.04.0029"
+          },
+          {
+            "bom_seq": "49",
+            "bom_name": "推雪板反光片固定板-镀锌",
+            "quantity": 2,
+            "node_name": [
+              "NAUO274"
+            ],
+            "bom_code": "01.09.0308"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "48",
+            "bom_name": "六角头螺栓全螺纹8.8级",
+            "spec": "M6*20",
+            "quantity": 4,
+            "torque": "10N·m",
+            "node_name": [
+              "NAUO191"
+            ],
+            "bom_code": "02.03.0378"
+          },
+          {
+            "bom_seq": "30",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M6",
+            "quantity": 4,
+            "torque": "10N·m",
+            "node_name": [
+              "NAUO70"
+            ],
+            "bom_code": "02.03.0146"
+          }
+        ],
+        "operation": "将2个反光片（BOM序号37）和2个固定板（BOM序号49）安装到左右铲雪板组件③和④的顶部。使用4套M6*20螺栓（BOM序号48）和M6锁紧螺母（BOM序号30）固定。拧紧力矩10N·m。",
+        "quality_check": "检查反光片安装牢固，方向朝外。",
+        "estimated_time_minutes": 5
+      },
+      {
+        "step_number": 12,
+        "title": "安装把手、油杯和V型销轴",
+        "component_code": "01.09.2564",
+        "component_name": "把手组件",
+        "drawing_number": "无",
+        "connection_type": "螺栓/销轴连接",
+        "position_description": "安装把手、油杯和V型推雪板销轴。",
+        "components": [
+          {
+            "bom_seq": "19",
+            "bom_name": "把手组件-镀锌",
+            "quantity": 1,
+            "node_name": [
+              "NAUO283"
+            ],
+            "bom_code": "01.09.2564"
+          },
+          {
+            "bom_seq": "21",
+            "bom_name": "V型推雪板销轴-镀锌",
+            "quantity": 1,
+            "node_name": [
+              "NAUO280"
+            ],
+            "bom_code": "01.09.0995"
+          },
+          {
+            "bom_seq": "24",
+            "bom_name": "V型推雪板轴套-镀锌",
+            "quantity": 2,
+            "node_name": [
+              "NAUO278"
+            ],
+            "bom_code": "01.09.0999"
+          }
+        ],
+        "fasteners": [
+          {
+            "bom_seq": "34",
+            "bom_name": "直通式压注油杯",
+            "spec": "M8",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO79"
+            ],
+            "bom_code": "02.08.05.0004"
+          },
+          {
+            "bom_seq": "35",
+            "bom_name": "安全销",
+            "spec": "φ8*45",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO103"
+            ],
+            "bom_code": "02.03.0001"
+          },
+          {
+            "bom_seq": "20",
+            "bom_name": "1型六角螺母8.8级",
+            "spec": "M30",
+            "quantity": 1,
+            "torque": "800N·m",
+            "node_name": [
+              "NAUO43"
+            ],
+            "bom_code": "02.03.0148"
+          },
+          {
+            "bom_seq": "22",
+            "bom_name": "平垫圈8.8级",
+            "spec": "30*4",
+            "quantity": 1,
+            "torque": "",
+            "node_name": [
+              "NAUO54"
+            ],
+            "bom_code": "02.03.0006"
+          },
+          {
+            "bom_seq": "52",
+            "bom_name": "六角头螺栓8.8级",
+            "spec": "M8*80",
+            "quantity": 1,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO231"
+            ],
+            "bom_code": "02.03.0088"
+          },
+          {
+            "bom_seq": "33",
+            "bom_name": "1型非金属嵌件六角锁紧螺母8.8级",
+            "spec": "M8",
+            "quantity": 1,
+            "torque": "25N·m",
+            "node_name": [
+              "NAUO78"
+            ],
+            "bom_code": "02.03.0028"
+          },
+          {
+            "bom_seq": "53",
+            "bom_name": "方形板-机加-镀锌",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO269"
+            ],
+            "bom_code": "01.09.2556"
+          },
+          {
+            "bom_seq": "50",
+            "bom_name": "平垫圈 倒角型 A级(钢)",
+            "spec": "20*3",
+            "quantity": 2,
+            "torque": "",
+            "node_name": [
+              "NAUO204"
+            ],
+            "bom_code": "02.03.0610"
+          }
+        ],
+        "operation": "1. 将2个直通式压注油杯（BOM序号34）拧入连接器后座组件①的预留孔中。\n2. 将V型推雪板销轴（BOM序号21）穿过连接器后座组件①的中心孔，并在销轴上安装2个轴套（BOM序号24）。使用平垫圈（BOM序号22）和M30六角螺母（BOM序号20）固定，拧紧力矩800N·m。\n3. 将把手组件（BOM序号19）安装到后座连接架组件②上，使用M8*80螺栓（BOM序号52）和M8锁紧螺母（BOM序号33）固定。\n4. 将2个方形板（BOM序号53）和2个平垫圈（BOM序号50）作为限位块，安装在铲雪板组件③和④的连接处，并用安全销（BOM序号35）固定。",
+        "quality_check": "检查所有紧固件是否到位，油杯安装牢固，销轴转动灵活。",
+        "estimated_time_minutes": 20
+      }
+    ]
+  }
+}

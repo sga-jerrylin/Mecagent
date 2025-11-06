@@ -1,0 +1,1564 @@
+[
+  {
+    "success": true,
+    "component_code": "01.09.2549",
+    "component_name": "连接器后座组件-漆后",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "使用行车或吊具将②号连接板（01.01.01.11509）吊运至装配工位，平稳放置在工装夹具上作为装配基准。",
+        "position_description": "平放在工装夹具上，确保连接板的安装面朝上。",
+        "parts_used": [
+          {
+            "bom_seq": "2",
+            "bom_name": "连接板 1",
+            "quantity": 1,
+            "drawing_number": "2",
+            "node_name": [
+              "NAUO2"
+            ],
+            "bom_code": "01.01.01.11509"
+          }
+        ],
+        "tools": [
+          "行车/吊具",
+          "工装夹具",
+          "水平仪"
+        ],
+        "warnings": [
+          "连接板较重（21.36kg），吊装时注意安全，确保吊具牢固。",
+          "放置时避免磕碰，保护安装面。"
+        ]
+      },
+      {
+        "step_number": 2,
+        "action": "安装底部矩形管",
+        "description": "将①号矩形管（01.01.03.2718）放置在②号连接板的底部边缘，按照图纸所示位置进行定位。该矩形管位于连接板的下方，沿长度方向居中。",
+        "position_description": "位于②号连接板的底部边缘，与连接板的侧面齐平。",
+        "parts_used": [
+          {
+            "bom_seq": "1",
+            "bom_name": "矩形管 1",
+            "quantity": 1,
+            "drawing_number": "1",
+            "node_name": [
+              "NAUO1"
+            ],
+            "bom_code": "01.01.03.2718"
+          }
+        ],
+        "tools": [
+          "卷尺",
+          "角尺",
+          "点焊机"
+        ],
+        "warnings": [
+          "定位必须准确，确保矩形管与连接板的垂直度。",
+          "先点焊固定，待所有主要结构件定位完成后再进行满焊。"
+        ]
+      },
+      {
+        "step_number": 3,
+        "action": "安装上部矩形管",
+        "description": "将⑧号矩形管（01.01.03.2720）和⑥号矩形管（01.01.03.2719）安装在②号连接板的上方。⑧号矩形管位于连接板的中间位置，⑥号矩形管位于连接板的两侧。",
+        "position_description": "⑧号矩形管位于连接板上方中间，⑥号矩形管位于连接板上方两侧，均与连接板垂直。",
+        "parts_used": [
+          {
+            "bom_seq": "8",
+            "bom_name": "矩形管 1",
+            "quantity": 1,
+            "drawing_number": "8",
+            "node_name": [
+              "NAUO13"
+            ],
+            "bom_code": "01.01.03.2720"
+          },
+          {
+            "bom_seq": "6",
+            "bom_name": "矩形管 2",
+            "quantity": 2,
+            "drawing_number": "6",
+            "node_name": [
+              "NAUO10",
+              "NAUO9"
+            ],
+            "bom_code": "01.01.03.2719"
+          }
+        ],
+        "tools": [
+          "工装靠模",
+          "点焊机",
+          "水平仪"
+        ],
+        "warnings": [
+          "使用靠模确保三根矩形管（⑧和两个⑥）与②号连接板的垂直度和平行度。",
+          "点焊牢固，防止后续操作中移位。"
+        ]
+      },
+      {
+        "step_number": 4,
+        "action": "安装挂件虚拟组件",
+        "description": "将⑤号左挂件虚拟组件（01.05.0019）和④号右挂件虚拟组件（01.05.0018）分别安装在两侧的⑥号矩形管上。挂件的安装方向和角度必须与图纸所示一致。",
+        "position_description": "⑤号挂件安装在左侧⑥号矩形管的端部，④号挂件安装在右侧⑥号矩形管的端部。",
+        "parts_used": [
+          {
+            "bom_seq": "5",
+            "bom_name": "左挂件虚拟组件 1",
+            "quantity": 1,
+            "drawing_number": "5",
+            "node_name": [
+              "NAUO18",
+              "NAUO17",
+              "NAUO16"
+            ],
+            "bom_code": "01.05.0019"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "右挂件虚拟组件 1",
+            "quantity": 1,
+            "drawing_number": "4",
+            "node_name": [
+              "NAUO21",
+              "NAUO20",
+              "NAUO19"
+            ],
+            "bom_code": "01.05.0018"
+          }
+        ],
+        "tools": [
+          "点焊机",
+          "角度尺"
+        ],
+        "warnings": [
+          "挂件的安装角度是关键尺寸，必须使用角度尺或专用靠模进行定位。",
+          "挂件与矩形管的接触面应紧密贴合。"
+        ]
+      },
+      {
+        "step_number": 5,
+        "action": "安装加强筋",
+        "description": "将⑨号加强筋（01.01.01.17678）安装在两侧的⑥号矩形管与②号连接板之间，起到支撑作用。加强筋应与矩形管和连接板的内侧面贴合。",
+        "position_description": "加强筋位于两侧⑥号矩形管的内侧，呈斜角支撑。",
+        "parts_used": [
+          {
+            "bom_seq": "9",
+            "bom_name": "加强筋 2",
+            "quantity": 2,
+            "drawing_number": "9",
+            "node_name": [
+              "NAUO15",
+              "NAUO14"
+            ],
+            "bom_code": "01.01.01.17678"
+          }
+        ],
+        "tools": [
+          "点焊机"
+        ],
+        "warnings": [
+          "加强筋的安装位置应确保不干涉其他零件，并保证焊缝长度符合技术要求。"
+        ]
+      },
+      {
+        "step_number": 6,
+        "action": "安装封板",
+        "description": "将⑦号封板（01.01.01.16608）安装在组件的两侧，用于封闭矩形管之间的空间。",
+        "position_description": "封板安装在组件的左右两侧，覆盖在矩形管的侧面。",
+        "parts_used": [
+          {
+            "bom_seq": "7",
+            "bom_name": "封板 2",
+            "quantity": 2,
+            "drawing_number": "7",
+            "node_name": [
+              "NAUO12",
+              "NAUO11"
+            ],
+            "bom_code": "01.01.01.16608"
+          }
+        ],
+        "tools": [
+          "点焊机"
+        ],
+        "warnings": [
+          "封板边缘应与主体结构对齐，确保外观平整。"
+        ]
+      },
+      {
+        "step_number": 7,
+        "action": "安装方形板",
+        "description": "将③号方形板-机加（01.01.01.6589）安装在②号连接板的四个预留孔位上。方形板用于后续的连接或支撑。",
+        "position_description": "方形板安装在②号连接板的四个角部，通过焊接固定。",
+        "parts_used": [
+          {
+            "bom_seq": "3",
+            "bom_name": "方形板-机加 4",
+            "quantity": 4,
+            "drawing_number": "3",
+            "node_name": [
+              "NAUO6",
+              "NAUO5",
+              "NAUO4",
+              "NAUO3"
+            ],
+            "bom_code": "01.01.01.6589"
+          }
+        ],
+        "tools": [
+          "点焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "方形板的定位精度要求较高，安装前需核对孔位尺寸。",
+          "确保方形板的机加工面朝向正确。"
+        ]
+      },
+      {
+        "step_number": 8,
+        "action": "满焊与清渣",
+        "description": "按照图纸上的焊接符号和技术要求，对所有已点焊固定的零件进行满焊。焊接顺序应遵循对称、分散的原则，以减少焊接变形。",
+        "position_description": "对所有零件的连接处进行满焊。",
+        "parts_used": [],
+        "tools": [
+          "焊机（CO2/电弧焊）",
+          "焊钳",
+          "焊渣锤",
+          "钢丝刷"
+        ],
+        "warnings": [
+          "严格控制焊接电流和电压，确保焊缝牢固、无虚焊、无漏焊。",
+          "焊接完成后，立即进行焊渣清理，并检查焊缝外观质量。"
+        ]
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.09.2549",
+      "component_name": "连接器后座组件-漆后",
+      "visual_analysis": {
+        "base_part_drawing_number": "2",
+        "assembly_sequence_reasoning": "基准件是②号连接板，它是最大最重的零件，应首先放置。然后应安装主要的承重结构件，即矩形管（①、⑥、⑧），最后安装挂件（④、⑤）、封板（⑦）和加强筋（⑨），以确保结构完整性。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "使用行车或吊具将②号连接板（01.01.01.11509）吊运至装配工位，平稳放置在工装夹具上作为装配基准。",
+          "position_description": "平放在工装夹具上，确保连接板的安装面朝上。",
+          "parts_used": [
+            {
+              "bom_seq": "2",
+              "bom_name": "连接板 1",
+              "quantity": 1,
+              "drawing_number": "2",
+              "node_name": [
+                "NAUO2"
+              ],
+              "bom_code": "01.01.01.11509"
+            }
+          ],
+          "tools": [
+            "行车/吊具",
+            "工装夹具",
+            "水平仪"
+          ],
+          "warnings": [
+            "连接板较重（21.36kg），吊装时注意安全，确保吊具牢固。",
+            "放置时避免磕碰，保护安装面。"
+          ]
+        },
+        {
+          "step_number": 2,
+          "action": "安装底部矩形管",
+          "description": "将①号矩形管（01.01.03.2718）放置在②号连接板的底部边缘，按照图纸所示位置进行定位。该矩形管位于连接板的下方，沿长度方向居中。",
+          "position_description": "位于②号连接板的底部边缘，与连接板的侧面齐平。",
+          "parts_used": [
+            {
+              "bom_seq": "1",
+              "bom_name": "矩形管 1",
+              "quantity": 1,
+              "drawing_number": "1",
+              "node_name": [
+                "NAUO1"
+              ],
+              "bom_code": "01.01.03.2718"
+            }
+          ],
+          "tools": [
+            "卷尺",
+            "角尺",
+            "点焊机"
+          ],
+          "warnings": [
+            "定位必须准确，确保矩形管与连接板的垂直度。",
+            "先点焊固定，待所有主要结构件定位完成后再进行满焊。"
+          ]
+        },
+        {
+          "step_number": 3,
+          "action": "安装上部矩形管",
+          "description": "将⑧号矩形管（01.01.03.2720）和⑥号矩形管（01.01.03.2719）安装在②号连接板的上方。⑧号矩形管位于连接板的中间位置，⑥号矩形管位于连接板的两侧。",
+          "position_description": "⑧号矩形管位于连接板上方中间，⑥号矩形管位于连接板上方两侧，均与连接板垂直。",
+          "parts_used": [
+            {
+              "bom_seq": "8",
+              "bom_name": "矩形管 1",
+              "quantity": 1,
+              "drawing_number": "8",
+              "node_name": [
+                "NAUO13"
+              ],
+              "bom_code": "01.01.03.2720"
+            },
+            {
+              "bom_seq": "6",
+              "bom_name": "矩形管 2",
+              "quantity": 2,
+              "drawing_number": "6",
+              "node_name": [
+                "NAUO10",
+                "NAUO9"
+              ],
+              "bom_code": "01.01.03.2719"
+            }
+          ],
+          "tools": [
+            "工装靠模",
+            "点焊机",
+            "水平仪"
+          ],
+          "warnings": [
+            "使用靠模确保三根矩形管（⑧和两个⑥）与②号连接板的垂直度和平行度。",
+            "点焊牢固，防止后续操作中移位。"
+          ]
+        },
+        {
+          "step_number": 4,
+          "action": "安装挂件虚拟组件",
+          "description": "将⑤号左挂件虚拟组件（01.05.0019）和④号右挂件虚拟组件（01.05.0018）分别安装在两侧的⑥号矩形管上。挂件的安装方向和角度必须与图纸所示一致。",
+          "position_description": "⑤号挂件安装在左侧⑥号矩形管的端部，④号挂件安装在右侧⑥号矩形管的端部。",
+          "parts_used": [
+            {
+              "bom_seq": "5",
+              "bom_name": "左挂件虚拟组件 1",
+              "quantity": 1,
+              "drawing_number": "5",
+              "node_name": [
+                "NAUO18",
+                "NAUO17",
+                "NAUO16"
+              ],
+              "bom_code": "01.05.0019"
+            },
+            {
+              "bom_seq": "4",
+              "bom_name": "右挂件虚拟组件 1",
+              "quantity": 1,
+              "drawing_number": "4",
+              "node_name": [
+                "NAUO21",
+                "NAUO20",
+                "NAUO19"
+              ],
+              "bom_code": "01.05.0018"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "角度尺"
+          ],
+          "warnings": [
+            "挂件的安装角度是关键尺寸，必须使用角度尺或专用靠模进行定位。",
+            "挂件与矩形管的接触面应紧密贴合。"
+          ]
+        },
+        {
+          "step_number": 5,
+          "action": "安装加强筋",
+          "description": "将⑨号加强筋（01.01.01.17678）安装在两侧的⑥号矩形管与②号连接板之间，起到支撑作用。加强筋应与矩形管和连接板的内侧面贴合。",
+          "position_description": "加强筋位于两侧⑥号矩形管的内侧，呈斜角支撑。",
+          "parts_used": [
+            {
+              "bom_seq": "9",
+              "bom_name": "加强筋 2",
+              "quantity": 2,
+              "drawing_number": "9",
+              "node_name": [
+                "NAUO15",
+                "NAUO14"
+              ],
+              "bom_code": "01.01.01.17678"
+            }
+          ],
+          "tools": [
+            "点焊机"
+          ],
+          "warnings": [
+            "加强筋的安装位置应确保不干涉其他零件，并保证焊缝长度符合技术要求。"
+          ]
+        },
+        {
+          "step_number": 6,
+          "action": "安装封板",
+          "description": "将⑦号封板（01.01.01.16608）安装在组件的两侧，用于封闭矩形管之间的空间。",
+          "position_description": "封板安装在组件的左右两侧，覆盖在矩形管的侧面。",
+          "parts_used": [
+            {
+              "bom_seq": "7",
+              "bom_name": "封板 2",
+              "quantity": 2,
+              "drawing_number": "7",
+              "node_name": [
+                "NAUO12",
+                "NAUO11"
+              ],
+              "bom_code": "01.01.01.16608"
+            }
+          ],
+          "tools": [
+            "点焊机"
+          ],
+          "warnings": [
+            "封板边缘应与主体结构对齐，确保外观平整。"
+          ]
+        },
+        {
+          "step_number": 7,
+          "action": "安装方形板",
+          "description": "将③号方形板-机加（01.01.01.6589）安装在②号连接板的四个预留孔位上。方形板用于后续的连接或支撑。",
+          "position_description": "方形板安装在②号连接板的四个角部，通过焊接固定。",
+          "parts_used": [
+            {
+              "bom_seq": "3",
+              "bom_name": "方形板-机加 4",
+              "quantity": 4,
+              "drawing_number": "3",
+              "node_name": [
+                "NAUO6",
+                "NAUO5",
+                "NAUO4",
+                "NAUO3"
+              ],
+              "bom_code": "01.01.01.6589"
+            }
+          ],
+          "tools": [
+            "点焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "方形板的定位精度要求较高，安装前需核对孔位尺寸。",
+            "确保方形板的机加工面朝向正确。"
+          ]
+        },
+        {
+          "step_number": 8,
+          "action": "满焊与清渣",
+          "description": "按照图纸上的焊接符号和技术要求，对所有已点焊固定的零件进行满焊。焊接顺序应遵循对称、分散的原则，以减少焊接变形。",
+          "position_description": "对所有零件的连接处进行满焊。",
+          "parts_used": [],
+          "tools": [
+            "焊机（CO2/电弧焊）",
+            "焊钳",
+            "焊渣锤",
+            "钢丝刷"
+          ],
+          "warnings": [
+            "严格控制焊接电流和电压，确保焊缝牢固、无虚焊、无漏焊。",
+            "焊接完成后，立即进行焊渣清理，并检查焊缝外观质量。"
+          ]
+        }
+      ],
+      "quality_checks": [
+        "检查所有焊缝是否连续、饱满，无气孔、夹渣等缺陷。",
+        "使用卷尺检查组件的整体尺寸（如600mm、850mm、980mm等），确保符合图纸要求。",
+        "检查挂件（④、⑤）的安装角度和位置是否准确。",
+        "检查②号连接板的平面度，确保焊接变形在允许公差范围内。",
+        "检查所有锐边、锐角是否已按技术要求进行倒钝处理。"
+      ],
+      "estimated_time_minutes": 120
+    },
+    "assembly_order": 1
+  },
+  {
+    "success": true,
+    "component_code": "01.09.2550",
+    "component_name": "后座连接架组件-漆后",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "title": "放置基准件及安装侧连接板",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11511",
+            "bom_name": "方形板-机加",
+            "quantity": 1,
+            "drawing_number": "1",
+            "node_name": [
+              "NAUO1"
+            ],
+            "bom_seq": "1"
+          },
+          {
+            "bom_code": "01.01.01.11513",
+            "bom_name": "侧连接板",
+            "quantity": 2,
+            "drawing_number": "3",
+            "node_name": [
+              "NAUO5",
+              "NAUO4"
+            ],
+            "bom_seq": "3"
+          }
+        ],
+        "tools_required": [
+          "行车/吊具",
+          "水平仪",
+          "焊机"
+        ],
+        "operation": "使用行车将①号方形板（基准件）平稳放置在装配胎具上。将两块③号侧连接板（01.01.01.11513）分别垂直放置在①号方形板的左右两侧边缘，确保侧连接板与方形板的安装孔位对齐。点焊固定，检查垂直度。",
+        "quality_check": "检查③号侧连接板与①号方形板的垂直度，误差应小于1mm/m。检查点焊位置是否牢固。",
+        "estimated_time_minutes": 20
+      },
+      {
+        "step_number": 2,
+        "title": "安装上连接板和折弯板",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11512",
+            "bom_name": "上连接板",
+            "quantity": 2,
+            "drawing_number": "2",
+            "node_name": [
+              "NAUO3",
+              "NAUO2"
+            ],
+            "bom_seq": "2"
+          },
+          {
+            "bom_code": "01.01.01.11514",
+            "bom_name": "折弯板",
+            "quantity": 1,
+            "drawing_number": "4",
+            "node_name": [
+              "NAUO6"
+            ],
+            "bom_seq": "4"
+          }
+        ],
+        "tools_required": [
+          "焊机",
+          "角尺"
+        ],
+        "operation": "将两块②号上连接板（01.01.01.11512）分别放置在①号方形板上方的两侧，并与③号侧连接板的顶部边缘对齐，点焊固定。将④号折弯板（01.01.01.11514）放置在①号方形板的后部上方，与两侧的③号侧连接板对齐，点焊固定。",
+        "quality_check": "检查②号上连接板和④号折弯板与主体结构的相对位置和角度，确保所有连接面贴合紧密。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "安装油缸固定板和加强板",
+        "parts_used": [
+          {
+            "bom_code": "01.01.01.11515",
+            "bom_name": "油缸固定板",
+            "quantity": 4,
+            "drawing_number": "5",
+            "node_name": [
+              "NAUO17",
+              "NAUO16",
+              "NAUO8",
+              "NAUO7"
+            ],
+            "bom_seq": "5"
+          },
+          {
+            "bom_code": "01.01.01.11516",
+            "bom_name": "加强板",
+            "quantity": 4,
+            "drawing_number": "6",
+            "node_name": [
+              "NAUO12",
+              "NAUO11",
+              "NAUO10",
+              "NAUO9"
+            ],
+            "bom_seq": "6"
+          }
+        ],
+        "tools_required": [
+          "焊机",
+          "卷尺"
+        ],
+        "operation": "将四块⑤号油缸固定板（01.01.01.11515）分别焊接到③号侧连接板的外部指定位置（参照图纸左下角视图）。将四块⑥号加强板（01.01.01.11516）焊接到②号上连接板和③号侧连接板的内侧，用于加强结构。注意⑤号油缸固定板的孔轴线应与油缸轴线保持平行。",
+        "quality_check": "检查⑤号油缸固定板的安装位置和方向，确保四块板的相对位置精度符合图纸要求。检查⑥号加强板的焊缝是否连续且饱满。",
+        "estimated_time_minutes": 30
+      },
+      {
+        "step_number": 4,
+        "title": "安装角钢和轴套",
+        "parts_used": [
+          {
+            "bom_code": "01.01.04.0592",
+            "bom_name": "角钢-机加",
+            "quantity": 1,
+            "drawing_number": "7",
+            "node_name": [
+              "NAUO13"
+            ],
+            "bom_seq": "7"
+          },
+          {
+            "bom_code": "01.01.02.1221",
+            "bom_name": "轴套 1",
+            "quantity": 1,
+            "drawing_number": "8",
+            "node_name": [
+              "NAUO14"
+            ],
+            "bom_seq": "8"
+          }
+        ],
+        "tools_required": [
+          "焊机",
+          "卡尺"
+        ],
+        "operation": "将⑦号角钢-机加（01.01.04.0592）焊接到②号上连接板的顶部中央位置。将⑧号轴套（01.01.02.1221）焊接到④号折弯板的顶部中央位置。注意轴套的焊接位置和角度，确保其轴线垂直于安装面。",
+        "quality_check": "检查⑦号角钢和⑧号轴套的焊接位置是否准确，焊缝应符合技术要求中的焊接规范。",
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 5,
+        "title": "安装后座轴套并满焊",
+        "parts_used": [
+          {
+            "bom_code": "01.02.02.0490",
+            "bom_name": "后座轴套 1",
+            "quantity": 1,
+            "drawing_number": "9",
+            "node_name": [
+              "NAUO15"
+            ],
+            "bom_seq": "9"
+          },
+          {
+            "bom_code": "01.01.02.0337",
+            "bom_name": "后座轴套 1",
+            "quantity": 1,
+            "drawing_number": "10",
+            "node_name": [
+              "NAUO18"
+            ],
+            "bom_seq": "10"
+          }
+        ],
+        "tools_required": [
+          "焊机",
+          "专用工装/芯轴"
+        ],
+        "operation": "将⑨号后座轴套（01.02.02.0490）和⑩号后座轴套（01.01.02.0337）分别焊接到③号侧连接板下方的指定孔位上（参照图纸左下角视图）。**注意：需与转动轴及左右侧雪橇板组件配合焊接保证同轴度。** 轴套端面需与配合面齐平，不能突出或凹陷。所有零件点焊完成后，进行满焊。",
+        "quality_check": "检查⑨号和⑩号轴套的同轴度，必须符合图纸要求。检查所有焊缝是否连续、无夹渣、无气孔，焊缝高度和宽度应符合技术要求。检查端面配合是否齐平。",
+        "estimated_time_minutes": 40
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.09.2550",
+      "component_name": "后座连接架组件-漆后",
+      "total_steps": 5,
+      "bom_coverage": {
+        "total_bom_parts": 10,
+        "used_bom_parts": 10,
+        "coverage_rate": 100,
+        "missing_parts": []
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "title": "放置基准件及安装侧连接板",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11511",
+              "bom_name": "方形板-机加",
+              "quantity": 1,
+              "drawing_number": "1",
+              "node_name": [
+                "NAUO1"
+              ],
+              "bom_seq": "1"
+            },
+            {
+              "bom_code": "01.01.01.11513",
+              "bom_name": "侧连接板",
+              "quantity": 2,
+              "drawing_number": "3",
+              "node_name": [
+                "NAUO5",
+                "NAUO4"
+              ],
+              "bom_seq": "3"
+            }
+          ],
+          "tools_required": [
+            "行车/吊具",
+            "水平仪",
+            "焊机"
+          ],
+          "operation": "使用行车将①号方形板（基准件）平稳放置在装配胎具上。将两块③号侧连接板（01.01.01.11513）分别垂直放置在①号方形板的左右两侧边缘，确保侧连接板与方形板的安装孔位对齐。点焊固定，检查垂直度。",
+          "quality_check": "检查③号侧连接板与①号方形板的垂直度，误差应小于1mm/m。检查点焊位置是否牢固。",
+          "estimated_time_minutes": 20
+        },
+        {
+          "step_number": 2,
+          "title": "安装上连接板和折弯板",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11512",
+              "bom_name": "上连接板",
+              "quantity": 2,
+              "drawing_number": "2",
+              "node_name": [
+                "NAUO3",
+                "NAUO2"
+              ],
+              "bom_seq": "2"
+            },
+            {
+              "bom_code": "01.01.01.11514",
+              "bom_name": "折弯板",
+              "quantity": 1,
+              "drawing_number": "4",
+              "node_name": [
+                "NAUO6"
+              ],
+              "bom_seq": "4"
+            }
+          ],
+          "tools_required": [
+            "焊机",
+            "角尺"
+          ],
+          "operation": "将两块②号上连接板（01.01.01.11512）分别放置在①号方形板上方的两侧，并与③号侧连接板的顶部边缘对齐，点焊固定。将④号折弯板（01.01.01.11514）放置在①号方形板的后部上方，与两侧的③号侧连接板对齐，点焊固定。",
+          "quality_check": "检查②号上连接板和④号折弯板与主体结构的相对位置和角度，确保所有连接面贴合紧密。",
+          "estimated_time_minutes": 15
+        },
+        {
+          "step_number": 3,
+          "title": "安装油缸固定板和加强板",
+          "parts_used": [
+            {
+              "bom_code": "01.01.01.11515",
+              "bom_name": "油缸固定板",
+              "quantity": 4,
+              "drawing_number": "5",
+              "node_name": [
+                "NAUO17",
+                "NAUO16",
+                "NAUO8",
+                "NAUO7"
+              ],
+              "bom_seq": "5"
+            },
+            {
+              "bom_code": "01.01.01.11516",
+              "bom_name": "加强板",
+              "quantity": 4,
+              "drawing_number": "6",
+              "node_name": [
+                "NAUO12",
+                "NAUO11",
+                "NAUO10",
+                "NAUO9"
+              ],
+              "bom_seq": "6"
+            }
+          ],
+          "tools_required": [
+            "焊机",
+            "卷尺"
+          ],
+          "operation": "将四块⑤号油缸固定板（01.01.01.11515）分别焊接到③号侧连接板的外部指定位置（参照图纸左下角视图）。将四块⑥号加强板（01.01.01.11516）焊接到②号上连接板和③号侧连接板的内侧，用于加强结构。注意⑤号油缸固定板的孔轴线应与油缸轴线保持平行。",
+          "quality_check": "检查⑤号油缸固定板的安装位置和方向，确保四块板的相对位置精度符合图纸要求。检查⑥号加强板的焊缝是否连续且饱满。",
+          "estimated_time_minutes": 30
+        },
+        {
+          "step_number": 4,
+          "title": "安装角钢和轴套",
+          "parts_used": [
+            {
+              "bom_code": "01.01.04.0592",
+              "bom_name": "角钢-机加",
+              "quantity": 1,
+              "drawing_number": "7",
+              "node_name": [
+                "NAUO13"
+              ],
+              "bom_seq": "7"
+            },
+            {
+              "bom_code": "01.01.02.1221",
+              "bom_name": "轴套 1",
+              "quantity": 1,
+              "drawing_number": "8",
+              "node_name": [
+                "NAUO14"
+              ],
+              "bom_seq": "8"
+            }
+          ],
+          "tools_required": [
+            "焊机",
+            "卡尺"
+          ],
+          "operation": "将⑦号角钢-机加（01.01.04.0592）焊接到②号上连接板的顶部中央位置。将⑧号轴套（01.01.02.1221）焊接到④号折弯板的顶部中央位置。注意轴套的焊接位置和角度，确保其轴线垂直于安装面。",
+          "quality_check": "检查⑦号角钢和⑧号轴套的焊接位置是否准确，焊缝应符合技术要求中的焊接规范。",
+          "estimated_time_minutes": 15
+        },
+        {
+          "step_number": 5,
+          "title": "安装后座轴套并满焊",
+          "parts_used": [
+            {
+              "bom_code": "01.02.02.0490",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "9",
+              "node_name": [
+                "NAUO15"
+              ],
+              "bom_seq": "9"
+            },
+            {
+              "bom_code": "01.01.02.0337",
+              "bom_name": "后座轴套 1",
+              "quantity": 1,
+              "drawing_number": "10",
+              "node_name": [
+                "NAUO18"
+              ],
+              "bom_seq": "10"
+            }
+          ],
+          "tools_required": [
+            "焊机",
+            "专用工装/芯轴"
+          ],
+          "operation": "将⑨号后座轴套（01.02.02.0490）和⑩号后座轴套（01.01.02.0337）分别焊接到③号侧连接板下方的指定孔位上（参照图纸左下角视图）。**注意：需与转动轴及左右侧雪橇板组件配合焊接保证同轴度。** 轴套端面需与配合面齐平，不能突出或凹陷。所有零件点焊完成后，进行满焊。",
+          "quality_check": "检查⑨号和⑩号轴套的同轴度，必须符合图纸要求。检查所有焊缝是否连续、无夹渣、无气孔，焊缝高度和宽度应符合技术要求。检查端面配合是否齐平。",
+          "estimated_time_minutes": 40
+        }
+      ],
+      "quality_checks": [
+        "检查所有焊接部位的焊缝质量，确保无裂纹、气孔、夹渣等缺陷，焊缝尺寸符合图纸要求。",
+        "检查所有轴套（⑧、⑨、⑩）的相对位置和同轴度，特别是⑨号和⑩号轴套，必须使用专用芯轴或工装进行校准。",
+        "检查⑤号油缸固定板的安装孔轴线是否平行，确保油缸安装顺畅。",
+        "检查组件整体尺寸和形位公差是否符合GB/T 1804-m级要求。"
+      ],
+      "estimated_time_minutes": 120
+    },
+    "assembly_order": 2
+  },
+  {
+    "success": true,
+    "component_code": "01.09.2551",
+    "component_name": "左铲雪板组件-漆后",
+    "assembly_steps": [
+      {
+        "step_number": 1,
+        "action": "放置基准件",
+        "description": "使用行车或吊具将①号左铲板（28.38kg）平稳放置在装配工作台上，确保铲板的内侧（有加强筋的一侧）朝上，作为后续焊接的基准。",
+        "position_description": "工作台中央，内侧朝上",
+        "parts_used": [
+          {
+            "bom_seq": "1",
+            "bom_name": "左铲板 1",
+            "quantity": 1,
+            "drawing_number": "①",
+            "node_name": [
+              "NAUO1"
+            ],
+            "bom_code": "01.01.01.18598"
+          }
+        ],
+        "tools": [
+          "行车/吊具",
+          "水平仪"
+        ],
+        "warnings": [
+          "注意吊装安全，防止铲板倾倒或滑落。",
+          "确保铲板放置平稳，避免后续焊接变形。"
+        ],
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "action": "安装方形板-机加",
+        "description": "将②号方形板-机加（01.01.01.18599）放置在①号左铲板的后部，对齐图纸所示的安装位置和孔位。进行点焊定位。",
+        "position_description": "位于①号左铲板的后部边缘，垂直于铲板面。",
+        "parts_used": [
+          {
+            "bom_seq": "2",
+            "bom_name": "方形板-机加 1",
+            "quantity": 1,
+            "drawing_number": "②",
+            "node_name": [
+              "NAUO2"
+            ],
+            "bom_code": "01.01.01.18599"
+          }
+        ],
+        "tools": [
+          "焊机（CO2/电弧）",
+          "角尺",
+          "卡尺"
+        ],
+        "warnings": [
+          "焊接前确保定位准确，特别是与铲板的垂直度。",
+          "注意焊接变形控制。"
+        ],
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "action": "安装后加强板和前加强板",
+        "description": "将③号后加强板（01.01.01.11519）和④号前加强板（01.01.01.18600）分别放置在①号左铲板的内侧，对齐预留的焊接位置。进行点焊定位。",
+        "position_description": "③号位于铲板后部，④号位于铲板前部，均贴合在铲板内侧。",
+        "parts_used": [
+          {
+            "bom_seq": "3",
+            "bom_name": "后加强板 1",
+            "quantity": 1,
+            "drawing_number": "③",
+            "node_name": [
+              "NAUO3"
+            ],
+            "bom_code": "01.01.01.11519"
+          },
+          {
+            "bom_seq": "4",
+            "bom_name": "前加强板 1",
+            "quantity": 1,
+            "drawing_number": "④",
+            "node_name": [
+              "NAUO4"
+            ],
+            "bom_code": "01.01.01.18600"
+          }
+        ],
+        "tools": [
+          "焊机",
+          "卷尺"
+        ],
+        "warnings": [
+          "确保加强板与铲板贴合紧密，无间隙。",
+          "检查加强板的定位尺寸是否符合图纸要求。"
+        ],
+        "estimated_time_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "action": "安装底部连接板",
+        "description": "将6块⑤号底部连接板（01.01.01.11521）均匀分布并焊接到①号左铲板的底部边缘，对齐预留的孔位。先点焊定位。",
+        "position_description": "位于①号左铲板的底部边缘，沿长度方向均匀分布。",
+        "parts_used": [
+          {
+            "bom_seq": "5",
+            "bom_name": "底部连接板 6",
+            "quantity": 6,
+            "drawing_number": "⑤",
+            "node_name": [
+              "NAUO15",
+              "NAUO14",
+              "NAUO13",
+              "NAUO12",
+              "NAUO6",
+              "NAUO5"
+            ],
+            "bom_code": "01.01.01.11521"
+          }
+        ],
+        "tools": [
+          "焊机",
+          "定位夹具"
+        ],
+        "warnings": [
+          "底部连接板的孔位必须对齐，确保后续连接件的安装精度。",
+          "注意焊接时不要堵塞孔位。"
+        ],
+        "estimated_time_minutes": 25
+      },
+      {
+        "step_number": 5,
+        "action": "安装油缸和弹簧固定板",
+        "description": "安装⑥号前油缸固定板（01.01.01.11522，2块）、⑦号前弹簧固定板（01.01.01.11523，1块）和⑧号后弹簧固定板（01.01.01.11524，2块）。根据图纸所示位置，将这些固定板焊接到①号左铲板和已安装的加强板上。注意油缸固定板和后连接架组件的配合焊接要求。",
+        "position_description": "位于铲板内侧中部区域，用于连接油缸和弹簧。",
+        "parts_used": [
+          {
+            "bom_seq": "6",
+            "bom_name": "前油缸固定板 2",
+            "quantity": 2,
+            "drawing_number": "⑥",
+            "node_name": [
+              "NAUO8",
+              "NAUO7"
+            ],
+            "bom_code": "01.01.01.11522"
+          },
+          {
+            "bom_seq": "7",
+            "bom_name": "前弹簧固定板 1",
+            "quantity": 1,
+            "drawing_number": "⑦",
+            "node_name": [
+              "NAUO9"
+            ],
+            "bom_code": "01.01.01.11523"
+          },
+          {
+            "bom_seq": "8",
+            "bom_name": "后弹簧固定板 2",
+            "quantity": 2,
+            "drawing_number": "⑧",
+            "node_name": [
+              "NAUO11",
+              "NAUO10"
+            ],
+            "bom_code": "01.01.01.11524"
+          }
+        ],
+        "tools": [
+          "焊机",
+          "定位工装"
+        ],
+        "warnings": [
+          "这些固定板是关键受力件，必须保证焊缝质量和尺寸精度。",
+          "油缸固定板的孔位中心距必须精确，确保与后连接架组件的配合精度。"
+        ],
+        "estimated_time_minutes": 35
+      },
+      {
+        "step_number": 6,
+        "action": "安装支撑固定板",
+        "description": "将⑨号支撑固定板（01.01.01.11525）焊接到①号左铲板的内侧，位于中部偏下的位置，对齐图纸所示的安装孔位。",
+        "position_description": "位于铲板内侧中部，靠近底部连接板。",
+        "parts_used": [
+          {
+            "bom_seq": "9",
+            "bom_name": "支撑固定板 1",
+            "quantity": 1,
+            "drawing_number": "⑨",
+            "node_name": [
+              "NAUO16"
+            ],
+            "bom_code": "01.01.01.11525"
+          }
+        ],
+        "tools": [
+          "焊机"
+        ],
+        "warnings": [
+          "确保支撑固定板的安装角度和位置准确，用于后续支撑结构连接。"
+        ],
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 7,
+        "action": "安装轴套加强板和轴套",
+        "description": "将⑩号轴套加强板（01.01.01.11526，2块）和⑫号轴套（01.01.02.1222，2个）安装到①号左铲板的侧边。轴套应穿过铲板和加强板的孔位，并与铲板边缘齐平。进行点焊定位。",
+        "position_description": "位于①号左铲板的左右两侧边缘，用于连接铲雪板的转动轴。",
+        "parts_used": [
+          {
+            "bom_seq": "10",
+            "bom_name": "轴套加强板 2",
+            "quantity": 2,
+            "drawing_number": "⑩",
+            "node_name": [
+              "NAUO18",
+              "NAUO17"
+            ],
+            "bom_code": "01.01.01.11526"
+          },
+          {
+            "bom_seq": "12",
+            "bom_name": "轴套 2",
+            "quantity": 2,
+            "drawing_number": "⑫",
+            "node_name": [
+              "NAUO21",
+              "NAUO20"
+            ],
+            "bom_code": "01.01.02.1222"
+          }
+        ],
+        "tools": [
+          "焊机",
+          "卡尺"
+        ],
+        "warnings": [
+          "轴套与铲板的配合精度要求高，焊接时必须保证轴套的同轴度，避免焊接变形。",
+          "轴套端面应与铲板边缘齐平或按图纸要求突出/凹进。"
+        ],
+        "estimated_time_minutes": 30
+      },
+      {
+        "step_number": 8,
+        "action": "安装反光片安装板",
+        "description": "将⑪号反光片安装板（01.01.01.11527）焊接到①号左铲板的侧边，位于轴套附近，对齐安装孔位。",
+        "position_description": "位于铲板侧边，靠近⑩号轴套加强板。",
+        "parts_used": [
+          {
+            "bom_seq": "11",
+            "bom_name": "反光片安装板 1",
+            "quantity": 1,
+            "drawing_number": "⑪",
+            "node_name": [
+              "NAUO19"
+            ],
+            "bom_code": "01.01.01.11527"
+          }
+        ],
+        "tools": [
+          "焊机"
+        ],
+        "warnings": [
+          "反光片安装板的安装位置应确保反光片安装后朝向正确。"
+        ],
+        "estimated_time_minutes": 10
+      },
+      {
+        "step_number": 9,
+        "action": "安装方形板 1 和 方形板 3",
+        "description": "将⑬号方形板 1（01.01.01.11528）和⑭号方形板 3（01.01.01.11529）焊接到①号左铲板的内侧，位于铲板上部边缘，用于加强结构和连接。注意⑭号方形板 3的安装位置靠近铲板顶部。",
+        "position_description": "位于铲板内侧上部边缘。",
+        "parts_used": [
+          {
+            "bom_seq": "13",
+            "bom_name": "方形板 1",
+            "quantity": 1,
+            "drawing_number": "⑬"
+          },
+          {
+            "bom_seq": "14",
+            "bom_name": "方形板 3",
+            "quantity": 1,
+            "drawing_number": "⑭",
+            "node_name": [
+              "NAUO24",
+              "NAUO23",
+              "NAUO22"
+            ],
+            "bom_code": "01.01.01.11529"
+          }
+        ],
+        "tools": [
+          "焊机"
+        ],
+        "warnings": [
+          "确保方形板与铲板边缘贴合，焊缝连续且饱满。"
+        ],
+        "estimated_time_minutes": 20
+      },
+      {
+        "step_number": 10,
+        "action": "安装左铲雪板加强板 2",
+        "description": "将⑮号左铲雪板加强板 2（01.02.01.4983）焊接到①号左铲板的内侧，位于铲板的左侧边缘，用于进一步加强铲板结构。",
+        "position_description": "位于铲板内侧左侧边缘。",
+        "parts_used": [
+          {
+            "bom_seq": "15",
+            "bom_name": "左铲雪板加强板 2",
+            "quantity": 2,
+            "drawing_number": "⑮",
+            "node_name": [
+              "NAUO26",
+              "NAUO25"
+            ],
+            "bom_code": "01.02.01.4983"
+          }
+        ],
+        "tools": [
+          "焊机"
+        ],
+        "warnings": [
+          "这是最后一块加强板，确保所有加强结构已安装到位，并进行满焊前的最终定位检查。"
+        ],
+        "estimated_time_minutes": 15
+      },
+      {
+        "step_number": 11,
+        "action": "满焊所有零件",
+        "description": "对所有已点焊定位的零件（②至⑮）进行满焊。严格按照图纸上的焊接符号和技术要求进行操作，确保焊缝尺寸、长度和质量符合标准。注意'折弯时内侧焊缝完整'的要求。",
+        "position_description": "所有连接面",
+        "parts_used": [],
+        "tools": [
+          "焊机",
+          "焊条/焊丝",
+          "焊缝量规"
+        ],
+        "warnings": [
+          "严格控制焊接电流、电压和速度，防止烧穿或未焊透。",
+          "注意焊接顺序，采用分段、对称、跳焊等方法，控制焊接变形。",
+          "轴套与转动轴组件配合部位的焊缝必须保证同轴度，避免热变形影响配合精度。"
+        ],
+        "estimated_time_minutes": 90
+      }
+    ],
+    "raw_result": {
+      "component_code": "01.09.2551",
+      "component_name": "左铲雪板组件-漆后",
+      "visual_analysis": {
+        "base_part_drawing_number": "1",
+        "assembly_sequence_reasoning": "基准件为①号左铲板，所有加强板和固定板均需焊接到其上。装配顺序遵循由大到小、由内到外的原则，先安装主要的加强结构（②、③、④），再安装功能性固定板（⑤、⑥、⑦、⑧、⑨），最后安装轴套和反光片安装板（⑩、⑪、⑫、⑬、⑭、⑮）。"
+      },
+      "assembly_steps": [
+        {
+          "step_number": 1,
+          "action": "放置基准件",
+          "description": "使用行车或吊具将①号左铲板（28.38kg）平稳放置在装配工作台上，确保铲板的内侧（有加强筋的一侧）朝上，作为后续焊接的基准。",
+          "position_description": "工作台中央，内侧朝上",
+          "parts_used": [
+            {
+              "bom_seq": "1",
+              "bom_name": "左铲板 1",
+              "quantity": 1,
+              "drawing_number": "①",
+              "node_name": [
+                "NAUO1"
+              ],
+              "bom_code": "01.01.01.18598"
+            }
+          ],
+          "tools": [
+            "行车/吊具",
+            "水平仪"
+          ],
+          "warnings": [
+            "注意吊装安全，防止铲板倾倒或滑落。",
+            "确保铲板放置平稳，避免后续焊接变形。"
+          ],
+          "estimated_time_minutes": 10
+        },
+        {
+          "step_number": 2,
+          "action": "安装方形板-机加",
+          "description": "将②号方形板-机加（01.01.01.18599）放置在①号左铲板的后部，对齐图纸所示的安装位置和孔位。进行点焊定位。",
+          "position_description": "位于①号左铲板的后部边缘，垂直于铲板面。",
+          "parts_used": [
+            {
+              "bom_seq": "2",
+              "bom_name": "方形板-机加 1",
+              "quantity": 1,
+              "drawing_number": "②",
+              "node_name": [
+                "NAUO2"
+              ],
+              "bom_code": "01.01.01.18599"
+            }
+          ],
+          "tools": [
+            "焊机（CO2/电弧）",
+            "角尺",
+            "卡尺"
+          ],
+          "warnings": [
+            "焊接前确保定位准确，特别是与铲板的垂直度。",
+            "注意焊接变形控制。"
+          ],
+          "estimated_time_minutes": 15
+        },
+        {
+          "step_number": 3,
+          "action": "安装后加强板和前加强板",
+          "description": "将③号后加强板（01.01.01.11519）和④号前加强板（01.01.01.18600）分别放置在①号左铲板的内侧，对齐预留的焊接位置。进行点焊定位。",
+          "position_description": "③号位于铲板后部，④号位于铲板前部，均贴合在铲板内侧。",
+          "parts_used": [
+            {
+              "bom_seq": "3",
+              "bom_name": "后加强板 1",
+              "quantity": 1,
+              "drawing_number": "③",
+              "node_name": [
+                "NAUO3"
+              ],
+              "bom_code": "01.01.01.11519"
+            },
+            {
+              "bom_seq": "4",
+              "bom_name": "前加强板 1",
+              "quantity": 1,
+              "drawing_number": "④",
+              "node_name": [
+                "NAUO4"
+              ],
+              "bom_code": "01.01.01.18600"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卷尺"
+          ],
+          "warnings": [
+            "确保加强板与铲板贴合紧密，无间隙。",
+            "检查加强板的定位尺寸是否符合图纸要求。"
+          ],
+          "estimated_time_minutes": 20
+        },
+        {
+          "step_number": 4,
+          "action": "安装底部连接板",
+          "description": "将6块⑤号底部连接板（01.01.01.11521）均匀分布并焊接到①号左铲板的底部边缘，对齐预留的孔位。先点焊定位。",
+          "position_description": "位于①号左铲板的底部边缘，沿长度方向均匀分布。",
+          "parts_used": [
+            {
+              "bom_seq": "5",
+              "bom_name": "底部连接板 6",
+              "quantity": 6,
+              "drawing_number": "⑤",
+              "node_name": [
+                "NAUO15",
+                "NAUO14",
+                "NAUO13",
+                "NAUO12",
+                "NAUO6",
+                "NAUO5"
+              ],
+              "bom_code": "01.01.01.11521"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "定位夹具"
+          ],
+          "warnings": [
+            "底部连接板的孔位必须对齐，确保后续连接件的安装精度。",
+            "注意焊接时不要堵塞孔位。"
+          ],
+          "estimated_time_minutes": 25
+        },
+        {
+          "step_number": 5,
+          "action": "安装油缸和弹簧固定板",
+          "description": "安装⑥号前油缸固定板（01.01.01.11522，2块）、⑦号前弹簧固定板（01.01.01.11523，1块）和⑧号后弹簧固定板（01.01.01.11524，2块）。根据图纸所示位置，将这些固定板焊接到①号左铲板和已安装的加强板上。注意油缸固定板和后连接架组件的配合焊接要求。",
+          "position_description": "位于铲板内侧中部区域，用于连接油缸和弹簧。",
+          "parts_used": [
+            {
+              "bom_seq": "6",
+              "bom_name": "前油缸固定板 2",
+              "quantity": 2,
+              "drawing_number": "⑥",
+              "node_name": [
+                "NAUO8",
+                "NAUO7"
+              ],
+              "bom_code": "01.01.01.11522"
+            },
+            {
+              "bom_seq": "7",
+              "bom_name": "前弹簧固定板 1",
+              "quantity": 1,
+              "drawing_number": "⑦",
+              "node_name": [
+                "NAUO9"
+              ],
+              "bom_code": "01.01.01.11523"
+            },
+            {
+              "bom_seq": "8",
+              "bom_name": "后弹簧固定板 2",
+              "quantity": 2,
+              "drawing_number": "⑧",
+              "node_name": [
+                "NAUO11",
+                "NAUO10"
+              ],
+              "bom_code": "01.01.01.11524"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "定位工装"
+          ],
+          "warnings": [
+            "这些固定板是关键受力件，必须保证焊缝质量和尺寸精度。",
+            "油缸固定板的孔位中心距必须精确，确保与后连接架组件的配合精度。"
+          ],
+          "estimated_time_minutes": 35
+        },
+        {
+          "step_number": 6,
+          "action": "安装支撑固定板",
+          "description": "将⑨号支撑固定板（01.01.01.11525）焊接到①号左铲板的内侧，位于中部偏下的位置，对齐图纸所示的安装孔位。",
+          "position_description": "位于铲板内侧中部，靠近底部连接板。",
+          "parts_used": [
+            {
+              "bom_seq": "9",
+              "bom_name": "支撑固定板 1",
+              "quantity": 1,
+              "drawing_number": "⑨",
+              "node_name": [
+                "NAUO16"
+              ],
+              "bom_code": "01.01.01.11525"
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "确保支撑固定板的安装角度和位置准确，用于后续支撑结构连接。"
+          ],
+          "estimated_time_minutes": 15
+        },
+        {
+          "step_number": 7,
+          "action": "安装轴套加强板和轴套",
+          "description": "将⑩号轴套加强板（01.01.01.11526，2块）和⑫号轴套（01.01.02.1222，2个）安装到①号左铲板的侧边。轴套应穿过铲板和加强板的孔位，并与铲板边缘齐平。进行点焊定位。",
+          "position_description": "位于①号左铲板的左右两侧边缘，用于连接铲雪板的转动轴。",
+          "parts_used": [
+            {
+              "bom_seq": "10",
+              "bom_name": "轴套加强板 2",
+              "quantity": 2,
+              "drawing_number": "⑩",
+              "node_name": [
+                "NAUO18",
+                "NAUO17"
+              ],
+              "bom_code": "01.01.01.11526"
+            },
+            {
+              "bom_seq": "12",
+              "bom_name": "轴套 2",
+              "quantity": 2,
+              "drawing_number": "⑫",
+              "node_name": [
+                "NAUO21",
+                "NAUO20"
+              ],
+              "bom_code": "01.01.02.1222"
+            }
+          ],
+          "tools": [
+            "焊机",
+            "卡尺"
+          ],
+          "warnings": [
+            "轴套与铲板的配合精度要求高，焊接时必须保证轴套的同轴度，避免焊接变形。",
+            "轴套端面应与铲板边缘齐平或按图纸要求突出/凹进。"
+          ],
+          "estimated_time_minutes": 30
+        },
+        {
+          "step_number": 8,
+          "action": "安装反光片安装板",
+          "description": "将⑪号反光片安装板（01.01.01.11527）焊接到①号左铲板的侧边，位于轴套附近，对齐安装孔位。",
+          "position_description": "位于铲板侧边，靠近⑩号轴套加强板。",
+          "parts_used": [
+            {
+              "bom_seq": "11",
+              "bom_name": "反光片安装板 1",
+              "quantity": 1,
+              "drawing_number": "⑪",
+              "node_name": [
+                "NAUO19"
+              ],
+              "bom_code": "01.01.01.11527"
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "反光片安装板的安装位置应确保反光片安装后朝向正确。"
+          ],
+          "estimated_time_minutes": 10
+        },
+        {
+          "step_number": 9,
+          "action": "安装方形板 1 和 方形板 3",
+          "description": "将⑬号方形板 1（01.01.01.11528）和⑭号方形板 3（01.01.01.11529）焊接到①号左铲板的内侧，位于铲板上部边缘，用于加强结构和连接。注意⑭号方形板 3的安装位置靠近铲板顶部。",
+          "position_description": "位于铲板内侧上部边缘。",
+          "parts_used": [
+            {
+              "bom_seq": "13",
+              "bom_name": "方形板 1",
+              "quantity": 1,
+              "drawing_number": "⑬"
+            },
+            {
+              "bom_seq": "14",
+              "bom_name": "方形板 3",
+              "quantity": 1,
+              "drawing_number": "⑭",
+              "node_name": [
+                "NAUO24",
+                "NAUO23",
+                "NAUO22"
+              ],
+              "bom_code": "01.01.01.11529"
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "确保方形板与铲板边缘贴合，焊缝连续且饱满。"
+          ],
+          "estimated_time_minutes": 20
+        },
+        {
+          "step_number": 10,
+          "action": "安装左铲雪板加强板 2",
+          "description": "将⑮号左铲雪板加强板 2（01.02.01.4983）焊接到①号左铲板的内侧，位于铲板的左侧边缘，用于进一步加强铲板结构。",
+          "position_description": "位于铲板内侧左侧边缘。",
+          "parts_used": [
+            {
+              "bom_seq": "15",
+              "bom_name": "左铲雪板加强板 2",
+              "quantity": 2,
+              "drawing_number": "⑮",
+              "node_name": [
+                "NAUO26",
+                "NAUO25"
+              ],
+              "bom_code": "01.02.01.4983"
+            }
+          ],
+          "tools": [
+            "焊机"
+          ],
+          "warnings": [
+            "这是最后一块加强板，确保所有加强结构已安装到位，并进行满焊前的最终定位检查。"
+          ],
+          "estimated_time_minutes": 15
+        },
+        {
+          "step_number": 11,
+          "action": "满焊所有零件",
+          "description": "对所有已点焊定位的零件（②至⑮）进行满焊。严格按照图纸上的焊接符号和技术要求进行操作，确保焊缝尺寸、长度和质量符合标准。注意'折弯时内侧焊缝完整'的要求。",
+          "position_description": "所有连接面",
+          "parts_used": [],
+          "tools": [
+            "焊机",
+            "焊条/焊丝",
+            "焊缝量规"
+          ],
+          "warnings": [
+            "严格控制焊接电流、电压和速度，防止烧穿或未焊透。",
+            "注意焊接顺序，采用分段、对称、跳焊等方法，控制焊接变形。",
+            "轴套与转动轴组件配合部位的焊缝必须保证同轴度，避免热变形影响配合精度。"
+          ],
+          "estimated_time_minutes": 90
+        }
+      ],
+      "quality_checks": [
+        "检查所有焊缝是否连续、饱满，无气孔、夹渣、裂纹等缺陷。",
+        "使用焊缝量规检查焊缝尺寸是否符合图纸要求。",
+        "检查轴套（⑫号）的同轴度，确保其与转动轴组件的配合精度。",
+        "检查油缸固定板（⑥号）和后连接架组件配合孔位的中心距和垂直度，确保符合图纸公差要求。",
+        "检查组件整体尺寸和平面度，确保焊接变形在允许范围内。"
+      ],
+      "estimated_time_minutes": 275
+    },
+    "assembly_order": 3
+  }
+]

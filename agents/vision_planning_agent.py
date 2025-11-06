@@ -22,20 +22,22 @@ class VisionPlanningAgent(BaseGeminiAgent):
     def process(
         self,
         all_images: List[str],
-        bom_data: List[Dict]
+        bom_data: List[Dict],
+        expected_component_count: int = None
     ) -> Dict:
         """
-        
-        
+
+
         Args:
             all_images: PDF
             bom_data: BOM
-            
+            expected_component_count: 期望的组件数量（从文件系统识别出的组件图数量）
+
         Returns:
             {
                 "success": bool,
-                "component_assembly_plan": [...],  # 
-                "product_assembly_plan": {...}     # 
+                "component_assembly_plan": [...],  #
+                "product_assembly_plan": {...}     #
             }
         """
         print(f"\n{'='*80}")
@@ -43,10 +45,12 @@ class VisionPlanningAgent(BaseGeminiAgent):
         print(f"{'='*80}")
         print(f" : {len(all_images)}")
         print(f" BOM: {len(bom_data)}")
-        
-        # 
-        system_prompt, user_query = build_simple_assembly_planning_prompt(bom_data)
-        
+        if expected_component_count:
+            print(f" : {expected_component_count}")
+
+        #
+        system_prompt, user_query = build_simple_assembly_planning_prompt(bom_data, expected_component_count)
+
         # Gemini
         result = self.call_gemini(
             system_prompt=system_prompt,
