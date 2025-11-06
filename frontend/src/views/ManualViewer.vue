@@ -1324,9 +1324,18 @@ watch(currentStepIndex, async (newIndex, oldIndex) => {
   const newGlbFile = newStep?.glb_file
   const oldGlbFile = oldStep?.glb_file
 
-  if (newGlbFile && oldGlbFile && newGlbFile !== oldGlbFile) {
-    console.log(`🔄 切换GLB模型: ${oldGlbFile} → ${newGlbFile}`)
+  console.log(`📋 步骤切换: ${oldIndex + 1} → ${newIndex + 1}`)
+  console.log(`📦 GLB文件: ${oldGlbFile || '无'} → ${newGlbFile || '无'}`)
+
+  // ✅ 修复：只要新步骤有GLB文件，且与旧步骤不同，就切换
+  // 不再要求oldGlbFile必须存在（解决首次加载和步骤缺失glb_file的问题）
+  if (newGlbFile && newGlbFile !== oldGlbFile) {
+    console.log(`🔄 切换GLB模型: ${oldGlbFile || '无'} → ${newGlbFile}`)
     await switchGLBModel(newGlbFile)
+  } else if (!newGlbFile) {
+    console.warn(`⚠️ 步骤${newIndex + 1}缺少glb_file字段，无法加载3D模型`)
+  } else {
+    console.log(`✅ GLB文件未变化，无需切换`)
   }
 
   highlightStepParts()
