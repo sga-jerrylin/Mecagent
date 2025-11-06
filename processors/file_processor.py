@@ -351,10 +351,12 @@ class ModelProcessor:
             print(f"      📏 装配体特征尺寸: {assembly_size:.6f} 米")
             print(f"      📏 装配体中心: {center}")
 
-            # ✅ 爆炸系数：控制整体爆炸程度（可调整，1.5表示爆炸距离是装配体尺寸的1.5倍）
-            explosion_factor = 1.5
+            # ✅ 爆炸系数：控制整体爆炸程度
+            # 修复：STEP文件单位通常是毫米，转换为米后数值很小
+            # 需要使用更大的爆炸系数（50-100倍）才能在前端显示明显的爆炸效果
+            explosion_factor = 100.0  # 从1.5改为100，确保爆炸距离足够大
             print(f"      🎯 爆炸系数: {explosion_factor}")
-            print(f"      🎯 基础爆炸距离: {assembly_size * explosion_factor:.6f} 米")
+            print(f"      🎯 基础爆炸距离: {assembly_size * explosion_factor:.6f} 米 ({assembly_size * explosion_factor * 1000:.2f} 毫米)")
             print(f"      🎯 最小爆炸距离: {assembly_size * 0.3:.6f} 米")
 
             # 生成爆炸向量
