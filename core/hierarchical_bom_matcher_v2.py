@@ -54,31 +54,9 @@ class HierarchicalBOMMatcher:
         print_info(f"GLB输出目录: {output_dir}")
         print_info(f"组件数量: {len(component_plans)}")
 
-        # ✅ 创建组件代号到组件图序号的映射
-        # 策略：通过AI规划中的drawing_number字段来匹配
-        # 逻辑：drawing_number="①" → index=1, "②" → index=2, ...
-        component_code_to_drawing_index = {}
-
-        # 圆圈数字到阿拉伯数字的映射
-        circle_to_number = {
-            "①": 1, "②": 2, "③": 3, "④": 4, "⑤": 5,
-            "⑥": 6, "⑦": 7, "⑧": 8, "⑨": 9, "⑩": 10
-        }
-
-        for plan in component_plans:
-            comp_code = plan.get("component_code", "")
-            drawing_number = plan.get("drawing_number", "")  # "①", "②", "③", "④"
-
-            # 将圆圈数字转换为阿拉伯数字
-            if drawing_number in circle_to_number:
-                drawing_index = circle_to_number[drawing_number]
-                component_code_to_drawing_index[comp_code] = drawing_index
-                print(f"   📌 组件 {comp_code} → 组件图{drawing_index} (drawing_number={drawing_number})")
-            else:
-                # 如果无法解析，使用assembly_order作为后备
-                comp_order = plan.get("assembly_order", 0)
-                component_code_to_drawing_index[comp_code] = comp_order
-                print(f"   ⚠️  组件 {comp_code} 无法解析drawing_number '{drawing_number}'，使用assembly_order={comp_order}")
+        # ✅ 新策略：直接使用 file_hierarchy 中的文件序号（index）
+        # 不再依赖 AI 识别的 drawing_number，避免 PDF 标注和文件序号不一致的问题
+        print_info("📂 使用文件系统中的实际文件序号进行映射")
 
         # 结果容器
         component_level_mappings = {}
@@ -88,25 +66,54 @@ class HierarchicalBOMMatcher:
         # ========== 1. 处理组件级别 ==========
         print_substep("步骤1：处理组件级别的STEP文件")
 
-        for comp_plan in component_plans:
+        # ✅ 遍历 file_hierarchy 中的组件（按文件实际存在的顺序）
+        components_from_files = file_hierarchy.get("components", []) if file_hierarchy else []
+
+        if not components_from_files:
+            print_warning("file_hierarchy 中没有组件信息，回退到使用 component_plans", indent=1)
+            # 回退方案：使用 component_plans 的 assembly_order
+            components_from_files = [
+                {
+                    "index": plan.get("assembly_order", i + 1),
+                    "name": f"组件图{plan.get('assembly_order', i + 1)}",
+                    "component_code": plan.get("component_code", ""),
+                    "component_name": plan.get("component_name", "")
+                }
+                for i, plan in enumerate(component_plans)
+            ]
+
+        for comp_file_info in components_from_files:
+            file_index = comp_file_info.get("index")  # 文件序号（组件图X 中的 X）
+            file_name = comp_file_info.get("name", f"组件图{file_index}")
+
+            # 查找对应的 AI 规划（通过 assembly_order 匹配）
+            comp_plan = None
+            for plan in component_plans:
+                # 尝试通过 assembly_order 匹配
+                if plan.get("assembly_order") == file_index:
+                    comp_plan = plan
+                    break
+
+            if not comp_plan:
+                # 如果找不到匹配的规划，跳过
+                print_warning(f"未找到组件图{file_index}对应的AI规划，跳过", indent=1)
+                continue
+
             comp_code = comp_plan.get("component_code", "")
             comp_name = comp_plan.get("component_name", "")
             comp_order = comp_plan.get("assembly_order", 0)
 
-            # ✅ 获取实际的组件图序号（而不是装配顺序）
-            drawing_index = component_code_to_drawing_index.get(comp_code, comp_order)
+            print_info(f"\n处理组件: {comp_name} (文件序号={file_index}, 装配顺序={comp_order})")
 
-            print_info(f"\n处理组件: {comp_name} (装配顺序={comp_order}, 图纸序号={drawing_index})")
-
-            # ✅ 使用实际的组件图序号查找STEP文件
+            # ✅ 使用文件序号查找STEP文件
             step_file = None
             possible_names = [
-                f"组件图{drawing_index}.STEP",
-                f"组件图{drawing_index}.step",
-                f"组件{drawing_index}.STEP",
-                f"组件{drawing_index}.step",
-                f"组件图{drawing_index}.stp",
-                f"组件{drawing_index}.stp"
+                f"组件图{file_index}.STEP",
+                f"组件图{file_index}.step",
+                f"组件{file_index}.STEP",
+                f"组件{file_index}.step",
+                f"组件图{file_index}.stp",
+                f"组件{file_index}.stp"
             ]
 
             for name in possible_names:
@@ -116,13 +123,13 @@ class HierarchicalBOMMatcher:
                     break
 
             if not step_file:
-                print_warning(f"组件图{drawing_index}的STEP文件不存在（尝试了: {', '.join(possible_names)}）", indent=1)
+                print_warning(f"组件图{file_index}的STEP文件不存在（尝试了: {', '.join(possible_names)}）", indent=1)
                 continue
 
             print_info(f"STEP文件: {step_file.name}", indent=1)
 
-            # ✅ 使用实际的组件图序号命名GLB文件
-            glb_file = glb_output / f"component_{drawing_index}.glb"
+            # ✅ 使用文件序号命名GLB文件
+            glb_file = glb_output / f"component_{file_index}.glb"
             print_info(f"开始转换STEP -> GLB: {glb_file.name}", indent=1)
 
             import sys
@@ -142,11 +149,11 @@ class HierarchicalBOMMatcher:
             
             parts_list = convert_result.get("parts_info", [])
             print_success(f"GLB转换成功: {len(parts_list)} 个零件", indent=1)
-            
+
             # 获取组件的BOM数据（只包含组件内部的零件）
-            component_bom = self._get_component_bom(bom_data, comp_plan, drawing_index)
+            component_bom = self._get_component_bom(bom_data, comp_plan, file_index)
             print_info(f"组件BOM: {len(component_bom)} 个零件", indent=1)
-            
+
             # BOM-3D匹配（双匹配策略：代码匹配 + AI跟进匹配）
             if parts_list and component_bom:
                 # 步骤1：代码匹配
@@ -227,7 +234,7 @@ class HierarchicalBOMMatcher:
                 bom_mapping_table = matcher.generate_bom_mapping_table(component_bom, cleaned_parts)
 
                 # ✅ 生成组件的爆炸视图数据
-                print_info(f"生成组件{drawing_index}爆炸视图数据...", indent=1)
+                print_info(f"生成组件{file_index}爆炸视图数据...", indent=1)
                 explosion_result = self.model_processor.generate_explosion_data(
                     glb_path=str(glb_file),
                     assembly_spec={},  # 组件级别暂时不需要装配规程
@@ -235,11 +242,11 @@ class HierarchicalBOMMatcher:
                 )
 
                 if explosion_result["success"]:
-                    # 重命名manifest.json为manifest_component_{drawing_index}.json
+                    # 重命名manifest.json为manifest_component_{file_index}.json
                     import shutil
                     from pathlib import Path as PathLib  # ✅ 使用别名避免与顶部导入冲突
                     manifest_path = PathLib(explosion_result["manifest_path"])
-                    component_manifest_path = manifest_path.parent / f"manifest_component_{drawing_index}.json"
+                    component_manifest_path = manifest_path.parent / f"manifest_component_{file_index}.json"
                     shutil.move(str(manifest_path), str(component_manifest_path))
                     print_success(f"爆炸视图数据生成成功: {explosion_result['node_count']} 个零件", indent=1)
                 else:
@@ -249,7 +256,7 @@ class HierarchicalBOMMatcher:
                 component_level_mappings[comp_code] = {
                     "component_name": comp_name,
                     "glb_file": str(glb_file),
-                    "drawing_index": drawing_index,  # ✅ 新增：保存实际的组件图序号
+                    "drawing_index": file_index,  # ✅ 使用文件序号
                     "assembly_order": comp_order,  # ✅ 保留装配顺序信息
                     "bom_to_mesh": final_bom_to_mesh,
                     "bom_mapping_table": bom_mapping_table,  # ✅ 新增：保存BOM映射宽表
@@ -264,8 +271,8 @@ class HierarchicalBOMMatcher:
                     "matching_rate": final_bom_rate  # ✅ 兼容旧代码
                 }
 
-                # ✅ 使用实际的组件图序号作为key
-                glb_files[f"component_{drawing_index}"] = str(glb_file)
+                # ✅ 使用文件序号作为key
+                glb_files[f"component_{file_index}"] = str(glb_file)
             else:
                 if not parts_list:
                     print_warning("没有提取到零件信息", indent=1)

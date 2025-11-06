@@ -6,15 +6,15 @@
         <h1>{{ productName }}</h1>
         <el-tag type="info" size="large">装配说明书</el-tag>
       </div>
-      
+
       <div class="progress-section">
         <div class="progress-info">
           <span class="current-step">步骤 {{ currentStepIndex + 1 }}</span>
           <span class="total-steps">/ {{ totalSteps }}</span>
           <span class="step-title">{{ currentStepData?.title }}</span>
         </div>
-        <el-progress 
-          :percentage="progressPercentage" 
+        <el-progress
+          :percentage="progressPercentage"
           :stroke-width="10"
           :color="progressColor"
         />
@@ -141,8 +141,8 @@
               <div class="tools-section" v-if="currentStepData.tools_required && currentStepData.tools_required.length">
                 <h3>🔧 所需工具</h3>
                 <div class="tools-tags">
-                  <el-tag 
-                    v-for="tool in currentStepData.tools_required" 
+                  <el-tag
+                    v-for="tool in currentStepData.tools_required"
                     :key="tool"
                     type="info"
                     size="large"
@@ -301,6 +301,11 @@ let gridHelper: THREE.GridHelper | null = null
 let meshOriginalPositions: Map<string, THREE.Vector3> = new Map()
 let meshOriginalMaterials: Map<string, THREE.Material> = new Map()
 let meshExplodeDirections: Map<string, THREE.Vector3> = new Map()
+
+// ✅ 使用世界坐标系存储，以避免层级导致的局部位置重合问题
+let meshWorldOriginalPositions: Map<string, THREE.Vector3> = new Map()
+let meshWorldExplodeDirections: Map<string, THREE.Vector3> = new Map()
+
 
 const isExploded = ref(false)
 const isWireframe = ref(false)
@@ -893,42 +898,57 @@ const load3DModel = async () => {
     // 移动模型到中心
     model.position.sub(center)
 
-    // ✅ 模型居中后，保存每个mesh的本地位置和爆炸方向
-    const localCenter = new THREE.Vector3(0, 0, 0)
+    // ✅ 模型居中后，保存每个mesh的世界坐标位置和爆炸方向（世界坐标系）
+    const worldCenter = new THREE.Vector3(0, 0, 0) // 已经居中到(0,0,0)
     let nearCenterCount = 0
+    const samplePositions: any[] = []
 
     model.traverse((child: any) => {
       if (child.isMesh) {
-        // 保存本地坐标位置（相对于父对象model）
+        // 保存本地坐标位置（兼容旧逻辑）
         const localPos = child.position.clone()
         meshOriginalPositions.set(child.name, localPos)
 
-        // 计算并保存爆炸方向（从中心指向零件，纯径向）
-        const direction = new THREE.Vector3()
-        direction.subVectors(localPos, localCenter)
+        // ✅ 计算世界坐标位置
+        const worldPos = new THREE.Vector3()
+        child.getWorldPosition(worldPos)
+        meshWorldOriginalPositions.set(child.uuid, worldPos.clone())
 
-        const distance = direction.length()
+        // 计算并保存爆炸方向（从中心指向零件，纯径向，使用世界坐标）
+        const directionWorld = worldPos.clone().sub(worldCenter)
+        const distance = directionWorld.length()
 
-        // ✅ 优化：降低阈值，让更多零件使用实际位置计算方向
-        if (distance < 0.0001) {
-          // 如果零件非常接近中心点，使用随机方向避免重叠
+        // 收集前10个零件的位置信息用于调试
+        if (samplePositions.length < 10) {
+          samplePositions.push({
+            name: child.name,
+            localPos: `(${localPos.x.toFixed(3)}, ${localPos.y.toFixed(3)}, ${localPos.z.toFixed(3)})`,
+            worldPos: `(${worldPos.x.toFixed(3)}, ${worldPos.y.toFixed(3)}, ${worldPos.z.toFixed(3)})`,
+            distance: distance.toFixed(6),
+            parentName: child.parent?.name || 'unknown'
+          })
+        }
+
+        if (distance < 1e-6) {
+          // 如果零件非常接近中心点，使用均匀随机方向避免重叠
           const theta = Math.random() * Math.PI * 2
           const phi = Math.random() * Math.PI
-          direction.set(
+          directionWorld.set(
             Math.sin(phi) * Math.cos(theta),
             Math.cos(phi),
             Math.sin(phi) * Math.sin(theta)
           )
           nearCenterCount++
         } else {
-          // 归一化：严格从中心指向零件的方向
-          direction.normalize()
+          directionWorld.normalize()
         }
 
-        meshExplodeDirections.set(child.name, direction)
+        meshExplodeDirections.set(child.name, directionWorld.clone()) // 兼容旧逻辑（按名称）
+        meshWorldExplodeDirections.set(child.uuid, directionWorld)
       }
     })
-    console.log('✅ 已保存', meshOriginalPositions.size, '个mesh的位置和爆炸方向')
+    console.log('✅ 已保存', meshWorldOriginalPositions.size, '个mesh的世界位置和爆炸方向')
+    console.log('📍 前10个零件的位置信息:', samplePositions)
     if (nearCenterCount > 0) {
       console.log(`⚠️ ${nearCenterCount} 个零件非常接近中心，使用随机方向`)
     }
@@ -1018,6 +1038,9 @@ const switchGLBModel = async (glbFile: string) => {
     // 2. 清空材质缓存
     meshOriginalMaterials.clear()
     meshOriginalPositions.clear()
+    // ✅ 清空世界坐标缓存
+    meshWorldOriginalPositions.clear()
+    meshWorldExplodeDirections.clear()
 
     // 3. 加载新模型
     const loader = new GLTFLoader()
@@ -1203,41 +1226,50 @@ const applyExplode = () => {
   let processedCount = 0
   let sampleMesh: any = null
 
+  // 以模型当前包围盒尺寸为基准计算爆炸距离（世界坐标）
+  const box = new THREE.Box3().setFromObject(model)
+  const size = new THREE.Vector3()
+  box.getSize(size)
+  const maxDim = Math.max(size.x, size.y, size.z)
+  const explodeDistanceBase = maxDim * (explodeScale.value / 100)
+
   model.traverse((child: any) => {
     if (child.isMesh) {
-      const originalLocalPos = meshOriginalPositions.get(child.name)
-      const explodeDirection = meshExplodeDirections.get(child.name)
+      const key = child.uuid
+      const originalWorldPos = meshWorldOriginalPositions.get(key)
+      const explodeDirectionWorld = meshWorldExplodeDirections.get(key)
 
-      if (originalLocalPos && explodeDirection) {
+      if (originalWorldPos && explodeDirectionWorld) {
         if (isExploded.value && explodeScale.value > 0) {
-          // 使用保存的爆炸方向（已经归一化）
-          const direction = explodeDirection.clone()
+          // 使用保存的世界坐标方向（已归一化）
+          const direction = explodeDirectionWorld.clone()
 
-          // 简单的径向爆炸：所有零件都从中心向外推
-          // 使用统一的爆炸距离
-          const explodeDistance = explodeScale.value * 0.05
+          // 径向爆炸：从中心向外，使用与模型尺寸相关的距离
+          const explodeDistance = explodeDistanceBase
 
-          // 计算偏移量
-          const offset = direction.multiplyScalar(explodeDistance)
-          const newLocalPos = originalLocalPos.clone().add(offset)
+          // 计算新的世界坐标位置
+          const newWorldPos = originalWorldPos.clone().add(direction.multiplyScalar(explodeDistance))
 
+          // 转回子节点的局部坐标
+          const newLocalPos = child.parent.worldToLocal(newWorldPos.clone())
           child.position.copy(newLocalPos)
+          child.updateMatrix()
           processedCount++
 
-          // 保存第一个mesh用于调试
           if (!sampleMesh) {
             sampleMesh = {
               name: child.name,
               explodeDistance,
-              originalPos: originalLocalPos.clone(),
-              newPos: newLocalPos.clone(),
-              direction: explodeDirection.clone(),
-              offset: offset.clone()
+              originalPos: originalWorldPos.clone(),
+              newPos: newWorldPos.clone(),
+              direction: explodeDirectionWorld.clone()
             }
           }
         } else {
-          // 恢复原始位置
-          child.position.copy(originalLocalPos)
+          // 恢复到原始世界坐标对应的局部位置
+          const restoreLocal = child.parent.worldToLocal(originalWorldPos.clone())
+          child.position.copy(restoreLocal)
+          child.updateMatrix()
           processedCount++
         }
       }
@@ -1245,21 +1277,20 @@ const applyExplode = () => {
   })
 
   if (processedCount > 0) {
-    console.log(`🔄 爆炸视图更新: ${isExploded.value ? '展开' : '收起'}, 比例=${explodeScale.value}%, 处理了${processedCount}个零件`)
+    console.log(`🔄 爆炸视图更新: ${isExploded.value ? '展开' : '收起'}, 比例=${explodeScale.value}%, 处理了${processedCount}个零件, 基准距离=${explodeDistanceBase.toFixed(3)}`)
     if (sampleMesh) {
       const dirLen = Math.sqrt(
         sampleMesh.direction.x ** 2 +
         sampleMesh.direction.y ** 2 +
         sampleMesh.direction.z ** 2
       )
-      console.log('📍 示例零件 (径向爆炸):', {
+      console.log('📍 示例零件 (世界坐标径向爆炸):', {
         name: sampleMesh.name,
-        原始位置: `(${sampleMesh.originalPos.x.toFixed(2)}, ${sampleMesh.originalPos.y.toFixed(2)}, ${sampleMesh.originalPos.z.toFixed(2)})`,
-        新位置: `(${sampleMesh.newPos.x.toFixed(2)}, ${sampleMesh.newPos.y.toFixed(2)}, ${sampleMesh.newPos.z.toFixed(2)})`,
+        原始世界位置: `(${sampleMesh.originalPos.x.toFixed(3)}, ${sampleMesh.originalPos.y.toFixed(3)}, ${sampleMesh.originalPos.z.toFixed(3)})`,
+        新世界位置: `(${sampleMesh.newPos.x.toFixed(3)}, ${sampleMesh.newPos.y.toFixed(3)}, ${sampleMesh.newPos.z.toFixed(3)})`,
         方向: `(${sampleMesh.direction.x.toFixed(3)}, ${sampleMesh.direction.y.toFixed(3)}, ${sampleMesh.direction.z.toFixed(3)})`,
         方向长度: dirLen.toFixed(3),
-        偏移量: `(${sampleMesh.offset.x.toFixed(2)}, ${sampleMesh.offset.y.toFixed(2)}, ${sampleMesh.offset.z.toFixed(2)})`,
-        爆炸距离: sampleMesh.explodeDistance.toFixed(2)
+        爆炸距离: sampleMesh.explodeDistance.toFixed(3)
       })
     }
   }

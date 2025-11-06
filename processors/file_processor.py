@@ -370,48 +370,65 @@ class ModelProcessor:
 
             for i, node_name in enumerate(node_names):
                 try:
-                    # 获取节点的变换矩阵
-                    transform, geometry_name = scene.graph[node_name]
+                    # ✅ 关键修复：正确计算零件在世界坐标系中的位置
+                    # 问题根源：STEP文件中的几何体可能已经包含了位置信息（不在原点）
+                    # 需要将几何体的局部坐标通过变换矩阵转换到世界坐标
+
+                    # 获取节点的世界变换矩阵（从world到node的累积变换）
+                    world_transform_tuple = scene.graph.get(frame_to=node_name, frame_from='world')
+                    if world_transform_tuple and len(world_transform_tuple) == 2:
+                        world_transform = world_transform_tuple[0]  # 第一个元素是4x4变换矩阵
+                        geometry_name = world_transform_tuple[1]    # 第二个元素是几何体名称
+                    else:
+                        # 降级方案：使用局部变换
+                        world_transform, geometry_name = scene.graph[node_name]
 
                     # 获取几何体
                     geometry = scene.geometry[geometry_name]
 
-                    # 计算零件中心
-                    part_center = geometry.centroid
-                    if transform is not None:
-                        part_center = transform[:3, :3] @ part_center + transform[:3, 3]
+                    # ✅ 使用几何体的质心（centroid）作为零件中心
+                    # 注意：几何体的centroid已经在其局部坐标系中，可能不在原点
+                    part_center_local = geometry.centroid
+
+                    # ✅ 应用世界变换矩阵：world_pos = transform @ local_pos
+                    # 使用齐次坐标进行变换
+                    if world_transform is not None:
+                        # 将3D点转换为齐次坐标 [x, y, z, 1]
+                        part_center_homogeneous = np.append(part_center_local, 1.0)
+                        # 应用4x4变换矩阵
+                        part_center_world_homogeneous = world_transform @ part_center_homogeneous
+                        # 转换回3D坐标
+                        part_center = part_center_world_homogeneous[:3]
+                    else:
+                        part_center = part_center_local
 
                     # 计算爆炸方向（从装配体中心指向零件中心）
                     direction = part_center - center
                     distance_to_center = np.linalg.norm(direction)
 
-                    if distance_to_center > 0.001:  # 避免除零
+                    # ✅ 降低阈值，因为使用边界框后，重叠的情况会减少
+                    if distance_to_center > 0.0001:  # 从0.001降低到0.0001
                         direction = direction / distance_to_center
                     else:
-                        # 如果零件在中心，使用随机方向
+                        # 如果零件仍然在中心，使用均匀分布的方向
+                        # 使用球面均匀分布算法
+                        theta = (i * 2.399963) % (2 * np.pi)  # 黄金角
+                        phi = np.arccos(1 - 2 * (i + 0.5) / len(node_names))
                         direction = np.array([
-                            np.cos(i * 2 * np.pi / len(node_names)),
-                            np.sin(i * 2 * np.pi / len(node_names)),
-                            0.5
+                            np.sin(phi) * np.cos(theta),
+                            np.sin(phi) * np.sin(theta),
+                            np.cos(phi)
                         ])
-                        direction = direction / np.linalg.norm(direction)
                         distance_to_center = assembly_size * 0.1  # 给中心零件一个默认距离
 
-                    # ✅ 爆炸距离策略：
-                    # 策略1：动态调整（根据零件到中心的距离）
-                    # 策略2：固定距离（当零件聚集时使用）
-
-                    base_explosion_distance = assembly_size * explosion_factor
-                    distance_ratio = distance_to_center / (assembly_size * 0.5) if assembly_size > 0 else 0
-
-                    # ✅ 关键修复：统一使用固定爆炸距离
+                    # ✅ 爆炸距离策略：统一使用固定爆炸距离
                     # 原因：产品STEP文件中的组件可能作为子装配体存在，导致零件聚集
                     # 使用固定距离可以确保所有零件都能明显散开
                     explosion_distance = assembly_size * explosion_factor
 
                     # 调试日志（每10个零件打印一次，避免日志过多）
                     if i % 10 == 0:
-                        print(f"      零件{i}: distance_to_center={distance_to_center:.6f}, ratio={distance_ratio:.4f}, explosion_distance={explosion_distance:.6f}")
+                        print(f"      零件{i}: part_center={part_center}, distance_to_center={distance_to_center:.6f}, explosion_distance={explosion_distance:.6f}")
 
                     explosion_vectors[node_name] = {
                         "direction": direction.tolist(),
