@@ -135,16 +135,23 @@ class ManualIntegratorV2:
             component_code = result.get("component_code", "")
             component_name = result.get("component_name", "")
             assembly_order = result.get("assembly_order", "")
+            drawing_index = result.get("drawing_index", "")  # ✅ 获取实际的图纸序号
 
             # GLB文件
             glb_file = None
             if component_to_glb_mapping and component_code in component_to_glb_mapping:
                 glb_file = component_to_glb_mapping[component_code]
 
-            # ✅ 获取组件的PDF图片路径
+            # ✅ 获取组件的PDF图片路径（使用drawing_index而不是assembly_order）
+            # 原因：PDF图片目录按文件名序号组织（组件图1.pdf -> pdf_images/1/）
+            # 而GLB文件也按drawing_index命名（component_1.glb）
+            # 必须保持一致，否则PDF和GLB会对不上
             component_images = []
-            if image_hierarchy and assembly_order:
-                component_images = image_hierarchy.get('component_images', {}).get(str(assembly_order), [])
+            if image_hierarchy:
+                # 优先使用drawing_index，如果没有则使用assembly_order作为后备
+                index_to_use = drawing_index if drawing_index else assembly_order
+                if index_to_use:
+                    component_images = image_hierarchy.get('component_images', {}).get(str(index_to_use), [])
 
             # ✅ 为每个步骤添加图纸路径
             steps = result.get("assembly_steps", [])
@@ -155,6 +162,8 @@ class ManualIntegratorV2:
                 "component_code": component_code,
                 "component_name": component_name,
                 "glb_file": glb_file,
+                "drawing_index": drawing_index,  # ✅ 添加drawing_index字段
+                "assembly_order": assembly_order,  # ✅ 保留assembly_order字段
                 "steps": enhanced_steps,  # ✅ 使用增强后的步骤
                 "3d_display_mode": "part_level_explosion"
             }

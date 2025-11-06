@@ -92,7 +92,11 @@ class GeminiAssemblyPipeline:
         self.product_agent = ProductAssemblyAgent()
         self.welding_agent = WeldingAgent()
         self.safety_agent = SafetyFAQAgent()
-        
+
+        # 初始化Gemini视觉模型（用于BOM提取）
+        from models.gemini_model import GeminiVisionModel
+        self.gemini_model = GeminiVisionModel(api_key=api_key, model_name=self.model_name)
+
         # 工作流状态
         self.start_time = None
         self.current_step = 0
@@ -350,252 +354,118 @@ class GeminiAssemblyPipeline:
 
         doc.close()
 
-        # 调用Gemini Vision API
-        prompt = """# 任务：从工程图纸中提取BOM表（零件清单/明细表）
+        # 构建Gemini Vision API请求
+        prompt = f"""你是一个BOM表提取专家。请从这个工程图纸中提取BOM表（零件清单）。
 
-## 1. 如何识别BOM表
+# 如何识别BOM表
+1. 必须有"代号"列，格式为XX.XX.XXXX（至少3段，如01.09.1140）
+2. 必须有"序号"列（数字1, 2, 3...）
+3. 必须有"名称"列（零件名称）
+4. 不要提取"工艺路线"表（只有2段如08.02）
 
-### ⚠️ 关键识别特征（必须同时满足）：
+# 输出格式
+返回一个有效的JSON数组。不要markdown，不要解释，不要代码块。
 
-1. **必须有"代号"列**，格式为 `XX.XX.XXXX` 或 `XX.XX.XX.XXXXX`
-   - 示例：`01.09.0410`, `02.03.0008`, `02.08.02.0263`
-   - **如果表格中没有这种格式的代号，那就不是BOM表！**
+示例：
+[{{"seq":"1","code":"01.09.1140","product_code":"S-AB1830(72IN)-MP1140-01","name":"刷辊组件-漆后","quantity":1,"weight":76.42}}]
 
-2. **必须有"序号"列**，数字从1开始（1, 2, 3...）
-   - 序号可能从上到下排列（1在上，38在下）
-   - 序号也可能从下到上排列（1在下，38在上）
+# 字段映射
+- seq: 序号（字符串，如"1", "2", "3"）
+- code: 代号（字符串，XX.XX.XXXX格式，至少3段）
+- product_code: 产品代号/规格（字符串，如果没有则为空字符串""）
+- name: 名称（字符串，如果没有则为空字符串""）
+- quantity: 数量（整数）
+- weight: 总重（浮点数，优先使用总重，否则使用单重）
 
-3. **必须有"名称"列**，包含零件名称
+# 重要规则
+1. 提取所有有效的seq和code的行
+2. 按seq序号排序（1, 2, 3...）
+3. 如果没有找到BOM表，返回[]
+4. 只返回有效的JSON，不要其他文本
 
-### ❌ 不是BOM表的例子：
+来源PDF: {pdf_name}"""
 
-**工艺路线表**（不要提取）：
-```
-| 序号 | 工序号 | 名称 | 设备 |
-|  1   | 08.04  | 焊丸  |      |
-|  2   | 01.13  | 喷漆  |      |
-```
-- ❌ 这个表格的"工序号"列（08.04, 01.13）**不是BOM代号**
-- ❌ 工序号只有2段（XX.XX），而BOM代号至少有3段（XX.XX.XXXX）
-- ❌ 这是工艺流程表，不是零件清单
+        all_bom_items = []
 
-**BOM表**（需要提取）：
-```
-| 序号 | 代号 | 产品代号 | 名称 | 数量 | 重量 |
-|  1   | 01.09.0410 | T-AB1830(72IN)-EURO-01 | 挂架组件-漆后 | 1 | 4.71 |
-|  2   | 01.09.0408 | ... | 主框架组件-漆后 | 1 | 3.01 |
-```
-- ✅ "代号"列是 `01.09.0410`（至少3段，XX.XX.XXXX格式）
-- ✅ 这是零件清单
+        for i, img_base64 in enumerate(images):
+            print_info(f"      正在分析第 {i+1}/{len(images)} 页...", indent=1)
 
-## 2. BOM表的详细特征
+            try:
+                # 调用Gemini Vision API
+                from openai import OpenAI
+                client = OpenAI(
+                    base_url="https://openrouter.ai/api/v1",
+                    api_key=self.api_key
+                )
 
-**表格位置**：通常在图纸的右下角、右侧或下方
+                completion = client.chat.completions.create(
+                    extra_headers={
+                        "HTTP-Referer": "https://mecagent.com",
+                        "X-Title": "MecAgent BOM Extraction"
+                    },
+                    model=self.model_name,
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": [
+                                {"type": "text", "text": prompt},
+                                {
+                                    "type": "image_url",
+                                    "image_url": {"url": f"data:image/png;base64,{img_base64}"}
+                                }
+                            ]
+                        }
+                    ],
+                    temperature=0.0,
+                    max_tokens=4096
+                )
 
-**表格结构**（从左到右的列）：
-```
-| 序号 | 代号 | 产品代号/规格 | 名称 | 数量 | 单重 | 总重 |
-```
+                response = {"content": completion.choices[0].message.content}
 
-**字段说明**：
-1. **序号**：1, 2, 3, 4...（可能从下往上排列）
-2. **代号**（BOM号）：
-   - 标准格式：`01.09.0410`, `02.03.0008`, `01.04.0145`
-   - 4段格式：`02.08.02.0263`
-   - **至少3段**（XX.XX.XXXX），必须以数字开头，包含点号分隔
-3. **产品代号**：可能包含：
-   - 英文字母和数字：`T-AB1830(72IN)-EURO-01`, `S-RB1830-07`
-   - 规格型号：`M8*60`, `M12*35`, `10*2`, `φ4.5*10`
-   - 中文描述：`标准型性能8级8.8GB/T5781-2016`
-4. **名称**：零件名称（可能是中文或英文），如：
-   - 中文：`挂架组件-漆后`, `六角头螺栓全螺纹8.8级GB/T5781-2016`, `销轴-镀锌`
-   - 英文：`WARNING-FLYING OBJECTS AND PINCH POINTS`, `WARNING-HIGH PRESSURE FLUID HAZARD`, `DANGER-PINCH POINTS`
-   - ⚠️ **重要**：以`WARNING`或`DANGER`开头的也是**有效的产品名称**，必须提取！
-5. **数量**：整数（1, 2, 4, 12, 38等）
-6. **重量**：浮点数，单位kg（76.42, 0.29, 3.65, 0.00等）
+                # 解析响应
+                content = response.get("content", "").strip()
 
-**需要跳过的行**：
-- 表头行（如：`序号`, `代号`, `名称`, `数量`, `重量`等）
-- 没有代号的行（代号列为空的行）
-- 没有序号的行（序号列为空的行）
-- 代号格式不对的行（如：只有2段的工序号 `08.04`, `01.13`）
+                # 尝试提取JSON数组
+                import json
+                import re
 
-## 3. 提取规则
-
-### 3.1 第一步：识别BOM表
-1. **在所有页面中查找表格**（BOM表可能在任何一页）
-2. **检查表格是否有"代号"列**：
-   - 代号必须是 `XX.XX.XXXX` 格式（至少3段）
-   - 如果只有2段（如 `08.04`, `01.13`），那是工序号，不是BOM代号
-3. **确认是BOM表后，再提取数据**
-
-### 3.2 第二步：逐行提取
-1. **提取所有有效行**：
-   - 必须有序号（1-200之间的数字）
-   - 必须有代号（XX.XX.XXXX或XX.XX.XX.XXXXX格式，至少3段）
-   - **不要跳过任何有序号和代号的行**，即使名称是英文的WARNING或DANGER
-
-2. **字段提取**：
-   - `seq`：序号（字符串）
-   - `code`：代号（必须是XX.XX.XXXX格式，至少3段）
-   - `product_code`：产品代号/规格（可能为空，使用空字符串""）
-   - `name`：名称（中文或英文零件名称，可能为空，使用空字符串""）
-   - `quantity`：数量（整数）
-   - `weight`：总重（浮点数，如果有单重和总重两列，取总重；如果只有一列重量，就取那一列）
-
-3. **完整性要求**：
-   - ⚠️ **提取所有行**：如果BOM表有38行，必须提取所有38行
-   - ⚠️ **不要遗漏**：即使某些字段难以识别，也要提取该行
-   - ⚠️ **按序号排序**：最终结果按序号从小到大排列（1, 2, 3...）
-
-## 4. 输出格式
-
-直接返回JSON数组，**不要添加任何解释性文字**：
-
-```json
-[
-  {
-    "seq": "1",
-    "code": "01.09.2154",
-    "product_code": "S-AB1830(72IN)-MP1140-01",
-    "name": "挂架组件-漆后",
-    "quantity": 1,
-    "weight": 76.42
-  },
-  {
-    "seq": "31",
-    "code": "02.21.0112",
-    "product_code": "",
-    "name": "WARNING-FLYING OBJECTS AND PINCH POINTS",
-    "quantity": 2,
-    "weight": 0.00
-  },
-  {
-    "seq": "32",
-    "code": "02.21.0109",
-    "product_code": "",
-    "name": "DANGER-PINCH POINTS",
-    "quantity": 1,
-    "weight": 0.00
-  }
-]
-```
-
-## 5. 关键提示
-
-- ✅ **查看所有页面**，BOM表可能在任何一页（通常在右下角）
-- ✅ **先识别BOM表**：必须有"代号"列（XX.XX.XXXX格式，至少3段）
-- ✅ **不要提取工艺路线表**：工序号只有2段（XX.XX），不是BOM代号
-- ✅ **注意序号可能从下往上排列**（序号1在最下面）
-- ✅ **提取所有有效行**，不要遗漏任何零件
-- ✅ **WARNING和DANGER开头的也是有效的产品名称**，必须提取
-- ✅ **只跳过表头**，不要跳过任何有序号和代号的数据行
-- ✅ **确保JSON格式正确**，可以被直接解析
-- ✅ **如果图纸中没有BOM表，返回空数组** `[]`
-"""
-
-        try:
-            # ✅ 将所有页面一起发送给模型（而不是逐页发送）
-            print_info(f"      正在分析 {len(images)} 页图纸...", indent=1)
-
-            # 构建包含所有页面的消息
-            content = [{"type": "text", "text": prompt}]
-            for img_base64 in images:
-                content.append({
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/png;base64,{img_base64}"
-                    }
-                })
-
-            response = self.vision_agent.client.chat.completions.create(
-                model=self.vision_agent.model_name,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": content
-                    }
-                ],
-                temperature=0.1,
-                max_tokens=8000  # 增加token限制以处理多页
-            )
-
-            result_text = response.choices[0].message.content.strip()
-
-            # 提取JSON部分
-            import json
-            import re
-
-            # 尝试提取JSON数组
-            json_match = re.search(r'\[.*\]', result_text, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(0)
-
+                # 方法1: 直接解析
                 try:
-                    bom_items = json.loads(json_str)
-
-                    if bom_items:
-                        print_info(f"         找到 {len(bom_items)} 个零件", indent=1)
-                    else:
-                        print_info(f"         未找到BOM表", indent=1)
-
-                    # 添加source_pdf字段
-                    for item in bom_items:
-                        item["source_pdf"] = pdf_name
-
-                    return bom_items
-
-                except json.JSONDecodeError as json_err:
-                    # JSON解析失败，尝试修复常见问题
-                    print_warning(f"      JSON解析失败: {json_err}", indent=1)
-                    print_warning(f"      尝试修复JSON格式...", indent=1)
-
-                    # 保存原始响应用于调试
-                    debug_file = self.output_dir / f"debug_bom_response_{pdf_name}.txt"
-                    with open(debug_file, "w", encoding="utf-8") as f:
-                        f.write(f"原始响应:\n{result_text}\n\n")
-                        f.write(f"提取的JSON:\n{json_str}\n\n")
-                        f.write(f"错误信息:\n{json_err}\n")
-
-                    print_info(f"      调试信息已保存到: {debug_file.name}", indent=1)
-
-                    # 尝试修复JSON（移除尾部逗号、修复引号等）
-                    try:
-                        fixed_json = json_str
-
-                        # 修复1：移除对象末尾的逗号（如：{"key": "value",}）
-                        fixed_json = re.sub(r',\s*}', '}', fixed_json)
-
-                        # 修复2：移除数组末尾的逗号（如：[1, 2, 3,]）
-                        fixed_json = re.sub(r',\s*\]', ']', fixed_json)
-
-                        # 修复3：修复数字后多余的引号（如："quantity": 1"）
-                        # 匹配模式：数字后面跟着引号和逗号或换行
-                        fixed_json = re.sub(r':\s*(\d+)"\s*([,\n])', r': \1\2', fixed_json)
-
-                        # 修复4：修复浮点数后多余的引号（如："weight": 32.12"）
-                        fixed_json = re.sub(r':\s*(\d+\.\d+)"\s*([,\n}])', r': \1\2', fixed_json)
-
-                        bom_items = json.loads(fixed_json)
-                        print_success(f"      JSON修复成功！找到 {len(bom_items)} 个零件", indent=1)
-
-                        # 添加source_pdf字段
+                    bom_items = json.loads(content)
+                    if isinstance(bom_items, list):
+                        # ✅ 添加source_pdf字段
                         for item in bom_items:
                             item["source_pdf"] = pdf_name
+                        all_bom_items.extend(bom_items)
+                        print_info(f"         找到 {len(bom_items)} 个零件", indent=1)
+                        continue
+                except:
+                    pass
 
-                        return bom_items
-                    except Exception as fix_err:
-                        print_warning(f"      JSON修复失败: {fix_err}", indent=1)
-                        return []
-            else:
+                # 方法2: 提取JSON数组
+                json_match = re.search(r'\[.*\]', content, re.DOTALL)
+                if json_match:
+                    try:
+                        bom_items = json.loads(json_match.group(0))
+                        if isinstance(bom_items, list):
+                            # ✅ 添加source_pdf字段
+                            for item in bom_items:
+                                item["source_pdf"] = pdf_name
+                            all_bom_items.extend(bom_items)
+                            print_info(f"         找到 {len(bom_items)} 个零件", indent=1)
+                            continue
+                    except:
+                        pass
+
                 print_info(f"         未找到BOM表", indent=1)
-                return []
 
-        except Exception as e:
-            print_warning(f"      Vision API调用失败: {e}", indent=1)
-            import traceback
-            traceback.print_exc()
-            return []
+            except Exception as e:
+                print_warning(f"      第 {i+1} 页分析失败: {e}", indent=1)
+                continue
+
+        return all_bom_items
+
+
 
     def _step3_vision_planning(self, image_hierarchy: Dict, bom_data: List[Dict], file_hierarchy: Dict) -> Dict:
         """步骤3: Agent 1 - 视觉规划"""

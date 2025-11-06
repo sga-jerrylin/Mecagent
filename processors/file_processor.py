@@ -153,6 +153,22 @@ class ModelProcessor:
         try:
             print(f"   🔄 开始加载STEP文件: {os.path.basename(input_path)}")
 
+            # 检查文件扩展名
+            file_ext = os.path.splitext(input_path)[1].lower()
+
+            # 如果是STEP文件，检查cascadio是否可用
+            if file_ext in ['.step', '.stp']:
+                try:
+                    import cascadio
+                    print(f"   ✅ 检测到cascadio库，支持STEP文件")
+                except ImportError:
+                    print(f"   ⚠️  cascadio库未安装，STEP文件支持受限")
+                    return {
+                        "success": False,
+                        "error": "STEP文件需要cascadio库支持，但该库未正确安装。建议：1) 重新构建Docker镜像 2) 或将STEP文件转换为STL格式后上传",
+                        "message": "缺少STEP文件支持库"
+                    }
+
             # 加载模型文件（force='scene'保留装配结构）
             # ✅ 添加错误处理：STEP文件格式问题
             try:
@@ -160,10 +176,22 @@ class ModelProcessor:
             except Exception as load_error:
                 # STEP文件格式错误的特殊处理
                 error_str = str(load_error)
-                if "format string" in error_str or "}" in error_str:
-                    raise Exception(f"STEP文件格式错误，可能包含非标准格式或损坏。建议：1) 使用CAD软件重新导出STEP文件 2) 尝试使用STEP AP214或AP203格式 3) 检查文件是否完整")
-                else:
-                    raise load_error
+                print(f"   ⚠️  STEP文件加载错误: {error_str}")
+
+                # 尝试使用不同的加载方式
+                print(f"   🔄 尝试使用备用加载方式...")
+                try:
+                    # 尝试不强制为scene
+                    mesh = self.trimesh.load(input_path)
+                    print(f"   ✅ 备用加载方式成功")
+                except Exception as retry_error:
+                    print(f"   ❌ 备用加载方式也失败: {str(retry_error)}")
+
+                    # 如果是JSON解析错误，可能是trimesh的STEP解析器问题
+                    if "unexpected" in error_str or "{" in error_str or "}" in error_str:
+                        raise Exception(f"STEP文件解析失败。这可能是因为：\n1. STEP文件格式不被trimesh/cascadio支持\n2. 文件包含特殊字符或非标准格式\n3. 建议：使用CAD软件将STEP转换为STL格式后再上传")
+                    else:
+                        raise load_error
 
             if mesh.is_empty:
                 return {
@@ -279,8 +307,30 @@ class ModelProcessor:
                     "message": "需要包含多个零件的装配体"
                 }
 
-            # 获取所有节点
-            node_names = list(scene.graph.nodes_geometry)
+            # ✅ 获取所有节点（遍历所有几何体，确保不遗漏任何零件）
+            node_names = []
+
+            # 方法1：从scene.graph.nodes_geometry获取（这是主要的节点列表）
+            nodes_from_graph = list(scene.graph.nodes_geometry)
+            node_names.extend(nodes_from_graph)
+
+            # 方法2：从scene.geometry获取所有几何体名称（确保没有遗漏）
+            # 有些几何体可能没有在graph中注册，但存在于geometry字典中
+            for geom_name in scene.geometry.keys():
+                # 查找引用这个几何体的所有节点
+                for node in scene.graph.nodes:
+                    if node in scene.graph.transforms.nodes:
+                        try:
+                            _, node_geom_name = scene.graph[node]
+                            if node_geom_name == geom_name and node not in node_names:
+                                node_names.append(node)
+                        except:
+                            pass
+
+            # 去重
+            node_names = list(set(node_names))
+
+            print(f"      找到 {len(node_names)} 个零件节点")
 
             if len(node_names) < 2:
                 return {
@@ -293,48 +343,68 @@ class ModelProcessor:
             bounds = scene.bounds
             center = (bounds[0] + bounds[1]) / 2
 
+            # ✅ 计算装配体的特征尺寸（用于爆炸距离的基准）
+            assembly_size = np.linalg.norm(bounds[1] - bounds[0])
+
+            # ✅ 爆炸系数：控制整体爆炸程度（可调整，1.5表示爆炸距离是装配体尺寸的1.5倍）
+            explosion_factor = 1.5
+
             # 生成爆炸向量
             explosion_vectors = {}
             node_map = {}
 
             for i, node_name in enumerate(node_names):
-                # 获取节点的变换矩阵
-                transform, geometry_name = scene.graph[node_name]
+                try:
+                    # 获取节点的变换矩阵
+                    transform, geometry_name = scene.graph[node_name]
 
-                # 获取几何体
-                geometry = scene.geometry[geometry_name]
+                    # 获取几何体
+                    geometry = scene.geometry[geometry_name]
 
-                # 计算零件中心
-                part_center = geometry.centroid
-                if transform is not None:
-                    part_center = transform[:3, :3] @ part_center + transform[:3, 3]
+                    # 计算零件中心
+                    part_center = geometry.centroid
+                    if transform is not None:
+                        part_center = transform[:3, :3] @ part_center + transform[:3, 3]
 
-                # 计算爆炸方向（从装配体中心指向零件中心）
-                direction = part_center - center
-                distance = np.linalg.norm(direction)
+                    # 计算爆炸方向（从装配体中心指向零件中心）
+                    direction = part_center - center
+                    distance_to_center = np.linalg.norm(direction)
 
-                if distance > 0.001:  # 避免除零
-                    direction = direction / distance
-                else:
-                    # 如果零件在中心，使用随机方向
-                    direction = np.array([
-                        np.cos(i * 2 * np.pi / len(node_names)),
-                        np.sin(i * 2 * np.pi / len(node_names)),
-                        0.5
-                    ])
-                    direction = direction / np.linalg.norm(direction)
+                    if distance_to_center > 0.001:  # 避免除零
+                        direction = direction / distance_to_center
+                    else:
+                        # 如果零件在中心，使用随机方向
+                        direction = np.array([
+                            np.cos(i * 2 * np.pi / len(node_names)),
+                            np.sin(i * 2 * np.pi / len(node_names)),
+                            0.5
+                        ])
+                        direction = direction / np.linalg.norm(direction)
+                        distance_to_center = assembly_size * 0.1  # 给中心零件一个默认距离
 
-                # 爆炸距离（基于装配体尺寸）
-                explosion_distance = np.linalg.norm(bounds[1] - bounds[0]) * 0.5
+                    # ✅ 爆炸距离（动态调整）：
+                    # 1. 基础距离 = 装配体尺寸 * 爆炸系数
+                    # 2. 根据零件到中心的距离进行缩放：离中心越远，爆炸距离越大
+                    # 3. 最小爆炸距离 = 装配体尺寸 * 0.3（确保所有零件都能明显移动）
+                    base_explosion_distance = assembly_size * explosion_factor
+                    distance_ratio = distance_to_center / (assembly_size * 0.5)  # 归一化距离比例
+                    explosion_distance = max(
+                        base_explosion_distance * distance_ratio,  # 根据距离缩放
+                        assembly_size * 0.3  # 最小爆炸距离
+                    )
 
-                explosion_vectors[node_name] = {
-                    "direction": direction.tolist(),
-                    "distance": float(explosion_distance),
-                    "original_position": part_center.tolist()
-                }
+                    explosion_vectors[node_name] = {
+                        "direction": direction.tolist(),
+                        "distance": float(explosion_distance),
+                        "original_position": part_center.tolist()
+                    }
 
-                # 创建节点映射
-                node_map[f"part_{i:03d}"] = node_name
+                    # 创建节点映射
+                    node_map[f"part_{i:03d}"] = node_name
+
+                except Exception as e:
+                    print(f"      ⚠️  处理节点 {node_name} 时出错: {e}")
+                    continue
 
             # 生成manifest.json
             manifest = self._generate_manifest(

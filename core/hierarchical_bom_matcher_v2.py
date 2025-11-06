@@ -55,29 +55,30 @@ class HierarchicalBOMMatcher:
         print_info(f"组件数量: {len(component_plans)}")
 
         # ✅ 创建组件代号到组件图序号的映射
-        # 策略：通过BOM数据的source_pdf字段来匹配
+        # 策略：通过AI规划中的drawing_number字段来匹配
+        # 逻辑：drawing_number="①" → index=1, "②" → index=2, ...
         component_code_to_drawing_index = {}
-        if file_hierarchy and file_hierarchy.get("components"):
-            for comp in file_hierarchy["components"]:
-                comp_name = comp.get("name", "")  # 如"组件图1", "组件图2"
-                comp_index = comp.get("index", 0)  # 实际的组件图序号
 
-                # 从BOM数据中找到属于这个组件图的BOM项
-                # source_pdf格式：组件图1_page_1, 组件图2_page_1等
-                for bom_item in bom_data:
-                    source_pdf = bom_item.get("source_pdf", "")
-                    if source_pdf.startswith(comp_name):
-                        # 这个BOM项属于当前组件图
-                        # 从组件规划中找到包含这个BOM代号的组件
-                        bom_code = bom_item.get("code", "")
-                        for plan in component_plans:
-                            # 检查这个BOM代号是否属于这个组件
-                            # 通过检查组件的BOM数据来判断
-                            comp_bom = self._get_component_bom(bom_data, plan)
-                            if any(item.get("code") == bom_code for item in comp_bom):
-                                component_code_to_drawing_index[plan.get("component_code", "")] = comp_index
-                                break
-                        break
+        # 圆圈数字到阿拉伯数字的映射
+        circle_to_number = {
+            "①": 1, "②": 2, "③": 3, "④": 4, "⑤": 5,
+            "⑥": 6, "⑦": 7, "⑧": 8, "⑨": 9, "⑩": 10
+        }
+
+        for plan in component_plans:
+            comp_code = plan.get("component_code", "")
+            drawing_number = plan.get("drawing_number", "")  # "①", "②", "③", "④"
+
+            # 将圆圈数字转换为阿拉伯数字
+            if drawing_number in circle_to_number:
+                drawing_index = circle_to_number[drawing_number]
+                component_code_to_drawing_index[comp_code] = drawing_index
+                print(f"   📌 组件 {comp_code} → 组件图{drawing_index} (drawing_number={drawing_number})")
+            else:
+                # 如果无法解析，使用assembly_order作为后备
+                comp_order = plan.get("assembly_order", 0)
+                component_code_to_drawing_index[comp_code] = comp_order
+                print(f"   ⚠️  组件 {comp_code} 无法解析drawing_number '{drawing_number}'，使用assembly_order={comp_order}")
 
         # 结果容器
         component_level_mappings = {}
@@ -143,7 +144,7 @@ class HierarchicalBOMMatcher:
             print_success(f"GLB转换成功: {len(parts_list)} 个零件", indent=1)
             
             # 获取组件的BOM数据（只包含组件内部的零件）
-            component_bom = self._get_component_bom(bom_data, comp_plan)
+            component_bom = self._get_component_bom(bom_data, comp_plan, drawing_index)
             print_info(f"组件BOM: {len(component_bom)} 个零件", indent=1)
             
             # BOM-3D匹配（双匹配策略：代码匹配 + AI跟进匹配）
@@ -225,6 +226,25 @@ class HierarchicalBOMMatcher:
                 matcher = BOM3DMatcher()
                 bom_mapping_table = matcher.generate_bom_mapping_table(component_bom, cleaned_parts)
 
+                # ✅ 生成组件的爆炸视图数据
+                print_info(f"生成组件{drawing_index}爆炸视图数据...", indent=1)
+                explosion_result = self.model_processor.generate_explosion_data(
+                    glb_path=str(glb_file),
+                    assembly_spec={},  # 组件级别暂时不需要装配规程
+                    output_dir=str(glb_output)
+                )
+
+                if explosion_result["success"]:
+                    # 重命名manifest.json为manifest_component_{drawing_index}.json
+                    import shutil
+                    from pathlib import Path as PathLib  # ✅ 使用别名避免与顶部导入冲突
+                    manifest_path = PathLib(explosion_result["manifest_path"])
+                    component_manifest_path = manifest_path.parent / f"manifest_component_{drawing_index}.json"
+                    shutil.move(str(manifest_path), str(component_manifest_path))
+                    print_success(f"爆炸视图数据生成成功: {explosion_result['node_count']} 个零件", indent=1)
+                else:
+                    print_warning(f"爆炸视图数据生成失败: {explosion_result.get('error')}", indent=1)
+
                 # 保存组件级别的映射
                 component_level_mappings[comp_code] = {
                     "component_name": comp_name,
@@ -292,7 +312,26 @@ class HierarchicalBOMMatcher:
             if convert_result["success"]:
                 parts_list = convert_result.get("parts_info", [])
                 print_success(f"GLB转换成功: {len(parts_list)} 个零件", indent=1)
-                
+
+                # ✅ 生成产品总图的爆炸视图数据
+                print_info("生成产品总图爆炸视图数据...", indent=1)
+                explosion_result = self.model_processor.generate_explosion_data(
+                    glb_path=str(product_glb),
+                    assembly_spec={},  # 产品级别暂时不需要装配规程
+                    output_dir=str(glb_output)
+                )
+
+                if explosion_result["success"]:
+                    # 重命名manifest.json为manifest_product.json
+                    import shutil
+                    from pathlib import Path as PathLib  # ✅ 避免与顶部导入冲突
+                    manifest_path = PathLib(explosion_result["manifest_path"])
+                    product_manifest_path = manifest_path.parent / "manifest_product.json"
+                    shutil.move(str(manifest_path), str(product_manifest_path))
+                    print_success(f"爆炸视图数据生成成功: {explosion_result['node_count']} 个零件", indent=1)
+                else:
+                    print_warning(f"爆炸视图数据生成失败: {explosion_result.get('error')}", indent=1)
+
                 # ✅ 产品级别的BOM数据（从产品总图PDF提取的零件）
                 # ✅ 修改：不排除组件，组件的零件也要参与匹配
                 product_bom_all = [
@@ -421,7 +460,7 @@ class HierarchicalBOMMatcher:
             "glb_files": glb_files
         }
     
-    def _get_component_bom(self, bom_data: List[Dict], comp_plan: Dict) -> List[Dict]:
+    def _get_component_bom(self, bom_data: List[Dict], comp_plan: Dict, drawing_index: int = None) -> List[Dict]:
         """
         获取组件的BOM数据（只包含组件内部的零件）
 
@@ -433,12 +472,15 @@ class HierarchicalBOMMatcher:
         Args:
             bom_data: 完整的BOM数据
             comp_plan: 组件规划（包含assembly_order）
+            drawing_index: 实际的图纸序号（优先使用）
 
         Returns:
             组件的BOM数据列表
         """
-        # 获取组件序号
-        comp_order = comp_plan.get("assembly_order", 0)
+        # ✅ 优先使用drawing_index，如果没有则使用assembly_order
+        if drawing_index is None:
+            drawing_index = comp_plan.get("assembly_order", 0)
+
         comp_name = comp_plan.get("component_name", "")
 
         # 根据source_pdf过滤BOM数据（支持多种命名方式）
@@ -446,14 +488,14 @@ class HierarchicalBOMMatcher:
 
         # 可能的文件名格式（不区分大小写）
         possible_names = [
-            f"组件图{comp_order}.pdf",
-            f"组件图{comp_order}.PDF",
-            f"组件{comp_order}.pdf",
-            f"组件{comp_order}.PDF"
+            f"组件图{drawing_index}.pdf",
+            f"组件图{drawing_index}.PDF",
+            f"组件{drawing_index}.pdf",
+            f"组件{drawing_index}.PDF"
         ]
 
         # ✅ 调试日志：打印查找信息
-        print_info(f"🔍 查找组件{comp_order}({comp_name})的BOM数据", indent=1)
+        print_info(f"🔍 查找组件{drawing_index}({comp_name})的BOM数据", indent=1)
         print_info(f"   可能的文件名: {', '.join(possible_names)}", indent=1)
 
         # 统计所有source_pdf
