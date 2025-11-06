@@ -1097,7 +1097,57 @@ const switchGLBModel = async (glbFile: string) => {
 
     model.position.set(-center.x, -center.y, -center.z)
 
-    // 6. 调整相机
+    // ✅ 6. 模型居中后，保存每个mesh的世界坐标位置和爆炸方向（世界坐标系）
+    const worldCenter = new THREE.Vector3(0, 0, 0) // 已经居中到(0,0,0)
+    let nearCenterCount = 0
+    const samplePositions: any[] = []
+
+    model.traverse((child: any) => {
+      if (child.isMesh) {
+        // ✅ 计算世界坐标位置
+        const worldPos = new THREE.Vector3()
+        child.getWorldPosition(worldPos)
+        meshWorldOriginalPositions.set(child.uuid, worldPos.clone())
+
+        // 计算并保存爆炸方向（从中心指向零件，纯径向，使用世界坐标）
+        const directionWorld = worldPos.clone().sub(worldCenter)
+        const distance = directionWorld.length()
+
+        // 收集前10个零件的位置信息用于调试
+        if (samplePositions.length < 10) {
+          samplePositions.push({
+            name: child.name,
+            worldPos: `(${worldPos.x.toFixed(3)}, ${worldPos.y.toFixed(3)}, ${worldPos.z.toFixed(3)})`,
+            distance: distance.toFixed(6),
+            parentName: child.parent?.name || 'unknown'
+          })
+        }
+
+        if (distance < 1e-6) {
+          // 如果零件非常接近中心点，使用均匀随机方向避免重叠
+          const theta = Math.random() * Math.PI * 2
+          const phi = Math.random() * Math.PI
+          directionWorld.set(
+            Math.sin(phi) * Math.cos(theta),
+            Math.cos(phi),
+            Math.sin(phi) * Math.sin(theta)
+          )
+          nearCenterCount++
+        } else {
+          directionWorld.normalize()
+        }
+
+        meshExplodeDirections.set(child.name, directionWorld.clone()) // 兼容旧逻辑（按名称）
+        meshWorldExplodeDirections.set(child.uuid, directionWorld)
+      }
+    })
+    console.log('✅ 已保存', meshWorldOriginalPositions.size, '个mesh的世界位置和爆炸方向')
+    console.log('📍 前10个零件的位置信息:', samplePositions)
+    if (nearCenterCount > 0) {
+      console.log(`⚠️ ${nearCenterCount} 个零件非常接近中心，使用随机方向`)
+    }
+
+    // 7. 调整相机
     const maxDim = Math.max(size.x, size.y, size.z)
     let cameraZ = maxDim * 2.5
 
@@ -1113,17 +1163,17 @@ const switchGLBModel = async (glbFile: string) => {
       controls.update()
     }
 
-    // 7. 添加到场景
+    // 8. 添加到场景
     scene.add(model)
     console.log('✅ 新模型已添加到场景')
 
-    // 8. 调整网格
+    // 9. 调整网格
     if (gridHelper) {
       const modelBox = new THREE.Box3().setFromObject(model)
       gridHelper.position.y = modelBox.min.y
     }
 
-    // 9. 重置爆炸状态
+    // 10. 重置爆炸状态
     isExploded.value = false
 
     ElMessage.success(`已切换到${glbFile}`)
