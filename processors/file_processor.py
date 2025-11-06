@@ -308,29 +308,34 @@ class ModelProcessor:
                 }
 
             # ✅ 获取所有节点（遍历所有几何体，确保不遗漏任何零件）
+            # 修复：当产品STEP包含组件时，组件内的零件可能在子节点中
+            # 需要遍历所有节点，而不仅仅是nodes_geometry
             node_names = []
 
-            # 方法1：从scene.graph.nodes_geometry获取（这是主要的节点列表）
-            nodes_from_graph = list(scene.graph.nodes_geometry)
-            node_names.extend(nodes_from_graph)
+            print(f"      🔍 开始遍历场景图节点...")
+            print(f"      📊 scene.graph.nodes总数: {len(list(scene.graph.nodes))}")
+            print(f"      📊 scene.graph.nodes_geometry总数: {len(list(scene.graph.nodes_geometry))}")
+            print(f"      📊 scene.geometry总数: {len(scene.geometry)}")
 
-            # 方法2：从scene.geometry获取所有几何体名称（确保没有遗漏）
-            # 有些几何体可能没有在graph中注册，但存在于geometry字典中
-            for geom_name in scene.geometry.keys():
-                # 查找引用这个几何体的所有节点
-                for node in scene.graph.nodes:
-                    if node in scene.graph.transforms.nodes:
-                        try:
-                            _, node_geom_name = scene.graph[node]
-                            if node_geom_name == geom_name and node not in node_names:
-                                node_names.append(node)
-                        except:
-                            pass
+            # ✅ 关键修复：遍历所有节点，检查每个节点是否关联了几何体
+            # 这样可以捕获子装配体内的零件
+            for node in scene.graph.nodes:
+                try:
+                    # 尝试获取节点的几何体
+                    transform, geometry_name = scene.graph[node]
 
-            # 去重
-            node_names = list(set(node_names))
+                    # 如果节点关联了几何体，且几何体存在于scene.geometry中
+                    if geometry_name and geometry_name in scene.geometry:
+                        if node not in node_names:
+                            node_names.append(node)
+                            # 调试：打印前10个节点
+                            if len(node_names) <= 10:
+                                print(f"      ✅ 节点{len(node_names)}: {node} -> {geometry_name}")
+                except:
+                    # 节点没有关联几何体，跳过
+                    pass
 
-            print(f"      找到 {len(node_names)} 个零件节点")
+            print(f"      ✅ 找到 {len(node_names)} 个零件节点（包含所有子装配体内的零件）")
 
             if len(node_names) < 2:
                 return {
