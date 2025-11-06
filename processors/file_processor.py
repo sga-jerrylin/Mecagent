@@ -390,16 +390,21 @@ class ModelProcessor:
                         direction = direction / np.linalg.norm(direction)
                         distance_to_center = assembly_size * 0.1  # 给中心零件一个默认距离
 
-                    # ✅ 爆炸距离（动态调整）：
-                    # 1. 基础距离 = 装配体尺寸 * 爆炸系数
-                    # 2. 根据零件到中心的距离进行缩放：离中心越远，爆炸距离越大
-                    # 3. 最小爆炸距离 = 装配体尺寸 * 0.3（确保所有零件都能明显移动）
+                    # ✅ 爆炸距离策略：
+                    # 策略1：动态调整（根据零件到中心的距离）
+                    # 策略2：固定距离（当零件聚集时使用）
+
                     base_explosion_distance = assembly_size * explosion_factor
-                    distance_ratio = distance_to_center / (assembly_size * 0.5)  # 归一化距离比例
-                    explosion_distance = max(
-                        base_explosion_distance * distance_ratio,  # 根据距离缩放
-                        assembly_size * 0.3  # 最小爆炸距离
-                    )
+                    distance_ratio = distance_to_center / (assembly_size * 0.5) if assembly_size > 0 else 0
+
+                    # ✅ 关键修复：统一使用固定爆炸距离
+                    # 原因：产品STEP文件中的组件可能作为子装配体存在，导致零件聚集
+                    # 使用固定距离可以确保所有零件都能明显散开
+                    explosion_distance = assembly_size * explosion_factor
+
+                    # 调试日志（每10个零件打印一次，避免日志过多）
+                    if i % 10 == 0:
+                        print(f"      零件{i}: distance_to_center={distance_to_center:.6f}, ratio={distance_ratio:.4f}, explosion_distance={explosion_distance:.6f}")
 
                     explosion_vectors[node_name] = {
                         "direction": direction.tolist(),
